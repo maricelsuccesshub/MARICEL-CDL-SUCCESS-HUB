@@ -9,7 +9,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="CDL Success Hub" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />                            
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root{--bg:#f5f7fb;--card:#fff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;--accent:#111827;--soft:#f3f4f6;--danger:#991b1b;--success:#166534}
     *{box-sizing:border-box}
@@ -171,6 +172,9 @@
 <footer>Maricel CDL Success Hub • Private Training Support Tool</footer>
 
 <script>
+  const SUPABASE_URL = "https://fmyaxdzonrgysziixze.supabase.co";
+const SUPABASE_KEY = "sb_publishable_sNkm8dvvUXXRocYNcQP_pw_eWmyBHCW";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const screens=[['home','Home'],['profile','My Profile'],['planner','Plan Route'],['safehaven','Safe Haven'],['facility','Facilities'],['backing','Backing'],['community','Community'],['resources','Resources'],['progress','Progress'],['admin','Admin']];
 const nav=document.getElementById('nav');screens.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');nav.appendChild(b)});
 function showScreen(id,btn){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');scrollTo(0,0)}
