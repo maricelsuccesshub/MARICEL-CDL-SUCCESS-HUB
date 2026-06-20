@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maricel CDL Success Hub</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #111827;
+      --soft: #f3f4f6;
+      --danger: #991b1b;
+      --success: #166534;
+      --warnbg: #fff7ed;
+      --warnborder: #fed7aa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: var(--accent);
+      color: white;
+      padding: 22px 18px;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 25px; }
+    header p { margin: 8px 0 0; color: #d1d5db; }
+    nav {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 14px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      max-height: 45vh;
+      overflow:auto;
+    }
+    nav button {
+      border: 1px solid var(--border);
+      background: var(--soft);
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    nav button.active {
+      background: var(--accent);
+      color: white;
+    }
+    main { padding: 16px; max-width: 980px; margin: auto; }
+    section { display: none; }
+    section.active { display: block; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    }
+    h2 { margin-top: 0; }
+    h3 { margin-bottom: 8px; }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 16px;
+      background: white;
+    }
+    textarea { min-height: 90px; }
+    .btn {
+      margin-top: 14px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn.secondary { background: #374151; }
+    .btn.light {
+      background: var(--soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      margin: 4px 4px 4px 0;
+      font-size: 14px;
+    }
+    .warning {
+      background: var(--warnbg);
+      border: 1px solid var(--warnborder);
+      color: #7c2d12;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+    .success {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: var(--success);
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+    .danger {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: var(--danger);
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+    .small { color: var(--muted); font-size: 14px; }
+    .list-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 10px 0;
+      background: white;
+    }
+    .two-col {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 12px;
+    }
+    .checklist li { margin: 8px 0; }
+    a { color: #1d4ed8; font-weight: bold; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Maricel CDL Success Hub</h1>
+    <p>Plan Early. Park Safe. Back With Confidence.</p>
+  </header>
+
+  <nav id="nav"></nav>
+
+  <main>
+    <section id="home" class="active">
+      <div class="card">
+        <h2>Welcome Driver</h2>
+        <p>This private support hub helps new CDL drivers plan safer, find truck-friendly entrances, refresh backing skills, and support each other.</p>
+        <div class="warning"><strong>Privacy Rule:</strong> Do not upload load information, bills of lading, dispatch screenshots, trailer contents, customer documents, employee IDs, truck numbers, trailer numbers, or company-sensitive information.</div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Plan My Route</h3><p>Enter a destination and automatically estimate sunset, timezone, weather, and your Safe Haven Deadline.</p></div>
+        <div class="card"><h3>Safe Haven Finder</h3><p>Search only with semi tractor-trailer safety in mind.</p></div>
+        <div class="card"><h3>Facility Intelligence</h3><p>Save truck entrances, guard shack info, and approach notes only.</p></div>
+        <div class="card"><h3>Backing Refresher</h3><p>Full step-by-step instructions for common backing setups.</p></div>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="card">
+        <h2>My Profile</h2>
+        <div class="two-col">
+          <div><label>First Name</label><input id="profileName" placeholder="Example: Maricel" /></div>
+          <div><label>Last Initial</label><input id="profileInitial" placeholder="Example: S" maxlength="2" /></div>
+        </div>
+        <div class="two-col">
+          <div><label>Email</label><input id="profileEmail" type="email" placeholder="example@email.com" /></div>
+          <div><label>Phone Number</label><input id="profilePhone" type="tel" placeholder="Optional" /></div>
+        </div>
+        <div class="two-col">
+          <div>
+            <label>Emergency Contact Name</label>
+            <input id="emergencyName" placeholder="Optional" />
+          </div>
+          <div>
+            <label>Emergency Contact Phone</label>
+            <input id="emergencyPhone" type="tel" placeholder="Optional" />
+          </div>
+        </div>
+        <label>CDL Status</label>
+        <select id="profileStatus">
+          <option>Student Driver</option><option>Recent Graduate</option><option>Solo Driver</option><option>Mentor</option><option>Senior Mentor</option>
+        </select>
+        <label>Experience Level</label>
+        <select id="profileExperience">
+          <option>New Driver</option><option>0-6 Months</option><option>6-12 Months</option><option>1+ Year</option><option>3+ Years</option><option>5+ Years</option>
+        </select>
+        <label>Preferred Driving Type</label>
+        <select id="drivingType">
+          <option>OTR</option><option>Regional</option><option>Local</option><option>Dedicated</option><option>Dry Van</option><option>Reefer</option><option>Flatbed</option><option>Tanker</option>
+        </select>
+        <label>Bio / About Me</label><textarea id="profileBio" placeholder="Share a short trucking introduction. Do not share CDL number, employee ID, truck number, or company-sensitive information."></textarea>
+        <button class="btn" onclick="saveProfile()">Save Profile</button>
+        <div id="profileSaved" class="success" style="display:none;">Profile saved on this device.</div>
+      </div>
+    </section>
+
+    <section id="planner">
+      <div class="card">
+        <h2>Plan My Route</h2>
+        <p class="small">This tool uses the destination address to estimate coordinates, timezone, sunset, and weather. In the real app, this should be connected to paid/secured APIs. In this prototype, it uses free public APIs that may have limits.</p>
+        <div class="warning"><strong>No classified information:</strong> Enter address/location only. Do not enter load, customer paperwork, BOL, trailer, dispatch, or commodity details.</div>
+        <label>Current City or Location</label><input id="currentLocation" placeholder="Example: Colton, CA" />
+        <label>Destination / Facility Address</label><input id="deliveryAddress" placeholder="Example: 123 Industrial Rd, City, State or just City, State" />
+        <div class="two-col">
+          <div><label>Manual Latitude (optional)</label><input id="manualLat" placeholder="Example: 34.0522" /></div>
+          <div><label>Manual Longitude (optional)</label><input id="manualLon" placeholder="Example: -118.2437" /></div>
+        </div>
+        <p class="small">If the address lookup fails, paste coordinates from Google Maps. Example: right-click/tap location → copy coordinates.</p>
+        <div class="two-col">
+          <div><label>Appointment Date</label><input type="date" id="appointmentDate" /></div>
+          <div><label>Appointment Time</label><input type="time" id="appointmentTime" /></div>
+        </div>
+        <button class="btn" onclick="autoPlanDestination()">Auto Get Sunset, Timezone & Weather</button>
+        <div id="autoPlanResult"></div>
+        <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button>
+      </div>
+    </section>
+
+    <section id="safehaven">
+      <div class="card">
+        <h2>Safe Haven Finder</h2>
+        <p>Search with a semi tractor-trailer mindset. Not every “parking” or “gas station” is safe for a 53-foot trailer.</p>
+        <label>Search Near City or Address</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA or facility address" />
+        <div class="grid">
+          <button class="btn" onclick="mapSearch('truck stop')">Semi-Friendly Truck Stops</button>
+          <button class="btn" onclick="mapSearch('interstate rest area truck parking')">Rest Areas with Truck Parking</button>
+          <button class="btn" onclick="mapSearch('truck parking 53 foot trailer')">Truck Parking</button>
+          <button class="btn" onclick="mapSearch('diesel truck fuel')">Diesel Fuel Stops</button>
+          <button class="btn" onclick="mapSearch('CAT scale truck stop')">CAT Scale</button>
+          <button class="btn" onclick="mapSearch('travel center truck parking')">Travel Centers</button>
+        </div>
+        <div class="warning">
+          <strong>Semi Tractor-Trailer Check:</strong>
+          <ul class="checklist">
+            <li>Confirm the entrance is wide enough for a tractor-trailer.</li>
+            <li>Check satellite view before entering.</li>
+            <li>Avoid tiny gas stations, low-clearance roads, dead ends, and tight shopping centers.</li>
+            <li>Verify overnight parking rules before shutting down.</li>
+            <li>Never risk unsafe shoulder parking just to save time.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="facility">
+      <div class="card">
+        <h2>Facility Intelligence</h2>
+        <p class="small">Only save location and navigation information. No load/customer-sensitive data.</p>
+        <label>Facility Name</label><input id="facilityName" />
+        <label>Facility Address</label><input id="facilityAddress" />
+        <label>Truck Entrance Notes</label><textarea id="entranceNotes" placeholder="Example: Truck entrance is on Industrial Blvd. Do not use front customer entrance."></textarea>
+        <label>Guard Shack / Check-In Notes</label><textarea id="guardNotes" placeholder="Example: Guard shack on right after gate. Have ID ready. No load or BOL details."></textarea>
+        <label>Best Direction to Approach</label><textarea id="approachNotes" placeholder="Example: Approach from eastbound side to avoid tight left turn."></textarea>
+        <label>Overnight Parking</label>
+        <select id="overnightParking"><option>Unknown</option><option>Yes</option><option>No</option><option>Limited</option></select>
+        <label>Difficulty Rating</label>
+        <select id="difficulty"><option>Easy</option><option>Moderate</option><option>Difficult</option><option>Very Tight</option></select>
+        <button class="btn" onclick="saveFacility()">Save Facility</button>
+      </div>
+      <div class="card">
+        <h3>Saved Facilities</h3>
+        <div id="facilityList"></div>
+      </div>
+    </section>
+
+    <section id="backing">
+      <div class="card">
+        <h2>Backing Refresher Center</h2>
+        <p>Choose the backing type and follow the steps slowly. This section is for refreshing safe habits, not rushing.</p>
+        <div class="grid">
+          <button class="btn light" onclick="showBacking('straight')">Straight Backing</button>
+          <button class="btn light" onclick="showBacking('offset')">Offset Backing</button>
+          <button class="btn light" onclick="showBacking('alley')">Alley Dock</button>
+          <button class="btn light" onclick="showBacking('45')">45° Backing</button>
+          <button class="btn light" onclick="showBacking('90')">90° Backing</button>
+          <button class="btn light" onclick="showBacking('blind')">Blind Side</button>
+          <button class="btn light" onclick="showBacking('truckstop')">Truck Stop Parking</button>
+          <button class="btn light" onclick="showBacking('panic')">I Lost My Setup</button>
+        </div>
+        <div id="backingContent" class="list-item">Choose a backing refresher.</div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="card">
+        <h2>Community Hub</h2>
+        <p>Private space for mentees to help each other.</p>
+        <span class="pill">General Help</span>
+        <span class="pill">Backing Help</span>
+        <span class="pill">Safe Parking</span>
+        <span class="pill">Facility Questions</span>
+        <span class="pill">Success Stories</span>
+        <div class="warning"><strong>Community Rule:</strong> Respect everyone. No shaming. Correct to build, not to break.</div>
+      </div>
+      <div class="card">
+        <h3>Post a Community Question</h3>
+        <label>Topic</label><input id="postTopic" placeholder="Example: Backing Help" />
+        <label>Message</label><textarea id="postMessage" placeholder="Ask a question or share advice. Do not share company-sensitive information."></textarea>
+        <button class="btn" onclick="savePost()">Post</button>
+      </div>
+      <div class="card">
+        <h3>Community Posts</h3>
+        <div id="postList"></div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="card">
+        <h2>Resource Vault</h2>
+        <div class="list-item"><strong>Pre-Trip Reminder</strong><br>Check tires, lights, brakes, leaks, coupling, mirrors, fluids, paperwork, and safety equipment.</div>
+        <div class="list-item"><strong>GOAL Rule</strong><br>Get Out And Look anytime you are unsure. It is better to stop than to hit something.</div>
+        <div class="list-item"><strong>Parking Before Dark</strong><br>Start planning your safe haven at least 2 hours before sunset.</div>
+        <div class="list-item"><strong>Professional Message Template</strong><br>"Good morning. I am currently checking safe parking and route conditions to make sure I can proceed safely. I will update you if anything changes."</div>
+      </div>
+    </section>
+
+    <section id="progress">
+      <div class="card">
+        <h2>My Progress Tracker</h2>
+        <label>Date</label><input type="date" id="progressDate" />
+        <label>Backing Practiced</label><input id="progressBacking" placeholder="Example: 45 backing, alley dock" />
+        <label>What Went Well?</label><textarea id="progressWin"></textarea>
+        <label>What Needs Improvement?</label><textarea id="progressImprove"></textarea>
+        <label>Confidence Level</label>
+        <select id="confidence"><option>1 - Very Nervous</option><option>2</option><option>3</option><option>4</option><option>5 - Confident</option></select>
+        <button class="btn" onclick="saveProgress()">Save Progress</button>
+      </div>
+      <div class="card">
+        <h3>Saved Progress</h3>
+        <div id="progressList"></div>
+      </div>
+    </section>
+
+    <section id="admin">
+      <div class="card">
+        <h2>Admin Dashboard</h2>
+        <p>For future version: approve members, review facility submissions, moderate videos, pin announcements, and remove unsafe posts.</p>
+        <div class="danger"><strong>Admin Safety:</strong> Any upload showing load details, paperwork, dispatch screens, trailer contents, customer documents, truck/trailer numbers, or private IDs should be removed immediately.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Maricel CDL Success Hub Prototype • Private Training Support Tool</footer>
+
+  <script>
+    const screens = [
+      ['home','Home'], ['profile','My Profile'], ['planner','Plan Route'], ['safehaven','Safe Haven'],
+      ['facility','Facilities'], ['backing','Backing'], ['community','Community'],
+      ['resources','Resources'], ['progress','Progress'], ['admin','Admin']
+    ];
+
+    const nav = document.getElementById('nav');
+    screens.forEach(([id,label]) => {
+      const btn = document.createElement('button');
+      btn.textContent = label;
+      btn.onclick = () => showScreen(id, btn);
+      if (id === 'home') btn.classList.add('active');
+      nav.appendChild(btn);
+    });
+
+    function showScreen(id, btn) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      window.scrollTo(0,0);
+    }
+
+    function saveProfile() {
+      const data = {
+        name: profileName.value,
+        initial: profileInitial.value,
+        email: profileEmail.value,
+        phone: profilePhone.value,
+        emergencyName: emergencyName.value,
+        emergencyPhone: emergencyPhone.value,
+        status: profileStatus.value,
+        experience: profileExperience.value,
+        drivingType: drivingType.value,
+        bio: profileBio.value
+      };
+      localStorage.setItem('profile', JSON.stringify(data));
+      profileSaved.style.display = 'block';
+    }
+
+    async function autoPlanDestination() {
+      const address = deliveryAddress.value.trim();
+      const latManual = parseFloat((manualLat.value || '').trim());
+      const lonManual = parseFloat((manualLon.value || '').trim());
+
+      if (!address && (isNaN(latManual) || isNaN(lonManual))) {
+        autoPlanResult.innerHTML = '<div class="danger">Please enter a destination address or manual coordinates first.</div>';
+        return;
+      }
+
+      autoPlanResult.innerHTML = '<div class="warning">Looking up destination, timezone, sunset, and weather...</div>';
+
+      try {
+        let lat, lon, displayName;
+
+        // Manual coordinate fallback works even if the address lookup fails.
+        if (!isNaN(latManual) && !isNaN(lonManual)) {
+          lat = latManual;
+          lon = lonManual;
+          displayName = address || 'Manual coordinates';
+        } else {
+          const found = await geocodeAddressWithFallbacks(address);
+          lat = found.lat;
+          lon = found.lon;
+          displayName = found.displayName;
+        }
+
+        const date = appointmentDate.value || new Date().toISOString().split('T')[0];
+
+        const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=sunrise,sunset,weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto&start_date=${date}&end_date=${date}`;
+        const weatherRes = await fetch(weatherUrl);
+        const weather = await weatherRes.json();
+
+        if (!weather.daily) throw new Error('Weather/sunset service did not return daily data.');
+
+        const timezone = weather.timezone || 'Timezone not available';
+        const sunrise = weather.daily?.sunrise?.[0] || '';
+        const sunset = weather.daily?.sunset?.[0] || '';
+        const maxTempC = weather.daily?.temperature_2m_max?.[0];
+        const minTempC = weather.daily?.temperature_2m_min?.[0];
+        const maxTempF = maxTempC !== undefined ? Math.round((maxTempC * 9/5) + 32) : 'N/A';
+        const minTempF = minTempC !== undefined ? Math.round((minTempC * 9/5) + 32) : 'N/A';
+        const precip = weather.daily?.precipitation_probability_max?.[0];
+        const windKmh = weather.daily?.wind_speed_10m_max?.[0];
+        const windMph = windKmh !== undefined ? Math.round(windKmh * 0.621371) : 'N/A';
+        const weatherCode = weather.daily?.weather_code?.[0];
+
+        let deadlineText = 'Not available';
+        if (sunset) {
+          const sunsetDate = new Date(sunset);
+          const deadline = new Date(sunsetDate.getTime() - 2 * 60 * 60 * 1000);
+          deadlineText = deadline.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+        }
+
+        const sunsetDisplay = sunset ? new Date(sunset).toLocaleTimeString([], {hour:'numeric', minute:'2-digit'}) : 'Not available';
+        const sunriseDisplay = sunrise ? new Date(sunrise).toLocaleTimeString([], {hour:'numeric', minute:'2-digit'}) : 'Not available';
+
+        autoPlanResult.innerHTML = `
+          <div class="success">
+            <strong>Destination Found:</strong> ${escapeHtml(displayName)}<br>
+            <strong>Coordinates:</strong> ${lat.toFixed(5)}, ${lon.toFixed(5)}<br>
+            <strong>Timezone:</strong> ${escapeHtml(timezone)}
+          </div>
+          <div class="list-item">
+            <h3>Sunset Safety Plan</h3>
+            <strong>Sunrise:</strong> ${sunriseDisplay}<br>
+            <strong>Sunset:</strong> ${sunsetDisplay}<br>
+            <strong>Safe Haven Deadline:</strong> ${deadlineText}<br>
+            <div class="warning"><strong>Reminder:</strong> Be parked or already securing safe parking by the Safe Haven Deadline. Do not wait until dark.</div>
+          </div>
+          <div class="list-item">
+            <h3>Destination Weather</h3>
+            <strong>High / Low:</strong> ${maxTempF}°F / ${minTempF}°F<br>
+            <strong>Precipitation Chance:</strong> ${precip ?? 'N/A'}%<br>
+            <strong>Max Wind:</strong> ${windMph} mph<br>
+            <strong>Weather Code:</strong> ${weatherCode ?? 'N/A'}<br>
+            <div class="warning">For trucking, always double-check wind, snow/ice, chain laws, road closures, and mountain grades using official road/weather sources before driving.</div>
+          </div>
+        `;
+      } catch (err) {
+        autoPlanResult.innerHTML = `<div class="danger">
+          <strong>Auto lookup could not find this address.</strong><br>
+          Try one of these:<br>
+          1. Enter only City, State. Example: "Barstow, CA"<br>
+          2. Remove suite/building names and use the street address only.<br>
+          3. Paste manual latitude/longitude from Google Maps.<br><br>
+          Error: ${escapeHtml(err.message)}
+        </div>`;
+      }
+    }
+
+    async function geocodeAddressWithFallbacks(address) {
+      const cleaned = address
+        .replace(/#/g, ' ')
+        .replace(/\bDock\b.*$/i, '')
+        .replace(/\bGate\b.*$/i, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      const queries = [
+        cleaned,
+        cleaned + ', USA',
+        extractCityState(cleaned)
+      ].filter(Boolean);
+
+      for (const q of [...new Set(queries)]) {
+        // Primary: OpenStreetMap Nominatim
+        try {
+          const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&q=${encodeURIComponent(q)}&limit=3`;
+          const res = await fetch(url, {headers: {'Accept': 'application/json'}});
+          const data = await res.json();
+          if (data && data.length) {
+            return {
+              lat: Number(data[0].lat),
+              lon: Number(data[0].lon),
+              displayName: data[0].display_name || q
+            };
+          }
+        } catch(e) {}
+
+        // Backup: Photon geocoder
+        try {
+          const url2 = `https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`;
+          const res2 = await fetch(url2);
+          const data2 = await res2.json();
+          if (data2.features && data2.features.length) {
+            const coords = data2.features[0].geometry.coordinates;
+            const props = data2.features[0].properties || {};
+            return {
+              lat: Number(coords[1]),
+              lon: Number(coords[0]),
+              displayName: [props.name, props.city, props.state, props.country].filter(Boolean).join(', ') || q
+            };
+          }
+        } catch(e) {}
+      }
+
+      throw new Error('Address not found by available free geocoders.');
+    }
+
+    function extractCityState(text) {
+      const parts = text.split(',').map(x => x.trim()).filter(Boolean);
+      if (parts.length >= 2) {
+        return parts.slice(-2).join(', ');
+      }
+      return '';
+    }
+
+    function openMapRoute() {
+      const from = encodeURIComponent(currentLocation.value || '');
+      const to = encodeURIComponent(deliveryAddress.value || '');
+      if (!to) { alert('Enter destination address first.'); return; }
+      const url = from ? `https://www.google.com/maps/dir/${from}/${to}` : `https://www.google.com/maps/search/${to}`;
+      window.open(url, '_blank');
+    }
+
+    function mapSearch(term) {
+      const loc = encodeURIComponent(safeSearchLocation.value || 'near me');
+      window.open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`, '_blank');
+    }
+
+    function saveFacility() {
+      const items = JSON.parse(localStorage.getItem('facilities') || '[]');
+      items.push({
+        name: facilityName.value, address: facilityAddress.value, entrance: entranceNotes.value,
+        guard: guardNotes.value, approach: approachNotes.value, parking: overnightParking.value,
+        difficulty: difficulty.value, date: new Date().toLocaleDateString()
+      });
+      localStorage.setItem('facilities', JSON.stringify(items));
+      renderFacilities();
+      facilityName.value = facilityAddress.value = entranceNotes.value = guardNotes.value = approachNotes.value = '';
+    }
+
+    function renderFacilities() {
+      const items = JSON.parse(localStorage.getItem('facilities') || '[]');
+      facilityList.innerHTML = items.length ? items.map(x => `
+        <div class="list-item">
+          <strong>${escapeHtml(x.name || 'Unnamed Facility')}</strong><br>
+          <span class="small">${escapeHtml(x.address || '')}</span><br>
+          <strong>Truck Entrance:</strong> ${escapeHtml(x.entrance || 'No notes')}<br>
+          <strong>Guard Shack:</strong> ${escapeHtml(x.guard || 'No notes')}<br>
+          <strong>Approach:</strong> ${escapeHtml(x.approach || 'No notes')}<br>
+          <strong>Parking:</strong> ${escapeHtml(x.parking)} | <strong>Difficulty:</strong> ${escapeHtml(x.difficulty)}
+        </div>
+      `).join('') : '<p class="small">No saved facilities yet.</p>';
+    }
+
+    const backingData = {
+      straight: `<h3>Straight Backing</h3>
+        <ol>
+          <li>Stop, breathe, and look at your full space before moving.</li>
+          <li>Line the tractor and trailer as straight as possible with the target space.</li>
+          <li>Use both mirrors and pick a reference line on the ground.</li>
+          <li>Back slowly. Idle speed is enough.</li>
+          <li>Make small steering corrections only. Do not oversteer.</li>
+          <li>If the trailer drifts left, correct gently and give the trailer time to respond.</li>
+          <li>If the trailer drifts right, correct gently and avoid chasing it too late.</li>
+          <li>Pull up early if the trailer is no longer straight.</li>
+          <li>GOAL before entering the final few feet.</li>
+        </ol>
+        <div class="warning"><strong>Common mistake:</strong> Overcorrecting. Small corrections early are better than big corrections late.</div>`,
+      offset: `<h3>Offset Backing</h3>
+        <ol>
+          <li>Start with a clean setup. If setup is bad, the whole back becomes harder.</li>
+          <li>Check both sides and identify where the trailer tandems need to end.</li>
+          <li>Begin backing slowly and create enough angle to move the trailer into the target lane.</li>
+          <li>Watch the trailer tires, not just the trailer door.</li>
+          <li>Once the trailer begins entering the target lane, start reducing the angle.</li>
+          <li>Follow the trailer with the tractor so you do not jackknife.</li>
+          <li>Use pull-ups before the trailer gets too crooked.</li>
+          <li>When aligned, straighten the tractor and trailer and finish like straight backing.</li>
+        </ol>
+        <div class="warning"><strong>Goal:</strong> Move lanes safely without rushing. Pull-ups are corrections, not failures.</div>`,
+      alley: `<h3>Alley Dock</h3>
+        <ol>
+          <li>Survey the dock, obstacles, parked trailers, yellow poles, and blind-side area.</li>
+          <li>Set up with enough room to create a controlled angle.</li>
+          <li>Back slowly and watch the trailer tandems pivot toward the dock.</li>
+          <li>Control the trailer angle before it becomes too sharp.</li>
+          <li>Follow the trailer with the tractor once the trailer is aimed correctly.</li>
+          <li>Use GOAL to confirm clearance on both sides.</li>
+          <li>Pull up to reduce angle and straighten before final approach.</li>
+          <li>Back into the dock slowly and stop before contact, then ease in if needed.</li>
+        </ol>
+        <div class="warning"><strong>Common mistake:</strong> Waiting too long to pull up. Fix the setup before the trailer is trapped.</div>`,
+      '45': `<h3>45° Backing</h3>
+        <ol>
+          <li>Drive past the space and position the trailer at about a 45-degree angle to the target.</li>
+          <li>Stop and GOAL before backing if the area is tight.</li>
+          <li>Begin backing slowly while watching the trailer tandems.</li>
+          <li>Let the trailer move toward the hole, then begin following it with the tractor.</li>
+          <li>Do not let the tractor and trailer angle become too sharp.</li>
+          <li>Pull up if your trailer is aimed too far left or right.</li>
+          <li>Once the trailer is inside the space, straighten the tractor and finish slowly.</li>
+        </ol>
+        <div class="warning"><strong>Reminder:</strong> The 45 is about setup and patience. Do not fight a bad angle.</div>`,
+      '90': `<h3>90° Backing</h3>
+        <ol>
+          <li>Only use a 90 when needed and when you have enough room.</li>
+          <li>GOAL before backing and identify blind-side hazards.</li>
+          <li>Start slowly and watch the trailer pivot point.</li>
+          <li>Protect the trailer tail swing and tractor front swing.</li>
+          <li>Do not let the trailer turn faster than you can control.</li>
+          <li>Use pull-ups to reduce angle and protect both sides.</li>
+          <li>When the trailer is aimed into the space, get under it and straighten.</li>
+          <li>GOAL again before the final back.</li>
+        </ol>
+        <div class="warning"><strong>Safety rule:</strong> Blind side and tail swing can hit objects fast. Stop and look often.</div>`,
+      blind: `<h3>Blind-Side Backing</h3>
+        <ol>
+          <li>Avoid blind-side backing if a safer sight-side setup is available.</li>
+          <li>If you must blind-side, GOAL before moving.</li>
+          <li>Use a spotter only if they are trained and visible.</li>
+          <li>Move very slowly and stop every few feet if needed.</li>
+          <li>Do not continue if you lose sight of your trailer path.</li>
+          <li>Pull up and reposition to convert it into a safer angle when possible.</li>
+          <li>GOAL before final approach.</li>
+        </ol>
+        <div class="danger"><strong>Rule:</strong> Never let pressure force a blind-side back you cannot see or control.</div>`,
+      truckstop: `<h3>Truck Stop Parking</h3>
+        <ol>
+          <li>Choose the easiest available spot, not the closest spot.</li>
+          <li>Avoid parking next to poorly parked trucks if possible.</li>
+          <li>Watch the trailer tail swing, tractor nose, mirrors, and parked trucks.</li>
+          <li>GOAL before entering the space.</li>
+          <li>Use as many pull-ups as needed.</li>
+          <li>If people are watching, ignore the pressure and move slower.</li>
+          <li>Before shutting down, check that you are inside the lines and not blocking anyone.</li>
+        </ol>
+        <div class="warning"><strong>Mindset:</strong> A safe pull-up is better than a preventable accident.</div>`,
+      panic: `<h3>I Lost My Setup</h3>
+        <ol>
+          <li>Stop immediately.</li>
+          <li>Set the brakes.</li>
+          <li>Breathe. Do not let panic drive the truck.</li>
+          <li>GOAL and check all sides.</li>
+          <li>Ask: Where is my trailer pointing? Where are my tandems? What can I hit?</li>
+          <li>Pull up to create space.</li>
+          <li>Reset the tractor and trailer.</li>
+          <li>Try again slowly.</li>
+        </ol>
+        <div class="success"><strong>Remember:</strong> Pull-ups and GOAL are professional habits. They are not embarrassing.</div>`
+    };
+    function showBacking(type) { backingContent.innerHTML = backingData[type]; }
+
+    function savePost() {
+      const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+      posts.unshift({topic: postTopic.value, msg: postMessage.value, date: new Date().toLocaleString()});
+      localStorage.setItem('posts', JSON.stringify(posts));
+      postTopic.value = postMessage.value = '';
+      renderPosts();
+    }
+    function renderPosts() {
+      const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+      postList.innerHTML = posts.length ? posts.map(p => `
+        <div class="list-item"><strong>${escapeHtml(p.topic || 'Community Post')}</strong><br>
+        <span class="small">${escapeHtml(p.date)}</span><p>${escapeHtml(p.msg)}</p></div>`).join('') : '<p class="small">No posts yet.</p>';
+    }
+
+    function saveProgress() {
+      const logs = JSON.parse(localStorage.getItem('progress') || '[]');
+      logs.unshift({date: progressDate.value, backing: progressBacking.value, win: progressWin.value, improve: progressImprove.value, confidence: confidence.value});
+      localStorage.setItem('progress', JSON.stringify(logs));
+      progressBacking.value = progressWin.value = progressImprove.value = '';
+      renderProgress();
+    }
+    function renderProgress() {
+      const logs = JSON.parse(localStorage.getItem('progress') || '[]');
+      progressList.innerHTML = logs.length ? logs.map(l => `
+        <div class="list-item"><strong>${escapeHtml(l.date || 'Progress Log')}</strong><br>
+        <strong>Backing:</strong> ${escapeHtml(l.backing)}<br>
+        <strong>Win:</strong> ${escapeHtml(l.win)}<br>
+        <strong>Improve:</strong> ${escapeHtml(l.improve)}<br>
+        <strong>Confidence:</strong> ${escapeHtml(l.confidence)}</div>`).join('') : '<p class="small">No progress logs yet.</p>';
+    }
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+    }
+
+    function loadProfile() {
+      const data = JSON.parse(localStorage.getItem('profile') || '{}');
+      if (data.name) profileName.value = data.name;
+      if (data.initial) profileInitial.value = data.initial;
+      if (data.email) profileEmail.value = data.email;
+      if (data.phone) profilePhone.value = data.phone;
+      if (data.emergencyName) emergencyName.value = data.emergencyName;
+      if (data.emergencyPhone) emergencyPhone.value = data.emergencyPhone;
+      if (data.status) profileStatus.value = data.status;
+      if (data.experience) profileExperience.value = data.experience;
+      if (data.drivingType) drivingType.value = data.drivingType;
+      if (data.bio) profileBio.value = data.bio;
+    }
+
+    loadProfile();
+    renderFacilities();
+    renderPosts();
+    renderProgress();
+  </script>
+</body>
+</html>
