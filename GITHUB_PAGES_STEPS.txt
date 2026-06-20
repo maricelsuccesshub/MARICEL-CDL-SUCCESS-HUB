@@ -1,0 +1,20 @@
+UPLOAD THESE FILES TO GITHUB:
+- index.html
+- manifest.json
+- service-worker.js
+- icon-192.png
+- icon-512.png
+- GITHUB_PAGES_STEPS.txt
+
+GITHUB PAGES:
+1. Go to repository Settings.
+2. Click Pages.
+3. Source: Deploy from a branch.
+4. Branch: main.
+5. Folder: /root.
+6. Save.
+7. Wait 1-5 minutes for your website link.
+
+INSTALL:
+iPhone: Open link in Safari > Share > Add to Home Screen.
+Android: Open link in Chrome > menu > Install App or Add to Home Screen.
