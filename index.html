@@ -189,27 +189,19 @@ async function saveFacility() {
     location_name: facilityName.value,
     city: facilityAddress.value,
     state: "CA",
-    parking_spots: 0,
-    overnight_allowed: false,
-    restrooms: false,
-    showers: false,
-    diesel: false,
-    food_nearby: "",
-    notes: "",
-    submitted_by: "Maricel"
+    parking_spots: 0
   };
 
-  const { data, error } = await supabaseClient
-    .from('safe_havens')
-    .insert([facility])
-    .select();
+  const { error } = await supabaseClient
+    .from("safe_havens")
+    .insert([facility]);
 
   if (error) {
     alert("Supabase error: " + error.message);
     return;
   }
 
-  alert("Saved to Supabase: " + JSON.stringify(data));
+  alert("Saved to Supabase");
 }
 function renderFacilities(){const items=JSON.parse(localStorage.getItem('facilities')||'[]');facilityList.innerHTML=items.length?items.map(x=>`<div class="list-item"><strong>${esc(x.name||'Unnamed')}</strong><br>${esc(x.address||'')}<br><strong>Truck Entrance GPS:</strong> ${esc(x.eLat||'')}, ${esc(x.eLon||'')} ${x.eLat&&x.eLon?`<br><button class="btn light" onclick="open('https://www.google.com/maps/search/${x.eLat},${x.eLon}','_blank')">Navigate to Truck Entrance</button>`:''}<br><strong>Entrance:</strong> ${esc(x.entrance||'No notes')}<br><strong>Guard:</strong> ${esc(x.guard||'No notes')}<br><strong>Approach:</strong> ${esc(x.approach||'No notes')}<br><strong>Parking:</strong> ${esc(x.parking)} | <strong>Difficulty:</strong> ${esc(x.difficulty)}</div>`).join(''):'<p class="small">No saved facilities yet.</p>'}
 const backing={straight:'<h3>Straight Backing</h3><ol><li>Line tractor and trailer straight.</li><li>Use both mirrors.</li><li>Back at idle speed.</li><li>Use small corrections only.</li><li>Pull up early if crooked.</li><li>GOAL before final feet.</li></ol><div class="warning">Common mistake: overcorrecting.</div>',offset:'<h3>Offset Backing</h3><ol><li>Start with clean setup.</li><li>Watch trailer tandems.</li><li>Create angle slowly.</li><li>Reduce angle as trailer enters lane.</li><li>Follow trailer with tractor.</li><li>Pull up before jackknife.</li></ol>',alley:'<h3>Alley Dock</h3><ol><li>Survey obstacles.</li><li>Set controlled angle.</li><li>Watch tandems pivot.</li><li>Control angle early.</li><li>Follow trailer.</li><li>GOAL often.</li><li>Pull up and straighten.</li></ol>',"45":'<h3>45° Backing</h3><ol><li>Drive past space.</li><li>Set trailer around 45°.</li><li>GOAL.</li><li>Back slowly.</li><li>Watch tandems.</li><li>Follow trailer.</li><li>Straighten and finish.</li></ol>',"90":'<h3>90° Backing</h3><ol><li>Use only when necessary.</li><li>GOAL first.</li><li>Watch pivot point.</li><li>Protect tail swing.</li><li>Pull up often.</li><li>Straighten before final back.</li></ol>',blind:'<h3>Blind Side</h3><ol><li>Avoid if safer setup exists.</li><li>GOAL before moving.</li><li>Use visible trained spotter if safe.</li><li>Stop if you lose sight.</li><li>Pull up and reposition.</li></ol><div class="danger">Never let pressure force unsafe blind-side backing.</div>',truckstop:'<h3>Truck Stop Parking</h3><ol><li>Pick easiest safe spot.</li><li>Avoid poorly parked trucks.</li><li>Watch tail swing and tractor nose.</li><li>GOAL.</li><li>Use pull-ups.</li><li>Ignore pressure and move slow.</li></ol>',panic:'<h3>I Lost My Setup</h3><ol><li>Stop.</li><li>Set brakes.</li><li>Breathe.</li><li>GOAL.</li><li>Check both sides.</li><li>Pull up.</li><li>Reset and try again slowly.</li></ol>'}
