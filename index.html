@@ -194,6 +194,7 @@ async function saveFacility() {
 
   const { error } = await supabaseClient
     .from("safe_havens")
+    
     .insert([facility]);
 
   if (error) {
