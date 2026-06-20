@@ -184,13 +184,19 @@ async function geocodeAddress(a){const cleaned=a.replace(/#/g,' ').replace(/\s+/
 function extractCityState(t){const p=t.split(',').map(x=>x.trim()).filter(Boolean);return p.length>=2?p.slice(-2).join(', '):''}
 function openMapRoute(){const f=encodeURIComponent(currentLocation.value||''),t=encodeURIComponent(deliveryAddress.value||'');if(!t){alert('Enter destination first.');return}open(f?`https://www.google.com/maps/dir/${f}/${t}`:`https://www.google.com/maps/search/${t}`,'_blank')}
 function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
-async function saveFacility() {
-  const facility = {
-    name: facilityName.value,
-    address: facilityAddress.value,
-    notes: facilityNotes.value,
-    created_at: new Date().toISOString()
-  };
+const facility = {
+  location_name: facilityName.value,
+  city: facilityAddress.value,
+  state: "CA",
+  parking_spots: 0,
+  overnight_allowed: false,
+  restrooms: false,
+  showers: false,
+  diesel: false,
+  food_nearby: "",
+  notes: entranceNotes.value,
+  submitted_by: "Maricel"
+};
 
   const { error } = await supabaseClient
     .from('safe_havens')
