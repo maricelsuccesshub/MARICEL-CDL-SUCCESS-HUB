@@ -210,7 +210,7 @@ if (!res.ok) {
   return;
 }
 
-alert("Saved to Supabase!");
+alert("Saved to Supabase!");}
 
 
 function renderFacilities(){const items=JSON.parse(localStorage.getItem('facilities')||'[]');facilityList.innerHTML=items.length?items.map(x=>`<div class="list-item"><strong>${esc(x.name||'Unnamed')}</strong><br>${esc(x.address||'')}<br><strong>Truck Entrance GPS:</strong> ${esc(x.eLat||'')}, ${esc(x.eLon||'')} ${x.eLat&&x.eLon?`<br><button class="btn light" onclick="open('https://www.google.com/maps/search/${x.eLat},${x.eLon}','_blank')">Navigate to Truck Entrance</button>`:''}<br><strong>Entrance:</strong> ${esc(x.entrance||'No notes')}<br><strong>Guard:</strong> ${esc(x.guard||'No notes')}<br><strong>Approach:</strong> ${esc(x.approach||'No notes')}<br><strong>Parking:</strong> ${esc(x.parking)} | <strong>Difficulty:</strong> ${esc(x.difficulty)}</div>`).join(''):'<p class="small">No saved facilities yet.</p>'}
