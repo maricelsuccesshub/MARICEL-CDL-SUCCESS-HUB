@@ -112,6 +112,26 @@
     <label>Best Direction to Approach</label><textarea id="approachNotes"></textarea>
     <label>Overnight Parking</label><select id="overnightParking"><option>Unknown</option><option>Yes</option><option>No</option><option>Limited</option></select>
     <label>Difficulty Rating</label><select id="difficulty"><option>Easy</option><option>Moderate</option><option>Difficult</option><option>Very Tight</option></select>
+   <label>Restrooms</label>
+<select id="restrooms">
+  <option value="false">Unknown / No</option>
+  <option value="true">Yes</option>
+</select>
+
+<label>Showers</label>
+<select id="showers">
+  <option value="false">Unknown / No</option>
+  <option value="true">Yes</option>
+</select>
+
+<label>Diesel</label>
+<select id="diesel">
+  <option value="false">Unknown / No</option>
+  <option value="true">Yes</option>
+</select>
+
+<label>Food Nearby</label>
+<input id="foodNearby" placeholder="Example: Subway, McDonald's"> 
     <button class="btn" onclick="saveFacility()">Save Facility</button>
   </div>
   <div class="card"><h3>Saved Facilities</h3><div id="facilityList"></div></div>
@@ -189,6 +209,10 @@ async function saveFacility() {
   state: "CA",
   parking_spots: 1,
   overnight_allowed: overnightParking.value === "Yes",
+    restrooms: restrooms.value === "true",
+showers: showers.value === "true",
+diesel: diesel.value === "true",
+food_nearby: foodNearby.value || "",
   notes: entranceNotes.value + " | " + guardNotes.value + " | " + approachNotes.value,
   submitted_by: "Maricel"
 };
