@@ -99,6 +99,48 @@
     </div>
     <div class="warning"><strong>Semi Tractor-Trailer Check:</strong><ul><li>Confirm wide truck entrance.</li><li>Check satellite view.</li><li>Avoid tiny gas stations, low bridges, dead ends, and tight shopping centers.</li><li>Verify overnight parking rules.</li><li>Never risk unsafe shoulder parking.</li></ul></div>
   </div>
+  <div class="card">
+  <h3>Save Safe Haven</h3>
+
+  <label>Overnight Parking</label>
+  <select id="overnightParking">
+    <option>Unknown</option>
+    <option>Yes</option>
+    <option>No</option>
+    <option>Limited</option>
+  </select>
+
+  <label>Difficulty Rating</label>
+  <select id="difficulty">
+    <option>Easy</option>
+    <option>Moderate</option>
+    <option>Difficult</option>
+    <option>Very Tight</option>
+  </select>
+
+  <label>Restrooms</label>
+  <select id="restrooms">
+    <option value="false">Unknown / No</option>
+    <option value="true">Yes</option>
+  </select>
+
+  <label>Showers</label>
+  <select id="showers">
+    <option value="false">Unknown / No</option>
+    <option value="true">Yes</option>
+  </select>
+
+  <label>Diesel</label>
+  <select id="diesel">
+    <option value="false">Unknown / No</option>
+    <option value="true">Yes</option>
+  </select>
+
+  <label>Food Nearby</label>
+  <input id="foodNearby" placeholder="Example: Subway, McDonald's">
+
+  <button class="btn" onclick="saveFacility()">Save Safe Haven</button>
+</div>
 </section>
 
 <section id="facility">
@@ -110,28 +152,7 @@
     <label>Truck Entrance Notes</label><textarea id="entranceNotes"></textarea>
     <label>Guard Shack / Check-In Notes</label><textarea id="guardNotes"></textarea>
     <label>Best Direction to Approach</label><textarea id="approachNotes"></textarea>
-    <label>Overnight Parking</label><select id="overnightParking"><option>Unknown</option><option>Yes</option><option>No</option><option>Limited</option></select>
-    <label>Difficulty Rating</label><select id="difficulty"><option>Easy</option><option>Moderate</option><option>Difficult</option><option>Very Tight</option></select>
-   <label>Restrooms</label>
-<select id="restrooms">
-  <option value="false">Unknown / No</option>
-  <option value="true">Yes</option>
-</select>
-
-<label>Showers</label>
-<select id="showers">
-  <option value="false">Unknown / No</option>
-  <option value="true">Yes</option>
-</select>
-
-<label>Diesel</label>
-<select id="diesel">
-  <option value="false">Unknown / No</option>
-  <option value="true">Yes</option>
-</select>
-
-<label>Food Nearby</label>
-<input id="foodNearby" placeholder="Example: Subway, McDonald's"> 
+  
     <button class="btn" onclick="saveFacility()">Save Facility</button>
   </div>
   <div class="card"><h3>Saved Facilities</h3><div id="facilityList"></div></div>
