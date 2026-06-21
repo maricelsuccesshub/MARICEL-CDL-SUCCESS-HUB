@@ -186,11 +186,11 @@ function openMapRoute(){const f=encodeURIComponent(currentLocation.value||''),t=
 function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
 async function saveFacility() {
   const facility = {
-    location_name: facilityName.value,
-    city: facilityAddress.value,
-    state: "CA",
-    parking_spots: 0
-  };
+  location_name: "Test Location",
+  city: "Barstow",
+  state: "CA",
+  parking_spots: 1
+};
 
   const { error } = await supabaseClient
     .from("safe_havens")
