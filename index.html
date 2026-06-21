@@ -184,10 +184,13 @@ function openMapRoute(){const f=encodeURIComponent(currentLocation.value||''),t=
 function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
 async function saveFacility() {
   const facility = {
-  location_name: "Test Location",
-  city: "Barstow",
+  location_name: facilityName.value || "Unnamed Facility",
+  city: facilityAddress.value || "Unknown",
   state: "CA",
-  parking_spots: 1
+  parking_spots: 1,
+  overnight_allowed: overnightParking.value === "Yes",
+  notes: entranceNotes.value + " | " + guardNotes.value + " | " + approachNotes.value,
+  submitted_by: "Maricel"
 };
 const res = await fetch(
   "https://fmyaxdzonqrgsyzizixe.supabase.co/rest/v1/safe_havens",
