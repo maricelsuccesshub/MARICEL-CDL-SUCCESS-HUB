@@ -214,7 +214,25 @@ function renderProgress(){const l=JSON.parse(localStorage.getItem('progress')||'
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function loadProfile(){const d=JSON.parse(localStorage.getItem('profile')||'{}');for(const k in d){const el=document.getElementById(k==='name'?'profileName':k==='initial'?'profileInitial':k);if(el)el.value=d[k]}}
 loadProfile();renderFacilities();renderPosts();renderProgress();
-if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
+async function saveFacility() {
+  const facility = {
+    name: facilityName.value,
+    address: facilityAddress.value,
+    notes: facilityNotes.value,
+    created_at: new Date().toISOString()
+  };
+
+  const { error } = await supabaseClient
+    .from('safe_havens')
+    .insert([facility]);
+
+  if (error) {
+    alert("Error: " + error.message);
+    return;
+  }
+
+  alert("Safe Haven saved successfully!");
+}
 </script>
 </body>
 </html>
