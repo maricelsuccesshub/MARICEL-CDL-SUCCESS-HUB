@@ -235,7 +235,25 @@ async function autoPlanDestination(){const address=deliveryAddress.value.trim();
 async function geocodeAddress(a){const cleaned=a.replace(/#/g,' ').replace(/\s+/g,' ').trim();const qs=[cleaned,cleaned+', USA',extractCityState(cleaned)].filter(Boolean);for(const q of [...new Set(qs)]){try{let d=await (await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&q=${encodeURIComponent(q)}&limit=3`)).json();if(d?.length)return{lat:+d[0].lat,lon:+d[0].lon,displayName:d[0].display_name||q}}catch(e){}try{let d=await (await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`)).json();if(d.features?.length){let c=d.features[0].geometry.coordinates,p=d.features[0].properties||{};return{lat:+c[1],lon:+c[0],displayName:[p.name,p.city,p.state,p.country].filter(Boolean).join(', ')||q}}}catch(e){}}throw new Error('Address not found.')}
 function extractCityState(t){const p=t.split(',').map(x=>x.trim()).filter(Boolean);return p.length>=2?p.slice(-2).join(', '):''}
 function openMapRoute(){const f=encodeURIComponent(currentLocation.value||''),t=encodeURIComponent(deliveryAddress.value||'');if(!t){alert('Enter destination first.');return}open(f?`https://www.google.com/maps/dir/${f}/${t}`:`https://www.google.com/maps/search/${t}`,'_blank')}
-function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
+function openRouteSearch(term) {
+  const from = currentLocation.value.trim();
+  const to = deliveryAddress.value.trim();
+
+  if (!from || !to) {
+    alert("Enter current location and destination first.");
+    return;
+  }
+
+  const query = encodeURIComponent(
+    term + " along route from " + from + " to " + to
+  );
+
+  open(
+    "https://www.google.com/maps/search/" + query,
+    "_blank"
+  );
+}
+  function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
 async function saveFacility() {
   const facility = {
   location_name: facilityName.value || "Unnamed Facility",
