@@ -263,7 +263,7 @@ function savePost(){const p=JSON.parse(localStorage.getItem('posts')||'[]');p.un
 function renderPosts(){const p=JSON.parse(localStorage.getItem('posts')||'[]');postList.innerHTML=p.length?p.map(x=>`<div class="list-item"><strong>${esc(x.topic||'Post')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>`).join(''):'<p class="small">No posts yet.</p>'}
 async function saveProgress() {
   const progress = {
-    progress_date: progressDate.value,
+    progress_date: progressDate.value || null,
     backing_practice: progressBacking.value,
     went_well: progressWin.value,
     needs_improvement: progressImprove.value,
