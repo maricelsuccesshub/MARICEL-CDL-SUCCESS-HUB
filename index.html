@@ -292,18 +292,7 @@ async function saveProgress() {
   }
 
   alert("Progress saved to Supabase!");
-  
-
-progressList.innerHTML += `
-  <div class="list-item">
-    <strong>${progress.progress_date || "Log"}</strong><br>
-    <strong>Backing:</strong> ${progress.backing_practice}<br>
-    <strong>Win:</strong> ${progress.went_well}<br>
-    <strong>Improve:</strong> ${progress.needs_improvement}<br>
-    <strong>Confidence:</strong> ${progress.confidence}
-  </div>
-`;
-}
+ 
 function renderProgress(){const l=JSON.parse(localStorage.getItem('progress')||'[]');progressList.innerHTML=l.length?l.map(x=>`<div class="list-item"><strong>${esc(x.date||'Log')}</strong><br><strong>Backing:</strong> ${esc(x.backing)}<br><strong>Win:</strong> ${esc(x.win)}<br><strong>Improve:</strong> ${esc(x.improve)}<br><strong>Confidence:</strong> ${esc(x.confidence)}</div>`).join(''):'<p class="small">No progress logs yet.</p>'}
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 
