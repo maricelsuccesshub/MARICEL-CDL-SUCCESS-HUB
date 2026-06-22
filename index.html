@@ -304,7 +304,6 @@ progressList.innerHTML += `
   </div>
 `;
 }
-}
 function renderProgress(){const l=JSON.parse(localStorage.getItem('progress')||'[]');progressList.innerHTML=l.length?l.map(x=>`<div class="list-item"><strong>${esc(x.date||'Log')}</strong><br><strong>Backing:</strong> ${esc(x.backing)}<br><strong>Win:</strong> ${esc(x.win)}<br><strong>Improve:</strong> ${esc(x.improve)}<br><strong>Confidence:</strong> ${esc(x.confidence)}</div>`).join(''):'<p class="small">No progress logs yet.</p>'}
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 
