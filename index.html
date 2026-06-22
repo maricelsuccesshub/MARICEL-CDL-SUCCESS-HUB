@@ -289,6 +289,7 @@ async function saveProgress() {
   }
 
   alert("Progress saved to Supabase!");
+progressList.innerHTML = `<div class="list-item"><strong>${progress.progress_date || "Log"}</strong><br><strong>Backing:</strong> ${progress.backing_practice}<br><strong>Win:</strong> ${progress.went_well}<br><strong>Improve:</strong> ${progress.needs_improvement}<br><strong>Confidence:</strong> ${progress.confidence}</div>` + progressList.innerHTML;
 }
 
 function renderProgress() {
