@@ -272,19 +272,16 @@ async function saveProgress() {
     confidence: confidence.value
   };
 
-  const res = await fetch(
-    "https://fmyaxdzonqrgsyzizixe.supabase.co/rest/v1/progress",
-    {
-      method: "POST",
-      headers: {
-        "apikey": SUPABASE_KEY,
-        "Authorization": "Bearer " + SUPABASE_KEY,
-        "Content-Type": "application/json",
-        "Prefer": "return=minimal"
-      },
-      body: JSON.stringify(progress)
-    }
-  );
+  const res = await fetch("https://fmyaxdzonqrgsyzizixe.supabase.co/rest/v1/progress", {
+    method: "POST",
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY,
+      "Content-Type": "application/json",
+      "Prefer": "return=minimal"
+    },
+    body: JSON.stringify(progress)
+  });
 
   if (!res.ok) {
     alert("Supabase error: " + await res.text());
@@ -292,9 +289,11 @@ async function saveProgress() {
   }
 
   alert("Progress saved to Supabase!");
- 
-function renderProgress(){const l=JSON.parse(localStorage.getItem('progress')||'[]');progressList.innerHTML=l.length?l.map(x=>`<div class="list-item"><strong>${esc(x.date||'Log')}</strong><br><strong>Backing:</strong> ${esc(x.backing)}<br><strong>Win:</strong> ${esc(x.win)}<br><strong>Improve:</strong> ${esc(x.improve)}<br><strong>Confidence:</strong> ${esc(x.confidence)}</div>`).join(''):'<p class="small">No progress logs yet.</p>'}
-function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+}
+
+function renderProgress() {
+  progressList.innerHTML = "";
+}
 
 
 </script>
