@@ -219,7 +219,19 @@
 <script>
  const SUPABASE_URL = "https://fmyaxdzonqrgsyzizixe.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sNkm8dvvUXXRocYNcQP_pw_eWmyBHCW"; 
-const screens=[['home','Home'],['profile','My Profile'],['planner','Plan Route'],['safehaven','Safe Haven'],['facility','Facilities'],['backing','Backing'],['community','Community'],['resources','Resources'],['progress','Progress'],['admin','Admin']];
+const screens=[
+  ['home','Home'],
+  ['practiceyard','🚛 Practice Yard'],
+  ['profile','My Profile'],
+  ['planner','Plan Route'],
+  ['safehaven','Safe Haven'],
+  ['facility','Facilities'],
+  ['backing','Backing'],
+  ['community','Community'],
+  ['resources','Resources'],
+  ['progress','Progress'],
+  ['admin','Admin']
+];
 const nav=document.getElementById('nav');screens.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');nav.appendChild(b)});
 function showScreen(id,btn){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');scrollTo(0,0)}
 function esc(str) {
