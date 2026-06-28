@@ -44,20 +44,74 @@
 <header><h1>Maricel CDL Success Hub</h1><p>Plan Early. Park Safe. Back With Confidence.</p></header>
 <nav id="nav"></nav>
 <main>
+  
 <section id="home" class="active">
+
   <div class="card">
-    <h2>Welcome Driver</h2>
-    <p>This private support hub helps CDL mentees plan safer, find truck-friendly entrances, refresh backing skills, and support each other.</p>
-    <div class="warning"><strong>Privacy Rule:</strong> Do not upload load information, bills of lading, dispatch screenshots, trailer contents, customer documents, employee IDs, truck numbers, trailer numbers, or company-sensitive information.</div>
-    <div class="success"><strong>Install:</strong><br>iPhone: Safari → Share → Add to Home Screen.<br>Android: Chrome → Menu → Install App or Add to Home Screen.</div>
+    <h2>🚛 Welcome to CDL Success Hub</h2>
+    <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
+    <p>
+      Practice here. Build confidence. Step into the yard prepared.
+    </p>
   </div>
+
+  <div class="card">
+    <h3>🌟 Today's Mission</h3>
+    <p><strong>Understand why the trailer follows the tractor.</strong></p>
+    <button class="btn" onclick="showScreen('practiceyard', document.querySelectorAll('nav button')[1])">
+      Start Today's Lesson
+    </button>
+  </div>
+
   <div class="grid">
-    <div class="card"><h3>Plan My Route</h3><p>Auto estimate sunset, timezone, weather, and Safe Haven Deadline.</p></div>
-    <div class="card"><h3>Safe Haven Finder</h3><p>Search truck stops, rest areas, parking, diesel, and CAT scales.</p></div>
-    <div class="card"><h3>Facility Intelligence</h3><p>Save truck entrance GPS pins, guard shack, approach notes, and safety tips.</p></div>
-    <div class="card"><h3>Backing Refresher</h3><p>Step-by-step backing instructions for new drivers.</p></div>
+    <div class="card">
+      <h3>🚛 CDL Practice Yard</h3>
+      <p>Learn backing maneuvers step-by-step.</p>
+      <button class="btn light" onclick="showScreen('practiceyard', document.querySelectorAll('nav button')[1])">
+        Go to Practice Yard
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>🛣 Plan My Route</h3>
+      <p>Check route, sunset, weather, and safe parking deadline.</p>
+      <button class="btn light" onclick="showScreen('planner', document.querySelectorAll('nav button')[3])">
+        Plan Route
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>🅿️ Safe Haven Finder</h3>
+      <p>Find truck stops, rest areas, diesel, parking, and CAT scales.</p>
+      <button class="btn light" onclick="showScreen('safehaven', document.querySelectorAll('nav button')[4])">
+        Find Safe Haven
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>🏢 Facility Intelligence</h3>
+      <p>Save truck entrance GPS pins, guard shack notes, and approach tips.</p>
+      <button class="btn light" onclick="showScreen('facility', document.querySelectorAll('nav button')[5])">
+        View Facilities
+      </button>
+    </div>
   </div>
+
+  <div class="success">
+    <strong>💡 Instructor Tip:</strong><br>
+    Small steering corrections create the biggest improvements.
+  </div>
+
+  <div class="warning">
+    <strong>Privacy Rule:</strong>
+    Do not upload load information, bills of lading, dispatch screenshots,
+    trailer contents, customer documents, employee IDs, truck numbers,
+    trailer numbers, or company-sensitive information.
+  </div>
+
 </section>
+</section>
+  
 <section id="practiceyard">
 
   <div class="card">
