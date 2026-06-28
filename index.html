@@ -658,6 +658,8 @@ function nextLessonStep() {
   if (lessonStep < lessonSteps.length - 1) {
     lessonStep++;
     updateLessonStep();
+  } else {
+    showScreen('practiceyard', document.querySelectorAll('nav button')[1]);
   }
 }
 
