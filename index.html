@@ -610,7 +610,45 @@ function renderProgress() {
   progressList.innerHTML = "";
 }
 
+let lessonStep = 0;
 
+const lessonSteps = [
+  {
+    title: "Why the Trailer Follows the Tractor",
+    text: "Every trailer follows the tractor. The trailer does not decide where to go. It reacts to what the tractor does."
+  },
+  {
+    title: "The Tractor Moves First",
+    text: "When you turn the steering wheel, the tractor starts moving first. The trailer reacts a moment later. This delay is what confuses many beginners."
+  },
+  {
+    title: "The Trailer Follows Slowly",
+    text: "Do not rush the trailer. Give it time to show you where it is going. Slow backing gives your brain time to understand what is happening."
+  },
+  {
+    title: "Coach Maricel's Rule",
+    text: "Understand the trailer first. Do not memorize the steering wheel. Watch the trailer, think, then make one small correction."
+  }
+];
+
+function updateLessonStep() {
+  document.querySelector("#lesson h3").textContent = lessonSteps[lessonStep].title;
+  document.getElementById("lessonText").textContent = lessonSteps[lessonStep].text;
+}
+
+function nextLessonStep() {
+  if (lessonStep < lessonSteps.length - 1) {
+    lessonStep++;
+    updateLessonStep();
+  }
+}
+
+function previousLessonStep() {
+  if (lessonStep > 0) {
+    lessonStep--;
+    updateLessonStep();
+  }
+}
 </script>
 </body>
 </html>
