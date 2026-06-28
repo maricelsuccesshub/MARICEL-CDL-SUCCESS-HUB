@@ -652,11 +652,11 @@ const lessonSteps = [
 
 function updateLessonStep() {
  document.querySelector("#lesson h3").textContent = lessonSteps[lessonStep].title;
-document.getElementById("lessonText").innerHTML =
-  lessonSteps[lessonStep].text +
-  "<br><br><div style='background:#f3f4f6;padding:14px;border-radius:12px;font-weight:600;'>" +
-  lessonSteps[lessonStep].tip +
-  "</div>";
+document.getElementById("lessonText").textContent =
+    lessonSteps[lessonStep].text;
+
+document.getElementById("lessonTip").textContent =
+    lessonSteps[lessonStep].tip;
 }
 
 function nextLessonStep() {
