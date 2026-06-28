@@ -303,9 +303,10 @@
 <script>
  const SUPABASE_URL = "https://fmyaxdzonqrgsyzizixe.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sNkm8dvvUXXRocYNcQP_pw_eWmyBHCW"; 
+
 const screens=[
   ['home','Home'],
- ['practiceyard','🚛 CDL Practice Yard'],
+  ['practiceyard','🚛 CDL Practice Yard'],
   ['profile','My Profile'],
   ['planner','Plan Route'],
   ['safehaven','Safe Haven'],
@@ -314,6 +315,7 @@ const screens=[
   ['community','Community'],
   ['resources','Resources'],
   ['progress','Progress'],
+  ['about','ℹ️ About'],
   ['admin','Admin']
 ];
 const nav=document.getElementById('nav');screens.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');nav.appendChild(b)});
