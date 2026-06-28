@@ -613,45 +613,56 @@ function renderProgress() {
 let lessonStep = 0;
 
 const lessonSteps = [
-{
-title: "⭐ The Golden Rule",
-text: "Watch the trailer. Think. Make ONE small correction. Never memorize the steering wheel. Every backing maneuver starts with understanding what the trailer is doing."
+  {
+  title: "🧠 Level 1 — Coach Maricel's Golden Rule",
+  text: "Do NOT watch the steering wheel. Watch the trailer. The steering wheel is only a tool. The trailer tells you exactly what correction to make.",
+  tip: "👀 Coach Tip: Your eyes teach your hands. Watch the trailer, not the steering wheel."
 },
 
 {
-title: "The Trailer Never Leads",
-text: "The trailer never decides where to go. It only follows the tractor. Whatever the tractor does first, the trailer reacts to."
+  title: "🚛 Level 2 — The Tractor Is The Boss",
+  text: "The tractor always moves first. The trailer never decides where to go. Whatever the tractor does first, the trailer reacts to.",
+  tip: "💡 Coach Tip: The trailer never leads. It always follows."
 },
 
 {
-title: "The Tractor Moves First",
-text: "When you turn the steering wheel, the tractor moves immediately. The trailer reacts a moment later. That delay is what confuses most new drivers."
+  title: "⏳ Level 3 — Wait For The Trailer",
+  text: "Turn the steering wheel ONE time. Then wait. Give the trailer time to react before making another correction.",
+  tip: "⏱️ Coach Tip: Patience creates control."
 },
 
 {
-title: "The Trailer Follows Slowly",
-text: "Do not rush the trailer. Give it time to move. Slow backing gives your brain time to understand what is happening."
+  title: "🐢 Level 4 — Slow Wins",
+  text: "Backing slowly gives your brain time to understand what the trailer is doing. Slow is smooth. Smooth is accurate.",
+  tip: "🚶 Coach Tip: Never rush a backing maneuver."
 },
 
 {
-title: "Small Corrections Win",
-text: "Large steering movements create large trailer movements. Professional drivers make many small corrections instead of one big correction."
+  title: "🤏 Level 5 — Small Corrections",
+  text: "Professional drivers make many tiny steering corrections instead of one large correction. Small movements create smooth trailer movement.",
+  tip: "👌 Coach Tip: Tiny steering = tiny trailer movement."
 },
 
 {
-title: "Look at the Trailer",
-text: "Do not stare at the steering wheel. Keep your eyes on the trailer. The trailer tells you exactly what correction to make."
+  title: "👀 Level 6 — Eyes On The Trailer",
+  text: "Keep your eyes on the trailer. The trailer tells you exactly what correction to make. Your hands simply follow your eyes.",
+  tip: "🎯 Coach Tip: Don't chase the steering wheel. Follow the trailer."
 },
 
 {
-title: "Congratulations!",
-text: "You now understand the most important concept in backing. Next, you'll practice these ideas in the CDL Practice Yard."
+  title: "🏆 Level Complete!",
+  text: "Excellent! You now understand the most important concepts in backing. Next you'll enter the CDL Practice Yard where you'll practice these ideas.",
+  tip: "🚛 Coach Maricel says: Understanding comes before memorizing."
 }
 ];
 
 function updateLessonStep() {
-  document.querySelector("#lesson h3").textContent = lessonSteps[lessonStep].title;
-  document.getElementById("lessonText").textContent = lessonSteps[lessonStep].text;
+ document.querySelector("#lesson h3").textContent = lessonSteps[lessonStep].title;
+document.getElementById("lessonText").innerHTML =
+  lessonSteps[lessonStep].text +
+  "<br><br><div style='background:#f3f4f6;padding:14px;border-radius:12px;font-weight:600;'>" +
+  lessonSteps[lessonStep].tip +
+  "</div>";
 }
 
 function nextLessonStep() {
