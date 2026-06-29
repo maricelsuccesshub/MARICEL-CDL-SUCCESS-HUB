@@ -694,10 +694,14 @@ function nextLessonStep() {
     showScreen('practiceyard', document.querySelectorAll('nav button')[1]);
   }
 }
-  function startLesson() { 
-    lessonStep = 0; 
-    updateLessonStep();
-  }
+function startLesson() {
+  lessonStep = 0;
+  updateLessonStep();
+
+  const lessonButton = document.querySelector("#lesson .btn");
+  lessonButton.textContent = "Next ➜";
+  lessonButton.onclick = nextLessonStep;
+}
 
 function previousLessonStep() {
   if (lessonStep > 0) {
