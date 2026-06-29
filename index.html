@@ -747,7 +747,7 @@ function previousLessonStep() {
   }
 }
 
-function straightAnswer(choice) {
+window.straightAnswer = function(choice) {
   const box = document.getElementById("practiceContent");
 
   if (choice === "right") {
@@ -764,7 +764,7 @@ function straightAnswer(choice) {
       <p><strong>Coach M:</strong> Correct early. Small moves save big problems.</p>
       <button class="btn" onclick="showPracticeLesson('straight')">Try Again</button>
     `;
-  }
+  };
 }
 </script>
 </body>
