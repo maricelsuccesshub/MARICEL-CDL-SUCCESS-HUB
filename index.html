@@ -956,8 +956,8 @@ function renderStraightSimulator(message) {
 window.straightAnswer = function(choice) {
   simMove++;
 
-  if (choice === "right") {
-    trailerAngle += 6;
+  if (choice === "left") {
+    trailerAngle -= 6;
 
     if (Math.abs(trailerAngle) <= 3) {
       renderStraightSimulator("✅ Correct. The trailer is almost straight.");
@@ -968,15 +968,15 @@ window.straightAnswer = function(choice) {
     return;
   }
 
-  if (choice === "left") {
-    trailerAngle -= 5;
-    renderStraightSimulator("❌ The trailer drifted farther left. Correct the opposite way.");
+  if (choice === "right") {
+    trailerAngle += 5;
+    renderStraightSimulator("❌ The trailer drifted farther right. Correct the opposite way.");
     return;
   }
 
   if (choice === "hold") {
     trailerAngle -= 2;
-    renderStraightSimulator("⚠️ Holding straight was not enough. The trailer kept drifting.");
+    renderStraightSimulator("⚠️ Holding straight helped a little, but it was not enough.");
     return;
   }
 };
