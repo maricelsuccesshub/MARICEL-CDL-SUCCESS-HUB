@@ -712,6 +712,79 @@ let simMove = 1;
 let trailerAngle = 12;
 let straightScenario = 0;
 
+function loadSimulatorStyles() {
+  if (document.getElementById("simulatorStyles")) return;
+
+  const style = document.createElement("style");
+  style.id = "simulatorStyles";
+  style.textContent = `
+    .sim-yard{
+      position:relative;
+      width:100%;
+      height:420px;
+      background:transparent;
+      border:none;
+      overflow:hidden;
+      margin-top:10px;
+    }
+
+    .truck-wrap{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%, -50%);
+      width:260px;
+      height:360px;
+    }
+
+    .trailer-img{
+      position:absolute;
+      width:95px;
+      left:83px;
+      top:45px;
+      transform-origin:50% 100%;
+      z-index:1;
+    }
+
+    .tractor-img{
+      position:absolute;
+      width:120px;
+      left:70px;
+      top:220px;
+      z-index:2;
+    }
+
+    .sim-panel{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+      gap:12px;
+      margin:12px 0;
+    }
+
+    .sim-stat{
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:14px;
+      padding:12px;
+      font-weight:bold;
+    }
+
+    .angle-bad{color:#b91c1c;}
+    .angle-good{color:#166534;}
+
+    .coach-bubble{
+      background:#f0fdf4;
+      border:1px solid #bbf7d0;
+      color:#166534;
+      padding:14px;
+      border-radius:14px;
+      margin:12px 0;
+      font-weight:600;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 const straightScenarios = [
   {
     message: "Your trailer is drifting RIGHT. What is your FIRST correction?",
@@ -724,7 +797,7 @@ const straightScenarios = [
     message: "The trailer is starting to come back. What should you do now?",
     angle: 6,
     correct: "hold",
-    success: "✅ Correct. Now hold the wheel straight and let the trailer react.",
+    success: "✅ Correct. Hold the wheel straight and let the trailer react.",
     wrong: "❌ Not yet. After the first correction, hold straight and wait."
   },
   {
@@ -739,7 +812,7 @@ const straightScenarios = [
     angle: 0,
     correct: "hold",
     success: "✅ Correct. Hold the wheel straight and back slowly.",
-    wrong: "❌ Not yet. If the trailer is straight, do not keep turning."
+    wrong: "❌ Not yet. If the trailer is straight, hold straight."
   },
   {
     message: "Now your trailer is drifting LEFT. What is your FIRST correction?",
@@ -766,10 +839,38 @@ const straightScenarios = [
     message: "The trailer is straight again. What should you do?",
     angle: 0,
     correct: "hold",
-    success: "🏆 Correct. You completed the straight-back steering sequence!",
+    success: "🏆 Correct. You completed the straight-back sequence!",
     wrong: "❌ Not yet. Straight trailer means hold the wheel straight."
   }
 ];
+
+window.showPracticeLesson = function(type) {
+  const box = document.getElementById("practiceContent");
+  if (!box) return;
+
+  loadSimulatorStyles();
+
+  if (type === "trailer") {
+    box.innerHTML = `
+      <h3>🧠 Understanding Trailer Movement</h3>
+      <p><strong>Rule:</strong> Watch the trailer first. Then make one small correction.</p>
+      <p>The trailer reacts slowly. Do not oversteer.</p>
+    `;
+  }
+
+  if (type === "brain") {
+    box.innerHTML = `
+      <h3>🎮 Brain Mode</h3>
+      <p>The truck pauses. You decide what happens next.</p>
+      <button class="btn" onclick="showPracticeLesson('straight')">Start Straight Back Scenario</button>
+    `;
+  }
+
+  if (type === "straight") {
+    straightScenario = 0;
+    renderStraightSimulator();
+  }
+};
 
 function renderStraightSimulator(feedback = "") {
   const box = document.getElementById("practiceContent");
@@ -799,19 +900,13 @@ function renderStraightSimulator(feedback = "") {
 
     <div class="sim-yard">
       <div class="truck-wrap">
-        <img src="assets/trailer-53ft.png"
-             class="trailer-img"
-             alt="Trailer"
-             style="transform: rotate(${trailerAngle}deg);">
-
-        <img src="assets/tractor-top.png"
-             class="tractor-img"
-             alt="Tractor">
+        <img src="assets/trailer-53ft.png" class="trailer-img" style="transform:rotate(${trailerAngle}deg);">
+        <img src="assets/tractor-top.png" class="tractor-img">
       </div>
     </div>
 
     <div class="coach-bubble">
-      ${feedback || "👩‍🏫 Coach Maricel: Think first. Watch the trailer. Then choose the correction."}
+      ${feedback || "👩‍🏫 Coach Maricel: Watch the trailer. Think first. Then choose."}
     </div>
 
     <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
@@ -824,12 +919,13 @@ window.straightAnswer = function(choice) {
   const s = straightScenarios[straightScenario];
 
   if (choice === s.correct) {
+    const feedback = s.success;
+
     if (straightScenario < straightScenarios.length - 1) {
       straightScenario++;
-      renderStraightSimulator(s.success);
-    } else {
-      renderStraightSimulator(s.success + " Great job!");
     }
+
+    renderStraightSimulator(feedback);
   } else {
     renderStraightSimulator(s.wrong);
   }
