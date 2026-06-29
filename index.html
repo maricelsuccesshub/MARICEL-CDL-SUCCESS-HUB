@@ -717,15 +717,16 @@ function loadSimulatorStyles() {
   const style = document.createElement("style");
   style.id = "simulatorStyles";
   style.textContent = `
-    .sim-yard {
-      position: relative;
-      height: 430px;
-      background: linear-gradient(#3f3f3f, #2f2f2f);
-      border-radius: 18px;
-      overflow: hidden;
-      margin: 18px 0;
-      border: 3px solid #d1d5db;
-    }
+   .sim-yard {
+    position: relative;
+    width: 100%;
+    min-height: 700px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    margin: 0;
+}
 
     .lane-line {
       position: absolute;
