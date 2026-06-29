@@ -709,7 +709,7 @@ function previousLessonStep() {
   }
 }
  let simMove = 1;
-let trailerAngle = -12;
+let trailerAngle = 12;
 
 function loadSimulatorStyles() {
   if (document.getElementById("simulatorStyles")) return;
@@ -876,7 +876,7 @@ window.showPracticeLesson = function(type) {
 
   if (type === "straight") {
     simMove = 1;
-    trailerAngle = -12;
+    trailerAngle = 12;
     renderStraightSimulator("Your trailer is drifting left. What should you do?");
   }
 };
