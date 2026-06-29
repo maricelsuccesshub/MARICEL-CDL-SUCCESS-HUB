@@ -956,31 +956,30 @@ function renderStraightSimulator(message) {
 window.straightAnswer = function(choice) {
   simMove++;
 
-  if (choice === "left") {
-    trailerAngle -= 6;
-
-    if (Math.abs(trailerAngle) <= 3) {
-      renderStraightSimulator("✅ Correct. The trailer is almost straight.");
+  if (trailerAngle > 3) {
+    if (choice === "left") {
+      trailerAngle -= 6;
+      renderStraightSimulator("✅ Correct. The trailer is coming back.");
       return;
     }
 
-    renderStraightSimulator("✅ Good correction. The trailer is coming back.");
+    renderStraightSimulator("❌ Wrong correction. The trailer is still drifting right. Turn left to bring it back.");
     return;
   }
 
-  if (choice === "right") {
-    trailerAngle += 5;
-    renderStraightSimulator("❌ The trailer drifted farther right. Correct the opposite way.");
+  if (trailerAngle < -3) {
+    if (choice === "right") {
+      trailerAngle += 6;
+      renderStraightSimulator("✅ Correct. The trailer is coming back.");
+      return;
+    }
+
+    renderStraightSimulator("❌ Wrong correction. The trailer is still drifting left. Turn right to bring it back.");
     return;
   }
 
-  if (choice === "hold") {
-    trailerAngle -= 2;
-    renderStraightSimulator("⚠️ Holding straight helped a little, but it was not enough.");
-    return;
-  }
+  renderStraightSimulator("✅ Trailer is almost straight. Hold it steady.");
 };
-
 </script>
 </body>
 </html>
