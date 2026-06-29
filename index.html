@@ -902,17 +902,22 @@ window.showPracticeLesson = function(type) {
     `;
   }
 
-  if (type === "straight") {
+   if (type === "straight") {
     simMove = 1;
     trailerAngle = 12;
-   trailerAngle = 12;
-renderStraightSimulator("Your trailer is drifting right. What should you do?");
+    renderStraightSimulator("Your trailer is drifting RIGHT. Chase the trailer: turn wheel RIGHT.");
   }
 };
 
 function renderStraightSimulator(message) {
   const box = document.getElementById("practiceContent");
-  const angleText = trailerAngle < 0 ? Math.abs(trailerAngle) + "° Left" : trailerAngle + "° Right";
+  const angleText =
+    trailerAngle < 0
+      ? Math.abs(trailerAngle) + "° Left"
+      : trailerAngle > 0
+      ? trailerAngle + "° Right"
+      : "Straight";
+
   const angleClass = Math.abs(trailerAngle) <= 3 ? "angle-good" : "angle-bad";
 
   box.innerHTML = `
@@ -926,62 +931,74 @@ function renderStraightSimulator(message) {
     </div>
 
     <div class="sim-yard">
-      <div class="lane-line lane-left"></div>
-      <div class="lane-line lane-right"></div>
-
-      
       <div class="truck-wrap">
-  
+        <img src="assets/trailer-53ft.png"
+             class="trailer-img"
+             alt="Trailer"
+             style="transform: rotate(${trailerAngle}deg);">
 
-<img
-  src="assets/trailer-53ft.png"
-  class="trailer-img"
-  alt="Trailer"
-  style="transform: rotate(${trailerAngle}deg);"
->
-
-
-</div>
+        <img src="assets/tractor-top.png"
+             class="tractor-img"
+             alt="Tractor">
+      </div>
     </div>
 
     <div class="coach-bubble">
-  👩‍🏫 Coach Maricel: Study the trailer. Choose your correction.
-</div>
+      👩‍🏫 Coach Maricel: If the trailer drifts right, turn right. If it drifts left, turn left. Then straighten the wheel.
+    </div>
 
-   <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
-<button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
-<button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
-`;
+    <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
+    <button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
+    <button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
+  `;
 }
+
 window.straightAnswer = function(choice) {
   simMove++;
 
-  if (choice === "left") {
-    trailerAngle -= 6;
-  }
-
-  if (choice === "right") {
-    trailerAngle += 6;
-  }
-
-  if (choice === "hold") {
-    trailerAngle = trailerAngle;
-  }
-
-  if (Math.abs(trailerAngle) <= 3) {
-    renderStraightSimulator("✅ Correct. The trailer is almost straight.");
-    return;
-  }
-
   if (trailerAngle > 3) {
-    renderStraightSimulator("The trailer is still drifting right. What should you do?");
+    if (choice === "right") {
+      trailerAngle -= 6;
+      renderStraightSimulator("✅ Correct. Trailer was drifting RIGHT, so you turned RIGHT.");
+      return;
+    }
+
+    if (choice === "left") {
+      trailerAngle += 6;
+      renderStraightSimulator("❌ Wrong way. Trailer is drifting RIGHT, so do not turn left.");
+      return;
+    }
+
+    renderStraightSimulator("⚠️ Holding straight will not fix a right drift yet. Turn RIGHT first.");
     return;
   }
 
   if (trailerAngle < -3) {
-    renderStraightSimulator("The trailer is still drifting left. What should you do?");
+    if (choice === "left") {
+      trailerAngle += 6;
+      renderStraightSimulator("✅ Correct. Trailer was drifting LEFT, so you turned LEFT.");
+      return;
+    }
+
+    if (choice === "right") {
+      trailerAngle -= 6;
+      renderStraightSimulator("❌ Wrong way. Trailer is drifting LEFT, so do not turn right.");
+      return;
+    }
+
+    renderStraightSimulator("⚠️ Holding straight will not fix a left drift yet. Turn LEFT first.");
     return;
   }
+
+  if (choice === "hold") {
+    renderStraightSimulator("✅ Correct. Trailer is straight now. Hold the wheel straight.");
+    return;
+  }
+
+  if (choice === "left") trailerAngle -= 6;
+  if (choice === "right") trailerAngle += 6;
+
+  renderStraightSimulator("⚠️ You were straight already. Hold the wheel straight.");
 };
 </script>
 </body>
