@@ -485,7 +485,7 @@ By the end of these lessons, backing will finally make sense.
 <div style="margin-top:20px">
 
 <button class="btn"
-        onclick="nextLessonStep()">
+        onclick="startLesson()">
 Start Lesson 1 →
 </button>
 
@@ -694,6 +694,10 @@ function nextLessonStep() {
     showScreen('practiceyard', document.querySelectorAll('nav button')[1]);
   }
 }
+  function startLesson() { 
+    lessonStep = 0; 
+    updateLessonStep();
+  }
 
 function previousLessonStep() {
   if (lessonStep > 0) {
