@@ -947,14 +947,10 @@ function renderStraightSimulator(message) {
   👩‍🏫 Coach Maricel: Study the trailer. Choose your correction.
 </div>
 
-    <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
-    <button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
-    <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
+   <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
 <button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
 <button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
-};
-
-window.straightAnswer = function(choice) {
+`;window.straightAnswer = function(choice) {
   simMove++;
 
   if (choice === "right") {
