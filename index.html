@@ -752,11 +752,30 @@ function loadSimulatorStyles() {
   width: 260px;
   height: 360px;
 }
-.truck-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+.truck-shadow{
+    position:absolute;
+    width:160px;
+    left:0;
+    top:40px;
+    opacity:.28;
+    z-index:0;
+}
+
+.trailer-img{
+    position:absolute;
+    width:95px;
+    left:33px;
+    top:0;
+    transform-origin:50% 100%;
+    z-index:1;
+}
+
+.tractor-img{
+    position:absolute;
+    width:120px;
+    left:20px;
+    top:205px;
+    z-index:2;
 }
 
     .trailer-real {
