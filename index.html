@@ -708,7 +708,7 @@ function previousLessonStep() {
     updateLessonStep();
   }
 }
-  function showPracticeLesson(type) {
+  window.showPracticeLesson = function(type) {
   const box = document.getElementById("practiceContent");
 
   if (!box) return;
@@ -719,7 +719,7 @@ function previousLessonStep() {
       <p><strong>Rule:</strong> The trailer reacts opposite first, then follows the tractor.</p>
       <p>Do not rush the steering wheel. Watch the trailer first.</p>
     `;
-  }
+  };
 
   if (type === "brain") {
     box.innerHTML = `
