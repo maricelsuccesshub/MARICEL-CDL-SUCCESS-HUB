@@ -1,94 +1,884 @@
-ChatGPT
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maricel CDL Success Hub</title>
+  <meta name="theme-color" content="#111827" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CDL Success Hub" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />                            
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;--accent:#111827;--soft:#f3f4f6;--danger:#991b1b;--success:#166534}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+    header{background:var(--accent);color:white;padding:22px 16px;text-align:center}
+    header h1{margin:0;font-size:25px} header p{margin:8px 0 0;color:#d1d5db}
+    nav{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px;background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5;max-height:44vh;overflow:auto}
+    nav button{border:1px solid var(--border);background:var(--soft);padding:12px;border-radius:12px;font-weight:bold;cursor:pointer}
+    nav button.active{background:var(--accent);color:white}
+    main{padding:16px;max-width:980px;margin:auto}
+    section{display:none}.active{display:block}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+    h2{margin-top:0} label{display:block;font-weight:bold;margin-top:12px;margin-bottom:6px}
+    input,textarea,select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;font-size:16px;background:white}
+    textarea{min-height:90px}
+    .btn{margin-top:14px;background:var(--accent);color:white;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;width:100%}
+    .btn.light{background:var(--soft);color:var(--text);border:1px solid var(--border)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px}
+    .warning{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;padding:12px;border-radius:12px;margin-top:12px}
+    .success{background:#f0fdf4;border:1px solid #bbf7d0;color:var(--success);padding:12px;border-radius:12px;margin-top:12px}
+    .danger{background:#fef2f2;border:1px solid #fecaca;color:var(--danger);padding:12px;border-radius:12px;margin-top:12px}
+    .small{color:var(--muted);font-size:14px}
+    .list-item{border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0;background:white}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--soft);margin:4px;font-size:14px}
+    ol li, ul li{margin:8px 0}
+    footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
+  </style>
+</head>
+<body>
+<header>
 
+<h1>🚛 CDL Success Hub</h1>
 
+<p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
 
+<p class="small">
+Created by Coach Maricel • Helping beginner drivers build confidence through understanding.
+</p>
 
-the Straight Back Trainer is completely not functioning
+</header>
+<nav id="nav"></nav>
+<main>
+  
+<section id="home" class="active">
 
-We’ll fix it step by step. The most likely problem is the trainer buttons are showing, but the JavaScript functions for Straight Back are either missing, renamed, or not connected to the buttons.
-Thought for a few seconds
-Please send me the current full code or the section around:
-Straight Back Trainer
+  <div class="card">
+    <h2>👋 Welcome, Driver!</h2>
+    <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
+   
+    <p>Today we're going to build confidence—not just complete a lesson.</p>
 
-For now, check this first:
+<p class="small">
+Every professional driver was once a beginner.
+</p>
+  </div>
 
-Search for your button:
-onclick="startStraightBackTrainer()"
-Then search if this function exists:
-function startStraightBackTrainer()
-If the button calls a function name that does not exist, the whole trainer will not work.
-Also open Inspect/Console and tell me the red error. It will usually say something like:
+  <div class="card">
+    
+    <h3>🌟 Today's Mission</h3>
 
-startStraightBackTrainer is not defined
-Send me the code and I’ll tell you exactly from what line to what line to replace.
+<p><strong>Understand WHY the trailer follows the tractor.</strong></p>
 
+<p class="small">
+⏱ Estimated Time: 5 minutes<br>
+🎯 Today's Goal: Understand the trailer—not memorize the steering wheel.
+</p>
+    
+ <button class="btn" onclick="showScreen('lesson', document.querySelectorAll('nav button')[10])">
+  Start Today's Lesson
+</button>
+    
+  </div>
 
-Pasted text(17).txt
-Document
+  <div class="grid">
+    <div class="card">
+      <h3>🚛 CDL Practice Yard</h3>
+      <p>Learn backing maneuvers step-by-step.</p>
+      <button class="btn light" onclick="showScreen('practiceyard', document.querySelectorAll('nav button')[1])">
+        Go to Practice Yard
+      </button>
+    </div>
 
-I found the Straight Back Trainer code in your uploaded file. The trainer itself exists, so the issue is probably one of two things: missing image asset names, or the answer logic is still backwards/confusing.
-Thought for 38s
-Yes — I found the problem area. Replace line 788 through line 932 in your uploaded code. That whole Straight Back Trainer section is the part controlling it. 
-Use this replacement:
+    <div class="card">
+      <h3>🛣 Plan My Route</h3>
+      <p>Check route, sunset, weather, and safe parking deadline.</p>
+      <button class="btn light" onclick="showScreen('planner', document.querySelectorAll('nav button')[3])">
+        Plan Route
+      </button>
+    </div>
 
-const straightScenarios = [
-  {
-    message: "Your trailer is drifting RIGHT. What is your first correction?",
-    angle: 12,
-    correct: "right",
-    success: "✅ Correct. Turn RIGHT briefly to bring the trailer back.",
-    wrong: "❌ Not yet. Trailer drifting right = turn RIGHT first."
-  },
-  {
-    message: "The trailer is coming back. What now?",
-    angle: 6,
-    correct: "hold",
-    success: "✅ Correct. Hold straight and let it react.",
-    wrong: "❌ Not yet. After correcting, hold the wheel straight."
-  },
-  {
-    message: "The trailer is almost straight. What stops it from crossing over?",
-    angle: 3,
-    correct: "left",
-    success: "✅ Correct. Turn LEFT a little to stop the swing.",
-    wrong: "❌ Not yet. Counter-steer LEFT to stop the trailer."
-  },
-  {
-    message: "The trailer is straight now. What should you do?",
-    angle: 0,
-    correct: "hold",
-    success: "✅ Correct. Hold straight and back slowly.",
-    wrong: "❌ Not yet. Straight trailer = hold straight."
-  },
-  {
-    message: "Now your trailer is drifting LEFT. What is your first correction?",
-    angle: -12,
-    correct: "left",
-    success: "✅ Correct. Turn LEFT briefly to bring the trailer back.",
-    wrong: "❌ Not yet. Trailer drifting left = turn LEFT first."
-  },
-  {
-    message: "The trailer is coming back. What now?",
-    angle: -6,
-    correct: "hold",
-    success: "✅ Correct. Hold straight and let it react.",
-    wrong: "❌ Not yet. After correcting, hold the wheel straight."
-  },
-  {
-    message: "The trailer is almost straight. What stops it from crossing over?",
-    angle: -3,
-    correct: "right",
-    success: "✅ Correct. Turn RIGHT a little to stop the swing.",
-    wrong: "❌ Not yet. Counter-steer RIGHT to stop the trailer."
-  },
-  {
-    message: "The trailer is straight again. What should you do?",
-    angle: 0,
-    correct: "hold",
-    success: "🏆 Correct. You completed the Straight Back Trainer!",
-    wrong: "❌ Not yet. Straight trailer = hold straight."
-  }
+    <div class="card">
+      <h3>🅿️ Safe Haven Finder</h3>
+      <p>Find truck stops, rest areas, diesel, parking, and CAT scales.</p>
+      <button class="btn light" onclick="showScreen('safehaven', document.querySelectorAll('nav button')[4])">
+        Find Safe Haven
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>🏢 Facility Intelligence</h3>
+      <p>Save truck entrance GPS pins, guard shack notes, and approach tips.</p>
+      <button class="btn light" onclick="showScreen('facility', document.querySelectorAll('nav button')[5])">
+        View Facilities
+      </button>
+    </div>
+  </div>
+
+  <div class="success">
+    <strong>💡 Instructor Tip:</strong><br>
+    Small steering corrections create the biggest improvements.
+  </div>
+
+  <div class="warning">
+    <strong>Privacy Rule:</strong>
+    Do not upload load information, bills of lading, dispatch screenshots,
+    trailer contents, customer documents, employee IDs, truck numbers,
+    trailer numbers, or company-sensitive information.
+  </div>
+
+</section>
+</section>
+  
+<section id="practiceyard">
+
+  <div class="card">
+    <h2>🚛 CDL Practice Yard</h2>
+
+    <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
+
+    <p>
+      Welcome to your personal CDL simulator.
+      Learn first...
+      Practice second...
+      Build confidence before entering the training yard.
+    </p>
+
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🧠 Understanding Trailer Movement</h3>
+
+      <p>
+        Learn WHY the trailer moves before you ever touch the steering wheel.
+      </p>
+
+      <button class="btn"
+        onclick="showPracticeLesson('trailer')">
+        Start Lesson
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🎮 Brain Mode</h3>
+
+      <p>
+        The truck pauses...
+
+        You decide what happens next.
+      </p>
+
+      <button class="btn"
+        onclick="showPracticeLesson('brain')">
+
+        Start Brain Mode
+
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🚛 Straight Back Trainer</h3>
+
+      <p>
+
+        Learn steering corrections one step at a time.
+
+      </p>
+
+      <button class="btn"
+    onclick="showPracticeLesson('straight')">
+
+    Start Training
+
+</button>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h3>Coach Maricel</h3>
+
+    <div id="practiceContent">
+
+      Select one lesson to begin.
+
+    </div>
+
+  </div>
+
+</section>
+<section id="profile">
+  <div class="card"><h2>My Profile</h2>
+    <div class="two-col"><div><label>First Name</label><input id="profileName"></div><div><label>Last Initial</label><input id="profileInitial" maxlength="2"></div></div>
+    <div class="two-col"><div><label>Email</label><input id="profileEmail" type="email"></div><div><label>Phone Number</label><input id="profilePhone" type="tel"></div></div>
+    <div class="two-col"><div><label>Emergency Contact Name</label><input id="emergencyName"></div><div><label>Emergency Contact Phone</label><input id="emergencyPhone" type="tel"></div></div>
+    <label>CDL Status</label><select id="profileStatus"><option>Student Driver</option><option>Recent Graduate</option><option>Solo Driver</option><option>Mentor</option><option>Senior Mentor</option></select>
+    <label>Experience Level</label><select id="profileExperience"><option>New Driver</option><option>0-6 Months</option><option>6-12 Months</option><option>1+ Year</option><option>3+ Years</option><option>5+ Years</option></select>
+    <label>Preferred Driving Type</label><select id="drivingType"><option>OTR</option><option>Regional</option><option>Local</option><option>Dedicated</option><option>Dry Van</option><option>Reefer</option><option>Flatbed</option><option>Tanker</option></select>
+    <label>Driver Status</label><select id="driverStatus"><option>🟢 Available</option><option>🟡 Driving</option><option>🔴 Sleeping</option><option>🔵 Need Help</option></select>
+    <label>Bio / About Me</label><textarea id="profileBio" placeholder="Do not share CDL number, employee ID, truck number, or company-sensitive information."></textarea>
+    <button class="btn" onclick="saveProfile()">Save Profile</button><div id="profileSaved" class="success" style="display:none">Profile saved on this device.</div>
+  </div>
+</section>
+
+<section id="planner">
+  <div class="card"><h2>Plan My Route</h2>
+    <div class="warning"><strong>No classified information:</strong> Address/location only. No load, BOL, dispatch, trailer, or commodity details.</div>
+    <label>Current City or Location</label><input id="currentLocation" placeholder="Example: Colton, CA">
+    <label>Destination / Facility Address</label><input id="deliveryAddress" placeholder="Street address or City, State">
+    <div class="two-col"><div><label>Manual Latitude Optional</label><input id="manualLat" placeholder="34.0522"></div><div><label>Manual Longitude Optional</label><input id="manualLon" placeholder="-118.2437"></div></div>
+    <div class="two-col"><div><label>Appointment Date</label><input id="appointmentDate" type="date"></div><div><label>Appointment Time</label><input id="appointmentTime" type="time"></div></div>
+    <button class="btn" onclick="autoPlanDestination()">Auto Get Sunset, Timezone & Weather</button>
+    <div id="autoPlanResult"></div>
+    <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button>
+    <button class="btn light" onclick="openRouteSearch('truck stops')">Truck Stops Along Route</button>
+<button class="btn light" onclick="openRouteSearch('travel centers truck parking')">Travel Centers Along Route</button>
+<button class="btn light" onclick="openRouteSearch('rest areas truck parking')">Rest Areas Along Route</button>
+<button class="btn light" onclick="openRouteSearch('semi truck parking')">Semi Truck Parking Along Route</button>
+<button class="btn light" onclick="openRouteSearch('CAT scales truck stop')">CAT Scales Along Route</button>
+  </div>
+</section>
+
+<section id="safehaven">
+  <div class="card"><h2>Safe Haven Finder</h2>
+    <label>Search Near City or Address</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA">
+    <div class="grid">
+      <button class="btn" onclick="mapSearch('truck stop')">Truck Stops</button>
+      <button class="btn" onclick="mapSearch('interstate rest area truck parking')">Rest Areas</button>
+      <button class="btn" onclick="mapSearch('truck parking 53 foot trailer')">Truck Parking</button>
+      <button class="btn" onclick="mapSearch('diesel truck fuel')">Diesel Fuel</button>
+      <button class="btn" onclick="mapSearch('CAT scale truck stop')">CAT Scale</button>
+      <button class="btn" onclick="mapSearch('travel center truck parking')">Travel Centers</button>
+    </div>
+    <div class="warning"><strong>Semi Tractor-Trailer Check:</strong><ul><li>Confirm wide truck entrance.</li><li>Check satellite view.</li><li>Avoid tiny gas stations, low bridges, dead ends, and tight shopping centers.</li><li>Verify overnight parking rules.</li><li>Never risk unsafe shoulder parking.</li></ul></div>
+  </div>
+  <div class="card">
+  <h3>Save Safe Haven</h3>
+
+  <label>Overnight Parking</label>
+  <select id="overnightParking">
+    <option>Unknown</option>
+    <option>Yes</option>
+    <option>No</option>
+    <option>Limited</option>
+  </select>
+
+  <label>Difficulty Rating</label>
+  <select id="difficulty">
+    <option>Easy</option>
+    <option>Moderate</option>
+    <option>Difficult</option>
+    <option>Very Tight</option>
+  </select>
+
+  <label>Restrooms</label>
+  <select id="restrooms">
+    <option value="false">Unknown / No</option>
+    <option value="true">Yes</option>
+  </select>
+
+  <label>Showers</label>
+  <select id="showers">
+    <option value="false">Unknown / No</option>
+    <option value="true">Yes</option>
+  </select>
+
+  <label>Diesel</label>
+  <select id="diesel">
+    <option value="false">Unknown / No</option>
+    <option value="true">Yes</option>
+  </select>
+
+  <label>Food Nearby</label>
+  <input id="foodNearby" placeholder="Example: Subway, McDonald's">
+
+  <button class="btn" onclick="saveFacility()">Save Safe Haven</button>
+</div>
+</section>
+
+<section id="facility">
+  <div class="card"><h2>Facility Intelligence</h2><p class="small">Only save location/navigation info. No load/customer-sensitive data.</p>
+    <label>Facility Name</label><input id="facilityName">
+    <label>Facility Address</label><input id="facilityAddress">
+    <div class="two-col"><div><label>Truck Entrance Latitude</label><input id="entranceLat"></div><div><label>Truck Entrance Longitude</label><input id="entranceLon"></div></div>
+    <div class="two-col"><div><label>Guard Shack Latitude</label><input id="guardLat"></div><div><label>Guard Shack Longitude</label><input id="guardLon"></div></div>
+    <label>Truck Entrance Notes</label><textarea id="entranceNotes"></textarea>
+    <label>Guard Shack / Check-In Notes</label><textarea id="guardNotes"></textarea>
+    <label>Best Direction to Approach</label><textarea id="approachNotes"></textarea>
+  
+    <button class="btn" onclick="saveFacility()">Save Facility</button>
+  </div>
+  <div class="card"><h3>Saved Facilities</h3><div id="facilityList"></div></div>
+</section>
+
+<section id="backing">
+  <div class="card"><h2>Backing Refresher Center</h2>
+    <div class="grid">
+      <button class="btn light" onclick="showBacking('straight')">Straight Backing</button>
+      <button class="btn light" onclick="showBacking('offset')">Offset Backing</button>
+      <button class="btn light" onclick="showBacking('alley')">Alley Dock</button>
+      <button class="btn light" onclick="showBacking('45')">45° Backing</button>
+      <button class="btn light" onclick="showBacking('90')">90° Backing</button>
+      <button class="btn light" onclick="showBacking('blind')">Blind Side</button>
+      <button class="btn light" onclick="showBacking('truckstop')">Truck Stop Parking</button>
+      <button class="btn light" onclick="showBacking('panic')">I Lost My Setup</button>
+    </div>
+    <div id="backingContent" class="list-item">Choose a backing refresher.</div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="card"><h2>Community Hub</h2>
+    <span class="pill">General Help</span><span class="pill">Backing Help</span><span class="pill">Safe Parking</span><span class="pill">Facility Questions</span><span class="pill">Success Stories</span>
+    <div class="warning"><strong>Rule:</strong> Respect everyone. No shaming. Correct to build, not to break.</div>
+  </div>
+  <div class="card"><h3>Post a Community Question</h3><label>Topic</label><input id="postTopic"><label>Message</label><textarea id="postMessage"></textarea><button class="btn" onclick="savePost()">Post</button></div>
+  <div class="card"><h3>Community Posts</h3><div id="postList"></div></div>
+</section>
+
+<section id="resources">
+  <div class="card"><h2>Resource Vault</h2>
+    <div class="list-item"><strong>Pre-Trip Reminder</strong><br>Check tires, lights, brakes, leaks, coupling, mirrors, fluids, paperwork, and safety equipment.</div>
+    <div class="list-item"><strong>GOAL Rule</strong><br>Get Out And Look anytime you are unsure. Stop before you hit something.</div>
+    <div class="list-item"><strong>Parking Before Dark</strong><br>Plan your safe haven at least 2 hours before sunset.</div>
+    <div class="list-item"><strong>Need Help Now</strong><br>Stop safely. Set brakes. Breathe. Check surroundings. Call mentor/dispatch/emergency services as appropriate.</div>
+  </div>
+</section>
+
+<section id="progress">
+  <div class="card"><h2>My Progress Tracker</h2>
+    <label>Date</label><input type="date" id="progressDate">
+    <label>Backing Practiced</label><input id="progressBacking">
+    <label>What Went Well?</label><textarea id="progressWin"></textarea>
+    <label>What Needs Improvement?</label><textarea id="progressImprove"></textarea>
+    <label>Confidence Level</label><select id="confidence"><option>1 - Very Nervous</option><option>2</option><option>3</option><option>4</option><option>5 - Confident</option></select>
+    <button class="btn" onclick="saveProgress()">Save Progress</button>
+  </div>
+  <div class="card"><h3>Saved Progress</h3><div id="progressList"></div></div>
+</section>
+
+  <section id="about">
+
+  <div class="card">
+
+    <h2>🚛 About CDL Success Hub</h2>
+
+    <h3>Our Mission</h3>
+
+    <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
+
+    <div class="success">
+
+      Every professional driver was once a beginner.
+
+      CDL Success Hub exists to help students understand
+      WHY the truck moves—not simply memorize the steps.
+
+    </div>
+
+    <h3>Our Vision</h3>
+
+    <p>
+
+      To become the most trusted CDL practice companion
+      by helping beginner drivers build confidence through
+      visualization, repetition, and understanding.
+
+    </p>
+
+    <h3>Educational Purpose</h3>
+
+    <p>
+
+      CDL Success Hub is an independent educational practice
+      and study tool designed to support students before,
+      during, and after professional CDL training.
+
+    </p>
+
+    <div class="warning">
+
+      <strong>Disclaimer</strong>
+
+      <br><br>
+
+      CDL Success Hub is not a licensed CDL training school.
+
+      This application does not issue CDL licenses,
+      certifications, endorsements, or testing results.
+
+      It is intended only as an educational practice tool.
+
+      Always follow your instructor,
+      employer,
+      FMCSA regulations,
+      and your state's CDL requirements.
+
+    </div>
+
+    <h3>Safety First</h3>
+
+    <p>
+
+      Always use GOAL (Get Out And Look) whenever you are unsure.
+
+      Never allow time pressure to force an unsafe maneuver.
+
+      Safe drivers become professional drivers.
+
+    </p>
+
+  </div>
+
+</section>
+<section id="admin">
+  <div class="card"><h2>Admin Dashboard</h2><p>Future version: approve members, review facility submissions, moderate videos, pin announcements, and remove unsafe posts.</p>
+    <div class="danger"><strong>Remove immediately:</strong> load details, paperwork, dispatch screens, trailer contents, customer documents, truck/trailer numbers, or private IDs.</div>
+  </div>
+</section>
+
+  <section id="lesson">
+
+<div class="card">
+
+<h2>🧠 Backing Fundamentals</h2>
+
+<div id="lessonProgressText" style="font-weight:700;margin:10px 0;color:#374151;">
+Welcome
+</div>
+
+<div style="background:#e5e7eb;border-radius:999px;height:14px;margin-bottom:18px;overflow:hidden;">
+    <div id="lessonProgressBar"
+         style="background:#111827;height:100%;width:0%;border-radius:999px;">
+    </div>
+</div>
+
+<h3>👋 Welcome to Coach Maricel's Backing System</h3>
+
+<p id="lessonText">
+Before we touch the steering wheel, we're going to understand how a trailer really moves.
+
+Most students struggle because they memorize steering instead of understanding the trailer.
+
+In this course, you'll learn to watch the trailer first, think first, then make one small correction.
+
+By the end of these lessons, backing will finally make sense.
+</p>
+
+<div id="lessonTip"
+     style="background:#f3f4f6;padding:14px;border-radius:12px;font-weight:600;margin-top:14px;">
+🎯 Coach Tip: Understanding beats memorization every time.
+</div>
+
+<div style="margin-top:20px">
+
+<button class="btn"
+        onclick="startLesson()">
+Start Lesson 1 →
+</button>
+
+</div>
+
+</div>
+</section>
+</main>
+<footer>Maricel CDL Success Hub • Private Training Support Tool</footer>
+<script>
+ const SUPABASE_URL = "https://fmyaxdzonqrgsyzizixe.supabase.co";
+const SUPABASE_KEY = "sb_publishable_sNkm8dvvUXXRocYNcQP_pw_eWmyBHCW"; 
+const screens=[
+  ['home','🏠 Dashboard'],
+  ['practiceyard','🚛 CDL Practice Yard'],
+  ['profile','My Profile'],
+  ['planner','Plan Route'],
+  ['safehaven','Safe Haven'],
+  ['facility','Facilities'],
+  ['backing','Backing'],
+  ['community','Community'],
+  ['resources','Resources'],
+  ['progress','Progress'],
+  ['lesson','🧠 Lesson'],
+  ['about','ℹ️ About'],
+  ['admin','Admin']
 ];
+const nav=document.getElementById('nav');screens.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');nav.appendChild(b)});
+function showScreen(id,btn){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');scrollTo(0,0)}
+function esc(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+  function saveProfile(){const d={name:profileName.value,initial:profileInitial.value,email:profileEmail.value,phone:profilePhone.value,emergencyName:emergencyName.value,emergencyPhone:emergencyPhone.value,status:profileStatus.value,experience:profileExperience.value,drivingType:drivingType.value,driverStatus:driverStatus.value,bio:profileBio.value};localStorage.setItem('profile',JSON.stringify(d));profileSaved.style.display='block'}
+async function autoPlanDestination(){const address=deliveryAddress.value.trim();const latM=parseFloat(manualLat.value);const lonM=parseFloat(manualLon.value);if(!address&&(isNaN(latM)||isNaN(lonM))){autoPlanResult.innerHTML='<div class="danger">Enter destination address or coordinates.</div>';return}autoPlanResult.innerHTML='<div class="warning">Looking up destination, timezone, sunset, and weather...</div>';try{let lat,lon,displayName;if(!isNaN(latM)&&!isNaN(lonM)){lat=latM;lon=lonM;displayName=address||'Manual coordinates'}else{const f=await geocodeAddress(address);lat=f.lat;lon=f.lon;displayName=f.displayName}const date=appointmentDate.value||new Date().toISOString().split('T')[0];const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=sunrise,sunset,weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto&start_date=${date}&end_date=${date}`;const w=await (await fetch(u)).json();if(!w.daily)throw new Error('No weather data.');const sunrise=w.daily.sunrise?.[0],sunset=w.daily.sunset?.[0];const maxC=w.daily.temperature_2m_max?.[0],minC=w.daily.temperature_2m_min?.[0];const maxF=maxC!==undefined?Math.round(maxC*9/5+32):'N/A',minF=minC!==undefined?Math.round(minC*9/5+32):'N/A';const windK=w.daily.wind_speed_10m_max?.[0],windM=windK!==undefined?Math.round(windK*.621371):'N/A';let deadline='N/A';if(sunset){deadline=new Date(new Date(sunset).getTime()-7200000).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}autoPlanResult.innerHTML=`<div class="success"><strong>Destination:</strong> ${esc(displayName)}<br><strong>Coordinates:</strong> ${lat.toFixed(5)}, ${lon.toFixed(5)}<br><strong>Timezone:</strong> ${esc(w.timezone||'N/A')}</div><div class="list-item"><h3>Sunset Safety Plan</h3><strong>Sunrise:</strong> ${sunrise?new Date(sunrise).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Sunset:</strong> ${sunset?new Date(sunset).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Safe Haven Deadline:</strong> ${deadline}<div class="warning">Be parked or securing safe parking by this time.</div></div><div class="list-item"><h3>Destination Weather</h3><strong>High / Low:</strong> ${maxF}°F / ${minF}°F<br><strong>Precipitation Chance:</strong> ${w.daily.precipitation_probability_max?.[0]??'N/A'}%<br><strong>Max Wind:</strong> ${windM} mph<br><div class="warning">Always verify wind, snow/ice, chain laws, road closures, and mountain grades with official sources.</div></div>`}catch(e){autoPlanResult.innerHTML=`<div class="danger"><strong>Auto lookup failed.</strong><br>Try City, State or paste Google Maps coordinates.<br>Error: ${esc(e.message)}</div>`}}
+async function geocodeAddress(a){const cleaned=a.replace(/#/g,' ').replace(/\s+/g,' ').trim();const qs=[cleaned,cleaned+', USA',extractCityState(cleaned)].filter(Boolean);for(const q of [...new Set(qs)]){try{let d=await (await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&q=${encodeURIComponent(q)}&limit=3`)).json();if(d?.length)return{lat:+d[0].lat,lon:+d[0].lon,displayName:d[0].display_name||q}}catch(e){}try{let d=await (await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`)).json();if(d.features?.length){let c=d.features[0].geometry.coordinates,p=d.features[0].properties||{};return{lat:+c[1],lon:+c[0],displayName:[p.name,p.city,p.state,p.country].filter(Boolean).join(', ')||q}}}catch(e){}}throw new Error('Address not found.')}
+function extractCityState(t){const p=t.split(',').map(x=>x.trim()).filter(Boolean);return p.length>=2?p.slice(-2).join(', '):''}
+function openMapRoute(){const f=encodeURIComponent(currentLocation.value||''),t=encodeURIComponent(deliveryAddress.value||'');if(!t){alert('Enter destination first.');return}open(f?`https://www.google.com/maps/dir/${f}/${t}`:`https://www.google.com/maps/search/${t}`,'_blank')}
+function openRouteSearch(term) {
+  const from = currentLocation.value.trim();
+  const to = deliveryAddress.value.trim();
+
+  if (!from || !to) {
+    alert("Enter current location and destination first.");
+    return;
+  }
+
+  const query = encodeURIComponent(
+    term + " along route from " + from + " to " + to
+  );
+
+  open(
+    "https://www.google.com/maps/search/" + query,
+    "_blank"
+  );
+}
+  function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
+async function saveFacility() {
+  const facility = {
+  location_name: facilityName.value || "Unnamed Facility",
+  city: facilityAddress.value || "Unknown",
+  state: "CA",
+  parking_spots: 1,
+  overnight_allowed: overnightParking.value === "Yes",
+    restrooms: restrooms.value === "true",
+showers: showers.value === "true",
+diesel: diesel.value === "true",
+food_nearby: foodNearby.value || "",
+  notes: entranceNotes.value + " | " + guardNotes.value + " | " + approachNotes.value,
+  submitted_by: "Maricel"
+};
+const res = await fetch(
+  "https://fmyaxdzonqrgsyzizixe.supabase.co/rest/v1/safe_havens",
+  {
+    method: "POST",
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY,
+      "Content-Type": "application/json",
+      "Prefer": "return=minimal"
+    },
+    body: JSON.stringify(facility)
+  }
+);
+
+if (!res.ok) {
+  alert("Supabase error: " + await res.text());
+  return;
+}
+  alert("Saved to Supabase!");
+  
+}
+function renderFacilities(){const items=JSON.parse(localStorage.getItem('facilities')||'[]');facilityList.innerHTML=items.length?items.map(x=>`<div class="list-item"><strong>${esc(x.name||'Unnamed')}</strong><br>${esc(x.address||'')}<br><strong>Truck Entrance GPS:</strong> ${esc(x.eLat||'')}, ${esc(x.eLon||'')} ${x.eLat&&x.eLon?`<br><button class="btn light" onclick="open('https://www.google.com/maps/search/${x.eLat},${x.eLon}','_blank')">Navigate to Truck Entrance</button>`:''}<br><strong>Entrance:</strong> ${esc(x.entrance||'No notes')}<br><strong>Guard:</strong> ${esc(x.guard||'No notes')}<br><strong>Approach:</strong> ${esc(x.approach||'No notes')}<br><strong>Parking:</strong> ${esc(x.parking)} | <strong>Difficulty:</strong> ${esc(x.difficulty)}</div>`).join(''):'<p class="small">No saved facilities yet.</p>'}
+const backing={straight:'<h3>Straight Backing</h3><ol><li>Line tractor and trailer straight.</li><li>Use both mirrors.</li><li>Back at idle speed.</li><li>Use small corrections only.</li><li>Pull up early if crooked.</li><li>GOAL before final feet.</li></ol><div class="warning">Common mistake: overcorrecting.</div>',offset:'<h3>Offset Backing</h3><ol><li>Start with clean setup.</li><li>Watch trailer tandems.</li><li>Create angle slowly.</li><li>Reduce angle as trailer enters lane.</li><li>Follow trailer with tractor.</li><li>Pull up before jackknife.</li></ol>',alley:'<h3>Alley Dock</h3><ol><li>Survey obstacles.</li><li>Set controlled angle.</li><li>Watch tandems pivot.</li><li>Control angle early.</li><li>Follow trailer.</li><li>GOAL often.</li><li>Pull up and straighten.</li></ol>',"45":'<h3>45° Backing</h3><ol><li>Drive past space.</li><li>Set trailer around 45°.</li><li>GOAL.</li><li>Back slowly.</li><li>Watch tandems.</li><li>Follow trailer.</li><li>Straighten and finish.</li></ol>',"90":'<h3>90° Backing</h3><ol><li>Use only when necessary.</li><li>GOAL first.</li><li>Watch pivot point.</li><li>Protect tail swing.</li><li>Pull up often.</li><li>Straighten before final back.</li></ol>',blind:'<h3>Blind Side</h3><ol><li>Avoid if safer setup exists.</li><li>GOAL before moving.</li><li>Use visible trained spotter if safe.</li><li>Stop if you lose sight.</li><li>Pull up and reposition.</li></ol><div class="danger">Never let pressure force unsafe blind-side backing.</div>',truckstop:'<h3>Truck Stop Parking</h3><ol><li>Pick easiest safe spot.</li><li>Avoid poorly parked trucks.</li><li>Watch tail swing and tractor nose.</li><li>GOAL.</li><li>Use pull-ups.</li><li>Ignore pressure and move slow.</li></ol>',panic:'<h3>I Lost My Setup</h3><ol><li>Stop.</li><li>Set brakes.</li><li>Breathe.</li><li>GOAL.</li><li>Check both sides.</li><li>Pull up.</li><li>Reset and try again slowly.</li></ol>'}
+function showBacking(t){backingContent.innerHTML=backing[t]}
+function savePost(){const p=JSON.parse(localStorage.getItem('posts')||'[]');p.unshift({topic:postTopic.value,msg:postMessage.value,date:new Date().toLocaleString()});localStorage.setItem('posts',JSON.stringify(p));postTopic.value=postMessage.value='';renderPosts()}
+function renderPosts(){const p=JSON.parse(localStorage.getItem('posts')||'[]');postList.innerHTML=p.length?p.map(x=>`<div class="list-item"><strong>${esc(x.topic||'Post')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>`).join(''):'<p class="small">No posts yet.</p>'}
+async function saveProgress() {
+  const progress = {
+    progress_date: progressDate.value || null,
+    backing_practice: progressBacking.value,
+    went_well: progressWin.value,
+    needs_improvement: progressImprove.value,
+    confidence: confidence.value
+  };
+
+  const res = await fetch("https://fmyaxdzonqrgsyzizixe.supabase.co/rest/v1/progress", {
+  method: "POST",
+  headers: {
+    "apikey": SUPABASE_KEY,
+    "Authorization": "Bearer " + SUPABASE_KEY,
+    "Content-Type": "application/json",
+    "Prefer": "return=minimal"
+  },
+  body: JSON.stringify(progress)
+});
+
+  if (!res.ok) {
+    alert("Supabase error: " + await res.text());
+    return;
+  }
+
+  alert("Progress saved to Supabase!");
+progressList.innerHTML = `<div class="list-item"><strong>${progress.progress_date || "Log"}</strong><br><strong>Backing:</strong> ${progress.backing_practice}<br><strong>Win:</strong> ${progress.went_well}<br><strong>Improve:</strong> ${progress.needs_improvement}<br><strong>Confidence:</strong> ${progress.confidence}</div>` + progressList.innerHTML;
+}
+
+function renderProgress() {
+  progressList.innerHTML = "";
+}
+
+let lessonStep = 0;
+
+const lessonSteps = [
+  {
+  title: "🧠 Level 1 — Coach Maricel's Golden Rule",
+  text: "Do NOT watch the steering wheel. Watch the trailer. The steering wheel is only a tool. The trailer tells you exactly what correction to make.",
+  tip: "👀 Coach Tip: Your eyes teach your hands. Watch the trailer, not the steering wheel."
+},
+
+{
+  title: "🚛 Level 2 — The Tractor Is The Boss",
+  text: "The tractor always moves first. The trailer never decides where to go. Whatever the tractor does first, the trailer reacts to.",
+  tip: "💡 Coach Tip: The trailer never leads. It always follows."
+},
+
+{
+  title: "⏳ Level 3 — Wait For The Trailer",
+  text: "Turn the steering wheel ONE time. Then wait. Give the trailer time to react before making another correction.",
+  tip: "⏱️ Coach Tip: Patience creates control."
+},
+
+{
+  title: "🐢 Level 4 — Slow Wins",
+  text: "Backing slowly gives your brain time to understand what the trailer is doing. Slow is smooth. Smooth is accurate.",
+  tip: "🚶 Coach Tip: Never rush a backing maneuver."
+},
+
+{
+  title: "🤏 Level 5 — Small Corrections",
+  text: "Professional drivers make many tiny steering corrections instead of one large correction. Small movements create smooth trailer movement.",
+  tip: "👌 Coach Tip: Tiny steering = tiny trailer movement."
+},
+
+{
+  title: "👀 Level 6 — Eyes On The Trailer",
+  text: "Keep your eyes on the trailer. The trailer tells you exactly what correction to make. Your hands simply follow your eyes.",
+  tip: "🎯 Coach Tip: Don't chase the steering wheel. Follow the trailer."
+},
+
+{
+  title: "🏆 Level Complete!",
+  text: "Excellent! You now understand the most important concepts in backing. Next you'll enter the CDL Practice Yard where you'll practice these ideas.",
+  tip: "🚛 Coach Maricel says: Understanding comes before memorizing."
+}
+];
+
+function updateLessonStep() {
+  const total = lessonSteps.length;
+  const current = lessonStep + 1;
+  const percent = Math.round((current / total) * 100);
+
+  document.querySelector("#lesson h3").textContent =
+    lessonSteps[lessonStep].title;
+
+  document.getElementById("lessonText").textContent =
+    lessonSteps[lessonStep].text;
+
+  document.getElementById("lessonTip").textContent =
+    lessonSteps[lessonStep].tip;
+
+  document.getElementById("lessonProgressText").textContent =
+    "Level " + current + " of " + total;
+
+  document.getElementById("lessonProgressBar").style.width =
+    percent + "%";
+}
+function nextLessonStep() {
+  if (lessonStep < lessonSteps.length - 1) {
+    lessonStep++;
+    updateLessonStep();
+  } else {
+    showScreen('practiceyard', document.querySelectorAll('nav button')[1]);
+  }
+}
+function startLesson() {
+  lessonStep = 0;
+  updateLessonStep();
+
+  const lessonButton = document.querySelector("#lesson .btn");
+  lessonButton.textContent = "Next ➜";
+  lessonButton.onclick = nextLessonStep;
+}
+
+function previousLessonStep() {
+  if (lessonStep > 0) {
+    lessonStep--;
+    updateLessonStep();
+  }
+}
+ let simMove = 1;
+let trailerAngle = 12;
+
+function loadSimulatorStyles() {
+  if (document.getElementById("simulatorStyles")) return;
+
+  const style = document.createElement("style");
+  style.id = "simulatorStyles";
+  style.textContent = `
+   .sim-yard {
+    position: relative;
+    width: 100%;
+    min-height: 280;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    margin: 0;
+}
+
+    .lane-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: transparent;
+      opacity: 0;
+    }
+
+    .lane-left { left: 28%; }
+    .lane-right { right: 28%; }
+
+    .cone {
+      position: absolute;
+      font-size: none;
+    }
+
+    .truck-wrap {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  height: 360px;
+}
+.truck-shadow{
+    position:absolute;
+    width:160px;
+    left:0;
+    top:40px;
+    opacity:.28;
+    z-index:0;
+}
+
+.trailer-img {
+    position: absolute;
+    width: 95px;
+    left: 83px;
+    top: 0;
+    transform-origin: 50% 100%;
+    z-index: 1;
+    background: transparent;
+}
+
+.tractor-img {
+    position: absolute;
+    width: 120px;
+    left: 70px;
+    top: 205px;
+    z-index: 2;
+    background: transparent;
+}
+
+    .trailer-real {
+      position: absolute;
+      left: 25px;
+      top: 0;
+      width: 70px;
+      height: 190px;
+      background: linear-gradient(90deg, #d1d5db, #f9fafb, #9ca3af);
+      border: 3px solid #6b7280;
+      border-radius: 6px;
+      transform-origin: 50% 100%;
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+    }
+
+    .trailer-real::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-left: 2px solid rgba(0,0,0,.15);
+      border-right: 2px solid rgba(0,0,0,.15);
+    }
+
+    .tractor-real {
+      position: absolute;
+      left: 17px;
+      top: 180px;
+      width: 86px;
+      height: 115px;
+      background: linear-gradient(#ffffff, #dbeafe);
+      border: 3px solid #111827;
+      border-radius: 36px 36px 14px 14px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.45);
+      z-index: 3;
+    }
+
+    .tractor-real::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 12px;
+      width: 56px;
+      height: 30px;
+      background: #0f172a;
+      border-radius: 8px;
+    }
+
+    .tractor-real::after {
+      content: "";
+      position: absolute;
+      bottom: 8px;
+      left: 18px;
+      width: 44px;
+      height: 18px;
+      background: #111827;
+      border-radius: 4px;
+    }
+
+    .wheel-dot {
+      position: absolute;
+      width: 14px;
+      height: 34px;
+      background: #111827;
+      border-radius: 10px;
+      top: 62px;
+    }
+
+    .wheel-left { left: -10px; }
+    .wheel-right { right: -10px; }
+
+    .sim-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .sim-stat {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 12px;
+      font-weight: bold;
+    }
+
+    .angle-bad { color: #b91c1c; }
+    .angle-good { color: #166534; }
+
+    .coach-bubble {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 14px;
+      border-radius: 14px;
+      margin: 12px 0;
+      font-weight: 600;
+    }
+  `;
+  document.head.appendChild(style);
+}
 
 window.showPracticeLesson = function(type) {
   const box = document.getElementById("practiceContent");
@@ -99,8 +889,8 @@ window.showPracticeLesson = function(type) {
   if (type === "trailer") {
     box.innerHTML = `
       <h3>🧠 Understanding Trailer Movement</h3>
-      <p><strong>Rule:</strong> Watch the trailer first. Then make one small correction.</p>
-      <p>The trailer reacts slowly. Do not oversteer.</p>
+      <p><strong>Rule:</strong> The trailer reacts opposite first, then follows the tractor.</p>
+      <p>Watch the trailer first. Then make one small correction.</p>
     `;
   }
 
@@ -113,781 +903,86 @@ window.showPracticeLesson = function(type) {
   }
 
   if (type === "straight") {
-    straightScenario = 0;
-    renderStraightSimulator();
+    simMove = 1;
+    trailerAngle = 12;
+   trailerAngle = 12;
+renderStraightSimulator("Your trailer is drifting right. What should you do?");
   }
 };
 
-function renderStraightSimulator(feedback = "") {
+function renderStraightSimulator(message) {
   const box = document.getElementById("practiceContent");
-  const s = straightScenarios[straightScenario];
-
-  trailerAngle = s.angle;
-  simMove = straightScenario + 1;
-
-  const angleText =
-    trailerAngle < 0 ? Math.abs(trailerAngle) + "° Left" :
-    trailerAngle > 0 ? trailerAngle + "° Right" :
-    "Straight";
-
+  const angleText = trailerAngle < 0 ? Math.abs(trailerAngle) + "° Left" : trailerAngle + "° Right";
   const angleClass = Math.abs(trailerAngle) <= 3 ? "angle-good" : "angle-bad";
 
   box.innerHTML = `
     <h3>🚛 Straight Back Trainer</h3>
-    <p><strong>Scenario:</strong> ${s.message}</p>
+    <p><strong>Scenario:</strong> ${message}</p>
 
     <div class="sim-panel">
-      <div class="sim-stat">Move: ${simMove} / ${straightScenarios.length}</div>
+      <div class="sim-stat">Move: ${simMove} / 10</div>
       <div class="sim-stat">Trailer Angle: <span class="${angleClass}">${angleText}</span></div>
       <div class="sim-stat">Goal: Straighten the trailer</div>
     </div>
 
     <div class="sim-yard">
-      <div class="truck-wrap">
-        <div style="
-          position:absolute;
-          width:95px;
-          height:190px;
-          left:83px;
-          top:45px;
-          background:#d1d5db;
-          border:4px solid #374151;
-          border-radius:10px;
-          transform-origin:50% 100%;
-          transform:rotate(${trailerAngle}deg);
-          z-index:1;
-        "></div>
+      <div class="lane-line lane-left"></div>
+      <div class="lane-line lane-right"></div>
 
-        <div style="
-          position:absolute;
-          width:120px;
-          height:90px;
-          left:70px;
-          top:220px;
-          background:#111827;
-          border-radius:18px;
-          z-index:2;
-        "></div>
-      </div>
+      
+      <div class="truck-wrap">
+  
+
+<img
+  src="assets/trailer-53ft.png"
+  class="trailer-img"
+  alt="Trailer"
+  style="transform: rotate(${trailerAngle}deg);"
+>
+
+
+</div>
     </div>
 
     <div class="coach-bubble">
-      ${feedback || "👩‍🏫 Coach Maricel: Watch the trailer first. Then choose."}
-    </div>
-
-    <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
-    <button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
-    <button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
-  `;
-}
-
-window.straightAnswer = function(choice) {
-  const s = straightScenarios[straightScenario];
-
-  if (choice === s.correct) {
-    const feedback = s.success;
-
-    if (straightScenario < straightScenarios.length - 1) {
-      straightScenario++;
-    }
-
-    renderStraightSimulator(feedback);
-  } else {
-    renderStraightSimulator(s.wrong);
-  }
-};
-This version removes the image dependency, so it will work even if tractor-top.png or trailer-53ft.png is missing.
-
-<!DOCTYPE html>
-<html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Maricel CDL Success Hub</title> <meta name="theme-color" content="#111827" /> <meta name="apple-mobile-web-app-capable" content="yes" /> <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <meta name="apple-mobile-web-app-title" content="CDL Success Hub" /> <link rel="manifest" href="manifest.json" /> <link rel="apple-touch-icon" href="icon-192.png" /> <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <style> :root{--bg:#f5f7fb;--card:#fff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;--accent:#111827;--soft:#f3f4f6;--danger:#991b1b;--success:#166534} *{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)} header{background:var(--accent);color:white;padding:22px 16px;text-align:center} header h1{margin:0;font-size:25px} header p{margin:8px 0 0;color:#d1d5db} nav{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px;background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5;max-height:44vh;overflow:auto} nav button{border:1px solid var(--border);background:var(--soft);padding:12px;border-radius:12px;font-weight:bold;cursor:pointer} nav button.active{background:var(--accent);color:white} main{padding:16px;max-width:980px;margin:auto} section{display:none}.active{display:block} .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.04)} h2{margin-top:0} label{display:block;font-weight:bold;margin-top:12px;margin-bottom:6px} input,textarea,select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;font-size:16px;background:white} textarea{min-height:90px} .btn{margin-top:14px;background:var(--accent);color:white;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;width:100%} .btn.light{background:var(--soft);color:var(--text);border:1px solid var(--border)} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px} .two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px} .warning{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;padding:12px;border-radius:12px;margin-top:12px} .success{background:#f0fdf4;border:1px solid #bbf7d0;color:var(--success);padding:12px;border-radius:12px;margin-top:12px} .danger{background:#fef2f2;border:1px solid #fecaca;color:var(--danger);padding:12px;border-radius:12px;margin-top:12px} .small{color:var(--muted);font-size:14px} .list-item{border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0;background:white} .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--soft);margin:4px;font-size:14px} ol li, ul li{margin:8px 0} footer{text-align:center;color:var(--muted);padding:20px;font-size:13px} </style> </head> <body> <header>
-
-<h1>🚛 CDL Success Hub</h1>
-
-<p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
-
-<p class="small"> Created by Coach Maricel • Helping beginner drivers build confidence through understanding. </p>
-
-</header> <nav id="nav"></nav> <main>
-
-<section id="home" class="active">
-
-<div class="card"> <h2>👋 Welcome, Driver!</h2> <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
-
-<p>Today we're going to build confidence—not just complete a lesson.</p>
-<p class="small"> Every professional driver was once a beginner. </p> </div>
-<div class="card">
-
-<h3>🌟 Today's Mission</h3>
-<p><strong>Understand WHY the trailer follows the tractor.</strong></p>
-<p class="small"> ⏱ Estimated Time: 5 minutes<br> 🎯 Today's Goal: Understand the trailer—not memorize the steering wheel. </p>
-
-<button class="btn" onclick="showScreen('lesson', document.querySelectorAll('nav button')[10])"> Start Today's Lesson </button>
-
+  👩‍🏫 Coach Maricel: Study the trailer. Choose your correction.
 </div>
 
-<div class="grid"> <div class="card"> <h3>🚛 CDL Practice Yard</h3> <p>Learn backing maneuvers step-by-step.</p> <button class="btn light" onclick="showScreen('practiceyard', document.querySelectorAll('nav button')[1])"> Go to Practice Yard </button> </div>
-
-<div class="card">
-  <h3>🛣 Plan My Route</h3>
-  <p>Check route, sunset, weather, and safe parking deadline.</p>
-  <button class="btn light" onclick="showScreen('planner', document.querySelectorAll('nav button')[3])">
-    Plan Route
-  </button>
-</div>
-
-<div class="card">
-  <h3>🅿️ Safe Haven Finder</h3>
-  <p>Find truck stops, rest areas, diesel, parking, and CAT scales.</p>
-  <button class="btn light" onclick="showScreen('safehaven', document.querySelectorAll('nav button')[4])">
-    Find Safe Haven
-  </button>
-</div>
-
-<div class="card">
-  <h3>🏢 Facility Intelligence</h3>
-  <p>Save truck entrance GPS pins, guard shack notes, and approach tips.</p>
-  <button class="btn light" onclick="showScreen('facility', document.querySelectorAll('nav button')[5])">
-    View Facilities
-  </button>
-</div>
-</div>
-<div class="success"> <strong>💡 Instructor Tip:</strong><br> Small steering corrections create the biggest improvements. </div>
-
-<div class="warning"> <strong>Privacy Rule:</strong> Do not upload load information, bills of lading, dispatch screenshots, trailer contents, customer documents, employee IDs, truck numbers, trailer numbers, or company-sensitive information. </div>
-
-</section> </section>
-
-<section id="practiceyard">
-
-<div class="card"> <h2>🚛 CDL Practice Yard</h2>
-
-<p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
-
-<p>
-  Welcome to your personal CDL simulator.
-  Learn first...
-  Practice second...
-  Build confidence before entering the training yard.
-</p>
-</div>
-<div class="grid">
-
-<div class="card">
-  <h3>🧠 Understanding Trailer Movement</h3>
-
-  <p>
-    Learn WHY the trailer moves before you ever touch the steering wheel.
-  </p>
-
-  <button class="btn"
-    onclick="showPracticeLesson('trailer')">
-    Start Lesson
-  </button>
-
-</div>
-
-<div class="card">
-
-  <h3>🎮 Brain Mode</h3>
-
-  <p>
-    The truck pauses...
-
-    You decide what happens next.
-  </p>
-
-  <button class="btn"
-    onclick="showPracticeLesson('brain')">
-
-    Start Brain Mode
-
-  </button>
-
-</div>
-
-<div class="card">
-
-  <h3>🚛 Straight Back Trainer</h3>
-
-  <p>
-
-    Learn steering corrections one step at a time.
-
-  </p>
-
-  <button class="btn"
-onclick="showPracticeLesson('straight')">
-
-Start Training
-</button> </div>
-</div>
-
-<div class="card">
-
-<h3>Coach Maricel</h3>
-
-<div id="practiceContent">
-
-  Select one lesson to begin.
-
-</div>
-</div>
-</section> <section id="profile"> <div class="card"><h2>My Profile</h2> <div class="two-col"><div><label>First Name</label><input id="profileName"></div><div><label>Last Initial</label><input id="profileInitial" maxlength="2"></div></div> <div class="two-col"><div><label>Email</label><input id="profileEmail" type="email"></div><div><label>Phone Number</label><input id="profilePhone" type="tel"></div></div> <div class="two-col"><div><label>Emergency Contact Name</label><input id="emergencyName"></div><div><label>Emergency Contact Phone</label><input id="emergencyPhone" type="tel"></div></div> <label>CDL Status</label><select id="profileStatus"><option>Student Driver</option><option>Recent Graduate</option><option>Solo Driver</option><option>Mentor</option><option>Senior Mentor</option></select> <label>Experience Level</label><select id="profileExperience"><option>New Driver</option><option>0-6 Months</option><option>6-12 Months</option><option>1+ Year</option><option>3+ Years</option><option>5+ Years</option></select> <label>Preferred Driving Type</label><select id="drivingType"><option>OTR</option><option>Regional</option><option>Local</option><option>Dedicated</option><option>Dry Van</option><option>Reefer</option><option>Flatbed</option><option>Tanker</option></select> <label>Driver Status</label><select id="driverStatus"><option>🟢 Available</option><option>🟡 Driving</option><option>🔴 Sleeping</option><option>🔵 Need Help</option></select> <label>Bio / About Me</label><textarea id="profileBio" placeholder="Do not share CDL number, employee ID, truck number, or company-sensitive information."></textarea> <button class="btn" onclick="saveProfile()">Save Profile</button><div id="profileSaved" class="success" style="display:none">Profile saved on this device.</div> </div> </section>
-
-<section id="planner"> <div class="card"><h2>Plan My Route</h2> <div class="warning"><strong>No classified information:</strong> Address/location only. No load, BOL, dispatch, trailer, or commodity details.</div> <label>Current City or Location</label><input id="currentLocation" placeholder="Example: Colton, CA"> <label>Destination / Facility Address</label><input id="deliveryAddress" placeholder="Street address or City, State"> <div class="two-col"><div><label>Manual Latitude Optional</label><input id="manualLat" placeholder="34.0522"></div><div><label>Manual Longitude Optional</label><input id="manualLon" placeholder="-118.2437"></div></div> <div class="two-col"><div><label>Appointment Date</label><input id="appointmentDate" type="date"></div><div><label>Appointment Time</label><input id="appointmentTime" type="time"></div></div> <button class="btn" onclick="autoPlanDestination()">Auto Get Sunset, Timezone & Weather</button> <div id="autoPlanResult"></div> <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button> <button class="btn light" onclick="openRouteSearch('truck stops')">Truck Stops Along Route</button> <button class="btn light" onclick="openRouteSearch('travel centers truck parking')">Travel Centers Along Route</button> <button class="btn light" onclick="openRouteSearch('rest areas truck parking')">Rest Areas Along Route</button> <button class="btn light" onclick="openRouteSearch('semi truck parking')">Semi Truck Parking Along Route</button> <button class="btn light" onclick="openRouteSearch('CAT scales truck stop')">CAT Scales Along Route</button> </div> </section>
-
-<section id="safehaven"> <div class="card"><h2>Safe Haven Finder</h2> <label>Search Near City or Address</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA"> <div class="grid"> <button class="btn" onclick="mapSearch('truck stop')">Truck Stops</button> <button class="btn" onclick="mapSearch('interstate rest area truck parking')">Rest Areas</button> <button class="btn" onclick="mapSearch('truck parking 53 foot trailer')">Truck Parking</button> <button class="btn" onclick="mapSearch('diesel truck fuel')">Diesel Fuel</button> <button class="btn" onclick="mapSearch('CAT scale truck stop')">CAT Scale</button> <button class="btn" onclick="mapSearch('travel center truck parking')">Travel Centers</button> </div> <div class="warning"><strong>Semi Tractor-Trailer Check:</strong><ul><li>Confirm wide truck entrance.</li><li>Check satellite view.</li><li>Avoid tiny gas stations, low bridges, dead ends, and tight shopping centers.</li><li>Verify overnight parking rules.</li><li>Never risk unsafe shoulder parking.</li></ul></div> </div> <div class="card"> <h3>Save Safe Haven</h3>
-
-<label>Overnight Parking</label>
-<select id="overnightParking">
-<option>Unknown</option>
-<option>Yes</option>
-<option>No</option>
-<option>Limited</option>
-</select>
-
-<label>Difficulty Rating</label>
-<select id="difficulty">
-<option>Easy</option>
-<option>Moderate</option>
-<option>Difficult</option>
-<option>Very Tight</option>
-</select>
-
-<label>Restrooms</label>
-<select id="restrooms">
-<option value="false">Unknown / No</option>
-<option value="true">Yes</option>
-</select>
-
-<label>Showers</label>
-<select id="showers">
-<option value="false">Unknown / No</option>
-<option value="true">Yes</option>
-</select>
-
-<label>Diesel</label>
-<select id="diesel">
-<option value="false">Unknown / No</option>
-<option value="true">Yes</option>
-</select>
-
-<label>Food Nearby</label>
-<input id="foodNearby" placeholder="Example: Subway, McDonald's">
-
-<button class="btn" onclick="saveFacility()">Save Safe Haven</button>
-
-</div> </section>
-
-<section id="facility"> <div class="card"><h2>Facility Intelligence</h2><p class="small">Only save location/navigation info. No load/customer-sensitive data.</p> <label>Facility Name</label><input id="facilityName"> <label>Facility Address</label><input id="facilityAddress"> <div class="two-col"><div><label>Truck Entrance Latitude</label><input id="entranceLat"></div><div><label>Truck Entrance Longitude</label><input id="entranceLon"></div></div> <div class="two-col"><div><label>Guard Shack Latitude</label><input id="guardLat"></div><div><label>Guard Shack Longitude</label><input id="guardLon"></div></div> <label>Truck Entrance Notes</label><textarea id="entranceNotes"></textarea> <label>Guard Shack / Check-In Notes</label><textarea id="guardNotes"></textarea> <label>Best Direction to Approach</label><textarea id="approachNotes"></textarea>
-
-<button class="btn" onclick="saveFacility()">Save Facility</button>
-</div> <div class="card"><h3>Saved Facilities</h3><div id="facilityList"></div></div> </section>
-<section id="backing"> <div class="card"><h2>Backing Refresher Center</h2> <div class="grid"> <button class="btn light" onclick="showBacking('straight')">Straight Backing</button> <button class="btn light" onclick="showBacking('offset')">Offset Backing</button> <button class="btn light" onclick="showBacking('alley')">Alley Dock</button> <button class="btn light" onclick="showBacking('45')">45° Backing</button> <button class="btn light" onclick="showBacking('90')">90° Backing</button> <button class="btn light" onclick="showBacking('blind')">Blind Side</button> <button class="btn light" onclick="showBacking('truckstop')">Truck Stop Parking</button> <button class="btn light" onclick="showBacking('panic')">I Lost My Setup</button> </div> <div id="backingContent" class="list-item">Choose a backing refresher.</div> </div> </section>
-
-<section id="community"> <div class="card"><h2>Community Hub</h2> <span class="pill">General Help</span><span class="pill">Backing Help</span><span class="pill">Safe Parking</span><span class="pill">Facility Questions</span><span class="pill">Success Stories</span> <div class="warning"><strong>Rule:</strong> Respect everyone. No shaming. Correct to build, not to break.</div> </div> <div class="card"><h3>Post a Community Question</h3><label>Topic</label><input id="postTopic"><label>Message</label><textarea id="postMessage"></textarea><button class="btn" onclick="savePost()">Post</button></div> <div class="card"><h3>Community Posts</h3><div id="postList"></div></div> </section>
-
-<section id="resources"> <div class="card"><h2>Resource Vault</h2> <div class="list-item"><strong>Pre-Trip Reminder</strong><br>Check tires, lights, brakes, leaks, coupling, mirrors, fluids, paperwork, and safety equipment.</div> <div class="list-item"><strong>GOAL Rule</strong><br>Get Out And Look anytime you are unsure. Stop before you hit something.</div> <div class="list-item"><strong>Parking Before Dark</strong><br>Plan your safe haven at least 2 hours before sunset.</div> <div class="list-item"><strong>Need Help Now</strong><br>Stop safely. Set brakes. Breathe. Check surroundings. Call mentor/dispatch/emergency services as appropriate.</div> </div> </section>
-
-<section id="progress"> <div class="card"><h2>My Progress Tracker</h2> <label>Date</label><input type="date" id="progressDate"> <label>Backing Practiced</label><input id="progressBacking"> <label>What Went Well?</label><textarea id="progressWin"></textarea> <label>What Needs Improvement?</label><textarea id="progressImprove"></textarea> <label>Confidence Level</label><select id="confidence"><option>1 - Very Nervous</option><option>2</option><option>3</option><option>4</option><option>5 - Confident</option></select> <button class="btn" onclick="saveProgress()">Save Progress</button> </div> <div class="card"><h3>Saved Progress</h3><div id="progressList"></div></div> </section>
-
-<section id="about">
-
-<div class="card">
-
-<h2>🚛 About CDL Success Hub</h2>
-
-<h3>Our Mission</h3>
-
-<p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
-
-<div class="success">
-
-  Every professional driver was once a beginner.
-
-  CDL Success Hub exists to help students understand
-  WHY the truck moves—not simply memorize the steps.
-
-</div>
-
-<h3>Our Vision</h3>
-
-<p>
-
-  To become the most trusted CDL practice companion
-  by helping beginner drivers build confidence through
-  visualization, repetition, and understanding.
-
-</p>
-
-<h3>Educational Purpose</h3>
-
-<p>
-
-  CDL Success Hub is an independent educational practice
-  and study tool designed to support students before,
-  during, and after professional CDL training.
-
-</p>
-
-<div class="warning">
-
-  <strong>Disclaimer</strong>
-
-  <br><br>
-
-  CDL Success Hub is not a licensed CDL training school.
-
-  This application does not issue CDL licenses,
-  certifications, endorsements, or testing results.
-
-  It is intended only as an educational practice tool.
-
-  Always follow your instructor,
-  employer,
-  FMCSA regulations,
-  and your state's CDL requirements.
-
-</div>
-
-<h3>Safety First</h3>
-
-<p>
-
-  Always use GOAL (Get Out And Look) whenever you are unsure.
-
-  Never allow time pressure to force an unsafe maneuver.
-
-  Safe drivers become professional drivers.
-
-</p>
-</div>
-</section> <section id="admin"> <div class="card"><h2>Admin Dashboard</h2><p>Future version: approve members, review facility submissions, moderate videos, pin announcements, and remove unsafe posts.</p> <div class="danger"><strong>Remove immediately:</strong> load details, paperwork, dispatch screens, trailer contents, customer documents, truck/trailer numbers, or private IDs.</div> </div> </section>
-
-<section id="lesson">
-
-<div class="card">
-
-<h2>🧠 Backing Fundamentals</h2>
-
-<div id="lessonProgressText" style="font-weight:700;margin:10px 0;color:#374151;"> Welcome </div>
-
-<div style="background:#e5e7eb;border-radius:999px;height:14px;margin-bottom:18px;overflow:hidden;"> <div id="lessonProgressBar" style="background:#111827;height:100%;width:0%;border-radius:999px;"> </div> </div>
-
-<h3>👋 Welcome to Coach Maricel's Backing System</h3>
-
-<p id="lessonText"> Before we touch the steering wheel, we're going to understand how a trailer really moves.
-
-Most students struggle because they memorize steering instead of understanding the trailer.
-
-In this course, you'll learn to watch the trailer first, think first, then make one small correction.
-
-By the end of these lessons, backing will finally make sense.
-
-</p>
-
-<div id="lessonTip" style="background:#f3f4f6;padding:14px;border-radius:12px;font-weight:600;margin-top:14px;"> 🎯 Coach Tip: Understanding beats memorization every time. </div>
-
-<div style="margin-top:20px">
-
-<button class="btn" onclick="startLesson()">
-Start Lesson 1 →
-</button>
-
-</div>
-
-</div> </section> </main> <footer>Maricel CDL Success Hub • Private Training Support Tool</footer> <script> const SUPABASE_URL = "https://fmyaxdzonqrgsyzizixe.supabase.co"; const SUPABASE_KEY = "sb_publishable_sNkm8dvvUXXRocYNcQP_pw_eWmyBHCW"; const screens=[ ['home','🏠 Dashboard'], ['practiceyard','🚛 CDL Practice Yard'], ['profile','My Profile'], ['planner','Plan Route'], ['safehaven','Safe Haven'], ['facility','Facilities'], ['backing','Backing'], ['community','Community'], ['resources','Resources'], ['progress','Progress'], ['lesson','🧠 Lesson'], ['about','ℹ️ About'], ['admin','Admin'] ]; const nav=document.getElementById('nav');screens.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');nav.appendChild(b)}); function showScreen(id,btn){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');scrollTo(0,0)} function esc(str) { return String(str || "") .replace(/&/g, "&amp;") .replace(/</g, "&lt;") .replace(/>/g, "&gt;") .replace(/"/g, "&quot;") .replace(/'/g, "&#39;"); } function saveProfile(){const d={name:profileName.value,initial:profileInitial.value,email:profileEmail.value,phone:profilePhone.value,emergencyName:emergencyName.value,emergencyPhone:emergencyPhone.value,status:profileStatus.value,experience:profileExperience.value,drivingType:drivingType.value,driverStatus:driverStatus.value,bio:profileBio.value};localStorage.setItem('profile',JSON.stringify(d));profileSaved.style.display='block'} async function autoPlanDestination(){const address=deliveryAddress.value.trim();const latM=parseFloat(manualLat.value);const lonM=parseFloat(manualLon.value);if(!address&&(isNaN(latM)||isNaN(lonM))){autoPlanResult.innerHTML='<div class="danger">Enter destination address or coordinates.</div>';return}autoPlanResult.innerHTML='<div class="warning">Looking up destination, timezone, sunset, and weather...</div>';try{let lat,lon,displayName;if(!isNaN(latM)&&!isNaN(lonM)){lat=latM;lon=lonM;displayName=address||'Manual coordinates'}else{const f=await geocodeAddress(address);lat=f.lat;lon=f.lon;displayName=f.displayName}const date=appointmentDate.value||new Date().toISOString().split('T')[0];const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=sunrise,sunset,weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto&start_date=${date}&end_date=${date}`;const w=await (await fetch(u)).json();if(!w.daily)throw new Error('No weather data.');const sunrise=w.daily.sunrise?.[0],sunset=w.daily.sunset?.[0];const maxC=w.daily.temperature_2m_max?.[0],minC=w.daily.temperature_2m_min?.[0];const maxF=maxC!==undefined?Math.round(maxC*9/5+32):'N/A',minF=minC!==undefined?Math.round(minC*9/5+32):'N/A';const windK=w.daily.wind_speed_10m_max?.[0],windM=windK!==undefined?Math.round(windK*.621371):'N/A';let deadline='N/A';if(sunset){deadline=new Date(new Date(sunset).getTime()-7200000).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}autoPlanResult.innerHTML=`<div class="success"><strong>Destination:</strong> ${esc(displayName)}<br><strong>Coordinates:</strong> ${lat.toFixed(5)}, ${lon.toFixed(5)}<br><strong>Timezone:</strong> ${esc(w.timezone||'N/A')}</div><div class="list-item"><h3>Sunset Safety Plan</h3><strong>Sunrise:</strong> ${sunrise?new Date(sunrise).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Sunset:</strong> ${sunset?new Date(sunset).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Safe Haven Deadline:</strong> ${deadline}<div class="warning">Be parked or securing safe parking by this time.</div></div><div class="list-item"><h3>Destination Weather</h3><strong>High / Low:</strong> ${maxF}°F / ${minF}°F<br><strong>Precipitation Chance:</strong> ${w.daily.precipitation_probability_max?.[0]??'N/A'}%<br><strong>Max Wind:</strong> ${windM} mph<br><div class="warning">Always verify wind, snow/ice, chain laws, road closures, and mountain grades with official sources.</div></div>`}catch(e){autoPlanResult.innerHTML=`<div class="danger"><strong>Auto lookup failed.</strong><br>Try City, State or paste Google Maps coordinates.<br>Error: ${esc(e.message)}</div>`}} async function geocodeAddress(a){const cleaned=a.replace(/#/g,' ').replace(/\s+/g,' ').trim();const qs=[cleaned,cleaned+', USA',extractCityState(cleaned)].filter(Boolean);for(const q of [...new Set(qs)]){try{let d=await (await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&q=${encodeURIComponent(q)}&limit=3`)).json();if(d?.length)return{lat:+d[0].lat,lon:+d[0].lon,displayName:d[0].display_name||q}}catch(e){}try{let d=await (await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`)).json();if(d.features?.length){let c=d.features[0].geometry.coordinates,p=d.features[0].properties||{};return{lat:+c[1],lon:+c[0],displayName:[p.name,p.city,p.state,p.country].filter(Boolean).join(', ')||q}}}catch(e){}}throw new Error('Address not found.')} function extractCityState(t){const p=t.split(',').map(x=>x.trim()).filter(Boolean);return p.length>=2?p.slice(-2).join(', '):''} function openMapRoute(){const f=encodeURIComponent(currentLocation.value||''),t=encodeURIComponent(deliveryAddress.value||'');if(!t){alert('Enter destination first.');return}open(f?`https://www.google.com/maps/dir/${f}/${t}`:`https://www.google.com/maps/search/${t}`,'_blank')} function openRouteSearch(term) { const from = currentLocation.value.trim(); const to = deliveryAddress.value.trim();
-
-if (!from || !to) {
-alert("Enter current location and destination first.");
-return;
-}
-
-const query = encodeURIComponent(
-term + " along route from " + from + " to " + to
-);
-
-open(
-"https://www.google.com/maps/search/" + query,
-"_blank"
-);
-}
-function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc},'_blank')}
-async function saveFacility() {
-const facility = {
-location_name: facilityName.value || "Unnamed Facility",
-city: facilityAddress.value || "Unknown",
-state: "CA",
-parking_spots: 1,
-overnight_allowed: overnightParking.value === "Yes",
-restrooms: restrooms.value === "true",
-showers: showers.value === "true",
-diesel: diesel.value === "true",
-food_nearby: foodNearby.value || "",
-notes: entranceNotes.value + " | " + guardNotes.value + " | " + approachNotes.value,
-submitted_by: "Maricel"
-};
-const res = await fetch(
-"https://fmyaxdzonqrgsyzizixe.supabase.co/rest/v1/safe_havens",
-{
-method: "POST",
-headers: {
-"apikey": SUPABASE_KEY,
-"Authorization": "Bearer " + SUPABASE_KEY,
-"Content-Type": "application/json",
-"Prefer": "return=minimal"
-},
-body: JSON.stringify(facility)
-}
-);
-
-if (!res.ok) {
-alert("Supabase error: " + await res.text());
-return;
-}
-alert("Saved to Supabase!");
-
-}
-function renderFacilities(){const items=JSON.parse(localStorage.getItem('facilities')||'[]');facilityList.innerHTML=items.length?items.map(x=><div class="list-item"><strong>${esc(x.name||'Unnamed')}</strong><br>${esc(x.address||'')}<br><strong>Truck Entrance GPS:</strong> ${esc(x.eLat||'')}, ${esc(x.eLon||'')} ${x.eLat&&x.eLon?<br><button class="btn light" onclick="open('https://www.google.com/maps/search/${x.eLat},${x.eLon}','_blank')">Navigate to Truck Entrance</button>:''}<br><strong>Entrance:</strong> ${esc(x.entrance||'No notes')}<br><strong>Guard:</strong> ${esc(x.guard||'No notes')}<br><strong>Approach:</strong> ${esc(x.approach||'No notes')}<br><strong>Parking:</strong> ${esc(x.parking)} | <strong>Difficulty:</strong> ${esc(x.difficulty)}</div>).join(''):'<p class="small">No saved facilities yet.</p>'}
-const backing={straight:'<h3>Straight Backing</h3><ol><li>Line tractor and trailer straight.</li><li>Use both mirrors.</li><li>Back at idle speed.</li><li>Use small corrections only.</li><li>Pull up early if crooked.</li><li>GOAL before final feet.</li></ol><div class="warning">Common mistake: overcorrecting.</div>',offset:'<h3>Offset Backing</h3><ol><li>Start with clean setup.</li><li>Watch trailer tandems.</li><li>Create angle slowly.</li><li>Reduce angle as trailer enters lane.</li><li>Follow trailer with tractor.</li><li>Pull up before jackknife.</li></ol>',alley:'<h3>Alley Dock</h3><ol><li>Survey obstacles.</li><li>Set controlled angle.</li><li>Watch tandems pivot.</li><li>Control angle early.</li><li>Follow trailer.</li><li>GOAL often.</li><li>Pull up and straighten.</li></ol>',"45":'<h3>45° Backing</h3><ol><li>Drive past space.</li><li>Set trailer around 45°.</li><li>GOAL.</li><li>Back slowly.</li><li>Watch tandems.</li><li>Follow trailer.</li><li>Straighten and finish.</li></ol>',"90":'<h3>90° Backing</h3><ol><li>Use only when necessary.</li><li>GOAL first.</li><li>Watch pivot point.</li><li>Protect tail swing.</li><li>Pull up often.</li><li>Straighten before final back.</li></ol>',blind:'<h3>Blind Side</h3><ol><li>Avoid if safer setup exists.</li><li>GOAL before moving.</li><li>Use visible trained spotter if safe.</li><li>Stop if you lose sight.</li><li>Pull up and reposition.</li></ol><div class="danger">Never let pressure force unsafe blind-side backing.</div>',truckstop:'<h3>Truck Stop Parking</h3><ol><li>Pick easiest safe spot.</li><li>Avoid poorly parked trucks.</li><li>Watch tail swing and tractor nose.</li><li>GOAL.</li><li>Use pull-ups.</li><li>Ignore pressure and move slow.</li></ol>',panic:'<h3>I Lost My Setup</h3><ol><li>Stop.</li><li>Set brakes.</li><li>Breathe.</li><li>GOAL.</li><li>Check both sides.</li><li>Pull up.</li><li>Reset and try again slowly.</li></ol>'}
-function showBacking(t){backingContent.innerHTML=backing[t]}
-function savePost(){const p=JSON.parse(localStorage.getItem('posts')||'[]');p.unshift({topic.value,msg.value,date Date().toLocaleString()});localStorage.setItem('posts',JSON.stringify(p));postTopic.value=postMessage.value='';renderPosts()}
-function renderPosts(){const p=JSON.parse(localStorage.getItem('posts')||'[]');postList.innerHTML=p.length?p.map(x=><div class="list-item"><strong>${esc(x.topic||'Post')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>).join(''):'<p class="small">No posts yet.</p>'}
-async function saveProgress() {
-const progress = {
-progress_date: progressDate.value || null,
-backing_practice: progressBacking.value,
-went_well: progressWin.value,
-needs_improvement: progressImprove.value,
-confidence: confidence.value
-};
-
-const res = await fetch("https://fmyaxdzonqrgsyzizixe.supabase.co/rest/v1/progress", {
-method: "POST",
-headers: {
-"apikey": SUPABASE_KEY,
-"Authorization": "Bearer " + SUPABASE_KEY,
-"Content-Type": "application/json",
-"Prefer": "return=minimal"
-},
-body: JSON.stringify(progress)
-});
-
-if (!res.ok) {
-alert("Supabase error: " + await res.text());
-return;
-}
-
-alert("Progress saved to Supabase!");
-progressList.innerHTML = <div class="list-item"><strong>${progress.progress_date || "Log"}</strong><br><strong>Backing:</strong> ${progress.backing_practice}<br><strong>Win:</strong> ${progress.went_well}<br><strong>Improve:</strong> ${progress.needs_improvement}<br><strong>Confidence:</strong> ${progress.confidence}</div> + progressList.innerHTML;
-}
-
-function renderProgress() {
-progressList.innerHTML = "";
-}
-
-let lessonStep = 0;
-
-const lessonSteps = [
-{
-title: "🧠 Level 1 — Coach Maricel's Golden Rule",
-text: "Do NOT watch the steering wheel. Watch the trailer. The steering wheel is only a tool. The trailer tells you exactly what correction to make.",
-tip: "👀 Coach Tip: Your eyes teach your hands. Watch the trailer, not the steering wheel."
-},
-
-{
-title: "🚛 Level 2 — The Tractor Is The Boss",
-text: "The tractor always moves first. The trailer never decides where to go. Whatever the tractor does first, the trailer reacts to.",
-tip: "💡 Coach Tip: The trailer never leads. It always follows."
-},
-
-{
-title: "⏳ Level 3 — Wait For The Trailer",
-text: "Turn the steering wheel ONE time. Then wait. Give the trailer time to react before making another correction.",
-tip: "⏱️ Coach Tip: Patience creates control."
-},
-
-{
-title: "🐢 Level 4 — Slow Wins",
-text: "Backing slowly gives your brain time to understand what the trailer is doing. Slow is smooth. Smooth is accurate.",
-tip: "🚶 Coach Tip: Never rush a backing maneuver."
-},
-
-{
-title: "🤏 Level 5 — Small Corrections",
-text: "Professional drivers make many tiny steering corrections instead of one large correction. Small movements create smooth trailer movement.",
-tip: "👌 Coach Tip: Tiny steering = tiny trailer movement."
-},
-
-{
-title: "👀 Level 6 — Eyes On The Trailer",
-text: "Keep your eyes on the trailer. The trailer tells you exactly what correction to make. Your hands simply follow your eyes.",
-tip: "🎯 Coach Tip: Don't chase the steering wheel. Follow the trailer."
-},
-
-{
-title: "🏆 Level Complete!",
-text: "Excellent! You now understand the most important concepts in backing. Next you'll enter the CDL Practice Yard where you'll practice these ideas.",
-tip: "🚛 Coach Maricel says: Understanding comes before memorizing."
-}
-];
-
-function updateLessonStep() {
-const total = lessonSteps.length;
-const current = lessonStep + 1;
-const percent = Math.round((current / total) * 100);
-
-document.querySelector("#lesson h3").textContent =
-lessonSteps[lessonStep].title;
-
-document.getElementById("lessonText").textContent =
-lessonSteps[lessonStep].text;
-
-document.getElementById("lessonTip").textContent =
-lessonSteps[lessonStep].tip;
-
-document.getElementById("lessonProgressText").textContent =
-"Level " + current + " of " + total;
-
-document.getElementById("lessonProgressBar").style.width =
-percent + "%";
-}
-function nextLessonStep() {
-if (lessonStep < lessonSteps.length - 1) {
-lessonStep++;
-updateLessonStep();
-} else {
-showScreen('practiceyard', document.querySelectorAll('nav button')[1]);
-}
-}
-function startLesson() {
-lessonStep = 0;
-updateLessonStep();
-
-const lessonButton = document.querySelector("#lesson .btn");
-lessonButton.textContent = "Next ➜";
-lessonButton.onclick = nextLessonStep;
-}
-
-function previousLessonStep() {
-if (lessonStep > 0) {
-lessonStep--;
-updateLessonStep();
-}
-}
-let simMove = 1;
-let trailerAngle = 12;
-let straightScenario = 0;
-
-function loadSimulatorStyles() {
-if (document.getElementById("simulatorStyles")) return;
-
-const style = document.createElement("style");
-style.id = "simulatorStyles";
-style.textContent = `
-.sim-yard{
-position;
-width:100%;
-height:420px;
-background;
-border;
-overflow;
-margin-top:10px;
-}
-
-.truck-wrap{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%, -50%);
-  width:260px;
-  height:360px;
-}
-
-.trailer-img{
-  position:absolute;
-  width:95px;
-  left:83px;
-  top:45px;
-  transform-origin:50% 100%;
-  z-index:1;
-}
-
-.tractor-img{
-  position:absolute;
-  width:120px;
-  left:70px;
-  top:220px;
-  z-index:2;
-}
-
-.sim-panel{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-  gap:12px;
-  margin:12px 0;
-}
-
-.sim-stat{
-  background:#f8fafc;
-  border:1px solid #e5e7eb;
-  border-radius:14px;
-  padding:12px;
-  font-weight:bold;
-}
-
-.angle-bad{color:#b91c1c;}
-.angle-good{color:#166534;}
-
-.coach-bubble{
-  background:#f0fdf4;
-  border:1px solid #bbf7d0;
-  color:#166534;
-  padding:14px;
-  border-radius:14px;
-  margin:12px 0;
-  font-weight:600;
-}
-`;
-document.head.appendChild(style);
-}
-const straightScenarios = [
-{
-message: "Your trailer is drifting RIGHT. What is your FIRST correction?",
-angle: 12,
-correct: "right",
-success: "✅ Correct. Briefly turn RIGHT to start correcting a right drift.",
-wrong: "❌ Not yet. When the trailer drifts right, your first correction is RIGHT."
-},
-{
-message: "The trailer is starting to come back. What should you do now?",
-angle: 6,
-correct: "hold",
-success: "✅ Correct. Hold the wheel straight and let the trailer react.",
-wrong: "❌ Not yet. After the first correction, hold straight and wait."
-},
-{
-message: "The trailer is almost straight but still moving. What should you do?",
-angle: 3,
-correct: "left",
-success: "✅ Correct. Turn LEFT a little to stop the correction.",
-wrong: "❌ Not yet. You need to stop the trailer from crossing too far."
-},
-{
-message: "The trailer is straight now. What should you do?",
-angle: 0,
-correct: "hold",
-success: "✅ Correct. Hold the wheel straight and back slowly.",
-wrong: "❌ Not yet. If the trailer is straight, hold straight."
-},
-{
-message: "Now your trailer is drifting LEFT. What is your FIRST correction?",
-angle: -12,
-correct: "left",
-success: "✅ Correct. Briefly turn LEFT to start correcting a left drift.",
-wrong: "❌ Not yet. When the trailer drifts left, your first correction is LEFT."
-},
-{
-message: "The trailer is starting to come back. What should you do now?",
-angle: -6,
-correct: "hold",
-success: "✅ Correct. Hold straight and let the trailer respond.",
-wrong: "❌ Not yet. After the correction, hold straight and wait."
-},
-{
-message: "The trailer is almost straight but still moving. What should you do?",
-angle: -3,
-correct: "right",
-success: "✅ Correct. Turn RIGHT a little to stop the correction.",
-wrong: "❌ Not yet. You need to stop the trailer from crossing too far."
-},
-{
-message: "The trailer is straight again. What should you do?",
-angle: 0,
-correct: "hold",
-success: "🏆 Correct. You completed the straight-back sequence!",
-wrong: "❌ Not yet. Straight trailer means hold the wheel straight."
-}
-];
-
-window.showPracticeLesson = function(type) {
-const box = document.getElementById("practiceContent");
-if (!box) return;
-
-loadSimulatorStyles();
-
-if (type === "trailer") {
-box.innerHTML = <h3>🧠 Understanding Trailer Movement</h3> <p><strong>Rule:</strong> Watch the trailer first. Then make one small correction.</p> <p>The trailer reacts slowly. Do not oversteer.</p> ;
-}
-
-if (type === "brain") {
-box.innerHTML = <h3>🎮 Brain Mode</h3> <p>The truck pauses. You decide what happens next.</p> <button class="btn" onclick="showPracticeLesson('straight')">Start Straight Back Scenario</button> ;
-}
-
-if (type === "straight") {
-straightScenario = 0;
-renderStraightSimulator();
-}
-};
-
-function renderStraightSimulator(feedback = "") {
-const box = document.getElementById("practiceContent");
-const s = straightScenarios[straightScenario];
-
-trailerAngle = s.angle;
-simMove = straightScenario + 1;
-
-const angleText =
-trailerAngle < 0
-? Math.abs(trailerAngle) + "° Left"
-: trailerAngle > 0
-? trailerAngle + "° Right"
-: "Straight";
-
-const angleClass = Math.abs(trailerAngle) <= 3 ? "angle-good" : "angle-bad";
-
-box.innerHTML = `
-<h3>🚛 Straight Back Trainer</h3>
-<p><strong>Scenario:</strong> ${s.message}</p>
-
-<div class="sim-panel">
-  <div class="sim-stat">Move: ${simMove} / ${straightScenarios.length}</div>
-  <div class="sim-stat">Trailer Angle: <span class="${angleClass}">${angleText}</span></div>
-  <div class="sim-stat">Goal: Straighten the trailer</div>
-</div>
-
-<div class="sim-yard">
-  <div class="truck-wrap">
-    <img src="assets/trailer-53ft.png" class="trailer-img" style="transform:rotate(${trailerAngle}deg);">
-    <img src="assets/tractor-top.png" class="tractor-img">
-  </div>
-</div>
-
-<div class="coach-bubble">
-  ${feedback || "👩‍🏫 Coach Maricel: Watch the trailer. Think first. Then choose."}
-</div>
-
-<button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
+   <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
 <button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
 <button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
 `;
 }
 window.straightAnswer = function(choice) {
-const s = straightScenarios[straightScenario];
+  simMove++;
 
-if (choice === s.correct) {
-const feedback = s.success;
+  if (choice === "left") {
+    trailerAngle -= 6;
+  }
 
-if (straightScenario < straightScenarios.length - 1) {
-  straightScenario++;
-}
+  if (choice === "right") {
+    trailerAngle += 6;
+  }
 
-renderStraightSimulator(feedback);
-} else {
-renderStraightSimulator(s.wrong);
-}
+  if (choice === "hold") {
+    trailerAngle = trailerAngle;
+  }
+
+  if (Math.abs(trailerAngle) <= 3) {
+    renderStraightSimulator("✅ Correct. The trailer is almost straight.");
+    return;
+  }
+
+  if (trailerAngle > 3) {
+    renderStraightSimulator("The trailer is still drifting right. What should you do?");
+    return;
+  }
+
+  if (trailerAngle < -3) {
+    renderStraightSimulator("The trailer is still drifting left. What should you do?");
+    return;
+  }
 };
 </script>
-</body> </html>
-
-Close
+</body>
+</html>
