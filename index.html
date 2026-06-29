@@ -708,6 +708,64 @@ function previousLessonStep() {
     updateLessonStep();
   }
 }
+  function showPracticeLesson(type) {
+  const box = document.getElementById("practiceContent");
+
+  if (!box) return;
+
+  if (type === "trailer") {
+    box.innerHTML = `
+      <h3>🧠 Understanding Trailer Movement</h3>
+      <p><strong>Rule:</strong> The trailer reacts opposite first, then follows the tractor.</p>
+      <p>Do not rush the steering wheel. Watch the trailer first.</p>
+    `;
+  }
+
+  if (type === "brain") {
+    box.innerHTML = `
+      <h3>🎮 Brain Mode</h3>
+      <p>The truck pauses. You decide what happens next.</p>
+      <button class="btn" onclick="showPracticeLesson('straight')">Start Straight Back Scenario</button>
+    `;
+  }
+
+  if (type === "straight") {
+    box.innerHTML = `
+      <h3>🚛 Straight Back Trainer</h3>
+      <p><strong>Scenario:</strong> Your trailer is drifting left.</p>
+      <pre style="font-size:18px; line-height:1.3;">
+        🚛
+          \
+           \
+      </pre>
+      <p>What should you do?</p>
+
+      <button class="btn" onclick="straightAnswer('right')">Turn wheel right</button>
+      <button class="btn" onclick="straightAnswer('left')">Turn wheel left</button>
+      <button class="btn" onclick="straightAnswer('hold')">Hold wheel straight</button>
+    `;
+  }
+}
+
+function straightAnswer(choice) {
+  const box = document.getElementById("practiceContent");
+
+  if (choice === "right") {
+    box.innerHTML = `
+      <h3>✅ Correct</h3>
+      <p>The trailer was drifting left, so you steer right to bring it back.</p>
+      <p><strong>Coach M:</strong> Small correction. Do not oversteer. Once the trailer comes back, straighten the wheel.</p>
+      <button class="btn" onclick="showPracticeLesson('straight')">Practice Again</button>
+    `;
+  } else {
+    box.innerHTML = `
+      <h3>❌ Not yet</h3>
+      <p>The trailer is drifting left. Holding or turning left will let it keep drifting.</p>
+      <p><strong>Coach M:</strong> Correct early. Small moves save big problems.</p>
+      <button class="btn" onclick="showPracticeLesson('straight')">Try Again</button>
+    `;
+  }
+}
 </script>
 </body>
 </html>
