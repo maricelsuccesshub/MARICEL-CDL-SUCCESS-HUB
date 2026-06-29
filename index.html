@@ -953,33 +953,35 @@ function renderStraightSimulator(message) {
 <button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
 `;
 }
-
 window.straightAnswer = function(choice) {
   simMove++;
 
-  if (trailerAngle > 3) {
-    if (choice === "left") {
-      trailerAngle -= 6;
-      renderStraightSimulator("✅ Correct. The trailer is coming back.");
-      return;
-    }
+  if (choice === "left") {
+    trailerAngle -= 6;
+  }
 
-    renderStraightSimulator("❌ Wrong correction. The trailer is still drifting right. Turn left to bring it back.");
+  if (choice === "right") {
+    trailerAngle += 6;
+  }
+
+  if (choice === "hold") {
+    trailerAngle = trailerAngle;
+  }
+
+  if (Math.abs(trailerAngle) <= 3) {
+    renderStraightSimulator("✅ Correct. The trailer is almost straight.");
+    return;
+  }
+
+  if (trailerAngle > 3) {
+    renderStraightSimulator("The trailer is still drifting right. What should you do?");
     return;
   }
 
   if (trailerAngle < -3) {
-    if (choice === "right") {
-      trailerAngle += 6;
-      renderStraightSimulator("✅ Correct. The trailer is coming back.");
-      return;
-    }
-
-    renderStraightSimulator("❌ Wrong correction. The trailer is still drifting left. Turn right to bring it back.");
+    renderStraightSimulator("The trailer is still drifting left. What should you do?");
     return;
   }
-
-  renderStraightSimulator("✅ Trailer is almost straight. Hold it steady.");
 };
 </script>
 </body>
