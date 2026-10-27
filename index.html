@@ -38,6 +38,14 @@
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--soft);margin:4px;font-size:14px}
     ol li, ul li{margin:8px 0}
     footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
+    nav{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;max-height:none;padding:10px 14px;scrollbar-width:thin;box-shadow:0 3px 12px rgba(0,0,0,.07)}
+    nav button{flex:0 0 auto;width:auto;min-height:42px;padding:10px 15px;white-space:nowrap;font-size:13px}
+    #practiceyard .grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+    #practiceyard .grid .card{display:flex;flex-direction:column;gap:8px}
+    #practiceyard .grid .card h3{margin:0}
+    #practiceyard .grid .card p{flex:1;line-height:1.5;margin:4px 0}
+    #practiceyard .grid .btn{margin-top:auto}
+    @media(max-width:700px){#practiceyard .grid{grid-template-columns:1fr}main{padding:12px}nav button{padding:9px 12px}}
   </style>
 </head>
 <body>
@@ -132,8 +140,6 @@ Every professional driver was once a beginner.
   </div>
 
 </section>
-</section>
-  
 <section id="practiceyard">
 
   <div class="card">
@@ -720,11 +726,11 @@ function loadSimulatorStyles() {
    .sim-yard {
     position: relative;
     width: 100%;
-    min-height: 280;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    overflow: visible;
+    min-height: 320px;
+    background: linear-gradient(90deg,#26394b,#30465b);
+    border: 2px solid #64748b;
+    border-radius: 16px;
+    overflow: hidden;
     margin: 0;
 }
 
@@ -733,8 +739,8 @@ function loadSimulatorStyles() {
       top: 0;
       bottom: 0;
       width: 4px;
-      background: transparent;
-      opacity: 0;
+      background: #f8fafc;
+      opacity: .8;
     }
 
     .lane-left { left: 28%; }
@@ -742,7 +748,7 @@ function loadSimulatorStyles() {
 
     .cone {
       position: absolute;
-      font-size: none;
+      font-size: 20px;
     }
 
     .truck-wrap {
@@ -905,7 +911,6 @@ window.showPracticeLesson = function(type) {
   if (type === "straight") {
     simMove = 1;
     trailerAngle = 12;
-   trailerAngle = 12;
 renderStraightSimulator("Your trailer is drifting right. What should you do?");
   }
 };
@@ -933,27 +938,24 @@ function renderStraightSimulator(message) {
       <div class="truck-wrap">
   
 
-<img
-  src="assets/trailer-53ft.png"
-  class="trailer-img"
-  alt="Trailer"
-  style="transform: rotate(${trailerAngle}deg);"
->
-
+<div class="trailer-real" style="left:95px;transform:rotate(${trailerAngle}deg)"></div>
+<div class="tractor-real" style="left:87px;top:183px"></div>
 
 </div>
     </div>
 
     <div class="coach-bubble">
-  👩‍🏫 Coach Maricel: Study the trailer. Choose your correction.
+  👩‍🏫 Coach Maricel: Watch the trailer and choose a small correction. This is a steering-response lesson, not a physics-accurate simulator.
 </div>
 
    <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
 <button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
 <button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
+<button class="btn light" onclick="showPracticeLesson('straight')">↻ Restart practice</button>
 `;
 }
 window.straightAnswer = function(choice) {
+  if(simMove>=10){renderStraightSimulator("Practice complete. Restart to try again.");return;}
   simMove++;
 
   if (choice === "left") {
