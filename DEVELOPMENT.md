@@ -22,3 +22,17 @@ The database RLS test used two simulated authenticated members and confirmed cro
 Supabase reports one security advisory: leaked-password screening is disabled. Supabase documents this feature as Pro-only. The Free-plan app enforces an eight-character browser minimum and advises members not to reuse passwords; review upgrading or stronger server-side password settings before public launch.
 
 Static source/training assets are public; the interface gate is not content confidentiality. Private member data is enforced by database RLS. No production release or paid subscriptions are authorized.
+
+## Member navigation reorganization
+
+- Home: today's lesson, latest private progress, coaching focus, and privacy reminder.
+- Training: Lessons, Practice Yard, Backing Guides, and Safety & Resources.
+- Trip Tools: Plan My Route, Find Safe Parking (shared member locations), and My Facility Notes (private account storage).
+- My Notebook: existing browser-local notes, explicitly labeled as device-only and potentially visible to anyone using that browser. This is not a member community feed.
+- My Account: My Progress, My Profile, and About the Hub.
+
+Desktop uses a grouped sidebar and balanced content columns. Phones use an expandable menu that closes on selection and Escape. Active pages are announced with aria-current; form labels are associated with inputs, and optional coordinate fields and sharing forms are collapsible. Practice exercises scroll into view when selected. The placeholder Admin page has no member navigation entry.
+
+Validation: all 11 automated checks pass, including auth, sign-out cleanup, navigation grouping, trainer steering, asset availability, and separate Safe Haven/facility storage. Browser QA opened all 12 member pages on desktop and at a 375px content width without horizontal overflow; the phone menu closed after each selection, and both original truck assets loaded. Browser layout checks used an isolated local fixture with synthetic member data and no Supabase calls; real email delivery and database write flows were not repeated for this presentation change. Fixture files are not committed.
+
+Changes are saved only to development. Production, Supabase configuration and database records are unchanged. No deployment was performed.

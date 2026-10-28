@@ -20,9 +20,6 @@
     body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
     header{background:var(--accent);color:white;padding:22px 16px;text-align:center}
     header h1{margin:0;font-size:25px} header p{margin:8px 0 0;color:#d1d5db}
-    nav{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px;background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5;max-height:44vh;overflow:auto}
-    nav button{border:1px solid var(--border);background:var(--soft);padding:12px;border-radius:12px;font-weight:bold;cursor:pointer}
-    nav button.active{background:var(--accent);color:white}
     main{padding:16px;max-width:1120px;margin:auto}
     section{display:none}.active{display:block}
     .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
@@ -41,11 +38,6 @@
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--soft);margin:4px;font-size:14px}
     ol li, ul li{margin:8px 0}
     footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
-    nav{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;overflow-x:auto;max-height:none;padding:10px 14px;scrollbar-width:thin;box-shadow:0 3px 12px rgba(0,0,0,.07)}
-    nav button{flex:0 0 auto;width:auto;min-height:42px;padding:10px 15px;white-space:nowrap;font-size:13px}
-    #subnav{display:flex;justify-content:center;gap:8px;overflow-x:auto;padding:8px 14px;background:#eef2f7;border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:4}
-    #subnav button{flex:0 0 auto;border:1px solid var(--border);background:white;color:var(--text);padding:9px 14px;border-radius:999px;font-weight:700;cursor:pointer;white-space:nowrap}
-    #subnav button.active{background:var(--accent);color:white}
     details.advanced{margin-top:12px;border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:var(--soft)}
     details.advanced summary{cursor:pointer;font-weight:700}
     .action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}.action-grid .btn{margin-top:0}
@@ -55,15 +47,43 @@
     #practiceyard .grid .card h3{margin:0}
     #practiceyard .grid .card p{flex:1;line-height:1.5;margin:4px 0}
     #practiceyard .grid .btn{margin-top:auto}
-    @media(max-width:700px){#practiceyard .grid,.dashboard-grid,.dashboard-note-grid{grid-template-columns:1fr}main{padding:12px}nav{justify-content:flex-start}nav button{padding:9px 12px}#subnav{justify-content:flex-start;top:60px}}
+    @media(max-width:700px){#practiceyard .grid,.dashboard-grid,.dashboard-note-grid{grid-template-columns:1fr}main{padding:12px}}
     #memberGate{max-width:460px;margin:28px auto;padding:24px;border-radius:18px;background:white;border:1px solid #e5e7eb;box-shadow:0 8px 30px #11182712}
     #memberGate input{margin:6px 0 12px}#memberGate .btn{margin-top:8px}#memberGate .auth-tabs{display:flex;gap:8px}#memberGate .auth-tabs button{flex:1;padding:12px;border:1px solid #ddd;border-radius:10px;background:#f3f4f6;cursor:pointer}#memberGate .auth-tabs button.selected{background:#111827;color:white}#memberMessage{min-height:22px;margin-top:12px}#memberControls{display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;background:white}#memberControls button{padding:8px 12px;border-radius:8px;border:1px solid #ddd;background:#f3f4f6;cursor:pointer}
+
+    :root{--accent:#14263e;--muted:#526278;--border:#dde4ed;--soft:#f0f4f8}
+    body{line-height:1.5}button,input,select,textarea{font:inherit}button{touch-action:manipulation}
+    button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #187bcd;outline-offset:3px}
+    .skip-link{position:fixed;top:-100px;left:16px;z-index:30;background:white;padding:12px;color:var(--accent)}.skip-link:focus{top:12px}
+    header{padding:24px 28px;text-align:left}header h1{font-size:24px}header p{max-width:780px}header .small{color:#d6dfeb}
+    #nav{position:fixed;inset:0 auto 0 0;width:244px;overflow-y:auto;background:white;border-right:1px solid var(--border);padding:24px 16px;z-index:10;display:block}
+    .nav-brand{font-size:22px;font-weight:800;letter-spacing:.04em;color:var(--accent);line-height:1.2;margin:0 10px 26px}.nav-brand span{display:block;font-size:13px;letter-spacing:0;font-weight:400;color:var(--muted);margin-top:6px}
+    .nav-group{border-top:1px solid var(--border);margin-top:14px;padding-top:12px}.nav-group h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 12px 6px}
+    #nav button[data-screen]{display:block;text-align:left;width:100%;border:0;border-radius:9px;background:transparent;color:var(--text);padding:10px 12px;margin:3px 0;font-size:14px;font-weight:600;cursor:pointer;min-height:44px}
+    #nav button[data-screen]:hover{background:var(--soft)}#nav button.active[data-screen]{color:white;background:var(--accent)}
+    #nav .menu-toggle{display:none}.nav-note{font-size:12px;color:var(--muted);padding:18px 12px 0}
+    body:has(#nav:not([hidden]))>header,body:has(#nav:not([hidden]))>#memberControls,body:has(#nav:not([hidden]))>footer{margin-left:244px}
+    #memberMain{max-width:1220px;width:calc(100% - 244px);margin:0 0 0 244px;padding:28px 32px;min-height:65vh}
+    #memberControls{border-bottom:1px solid var(--border);min-width:0}#memberIdentity{overflow-wrap:anywhere}
+    #subnav{display:none!important}.page-context{font-size:13px;font-weight:700;color:var(--muted);margin:0 0 18px;letter-spacing:.02em}
+    main h2:focus{outline:none}#practiceContent{scroll-margin-top:84px}#practiceContent:focus{outline:none}
+    h2{font-size:25px;line-height:1.25}h3{font-size:18px}.card{padding:24px;border-radius:14px;box-shadow:0 2px 8px #14263e05}
+    .eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 12px}.lead{color:var(--muted);max-width:70ch;margin:10px 0 20px}
+    .badge{display:inline-block;font-size:12px;font-weight:700;border-radius:20px;padding:4px 9px;background:#eaf1f9;color:#294b70;margin-bottom:12px}
+    .page-columns{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:start;gap:20px}.page-columns>.card{min-width:0}
+    .learning-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.learning-path button{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:left;cursor:pointer;color:var(--text)}.learning-path strong{display:block;margin-bottom:6px}.learning-path span{font-size:14px;color:var(--muted)}
+    #practiceyard .grid .card{padding:20px}.dashboard-grid{margin-bottom:20px}.dashboard-note-grid{margin-bottom:20px}
+    .btn{min-height:44px}.two-col>*{min-width:0}details.advanced summary{min-height:32px}.form-intro{margin:0 0 18px;color:var(--muted)}
+    @media(min-width:1700px){#memberMain{margin-left:calc(244px + (100vw - 244px - 1220px)/2)}}
+    @media(max-width:1050px){#nav{width:216px}#memberMain{width:calc(100% - 216px);margin-left:216px;padding:24px}body:has(#nav:not([hidden]))>header,body:has(#nav:not([hidden]))>#memberControls,body:has(#nav:not([hidden]))>footer{margin-left:216px}.page-columns{grid-template-columns:1fr}.dashboard-grid{grid-template-columns:1fr}#practiceyard .grid{grid-template-columns:1fr}}
+    @media(max-width:700px){#nav{position:sticky;top:0;width:100%;padding:8px 12px;border:0;border-bottom:1px solid var(--border);max-height:78vh;box-shadow:0 2px 8px #14263e12}#nav .menu-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:44px;background:var(--accent);color:white;border:0;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer}.nav-brand{display:none}#nav:not(.menu-open) .nav-links{display:none}.nav-links{padding:6px 0 12px}.nav-note{display:none}#memberMain{width:100%;margin:0;padding:18px 14px}body:has(#nav:not([hidden]))>header,body:has(#nav:not([hidden]))>#memberControls,body:has(#nav:not([hidden]))>footer{margin-left:0}header{padding:20px 16px}header h1{font-size:22px}header p{font-size:14px}.card{padding:18px}.learning-path,.dashboard-note-grid{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}h2{font-size:23px}.page-context{margin-bottom:12px}#memberGate{margin:18px 12px}}
   </style>
 </head>
 <body>
+<a class="skip-link" href="#memberMain">Skip to page content</a>
 <header>
 
-<h1>🚛 CDL Success Hub</h1>
+<h1>Maricel CDL Success Hub</h1>
 
 <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
 
@@ -76,27 +96,28 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 <div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your free account to access the training dashboard.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
 <nav id="nav" aria-label="Main navigation" hidden></nav>
 <div id="subnav" aria-label="Section navigation" hidden></div>
-<main id="memberMain" hidden>
+<main id="memberMain" tabindex="-1" hidden>
+<p id="pageContext" class="page-context">Home / My dashboard</p>
   
 <section id="home" class="active">
   <div class="card">
     <h2 id="dashboardWelcomeName">👋 Welcome, Driver!</h2>
     <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
-    <p>Use the organized menu above to open training, trip tools, community resources, or your account.</p>
+    <p>Start with a short lesson, practice at your own pace, and keep track of what you learn. Your training and trip tools are organized in the menu.</p>
     <p class="small">Every professional driver was once a beginner.</p>
   </div>
 
   <div class="dashboard-grid">
     <div class="card">
-      <h3>🌟 Today's Mission</h3>
+      <p class="eyebrow">Your next step · 5 minutes</p><h3>Today's Mission</h3>
       <p><strong>Understand WHY the trailer follows the tractor.</strong></p>
       <p class="small">⏱ Estimated Time: 5 minutes<br>🎯 Today's Goal: Understand the trailer—not memorize the steering wheel.</p>
       <button class="btn" onclick="openScreen('lesson')">Start Today's Lesson</button>
     </div>
 
     <div class="card">
-      <h3>📈 Latest Progress</h3>
-      <div id="dashboardProgressSummary"><p class="small">Your latest private practice entry will appear here.</p></div>
+      <span class="badge">Private to your account</span><h3>Latest Progress</h3>
+      <div id="dashboardProgressSummary"><p class="small">Your latest private practice entry will appear here.</p></div><button class="btn light" onclick="openScreen('progress')">View or log my progress</button>
     </div>
   </div>
 
@@ -106,6 +127,11 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   </div>
 </section>
 <section id="practiceyard">
+  <div class="learning-path" aria-label="Suggested training order">
+    <button type="button" onclick="openScreen('lesson')"><strong>1. Learn the basics</strong><span>Start with Backing Fundamentals.</span></button>
+    <button type="button" onclick="showPracticeLesson('straight')"><strong>2. Try a guided exercise</strong><span>Practice small steering corrections.</span></button>
+    <button type="button" onclick="openScreen('progress')"><strong>3. Record your practice</strong><span>Save a win and your next focus.</span></button>
+  </div>
 
   <div class="card">
     <h2>🚛 CDL Practice Yard</h2>
@@ -139,7 +165,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
     <div class="card">
 
-      <h3>🎮 Brain Mode</h3>
+      <h3>Think Before You Steer</h3>
 
       <p>
         The truck pauses...
@@ -150,7 +176,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
       <button class="btn"
         onclick="showPracticeLesson('brain')">
 
-        Start Brain Mode
+        Try a Decision Exercise
 
       </button>
 
@@ -189,34 +215,36 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   </div>
 
 </section>
-<section id="profile"><div class="card"><h2>My private member profile</h2><label for="profileName">Display name</label><input id="profileName" maxlength="100" autocomplete="nickname"><p id="profileEmail" class="small"></p><button class="btn" onclick="saveProfile()">Save Profile</button><p id="profileSaved" role="status" aria-live="polite"></p><p class="small">Never enter CDL numbers, employee IDs, or load documents.</p></div></section>
+<section id="profile"><div class="card"><h2>My Profile</h2><p class="lead">Choose the name you want to see on your dashboard. Your profile is private to your account.</p><label for="profileName">Display name</label><input id="profileName" maxlength="100" autocomplete="nickname"><p id="profileEmail" class="small"></p><button class="btn" onclick="saveProfile()">Save Profile</button><p id="profileSaved" role="status" aria-live="polite"></p><p class="small">Never enter CDL numbers, employee IDs, or load documents.</p></div></section>
 
 <section id="planner">
-  <div class="card"><h2>Route Planner</h2>
+  <div class="card"><span class="badge">Trip planning</span><h2>Plan My Route</h2>
     <p class="small">Plan the trip first, then use Safe Haven Finder for nearby parking and Facility Notes for private arrival details.</p>
     <div class="warning"><strong>No classified information:</strong> Address/location only. No load, BOL, dispatch, trailer, or commodity details.</div>
-    <label>Current City or Location</label><input id="currentLocation" placeholder="Example: Colton, CA">
-    <label>Destination / Facility Address</label><input id="deliveryAddress" placeholder="Street address or City, State">
-    <div class="two-col"><div><label>Appointment Date</label><input id="appointmentDate" type="date"></div><div><label>Appointment Time</label><input id="appointmentTime" type="time"></div></div>
-    <details class="advanced"><summary>Advanced: enter destination coordinates</summary><div class="two-col"><div><label>Latitude</label><input id="manualLat" inputmode="decimal" placeholder="34.0522"></div><div><label>Longitude</label><input id="manualLon" inputmode="decimal" placeholder="-118.2437"></div></div></details>
+    <label for="currentLocation">Current City or Location</label><input id="currentLocation" placeholder="Example: Colton, CA">
+    <label for="deliveryAddress">Destination / Facility Address</label><input id="deliveryAddress" placeholder="Street address or City, State">
+    <div class="two-col"><div><label for="appointmentDate">Appointment Date</label><input id="appointmentDate" type="date"></div><div><label for="appointmentTime">Appointment Time</label><input id="appointmentTime" type="time"></div></div>
+    <details class="advanced"><summary>Advanced: enter destination coordinates</summary><div class="two-col"><div><label for="manualLat">Latitude</label><input id="manualLat" inputmode="decimal" placeholder="34.0522"></div><div><label for="manualLon">Longitude</label><input id="manualLon" inputmode="decimal" placeholder="-118.2437"></div></div></details>
     <button class="btn" onclick="autoPlanDestination()">Auto Get Sunset, Timezone & Weather</button>
     <div id="autoPlanResult"></div>
-    <h3>Route actions</h3>
+    <h3>Open your route</h3>
     <div class="action-grid">
       <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button>
+    </div>
+    <details class="advanced"><summary>Find stops and services along your route</summary><div class="action-grid">
       <button class="btn light" onclick="openRouteSearch('truck stops')">Truck Stops</button>
       <button class="btn light" onclick="openRouteSearch('travel centers truck parking')">Travel Centers</button>
       <button class="btn light" onclick="openRouteSearch('rest areas truck parking')">Rest Areas</button>
       <button class="btn light" onclick="openRouteSearch('semi truck parking')">Truck Parking</button>
       <button class="btn light" onclick="openRouteSearch('CAT scales truck stop')">CAT Scales</button>
-    </div>
+    </div></details>
   </div>
 </section>
 
 <section id="safehaven">
-  <div class="card"><h2>Safe Haven Finder</h2>
+  <div class="card"><span class="badge">Shared member locations</span><h2>Find Safe Parking</h2>
     <p class="small">Search for parking and essential services near a city or address.</p>
-    <label>Search Near City or Address</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA">
+    <label for="safeSearchLocation">Search Near City or Address</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA">
     <div class="action-grid">
       <button class="btn" onclick="mapSearch('truck stop')">Truck Stops</button>
       <button class="btn" onclick="mapSearch('interstate rest area truck parking')">Rest Areas</button>
@@ -228,81 +256,77 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
     <div class="warning"><strong>Semi Tractor-Trailer Check:</strong><ul><li>Confirm wide truck entrance.</li><li>Check satellite view.</li><li>Avoid tiny gas stations, low bridges, dead ends, and tight shopping centers.</li><li>Verify overnight parking rules.</li><li>Never risk unsafe shoulder parking.</li></ul></div>
   </div>
   <div class="card">
-  <h3>Share a Safe Haven with Members</h3>
+  <details class="advanced"><summary>Share a Safe Haven with Members</summary>
   <p class="small">Save only public location and amenity information. Do not include load, customer, truck, or employee details.</p>
 
-  <label>Location Name</label>
-  <input id="safeHavenName" maxlength="150" placeholder="Example: Westside Travel Center">
+  <label for="safeHavenName">Location Name</label><input id="safeHavenName" maxlength="150" placeholder="Example: Westside Travel Center">
 
-  <div class="two-col"><div><label>City</label><input id="safeHavenCity" maxlength="100" placeholder="Barstow"></div><div><label>State</label><input id="safeHavenState" maxlength="30" placeholder="CA"></div></div>
+  <div class="two-col"><div><label for="safeHavenCity">City</label><input id="safeHavenCity" maxlength="100" placeholder="Barstow"></div><div><label for="safeHavenState">State</label><input id="safeHavenState" maxlength="30" placeholder="CA"></div></div>
 
-  <label>Overnight Parking</label>
-  <select id="overnightParking">
+  <label for="overnightParking">Overnight Parking</label><select id="overnightParking">
     <option>Unknown</option>
     <option>Yes</option>
     <option>No</option>
     <option>Limited</option>
   </select>
 
-  <label>Difficulty Rating</label>
-  <select id="difficulty">
+  <label for="difficulty">Difficulty Rating</label><select id="difficulty">
     <option>Easy</option>
     <option>Moderate</option>
     <option>Difficult</option>
     <option>Very Tight</option>
   </select>
 
-  <label>Restrooms</label>
-  <select id="restrooms">
+  <label for="restrooms">Restrooms</label><select id="restrooms">
     <option value="">Unknown</option>
     <option value="true">Yes</option>
     <option value="false">No</option>
   </select>
 
-  <label>Showers</label>
-  <select id="showers">
+  <label for="showers">Showers</label><select id="showers">
     <option value="">Unknown</option>
     <option value="true">Yes</option>
     <option value="false">No</option>
   </select>
 
-  <label>Diesel</label>
-  <select id="diesel">
+  <label for="diesel">Diesel</label><select id="diesel">
     <option value="">Unknown</option>
     <option value="true">Yes</option>
     <option value="false">No</option>
   </select>
 
-  <label>Food Nearby</label>
-  <input id="foodNearby" placeholder="Example: Subway, McDonald's">
+  <label for="foodNearby">Food Nearby</label><input id="foodNearby" placeholder="Example: Subway, McDonald's">
 
-  <label>Public Notes</label>
-  <textarea id="safeHavenNotes" maxlength="1000" placeholder="Entrance, parking, or access notes that are safe to share"></textarea>
+  <label for="safeHavenNotes">Public Notes</label><textarea id="safeHavenNotes" maxlength="1000" placeholder="Entrance, parking, or access notes that are safe to share"></textarea>
 
   <button class="btn" onclick="saveSafeHaven()">Share Safe Haven</button>
   <p id="safeHavenSaved" role="status" aria-live="polite"></p>
+  </details>
 </div>
 <div class="card"><h3>Member Safe Havens</h3><div id="safeHavenList"><p class="small">Shared locations will appear here.</p></div></div>
 </section>
 
 <section id="facility">
-  <div class="card"><h2>My Private Facility Notes</h2><p class="small">These arrival notes are private to your signed-in account. Never save load, customer, employee, truck, or trailer information.</p>
-    <label>Facility Name</label><input id="facilityName">
-    <label>Facility Address</label><input id="facilityAddress">
-    <div class="two-col"><div><label>Truck Entrance Latitude</label><input id="entranceLat"></div><div><label>Truck Entrance Longitude</label><input id="entranceLon"></div></div>
-    <div class="two-col"><div><label>Guard Shack Latitude</label><input id="guardLat"></div><div><label>Guard Shack Longitude</label><input id="guardLon"></div></div>
-    <label>Truck Entrance Notes</label><textarea id="entranceNotes"></textarea>
-    <label>Guard Shack / Check-In Notes</label><textarea id="guardNotes"></textarea>
-    <label>Best Direction to Approach</label><textarea id="approachNotes"></textarea>
+  <div class="page-columns">
+  <div class="card"><span class="badge">Private to your account</span><h2>My Facility Notes</h2><p class="small">These arrival notes are private to your signed-in account. Never save load, customer, employee, truck, or trailer information.</p>
+    <label for="facilityName">Facility Name</label><input id="facilityName">
+    <label for="facilityAddress">Facility Address</label><input id="facilityAddress">
+    <details class="advanced"><summary>Optional: entrance and check-in coordinates</summary><div class="two-col"><div><label for="entranceLat">Truck Entrance Latitude</label><input id="entranceLat"></div><div><label for="entranceLon">Truck Entrance Longitude</label><input id="entranceLon"></div></div>
+    <div class="two-col"><div><label for="guardLat">Guard Shack Latitude</label><input id="guardLat"></div><div><label for="guardLon">Guard Shack Longitude</label><input id="guardLon"></div></div></details>
+    <label for="entranceNotes">Truck Entrance Notes</label><textarea id="entranceNotes"></textarea>
+    <label for="guardNotes">Guard Shack / Check-In Notes</label><textarea id="guardNotes"></textarea>
+    <label for="approachNotes">Best Direction to Approach</label><textarea id="approachNotes"></textarea>
   
     <button class="btn" onclick="saveFacilityNote()">Save Private Note</button>
     <p id="facilitySaved" role="status" aria-live="polite"></p>
   </div>
   <div class="card"><h3>My Saved Facility Notes</h3><div id="facilityList"><p class="small">Your private notes will appear here.</p></div></div>
+
+  </div>
 </section>
 
 <section id="backing">
-  <div class="card"><h2>Backing Refresher Center</h2>
+  <div class="card"><h2>Backing Guides</h2><p class="lead">Choose a maneuver for a quick refresher. For interactive exercises, open Practice Yard.</p>
     <div class="grid">
       <button class="btn light" onclick="showBacking('straight')">Straight Backing</button>
       <button class="btn light" onclick="showBacking('offset')">Offset Backing</button>
@@ -318,16 +342,19 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 </section>
 
 <section id="community">
-  <div class="card"><h2>Notes on This Device</h2>
+  <div class="card"><span class="badge">Stored on this device</span><h2>My Notebook</h2>
     <p>Keep personal reminders, questions for your instructor, and lessons you want to revisit.</p>
-    <div class="warning"><strong>Saved on this device only:</strong> These notes are not shared with other members and may not appear on a different phone or computer.</div>
+    <div class="warning"><strong>Saved on this device only:</strong> These notes are not shared with members or synced to your account. Anyone using this browser may be able to see them. Do not store private or sensitive information here.</div>
   </div>
-  <div class="card"><h3>Add a Note</h3><label>Title</label><input id="postTopic" maxlength="120"><label>Note</label><textarea id="postMessage" maxlength="2000"></textarea><button class="btn" onclick="savePost()">Save Note</button></div>
+  <div class="page-columns">
+  <div class="card"><h3>Add a Note</h3><label for="postTopic">Title</label><input id="postTopic" maxlength="120"><label for="postMessage">Note</label><textarea id="postMessage" maxlength="2000"></textarea><button class="btn" onclick="savePost()">Save Note</button></div>
   <div class="card"><h3>Saved Notes</h3><div id="postList"></div></div>
+
+  </div>
 </section>
 
 <section id="resources">
-  <div class="card"><h2>Resource Vault</h2>
+  <div class="card"><h2>Safety &amp; Resources</h2><p class="lead">Quick reminders to review before practice or a trip. Follow your instructor and official guidance.</p>
     <div class="list-item"><strong>Pre-Trip Reminder</strong><br>Check tires, lights, brakes, leaks, coupling, mirrors, fluids, paperwork, and safety equipment.</div>
     <div class="list-item"><strong>GOAL Rule</strong><br>Get Out And Look anytime you are unsure. Stop before you hit something.</div>
     <div class="list-item"><strong>Parking Before Dark</strong><br>Plan your safe haven at least 2 hours before sunset.</div>
@@ -336,15 +363,18 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 </section>
 
 <section id="progress">
-  <div class="card"><h2>My Progress Tracker</h2>
-    <label>Date</label><input type="date" id="progressDate">
-    <label>Backing Practiced</label><input id="progressBacking">
-    <label>What Went Well?</label><textarea id="progressWin"></textarea>
-    <label>What Needs Improvement?</label><textarea id="progressImprove"></textarea>
-    <label>Confidence Level</label><select id="confidence"><option>1 - Very Nervous</option><option>2</option><option>3</option><option>4</option><option>5 - Confident</option></select>
+  <div class="page-columns">
+  <div class="card"><span class="badge">Private to your account</span><h2>My Practice Progress</h2><p class="form-intro">After practice, record one win and one thing to work on next. Your entries follow your signed-in account.</p>
+    <label for="progressDate">Date</label><input type="date" id="progressDate">
+    <label for="progressBacking">Backing Practiced</label><input id="progressBacking">
+    <label for="progressWin">What Went Well?</label><textarea id="progressWin"></textarea>
+    <label for="progressImprove">What Needs Improvement?</label><textarea id="progressImprove"></textarea>
+    <label for="confidence">Confidence Level</label><select id="confidence"><option>1 - Very Nervous</option><option>2</option><option>3</option><option>4</option><option>5 - Confident</option></select>
     <button class="btn" onclick="saveProgress()">Save Progress</button>
   </div>
-  <div class="card"><h3>Saved Progress</h3><div id="progressList"></div></div>
+  <div class="card"><h3>My Practice History</h3><div id="progressList"></div></div>
+
+  </div>
 </section>
 
   <section id="about">
@@ -563,24 +593,43 @@ async function saveProfile(){
 }
 
 const primaryNav=[
-  ['home','🏠 Dashboard','home'],
-  ['training','🚛 Training','practiceyard'],
-  ['trip','🗺️ Trip Tools','planner'],
-  ['progress','📈 Progress','progress'],
-  ['community','📝 Device Notes','community'],
-  ['resources','📚 Resources','resources'],
-  ['profile','👤 Profile','profile'],
-  ['about','ℹ️ About','about']
+  ['home','Home','home'],
+  ['training','Training','lesson'],
+  ['trip','Trip Tools','planner'],
+  ['notebook','My Notebook','community'],
+  ['account','My Account','progress']
 ];
 const secondaryNav={
-  training:[['practiceyard','Practice Yard'],['backing','Backing Guides'],['lesson','Lessons']],
-  trip:[['planner','Route Planner'],['safehaven','Safe Haven Finder'],['facility','Facility Notes']]
+  training:[['lesson','Lessons'],['practiceyard','Practice Yard'],['backing','Backing Guides'],['resources','Safety & Resources']],
+  trip:[['planner','Plan My Route'],['safehaven','Find Safe Parking'],['facility','My Facility Notes']],
+  account:[['progress','My Progress'],['profile','My Profile'],['about','About the Hub']]
 };
-const screenGroups={practiceyard:'training',backing:'training',lesson:'training',planner:'trip',safehaven:'trip',facility:'trip'};
+const screenGroups={home:'home',practiceyard:'training',backing:'training',lesson:'training',resources:'training',planner:'trip',safehaven:'trip',facility:'trip',community:'notebook',progress:'account',profile:'account',about:'account'};
 const nav=document.getElementById('nav'),subnav=document.getElementById('subnav');
-primaryNav.forEach(([group,text,target])=>{const b=document.createElement('button');b.type='button';b.dataset.group=group;b.textContent=text;b.onclick=()=>showScreen(target);if(group==='home')b.classList.add('active');nav.appendChild(b)});
-function renderSubnav(group,current){const items=secondaryNav[group];subnav.innerHTML='';subnav.hidden=!items;if(!items)return;items.forEach(([id,text])=>{const b=document.createElement('button');b.type='button';b.dataset.screen=id;b.textContent=text;b.onclick=()=>showScreen(id);if(id===current)b.classList.add('active');subnav.appendChild(b)})}
-function showScreen(id){const target=document.getElementById(id);if(!target)return;document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));target.classList.add('active');const group=screenGroups[id]||id;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.group===group));renderSubnav(group,id);scrollTo(0,0)}
+const navBrand=document.createElement('div');navBrand.className='nav-brand';navBrand.innerHTML='MARICEL<span>CDL Success Hub</span>';nav.appendChild(navBrand);
+const menuToggle=document.createElement('button');menuToggle.type='button';menuToggle.className='menu-toggle';menuToggle.textContent='Menu · Home';menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-controls','memberNavLinks');
+menuToggle.onclick=()=>{const expanded=nav.classList.toggle('menu-open');menuToggle.setAttribute('aria-expanded',String(expanded))};nav.appendChild(menuToggle);
+const navLinks=document.createElement('div');navLinks.id='memberNavLinks';navLinks.className='nav-links';nav.appendChild(navLinks);
+primaryNav.forEach(([group,text,target])=>{
+  const items=secondaryNav[group];
+  const container=document.createElement('div');container.className='nav-group';
+  if(items){const title=document.createElement('h2');title.textContent=text;container.appendChild(title)}
+  (items||[[target,text]]).forEach(([id,label])=>{const button=document.createElement('button');button.type='button';button.dataset.group=group;button.dataset.screen=id;button.textContent=label;button.onclick=()=>showScreen(id);if(id==='home'){button.classList.add('active');button.setAttribute('aria-current','page')}container.appendChild(button)});
+  navLinks.appendChild(container);
+});
+const navNote=document.createElement('p');navNote.className='nav-note';navNote.textContent='Learn. Practice. Build confidence.';navLinks.appendChild(navNote);
+nav.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('menu-open')){nav.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.focus()}});
+function renderSubnav(){subnav.hidden=true}
+function showScreen(id){
+  if(!Object.prototype.hasOwnProperty.call(screenGroups,id))return;
+  const target=document.getElementById(id);if(!target)return;
+  document.querySelectorAll('main > section').forEach(screen=>screen.classList.remove('active'));target.classList.add('active');
+  document.querySelectorAll('#nav button[data-screen]').forEach(button=>{const selected=button.dataset.screen===id;button.classList.toggle('active',selected);if(selected)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')});
+  const group=screenGroups[id],primary=primaryNav.find(item=>item[0]===group),item=secondaryNav[group]?.find(item=>item[0]===id);
+  document.getElementById('pageContext').textContent=primary[1]+(item?' / '+item[1]:id==='home'?' / My dashboard':'');
+  nav.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='Menu · '+(item?.[1]||primary[1]);renderSubnav();
+  const heading=target.querySelector('h2');if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true})}scrollTo(0,0);
+}
 function openScreen(id){showScreen(id)}
 function esc(str) {
   return String(str || "")
@@ -662,7 +711,7 @@ async function renderFacilityNotes(){
 const backing={straight:'<h3>Straight Backing</h3><ol><li>Line tractor and trailer straight.</li><li>Use both mirrors.</li><li>Back at idle speed.</li><li>Use small corrections only.</li><li>Pull up early if crooked.</li><li>GOAL before final feet.</li></ol><div class="warning">Common mistake: overcorrecting.</div>',offset:'<h3>Offset Backing</h3><ol><li>Start with clean setup.</li><li>Watch trailer tandems.</li><li>Create angle slowly.</li><li>Reduce angle as trailer enters lane.</li><li>Follow trailer with tractor.</li><li>Pull up before jackknife.</li></ol>',alley:'<h3>Alley Dock</h3><ol><li>Survey obstacles.</li><li>Set controlled angle.</li><li>Watch tandems pivot.</li><li>Control angle early.</li><li>Follow trailer.</li><li>GOAL often.</li><li>Pull up and straighten.</li></ol>',"45":'<h3>45° Backing</h3><ol><li>Drive past space.</li><li>Set trailer around 45°.</li><li>GOAL.</li><li>Back slowly.</li><li>Watch tandems.</li><li>Follow trailer.</li><li>Straighten and finish.</li></ol>',"90":'<h3>90° Backing</h3><ol><li>Use only when necessary.</li><li>GOAL first.</li><li>Watch pivot point.</li><li>Protect tail swing.</li><li>Pull up often.</li><li>Straighten before final back.</li></ol>',blind:'<h3>Blind Side</h3><ol><li>Avoid if safer setup exists.</li><li>GOAL before moving.</li><li>Use visible trained spotter if safe.</li><li>Stop if you lose sight.</li><li>Pull up and reposition.</li></ol><div class="danger">Never let pressure force unsafe blind-side backing.</div>',truckstop:'<h3>Truck Stop Parking</h3><ol><li>Pick easiest safe spot.</li><li>Avoid poorly parked trucks.</li><li>Watch tail swing and tractor nose.</li><li>GOAL.</li><li>Use pull-ups.</li><li>Ignore pressure and move slow.</li></ol>',panic:'<h3>I Lost My Setup</h3><ol><li>Stop.</li><li>Set brakes.</li><li>Breathe.</li><li>GOAL.</li><li>Check both sides.</li><li>Pull up.</li><li>Reset and try again slowly.</li></ol>'}
 function showBacking(t){backingContent.innerHTML=backing[t]}
 function savePost(){const p=JSON.parse(localStorage.getItem('posts')||'[]');p.unshift({topic:postTopic.value,msg:postMessage.value,date:new Date().toLocaleString()});localStorage.setItem('posts',JSON.stringify(p));postTopic.value=postMessage.value='';renderPosts()}
-function renderPosts(){const p=JSON.parse(localStorage.getItem('posts')||'[]');postList.innerHTML=p.length?p.map(x=>`<div class="list-item"><strong>${esc(x.topic||'Post')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>`).join(''):'<p class="small">No posts yet.</p>'}
+function renderPosts(){const p=JSON.parse(localStorage.getItem('posts')||'[]');postList.innerHTML=p.length?p.map(x=>`<div class="list-item"><strong>${esc(x.topic||'Note')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>`).join(''):'<p class="small">No device notes yet. Save a question or reminder to get started.</p>'}
 async function saveProgress() {
   if(!memberClient)return;
   const {data:{user},error:authError}=await memberClient.auth.getUser();
@@ -683,7 +732,7 @@ async function renderProgress(){
   if(generation!==memberGeneration)return;
   if(error){progressList.textContent='Could not load progress: '+error.message;memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your progress could not be loaded.</p>';return;}
   progressList.innerHTML=data.length?data.map(p=>'<div class="list-item"><strong>'+esc(p.progress_date||'Log')+'</strong><br><strong>Backing:</strong> '+esc(p.backing_practice||'')+'<br><strong>Win:</strong> '+esc(p.went_well||'')+'<br><strong>Improve:</strong> '+esc(p.needs_improvement||'')+'<br><strong>Confidence:</strong> '+esc(p.confidence||'')+'</div>').join(''):'<p class="small">No progress recorded yet.</p>';
-  memberEl('dashboardProgressSummary').innerHTML=data.length?'<p><strong>'+esc(data[0].progress_date||'Latest practice')+'</strong></p><p>'+esc(data[0].backing_practice||'Practice entry')+'</p><p class="small">Confidence: '+esc(data[0].confidence||'Not recorded')+' · Open the Progress tab for details.</p>':'<p class="small">No practice recorded yet. Your first private entry will appear here.</p>';
+  memberEl('dashboardProgressSummary').innerHTML=data.length?'<p><strong>'+esc(data[0].progress_date||'Latest practice')+'</strong></p><p>'+esc(data[0].backing_practice||'Practice entry')+'</p><p class="small">Confidence: '+esc(data[0].confidence||'Not recorded')+' · Open My Account → My Progress for details.</p>':'<p class="small">No practice recorded yet. Your first private entry will appear here.</p>';
 }
 
 let lessonStep = 0;
@@ -916,7 +965,7 @@ window.showPracticeLesson = function(type) {
 
   if (type === "brain") {
     box.innerHTML = `
-      <h3>🎮 Brain Mode</h3>
+      <h3>Think Before You Steer</h3>
       <p>The truck pauses. You decide what happens next.</p>
       <button class="btn" onclick="showPracticeLesson('straight')">Start Straight Back Scenario</button>
     `;
@@ -927,6 +976,9 @@ window.showPracticeLesson = function(type) {
     trailerAngle = 12;
 renderStraightSimulator("Your trailer is drifting right. What should you do?");
   }
+  box.setAttribute("tabindex", "-1");
+  box.focus({preventScroll:true});
+  box.scrollIntoView({block:"start"});
 };
 
 function renderStraightSimulator(message) {
@@ -1002,3 +1054,4 @@ window.straightAnswer = function(choice) {
 </script>
 </body>
 </html>
+

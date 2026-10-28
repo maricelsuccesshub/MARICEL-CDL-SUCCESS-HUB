@@ -19,5 +19,17 @@ test('profile persists only to authenticated owner row',async()=>{const h=harnes
 test('training features and authenticated Safe Haven writes are preserved',()=>{for(const id of ['practiceyard','planner','safehaven','backing','lesson'])assert.ok(html.includes(`id="${id}"`));assert.ok(html.includes("memberClient.from('safe_havens').insert"));assert.ok(!html.includes('fmyaxdzonqrgsyzizixe'));assert.ok(!html.includes('"Authorization": "Bearer " + SUPABASE_KEY'));for(const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(m[1]);});
 test('straight-back trainer corrects toward the trailer drift',()=>{assert.match(html,/choice === "left"\) \{\s*trailerAngle \+= 6/);assert.match(html,/choice === "right"\) \{\s*trailerAngle -= 6/);assert.match(html,/small correction toward the trailer's drift/)});
 test('straight-back trainer uses non-branded Maricel truck assets',()=>{assert.ok(html.includes('assets/maricel-tractor.png'));assert.ok(html.includes('assets/maricel-success-hub-trailer.png'));for(const asset of ['maricel-tractor.png','maricel-success-hub-trailer.png'])assert.ok(fs.existsSync(new URL(`../assets/${asset}`,`file://${__filename}`)))});
-test('dashboard removes duplicate shortcuts and uses focused primary navigation',()=>{const home=html.slice(html.indexOf('<section id="home"'),html.indexOf('<section id="practiceyard"'));for(const duplicate of ['Go to Practice Yard','Plan Route','Find Safe Haven','View Facilities'])assert.ok(!home.includes(duplicate));assert.ok(home.includes('dashboardProgressSummary'));for(const label of ['🚛 Training','🗺️ Trip Tools','📈 Progress','📝 Device Notes','📚 Resources','👤 Profile'])assert.ok(html.includes(label));assert.ok(html.includes("training:[['practiceyard','Practice Yard'],['backing','Backing Guides'],['lesson','Lessons']]"));assert.ok(!html.includes("['admin','Admin'"))});
+test('member navigation groups every member page without exposing admin',()=>{
+ const source=html.slice(html.indexOf('const primaryNav='),html.indexOf('const nav=document'));
+ const context=vm.createContext({});vm.runInContext(source,context);
+ const groups=vm.runInContext('primaryNav.map(item=>item[0])',context);
+ assert.deepEqual(Array.from(groups),['home','training','trip','notebook','account']);
+ const screens=vm.runInContext('screenGroups',context);
+ for(const [id,group] of Object.entries(screens)){assert.ok(groups.includes(group));assert.ok(html.includes(`id="${id}"`));}
+ assert.equal(screens.progress,'account');assert.equal(screens.profile,'account');assert.equal(screens.resources,'training');assert.equal(screens.community,'notebook');assert.equal(screens.admin,undefined);
+ const home=html.slice(html.indexOf('<section id="home"'),html.indexOf('<section id="practiceyard"'));
+ assert.ok(home.includes('dashboardProgressSummary'));assert.ok(home.includes("openScreen('progress')"));
+ assert.ok(html.includes('aria-current'));assert.ok(html.includes('aria-expanded'));assert.ok(html.includes('Stored on this device'));
+});
 test('Safe Haven and private facility notes use separate storage paths',()=>{assert.ok(html.includes('onclick="saveSafeHaven()"'));assert.ok(html.includes('onclick="saveFacilityNote()"'));assert.ok(html.includes("memberClient.from('facility_notes').insert"));assert.ok(!html.includes('onclick="saveFacility()"'));assert.ok(html.includes('Saved on this device only:'))});
+
