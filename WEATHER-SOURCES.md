@@ -1,0 +1,5 @@
+# Weather by State
+
+All 50 states and DC share NOAA / NWS's public local forecast search endpoint, used on weather.gov itself: https://forecast.weather.gov/zipcity.php (`inputstring`). Members choose a state and enter a city or ZIP; city searches append the selected state, ZIP searches are passed unchanged. The forecast opens externally, is not copied or embedded, and must be checked for the correct location and issue time. No state capital is used as a statewide forecast. Official national alerts: https://www.weather.gov/alerts ; national graphical forecast: https://digital.weather.gov/ . State conditions links reuse the existing curated DOT/511 sources.
+
+Plan My Route continues using Open-Meteo separately with its existing CC BY 4.0 attribution. No API keys, database changes or geolocation permission required. No user search storage. Source access checked October 28, 2026. NWS can return multiple matches or a failure; drivers must confirm the actual location. External availability is not guaranteed.
