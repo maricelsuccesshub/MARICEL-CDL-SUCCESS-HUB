@@ -10,7 +10,9 @@
   <meta name="apple-mobile-web-app-title" content="CDL Success Hub" />
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />                            
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="member-config.js"></script>
+  <meta name="referrer" content="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
   <style>
     [hidden]{display:none!important}
     :root{--bg:#f5f7fb;--card:#fff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;--accent:#111827;--soft:#f3f4f6;--danger:#991b1b;--success:#166534}
@@ -64,7 +66,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
 </header>
 <div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
-<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your free account to access the training dashboard.</p><div class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button class="btn light" type="button" onclick="memberResetPassword()">Forgot password?</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
+<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your free account to access the training dashboard.</p><div class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
 <nav id="nav" hidden></nav>
 <main id="memberMain" hidden>
   
@@ -229,19 +231,7 @@ Every professional driver was once a beginner.
   </div>
 
 </section>
-<section id="profile">
-  <div class="card"><h2>My Profile</h2>
-    <div class="two-col"><div><label>First Name</label><input id="profileName"></div><div><label>Last Initial</label><input id="profileInitial" maxlength="2"></div></div>
-    <div class="two-col"><div><label>Email</label><input id="profileEmail" type="email"></div><div><label>Phone Number</label><input id="profilePhone" type="tel"></div></div>
-    <div class="two-col"><div><label>Emergency Contact Name</label><input id="emergencyName"></div><div><label>Emergency Contact Phone</label><input id="emergencyPhone" type="tel"></div></div>
-    <label>CDL Status</label><select id="profileStatus"><option>Student Driver</option><option>Recent Graduate</option><option>Solo Driver</option><option>Mentor</option><option>Senior Mentor</option></select>
-    <label>Experience Level</label><select id="profileExperience"><option>New Driver</option><option>0-6 Months</option><option>6-12 Months</option><option>1+ Year</option><option>3+ Years</option><option>5+ Years</option></select>
-    <label>Preferred Driving Type</label><select id="drivingType"><option>OTR</option><option>Regional</option><option>Local</option><option>Dedicated</option><option>Dry Van</option><option>Reefer</option><option>Flatbed</option><option>Tanker</option></select>
-    <label>Driver Status</label><select id="driverStatus"><option>🟢 Available</option><option>🟡 Driving</option><option>🔴 Sleeping</option><option>🔵 Need Help</option></select>
-    <label>Bio / About Me</label><textarea id="profileBio" placeholder="Do not share CDL number, employee ID, truck number, or company-sensitive information."></textarea>
-    <button class="btn" onclick="saveProfile()">Save Profile</button><div id="profileSaved" class="success" style="display:none">Profile saved on this device.</div>
-  </div>
-</section>
+<section id="profile"><div class="card"><h2>My private member profile</h2><label for="profileName">Display name</label><input id="profileName" maxlength="100" autocomplete="nickname"><p id="profileEmail" class="small"></p><button class="btn" onclick="saveProfile()">Save Profile</button><p id="profileSaved" role="status" aria-live="polite"></p><p class="small">Never enter CDL numbers, employee IDs, or load documents.</p></div></section>
 
 <section id="planner">
   <div class="card"><h2>Plan My Route</h2>
@@ -506,18 +496,87 @@ Start Lesson 1 →
 </main>
 <footer>Maricel CDL Success Hub • Private Training Support Tool</footer>
 <script>
- const SUPABASE_URL = "https://fmyaxdzonqrgsyzizixe.supabase.co";
-const SUPABASE_KEY = "sb_publishable_sNkm8dvvUXXRocYNcQP_pw_eWmyBHCW"; 
+ const SUPABASE_URL = window.MEMBER_CONFIG?.url || '';
+const SUPABASE_KEY = window.MEMBER_CONFIG?.publishableKey || '';
 
-// Authentication controls access to the interface; static site source remains public.
-const memberClient=window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY);
-let memberAuthMode='signin';
-function memberMode(mode){memberAuthMode=mode;document.getElementById('memberTabSignIn').classList.toggle('selected',mode==='signin');document.getElementById('memberTabSignUp').classList.toggle('selected',mode==='signup');document.getElementById('memberSubmit').textContent=mode==='signup'?'Create free account':'Sign in';document.getElementById('memberPassword').autocomplete=mode==='signup'?'new-password':'current-password';document.getElementById('memberMessage').textContent='';}
-function memberDisplay(session){const signedIn=Boolean(session?.user);document.getElementById('memberGate').hidden=signedIn;document.getElementById('memberMain').hidden=!signedIn;document.getElementById('nav').hidden=!signedIn;document.getElementById('memberControls').style.display=signedIn?'flex':'none';document.getElementById('memberIdentity').textContent=signedIn?session.user.email||'Member':'';if(signedIn){renderProgress();memberClient.from('member_profiles').upsert({user_id:session.user.id},{onConflict:'user_id',ignoreDuplicates:true}).then(({error})=>{if(error)console.warn('Profile creation failed',error.message);});}}
-async function memberSignOut(){if(!memberClient)return;const {error}=await memberClient.auth.signOut();if(error)document.getElementById('memberMessage').textContent=error.message;else memberDisplay(null);}
-async function memberResetPassword(){const email=document.getElementById('memberEmail').value.trim();if(!email){document.getElementById('memberMessage').textContent='Enter your email address first.';return;}const {error}=await memberClient.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});document.getElementById('memberMessage').textContent=error?error.message:'If an account exists, password reset instructions will be sent.';}
-document.getElementById('memberForm').addEventListener('submit',async event=>{event.preventDefault();if(!memberClient)return;const email=document.getElementById('memberEmail').value.trim(),password=document.getElementById('memberPassword').value;const submit=document.getElementById('memberSubmit');submit.disabled=true;document.getElementById('memberMessage').textContent='Please wait…';try{const result=memberAuthMode==='signup'?await memberClient.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname}}):await memberClient.auth.signInWithPassword({email,password});document.getElementById('memberMessage').textContent=result.error?result.error.message:result.data.session?'Signed in successfully.':'Check your email for a confirmation link.';}catch(e){document.getElementById('memberMessage').textContent='Unable to connect. Please try again.';}finally{submit.disabled=false;}});
-if(memberClient){memberClient.auth.onAuthStateChange((_event,session)=>memberDisplay(session));memberClient.auth.getSession().then(({data})=>memberDisplay(data.session)).catch(()=>memberDisplay(null));}else{document.getElementById('memberMessage').textContent='Sign-in service is unavailable. Please refresh the page.';}
+// Static training assets are public. Supabase RLS protects member data.
+// Development must use a separate Supabase project; no fallback to production.
+const memberClient=SUPABASE_URL&&SUPABASE_KEY?window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+let memberAuthMode='signin', memberUserId=null, memberRecovery=false, memberGeneration=0;
+const memberEl=id=>document.getElementById(id);
+const memberMessage=text=>memberEl('memberMessage').textContent=text;
+const memberRedirect=()=>location.origin+location.pathname;
+function memberMode(mode){
+  if(memberRecovery && mode!=='recover')return;
+  memberAuthMode=mode;
+  memberEl('memberTabSignIn').classList.toggle('selected',mode==='signin');
+  memberEl('memberTabSignUp').classList.toggle('selected',mode==='signup');
+  const reset=mode==='reset';
+  memberEl('memberEmail').hidden=mode==='recover'; memberEl('memberEmail').required=mode!=='recover';
+  memberEl('memberPassword').hidden=reset;memberEl('memberPasswordLabel').hidden=reset;
+  memberEl('memberPassword').required=!reset;
+  memberEl('memberPassword').autocomplete=mode==='signin'?'current-password':'new-password';
+  memberEl('memberSubmit').textContent=({signin:'Sign in',signup:'Create free account',reset:'Send recovery email',recover:'Save new password'})[mode];
+  memberMessage(mode==='recover'?'Choose your new password.':'');
+}
+function memberDisplay(session){
+  const signedIn=Boolean(session?.user?.email_confirmed_at)&&!memberRecovery;
+  const previous=memberUserId;memberUserId=signedIn?session.user.id:null;
+  memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;
+  memberEl('memberControls').style.display=signedIn?'flex':'none';
+  memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
+  if(previous!==memberUserId){memberGeneration++; memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
+  // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
+  if(signedIn&&previous!==memberUserId)setTimeout(()=>{renderProgress();loadMemberProfile();},0);
+}
+async function memberSignOut(){
+  try{const {error}=await memberClient.auth.signOut();if(error)throw error;memberRecovery=false;memberDisplay(null);memberMode('signin');memberEl('memberPassword').value='';}
+  catch(e){alert('Could not sign out. Check your connection and retry.');}
+}
+async function memberResend(){
+  if(!memberClient||!memberEl('memberEmail').reportValidity())return;
+  try{const {error}=await memberClient.auth.resend({type:'signup',email:memberEl('memberEmail').value.trim(),options:{emailRedirectTo:memberRedirect()}});if(error)throw error;memberMessage('If verification is needed, check your email for a new link.');}catch(e){memberMessage('Unable to resend. Please wait before trying again.');}
+}
+document.getElementById('memberForm').addEventListener('submit',async event=>{
+  event.preventDefault();if(!memberClient)return;
+  const email=memberEl('memberEmail').value.trim(),password=memberEl('memberPassword').value,mode=memberAuthMode;
+  memberEl('memberSubmit').disabled=true;memberMessage('Please wait…');
+  try{
+    let result;
+    if(mode==='reset')result=await memberClient.auth.resetPasswordForEmail(email,{redirectTo:memberRedirect()});
+    else if(mode==='recover')result=await memberClient.auth.updateUser({password});
+    else if(mode==='signup')result=await memberClient.auth.signUp({email,password,options:{emailRedirectTo:memberRedirect()}});
+    else result=await memberClient.auth.signInWithPassword({email,password});
+    if(result.error)throw result.error;
+    memberEl('memberPassword').value='';
+    if(mode==='recover'){memberRecovery=false;await memberClient.auth.signOut();memberDisplay(null);memberMode('signin');memberMessage('Password updated. Sign in with your new password.');}
+    else memberMessage(mode==='reset'?'If an account exists, recovery instructions will be sent.':mode==='signup'?'Check your email to verify your account, then sign in.':'Signed in successfully.');
+  }catch(e){memberMessage(mode==='signin'?'Unable to sign in. Check your credentials and verify your email.':mode==='recover'?'Could not update password. Request a fresh recovery link and try again.':'Unable to complete the request. Please check your connection and try again later.');}
+  finally{memberEl('memberSubmit').disabled=false;}
+});
+if(memberClient){
+  memberClient.auth.onAuthStateChange((event,session)=>{
+    if(event==='PASSWORD_RECOVERY'){memberRecovery=true;memberMode('recover');}
+    memberDisplay(session);
+  });
+  memberClient.auth.getSession().then(({data,error})=>{if(error)throw error;memberDisplay(data.session);}).catch(()=>{memberDisplay(null);memberMessage('Session could not be restored. Please sign in again.');});
+  if(new URLSearchParams(location.hash.slice(1)).has('error')){memberMessage('This email link is invalid or expired. Request a new link.');history.replaceState(null,'',location.pathname);}
+}else memberMessage('Sign-in service is unavailable. Please refresh the page.');
+async function loadMemberProfile(){
+  const id=memberUserId,generation=memberGeneration;if(!id)return;
+  const {data,error}=await memberClient.from('member_profiles').select('display_name').eq('user_id',id).maybeSingle();
+  if(generation!==memberGeneration)return;
+  memberEl('profileName').value=data?.display_name||'';
+  const {data:auth}=await memberClient.auth.getUser();
+  if(generation!==memberGeneration)return;
+  memberEl('profileEmail').textContent=auth.user?.email||'';
+  memberEl('profileSaved').textContent=error?'Could not load your profile. Try signing in again.':'';
+}
+async function saveProfile(){
+  const id=memberUserId,generation=memberGeneration;if(!id)return;
+  const {error}=await memberClient.from('member_profiles').upsert({user_id:id,display_name:memberEl('profileName').value.trim().slice(0,100),updated_at:new Date().toISOString()},{onConflict:'user_id'});
+  if(generation===memberGeneration)memberEl('profileSaved').textContent=error?'Could not save profile. Please retry.':'Your private profile was saved.';
+}
 
 const screens=[
   ['home','🏠 Dashboard'],
@@ -544,7 +603,7 @@ function esc(str) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }
-  function saveProfile(){const d={name:profileName.value,initial:profileInitial.value,email:profileEmail.value,phone:profilePhone.value,emergencyName:emergencyName.value,emergencyPhone:emergencyPhone.value,status:profileStatus.value,experience:profileExperience.value,drivingType:drivingType.value,driverStatus:driverStatus.value,bio:profileBio.value};localStorage.setItem('profile',JSON.stringify(d));profileSaved.style.display='block'}
+
 async function autoPlanDestination(){const address=deliveryAddress.value.trim();const latM=parseFloat(manualLat.value);const lonM=parseFloat(manualLon.value);if(!address&&(isNaN(latM)||isNaN(lonM))){autoPlanResult.innerHTML='<div class="danger">Enter destination address or coordinates.</div>';return}autoPlanResult.innerHTML='<div class="warning">Looking up destination, timezone, sunset, and weather...</div>';try{let lat,lon,displayName;if(!isNaN(latM)&&!isNaN(lonM)){lat=latM;lon=lonM;displayName=address||'Manual coordinates'}else{const f=await geocodeAddress(address);lat=f.lat;lon=f.lon;displayName=f.displayName}const date=appointmentDate.value||new Date().toISOString().split('T')[0];const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=sunrise,sunset,weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto&start_date=${date}&end_date=${date}`;const w=await (await fetch(u)).json();if(!w.daily)throw new Error('No weather data.');const sunrise=w.daily.sunrise?.[0],sunset=w.daily.sunset?.[0];const maxC=w.daily.temperature_2m_max?.[0],minC=w.daily.temperature_2m_min?.[0];const maxF=maxC!==undefined?Math.round(maxC*9/5+32):'N/A',minF=minC!==undefined?Math.round(minC*9/5+32):'N/A';const windK=w.daily.wind_speed_10m_max?.[0],windM=windK!==undefined?Math.round(windK*.621371):'N/A';let deadline='N/A';if(sunset){deadline=new Date(new Date(sunset).getTime()-7200000).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}autoPlanResult.innerHTML=`<div class="success"><strong>Destination:</strong> ${esc(displayName)}<br><strong>Coordinates:</strong> ${lat.toFixed(5)}, ${lon.toFixed(5)}<br><strong>Timezone:</strong> ${esc(w.timezone||'N/A')}</div><div class="list-item"><h3>Sunset Safety Plan</h3><strong>Sunrise:</strong> ${sunrise?new Date(sunrise).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Sunset:</strong> ${sunset?new Date(sunset).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Safe Haven Deadline:</strong> ${deadline}<div class="warning">Be parked or securing safe parking by this time.</div></div><div class="list-item"><h3>Destination Weather</h3><strong>High / Low:</strong> ${maxF}°F / ${minF}°F<br><strong>Precipitation Chance:</strong> ${w.daily.precipitation_probability_max?.[0]??'N/A'}%<br><strong>Max Wind:</strong> ${windM} mph<br><div class="warning">Always verify wind, snow/ice, chain laws, road closures, and mountain grades with official sources.</div></div>`}catch(e){autoPlanResult.innerHTML=`<div class="danger"><strong>Auto lookup failed.</strong><br>Try City, State or paste Google Maps coordinates.<br>Error: ${esc(e.message)}</div>`}}
 async function geocodeAddress(a){const cleaned=a.replace(/#/g,' ').replace(/\s+/g,' ').trim();const qs=[cleaned,cleaned+', USA',extractCityState(cleaned)].filter(Boolean);for(const q of [...new Set(qs)]){try{let d=await (await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&q=${encodeURIComponent(q)}&limit=3`)).json();if(d?.length)return{lat:+d[0].lat,lon:+d[0].lon,displayName:d[0].display_name||q}}catch(e){}try{let d=await (await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`)).json();if(d.features?.length){let c=d.features[0].geometry.coordinates,p=d.features[0].properties||{};return{lat:+c[1],lon:+c[0],displayName:[p.name,p.city,p.state,p.country].filter(Boolean).join(', ')||q}}}catch(e){}}throw new Error('Address not found.')}
 function extractCityState(t){const p=t.split(',').map(x=>x.trim()).filter(Boolean);return p.length>=2?p.slice(-2).join(', '):''}
@@ -583,7 +642,7 @@ food_nearby: foodNearby.value || "",
   submitted_by: "Maricel"
 };
 const res = await fetch(
-  "https://fmyaxdzonqrgsyzizixe.supabase.co/rest/v1/safe_havens",
+  SUPABASE_URL + "/rest/v1/safe_havens",
   {
     method: "POST",
     headers: {
@@ -609,8 +668,9 @@ function showBacking(t){backingContent.innerHTML=backing[t]}
 function savePost(){const p=JSON.parse(localStorage.getItem('posts')||'[]');p.unshift({topic:postTopic.value,msg:postMessage.value,date:new Date().toLocaleString()});localStorage.setItem('posts',JSON.stringify(p));postTopic.value=postMessage.value='';renderPosts()}
 function renderPosts(){const p=JSON.parse(localStorage.getItem('posts')||'[]');postList.innerHTML=p.length?p.map(x=>`<div class="list-item"><strong>${esc(x.topic||'Post')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>`).join(''):'<p class="small">No posts yet.</p>'}
 async function saveProgress() {
+  if(!memberClient)return;
   const {data:{user},error:authError}=await memberClient.auth.getUser();
-  if(authError||!user){alert('Please sign in first.');return;}
+  if(authError||!user?.email_confirmed_at){alert('Please sign in first.');return;}
   const record={user_id:user.id,progress_date:progressDate.value||new Date().toISOString().slice(0,10),backing_practice:progressBacking.value,went_well:progressWin.value,needs_improvement:progressImprove.value,confidence:confidence.value};
   const {error}=await memberClient.from('member_progress').insert(record);
   if(error){alert('Could not save progress: '+error.message);return;}
@@ -618,10 +678,13 @@ async function saveProgress() {
   alert('Your private progress was saved!');
 }
 async function renderProgress(){
+  const generation=memberGeneration;
   if(!memberClient)return;
   const {data:{user}}=await memberClient.auth.getUser();
-  if(!user){progressList.textContent='Sign in to see your progress.';return;}
+  if(!user?.email_confirmed_at){progressList.textContent='Sign in to see your progress.';return;}
+  if(generation!==memberGeneration)return;
   const {data,error}=await memberClient.from('member_progress').select('progress_date,backing_practice,went_well,needs_improvement,confidence').order('created_at',{ascending:false}).limit(30);
+  if(generation!==memberGeneration)return;
   if(error){progressList.textContent='Could not load progress: '+error.message;return;}
   progressList.innerHTML=data.length?data.map(p=>'<div class="list-item"><strong>'+esc(p.progress_date||'Log')+'</strong><br><strong>Backing:</strong> '+esc(p.backing_practice||'')+'<br><strong>Win:</strong> '+esc(p.went_well||'')+'<br><strong>Improve:</strong> '+esc(p.needs_improvement||'')+'<br><strong>Confidence:</strong> '+esc(p.confidence||'')+'</div>').join(''):'<p class="small">No progress recorded yet.</p>';
 }
