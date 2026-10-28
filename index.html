@@ -66,7 +66,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
 </header>
 <div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
-<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your free account to access the training dashboard.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
+<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your free account to access the training dashboard.</p><div class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
 <nav id="nav" hidden></nav>
 <main id="memberMain" hidden>
   
@@ -509,16 +509,12 @@ const memberRedirect=()=>location.origin+location.pathname;
 function memberMode(mode){
   if(memberRecovery && mode!=='recover')return;
   memberAuthMode=mode;
-  const recover=mode==='recover',reset=mode==='reset';
   memberEl('memberTabSignIn').classList.toggle('selected',mode==='signin');
   memberEl('memberTabSignUp').classList.toggle('selected',mode==='signup');
-  memberEl('memberTabs').hidden=recover;
-  memberEl('memberEmailLabel').hidden=recover;
-  memberEl('memberEmail').hidden=recover; memberEl('memberEmail').required=!recover;
+  const reset=mode==='reset';
+  memberEl('memberEmail').hidden=mode==='recover'; memberEl('memberEmail').required=mode!=='recover';
   memberEl('memberPassword').hidden=reset;memberEl('memberPasswordLabel').hidden=reset;
   memberEl('memberPassword').required=!reset;
-  memberEl('memberForgotButton').hidden=recover||reset;
-  memberEl('memberResendButton').hidden=recover||reset;
   memberEl('memberPassword').autocomplete=mode==='signin'?'current-password':'new-password';
   memberEl('memberSubmit').textContent=({signin:'Sign in',signup:'Create free account',reset:'Send recovery email',recover:'Save new password'})[mode];
   memberMessage(mode==='recover'?'Choose your new password.':'');
@@ -632,9 +628,6 @@ function openRouteSearch(term) {
 }
   function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
 async function saveFacility() {
-  if(!memberClient){alert("Member service is unavailable.");return;}
-  const {data:{user},error:authError}=await memberClient.auth.getUser();
-  if(authError||!user?.email_confirmed_at){alert("Please sign in with a verified account first.");return;}
   const facility = {
   location_name: facilityName.value || "Unnamed Facility",
   city: facilityAddress.value || "Unknown",
@@ -645,14 +638,28 @@ async function saveFacility() {
 showers: showers.value === "true",
 diesel: diesel.value === "true",
 food_nearby: foodNearby.value || "",
-  notes: entranceNotes.value + " | " + guardNotes.value + " | " + approachNotes.value
+  notes: entranceNotes.value + " | " + guardNotes.value + " | " + approachNotes.value,
+  submitted_by: "Maricel"
 };
-const {error}=await memberClient.from("safe_havens").insert(facility);
-if (error) {
-  alert("Could not save this Safe Haven. Please try again.");
+const res = await fetch(
+  SUPABASE_URL + "/rest/v1/safe_havens",
+  {
+    method: "POST",
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY,
+      "Content-Type": "application/json",
+      "Prefer": "return=minimal"
+    },
+    body: JSON.stringify(facility)
+  }
+);
+
+if (!res.ok) {
+  alert("Supabase error: " + await res.text());
   return;
 }
-  alert("Safe Haven saved for members!");
+  alert("Saved to Supabase!");
   
 }
 function renderFacilities(){const items=JSON.parse(localStorage.getItem('facilities')||'[]');facilityList.innerHTML=items.length?items.map(x=>`<div class="list-item"><strong>${esc(x.name||'Unnamed')}</strong><br>${esc(x.address||'')}<br><strong>Truck Entrance GPS:</strong> ${esc(x.eLat||'')}, ${esc(x.eLon||'')} ${x.eLat&&x.eLon?`<br><button class="btn light" onclick="open('https://www.google.com/maps/search/${x.eLat},${x.eLon}','_blank')">Navigate to Truck Entrance</button>`:''}<br><strong>Entrance:</strong> ${esc(x.entrance||'No notes')}<br><strong>Guard:</strong> ${esc(x.guard||'No notes')}<br><strong>Approach:</strong> ${esc(x.approach||'No notes')}<br><strong>Parking:</strong> ${esc(x.parking)} | <strong>Difficulty:</strong> ${esc(x.difficulty)}</div>`).join(''):'<p class="small">No saved facilities yet.</p>'}
