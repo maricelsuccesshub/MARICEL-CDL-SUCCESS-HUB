@@ -97,6 +97,8 @@
     body:has(#nav:not([hidden]))>.beta-notice{margin-left:244px}
     @media(max-width:1050px){body:has(#nav:not([hidden]))>.beta-notice{margin-left:216px}}
     @media(max-width:700px){body:has(#nav:not([hidden]))>.beta-notice{margin-left:0}.beta-notice{padding:18px 16px}.beta-notice h2{font-size:18px}}
+    .support-hub{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:center;border-top:3px solid #c99834;margin-top:24px}.support-hub h3{font-size:22px;margin:0 0 12px}.support-hub p{margin:10px 0;max-width:72ch}.support-hub .eyebrow{display:block;color:#79550d;margin-bottom:8px}.support-hub-action{text-align:center}.support-hub-action .btn{display:block;text-decoration:none;background:#14263e;color:#fff;margin:0}.support-hub-action .small{font-size:13px}.support-external{font-size:14px}
+    @media(max-width:700px){.support-hub{grid-template-columns:1fr;gap:10px}.support-hub-action{max-width:100%}.support-hub h3{font-size:20px}}
 </style>
 </head>
 <body>
@@ -155,6 +157,12 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   <div class="dashboard-note-grid">
     <div class="success"><strong>💡 Coach's Focus</strong><br>Small steering corrections create the biggest improvements.</div>
     <div class="warning"><strong>🔒 Privacy Rule</strong><br>Never enter load information, bills of lading, employee IDs, truck or trailer numbers, or company-sensitive information.</div>
+  </div>
+  <div id="supportHub" class="card support-hub" aria-labelledby="supportHubTitle">
+    <div><span class="eyebrow">Optional support</span><h3 id="supportHubTitle">Finding the Hub useful? Help keep it going.</h3>
+    <p>If Maricel CDL Success Hub has helped you learn, practice or feel more prepared, please consider a tip of any amount. Your support helps me cover website costs and continue improving these educational resources for fellow drivers.</p>
+    <p><strong>Every contribution is appreciated.</strong> Support is completely optional—the free beta is available whether you contribute or not.</p></div>
+    <div class="support-hub-action"><a class="btn" href="https://buy.stripe.com/28EbJ187fcRteEY2On24000" target="_blank" rel="noopener noreferrer">Support the Hub 💛 <span class="support-external">↗</span></a><p class="small">Choose your amount on Stripe.<br>One-time tip · opens a new tab</p></div>
   </div>
 </section>
 <section id="practiceyard">
@@ -548,7 +556,7 @@ Start Lesson 1 →
 </section>
 </main>
 <footer>Maricel CDL Success Hub • Independent Educational Support Tool<br>
-  <a href="disclaimer.html">Disclaimer &amp; Source Credits</a>
+  <a href="disclaimer.html">Disclaimer &amp; Source Credits</a> · <a href="https://buy.stripe.com/28EbJ187fcRteEY2On24000" target="_blank" rel="noopener noreferrer">Support the Hub 💛 ↗</a><p>Optional one-time tips help cover website costs. Payment is never required to use the free beta.</p>
   <p>Use with caution, at your own discretion and risk. Supplemental education only; never a substitute for qualified training, inspections, official requirements or your own judgment. Use only while safely parked. Liability limitations are subject to applicable law.</p>
 </footer>
 <script>
