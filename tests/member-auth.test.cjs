@@ -23,10 +23,10 @@ test('member navigation groups every member page without exposing admin',()=>{
  const source=html.slice(html.indexOf('const primaryNav='),html.indexOf('const nav=document'));
  const context=vm.createContext({});vm.runInContext(source,context);
  const groups=vm.runInContext('primaryNav.map(item=>item[0])',context);
- assert.deepEqual(Array.from(groups),['home','training','trip','notebook','account']);
+ assert.deepEqual(Array.from(groups),['home','training','trip','connect','notebook','account']);
  const screens=vm.runInContext('screenGroups',context);
  for(const [id,group] of Object.entries(screens)){assert.ok(groups.includes(group));assert.ok(html.includes(`id="${id}"`));}
- assert.equal(screens.progress,'account');assert.equal(screens.profile,'account');assert.equal(screens.resources,'training');assert.equal(screens.community,'notebook');assert.equal(screens.admin,undefined);
+ assert.equal(screens.drivercommunity,'connect');assert.equal(screens.progress,'account');assert.equal(screens.profile,'account');assert.equal(screens.resources,'training');assert.equal(screens.community,'notebook');assert.equal(screens.admin,undefined);
  const home=html.slice(html.indexOf('<section id="home"'),html.indexOf('<section id="practiceyard"'));
  assert.ok(home.includes('dashboardProgressSummary'));assert.ok(home.includes("openScreen('progress')"));
  assert.ok(html.includes('aria-current'));assert.ok(html.includes('aria-expanded'));assert.ok(html.includes('Stored on this device'));

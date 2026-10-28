@@ -99,6 +99,7 @@
     @media(max-width:700px){body:has(#nav:not([hidden]))>.beta-notice{margin-left:0}.beta-notice{padding:18px 16px}.beta-notice h2{font-size:18px}}
     .support-hub{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:center;border-top:3px solid #c99834;margin-top:24px}.support-hub h3{font-size:22px;margin:0 0 12px}.support-hub p{margin:10px 0;max-width:72ch}.support-hub .eyebrow{display:block;color:#79550d;margin-bottom:8px}.support-hub-action{text-align:center}.support-hub-action .btn{display:block;text-decoration:none;background:#14263e;color:#fff;margin:0}.support-hub-action .small{font-size:13px}.support-external{font-size:14px}
     @media(max-width:700px){.support-hub{grid-template-columns:1fr;gap:10px}.support-hub-action{max-width:100%}.support-hub h3{font-size:20px}}
+.community-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.community-tabs button{padding:12px 15px;border:1px solid var(--border);border-radius:9px;background:var(--soft);color:var(--text);cursor:pointer;min-height:44px}.community-tabs .selected{background:var(--accent);color:white}.community-post,.community-message{border:1px solid var(--border);padding:20px;border-radius:12px;margin:16px 0;background:white;overflow-wrap:anywhere}.community-post h4{font-size:19px;margin:6px 0}.community-body{white-space:pre-wrap;overflow-wrap:anywhere}.community-actions{display:flex;flex-wrap:wrap;gap:8px}.community-actions .btn{width:auto;margin:4px 0;min-height:44px}.community-empty{background:var(--soft);padding:18px;border-radius:10px}.community-check{display:flex;align-items:flex-start;gap:12px;font-weight:400;margin:18px 0}.community-check input{width:20px;height:20px;flex:none;margin-top:3px}.community-message.own{background:#f0f6fc;border-left:4px solid #446b95}#communityStatus:empty{display:none}#communityStatus:not(:empty){padding:12px;border-left:4px solid #c99834;background:#fff8e8}#communityRoot .btn{max-width:100%}#communityRoot[aria-busy="true"]{opacity:.75;pointer-events:none}@media(max-width:700px){.community-post,.community-message{padding:16px}.community-actions .btn{flex:1}.community-tabs button{flex:1}}
 </style>
 </head>
 <body>
@@ -393,6 +394,14 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   </div>
 </section>
 
+<section id="drivercommunity">
+<div class="card"><span class="badge">Members-only beta</span><h2>Community</h2><p class="lead">Learn together. Ask questions, share encouragement and help shape Maricel CDL Success Hub.</p>
+<p>Your private profile and progress stay private. Community names and discussions are shared with signed-in members; messages require a request and acceptance. Messages are not end-to-end encrypted. Only reported content is shared with moderators for review.</p>
+<div id="communityTabs" class="community-tabs" aria-label="Community sections">
+<button type="button" data-community-tab="forum" aria-pressed="true">Driver Forum</button><button type="button" data-community-tab="members" aria-pressed="false">Members</button><button type="button" data-community-tab="messages" aria-pressed="false">Messages</button><button type="button" data-community-tab="feedback" aria-pressed="false">Beta Feedback</button><button type="button" data-community-tab="settings" aria-pressed="false">My Community Profile</button><button id="communityModTab" type="button" data-community-tab="moderation" aria-pressed="false" hidden>Moderation</button>
+</div><p id="communitySetupNotice" class="warning" hidden>Community is opening soon. Moderator setup is being completed before discussions and messaging are enabled. You can prepare your optional Community profile now.</p><p id="communityStatus" role="status" aria-live="polite"></p><div id="communityRoot">Open Community to load member discussions.</div></div>
+<div class="card"><h3>Community rules</h3><ul><li>Be respectful. No harassment, discrimination, spam, scams, advertising or shaming.</li><li>Share experience, not guarantees. Verify advice with qualified instructors and official sources. Use the Hub while parked.</li><li>No passwords, CDL numbers, private contact details, exact live locations, load information, customer documents or company-sensitive details.</li><li>Post only material you have permission to share. Text only in this beta; no attachments.</li><li>Report concerning content and block unwanted contacts. Reports may be reviewed by Coach Maricel or designated moderators and are not monitored continuously. For emergencies, contact emergency services.</li><li>Moderators may hide content or suspend Community access for rule violations. This does not make every post verified or safe.</li></ul><p class="small">Turning off directory visibility does not remove your chosen name from previous posts or messages. Withdrawing a post hides it; retained reports and moderation records remain available to the site operator. <a href="disclaimer.html">Disclaimer &amp; source credits</a>.</p></div>
+</section>
 <section id="community">
   <div class="card"><span class="badge">Stored on this device</span><h2>My Notebook</h2>
     <p>Keep personal reminders, questions for your instructor, and lessons you want to revisit.</p>
@@ -593,7 +602,7 @@ function memberDisplay(session){
   memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;if(!signedIn)memberEl('subnav').hidden=true;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){memberGeneration++; memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
+  if(previous!==memberUserId){memberGeneration++;window.communityReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
   if(signedIn&&previous!==memberUserId){if(typeof showScreen==='function')showScreen('home');setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0)}
 }
@@ -652,6 +661,7 @@ const primaryNav=[
   ['home','Home','home'],
   ['training','Training','lesson'],
   ['trip','Trip Tools','planner'],
+  ['connect','Community','drivercommunity'],
   ['notebook','My Notebook','community'],
   ['account','My Account','progress']
 ];
@@ -660,7 +670,7 @@ const secondaryNav={
   trip:[['cameras','Live Traffic Cameras'],['planner','Plan My Route'],['safehaven','Find Safe Parking'],['facility','My Facility Notes']],
   account:[['progress','My Progress'],['profile','My Profile'],['about','About the Hub']]
 };
-const screenGroups={home:'home',practiceyard:'training',backing:'training',lesson:'training',resources:'training',planner:'trip',cameras:'trip',safehaven:'trip',facility:'trip',community:'notebook',progress:'account',profile:'account',about:'account'};
+const screenGroups={drivercommunity:'connect',home:'home',practiceyard:'training',backing:'training',lesson:'training',resources:'training',planner:'trip',cameras:'trip',safehaven:'trip',facility:'trip',community:'notebook',progress:'account',profile:'account',about:'account'};
 const nav=document.getElementById('nav'),subnav=document.getElementById('subnav');
 const navBrand=document.createElement('div');navBrand.className='nav-brand';navBrand.innerHTML='<img src="assets/maricel-cdl-logo.png" alt="Maricel CDL Success Hub" width="2048" height="683">';nav.appendChild(navBrand);
 const menuToggle=document.createElement('button');menuToggle.type='button';menuToggle.className='menu-toggle';menuToggle.textContent='Menu · Home';menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-controls','memberNavLinks');
@@ -677,6 +687,7 @@ const navNote=document.createElement('p');navNote.className='nav-note';navNote.t
 nav.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('menu-open')){nav.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.focus()}});
 function renderSubnav(){subnav.hidden=true}
 function showScreen(id){
+  if(id==='drivercommunity')setTimeout(()=>window.openCommunity?.(),0);
   if(!Object.prototype.hasOwnProperty.call(screenGroups,id))return;
   const target=document.getElementById(id);if(!target)return;
   document.querySelectorAll('main > section').forEach(screen=>screen.classList.remove('active'));target.classList.add('active');
@@ -1508,6 +1519,7 @@ window.straightAnswer = function(choice) {
 </script>
 <script src="backing-guides.js"></script>
 <script src="traffic-cameras.js"></script>
+<script src="community.js"></script>
 </body>
 </html>
 
