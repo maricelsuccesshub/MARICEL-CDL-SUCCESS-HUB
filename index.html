@@ -80,7 +80,14 @@
     @media(max-width:700px){#nav{position:sticky;top:0;width:100%;padding:8px 12px;border:0;border-bottom:1px solid var(--border);max-height:78vh;box-shadow:0 2px 8px #14263e12}#nav .menu-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:44px;background:var(--accent);color:white;border:0;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer}.nav-brand{display:none}#nav:not(.menu-open) .nav-links{display:none}.nav-links{padding:6px 0 12px}.nav-note{display:none}#memberMain{width:100%;margin:0;padding:18px 14px}body:has(#nav:not([hidden]))>header,body:has(#nav:not([hidden]))>#memberControls,body:has(#nav:not([hidden]))>footer{margin-left:0}header{padding:20px 16px}header h1{font-size:22px}header p{font-size:14px}.card{padding:18px}.learning-path,.dashboard-note-grid{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}h2{font-size:23px}.page-context{margin-bottom:12px}#memberGate{margin:18px 12px}}
     .directory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.directory-grid article{display:flex;flex-direction:column;min-width:0}.directory-grid article p{flex-grow:1}.directory-grid h4{font-size:18px;margin:0 0 10px}.directory-link{display:block;text-decoration:none;text-align:center;white-space:normal}.official-stops{margin-top:24px;scroll-margin-top:80px}.official-stops:focus{outline:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}#memberParkingSuggestions summary{cursor:pointer;min-height:40px}.directory-grid .list-item{margin:0}
     @media(max-width:700px){.directory-grid{grid-template-columns:1fr}}
-  </style>
+  
+    #backing .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}#backing [data-backing-guide]{min-height:54px;margin:0}#backing .selected-guide{background:var(--accent);color:white;border-color:var(--accent)}
+    #backing [data-backing-guide="panic"]{border:2px solid #b96c35}#backing .backing-purpose{margin:18px 0}
+    .backing-detail{border-top:1px solid var(--border);margin-top:22px;padding-top:24px;scroll-margin-top:86px}.backing-detail h3{font-size:26px;margin:0 0 6px}.backing-detail h4{font-size:17px;margin:20px 0 8px}.backing-detail li{margin:0 0 10px}.backing-detail ul,.backing-detail ol{padding-left:24px}.backing-detail p{max-width:78ch}.backing-focus{font-size:18px;color:var(--muted);margin:0 0 20px}.backing-empty{background:var(--soft);padding:22px;border-radius:12px}.backing-empty p{margin-bottom:0}
+    .backing-mode{display:flex;gap:10px;max-width:460px;margin:16px 0}.backing-mode .btn{flex:1;margin:0;min-height:48px}.backing-quick{max-width:78ch}.backing-quick ol{counter-reset:backing-step;list-style:none;padding:0}.backing-quick li{position:relative;padding:10px 10px 10px 46px;border-bottom:1px solid var(--border);counter-increment:backing-step}.backing-quick li:before{content:counter(backing-step);position:absolute;left:0;top:10px;border-radius:50%;background:#e5edf6;color:#294b70;width:28px;height:28px;text-align:center;font-weight:700}
+    .backing-learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}.backing-figure{margin:20px 0 0}.backing-figure svg{width:100%;height:auto;display:block;font:18px Arial,sans-serif;fill:#233c53}.backing-figure figcaption{font-size:14px;color:var(--muted);margin-top:12px}.backing-understand{padding:4px 20px 12px;background:var(--soft);border-radius:12px;margin-top:20px}.backing-mistakes{display:grid;grid-template-columns:1fr 1fr;gap:12px}.backing-mistakes .list-item{margin:0}.backing-mistakes p{margin:6px 0 0}.backing-stop{padding:14px 16px;border-left:4px solid #b4642b;background:#fff5eb;border-radius:0 10px 10px 0}.backing-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.backing-actions .btn{margin:0;width:auto}.backing-sources{margin-top:22px;border-top:1px solid var(--border);padding-top:16px}.backing-sources summary{cursor:pointer;font-weight:700}.backing-sources a{color:#195b92;text-decoration:underline}.backing-detail :focus-visible{outline:3px solid #187bcd;outline-offset:3px}
+    @media(max-width:850px){#backing .grid{grid-template-columns:repeat(2,minmax(0,1fr))}.backing-learn-grid{grid-template-columns:1fr}.backing-figure{max-width:580px;margin-top:0}.backing-mistakes{grid-template-columns:1fr}.backing-actions{flex-direction:column}.backing-actions .btn{width:100%}.backing-detail h3{font-size:23px}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#memberMain">Skip to page content</a>
@@ -336,18 +343,18 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 </section>
 
 <section id="backing">
-  <div class="card"><h2>Backing Guides</h2><p class="lead">Choose a maneuver for a quick refresher. For interactive exercises, open Practice Yard.</p>
+  <div class="card"><h2>Backing Guides</h2><p class="lead">Choose a maneuver, then use Quick refresher for the essentials or Teach me for explanations and diagrams.</p>
     <div class="grid">
-      <button class="btn light" onclick="showBacking('straight')">Straight Backing</button>
-      <button class="btn light" onclick="showBacking('offset')">Offset Backing</button>
-      <button class="btn light" onclick="showBacking('alley')">Alley Dock</button>
-      <button class="btn light" onclick="showBacking('45')">45° Backing</button>
-      <button class="btn light" onclick="showBacking('90')">90° Backing</button>
-      <button class="btn light" onclick="showBacking('blind')">Blind Side</button>
-      <button class="btn light" onclick="showBacking('truckstop')">Truck Stop Parking</button>
-      <button class="btn light" onclick="showBacking('panic')">I Lost My Setup</button>
+      <button type="button" class="btn light" data-backing-guide="straight" aria-pressed="false" aria-controls="backingContent" onclick="showBacking('straight')">Straight Backing</button>
+      <button type="button" class="btn light" data-backing-guide="offset" aria-pressed="false" aria-controls="backingContent" onclick="showBacking('offset')">Offset Backing</button>
+      <button type="button" class="btn light" data-backing-guide="alley" aria-pressed="false" aria-controls="backingContent" onclick="showBacking('alley')">Alley Dock</button>
+      <button type="button" class="btn light" data-backing-guide="45" aria-pressed="false" aria-controls="backingContent" onclick="showBacking('45')">45° Backing</button>
+      <button type="button" class="btn light" data-backing-guide="90" aria-pressed="false" aria-controls="backingContent" onclick="showBacking('90')">90° Backing</button>
+      <button type="button" class="btn light" data-backing-guide="blind" aria-pressed="false" aria-controls="backingContent" onclick="showBacking('blind')">Blind Side</button>
+      <button type="button" class="btn light" data-backing-guide="truckstop" aria-pressed="false" aria-controls="backingContent" onclick="showBacking('truckstop')">Truck Stop Parking</button>
+      <button type="button" class="btn light" data-backing-guide="panic" aria-pressed="false" aria-controls="backingContent" onclick="showBacking('panic')">I Lost My Setup</button>
     </div>
-    <div id="backingContent" class="list-item">Choose a backing refresher.</div>
+    <p class="small backing-purpose">Use while parked. These are educational refreshers for instructor-supervised learning, not truck navigation or a substitute for practical training.</p><div id="backingContent" class="backing-detail"><div class="backing-empty"><strong>What would you like to review?</strong><p>Choose a guide above. Start with Straight Backing, or use I Lost My Setup to pause and reassess.</p></div></div>
   </div>
 </section>
 
@@ -375,7 +382,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 <section id="progress">
   <div class="page-columns">
   <div class="card"><span class="badge">Private to your account</span><h2>My Practice Progress</h2><p class="form-intro">After practice, record one win and one thing to work on next. Your entries follow your signed-in account.</p>
-    <label for="progressDate">Date</label><input type="date" id="progressDate">
+    <p id="guideProgressNotice" class="success" role="status" hidden></p><label for="progressDate">Date</label><input type="date" id="progressDate">
     <label for="progressBacking">Backing Practiced</label><input id="progressBacking">
     <label for="progressWin">What Went Well?</label><textarea id="progressWin"></textarea>
     <label for="progressImprove">What Needs Improvement?</label><textarea id="progressImprove"></textarea>
@@ -1118,8 +1125,6 @@ async function renderFacilityNotes(){
   if(error){list.innerHTML='<p class="small">Could not load your private facility notes.</p>';return}
   list.innerHTML=data.length?data.map(x=>{const hasEntrance=x.entrance_lat!==null&&x.entrance_lon!==null;const mapUrl=hasEntrance?`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.entrance_lat+','+x.entrance_lon)}`:'';return `<div class="list-item"><strong>${esc(x.facility_name)}</strong>${x.facility_address?`<br>${esc(x.facility_address)}`:''}${hasEntrance?`<br><a class="btn light" style="display:inline-block;text-align:center" href="${mapUrl}" target="_blank" rel="noopener">Navigate to Truck Entrance</a>`:''}${x.entrance_notes?`<br><strong>Entrance:</strong> ${esc(x.entrance_notes)}`:''}${x.guard_notes?`<br><strong>Check-in:</strong> ${esc(x.guard_notes)}`:''}${x.approach_notes?`<br><strong>Approach:</strong> ${esc(x.approach_notes)}`:''}</div>`}).join(''):'<p class="small">No private facility notes saved yet.</p>';
 }
-const backing={straight:'<h3>Straight Backing</h3><ol><li>Line tractor and trailer straight.</li><li>Use both mirrors.</li><li>Back at idle speed.</li><li>Use small corrections only.</li><li>Pull up early if crooked.</li><li>GOAL before final feet.</li></ol><div class="warning">Common mistake: overcorrecting.</div>',offset:'<h3>Offset Backing</h3><ol><li>Start with clean setup.</li><li>Watch trailer tandems.</li><li>Create angle slowly.</li><li>Reduce angle as trailer enters lane.</li><li>Follow trailer with tractor.</li><li>Pull up before jackknife.</li></ol>',alley:'<h3>Alley Dock</h3><ol><li>Survey obstacles.</li><li>Set controlled angle.</li><li>Watch tandems pivot.</li><li>Control angle early.</li><li>Follow trailer.</li><li>GOAL often.</li><li>Pull up and straighten.</li></ol>',"45":'<h3>45° Backing</h3><ol><li>Drive past space.</li><li>Set trailer around 45°.</li><li>GOAL.</li><li>Back slowly.</li><li>Watch tandems.</li><li>Follow trailer.</li><li>Straighten and finish.</li></ol>',"90":'<h3>90° Backing</h3><ol><li>Use only when necessary.</li><li>GOAL first.</li><li>Watch pivot point.</li><li>Protect tail swing.</li><li>Pull up often.</li><li>Straighten before final back.</li></ol>',blind:'<h3>Blind Side</h3><ol><li>Avoid if safer setup exists.</li><li>GOAL before moving.</li><li>Use visible trained spotter if safe.</li><li>Stop if you lose sight.</li><li>Pull up and reposition.</li></ol><div class="danger">Never let pressure force unsafe blind-side backing.</div>',truckstop:'<h3>Truck Stop Parking</h3><ol><li>Pick easiest safe spot.</li><li>Avoid poorly parked trucks.</li><li>Watch tail swing and tractor nose.</li><li>GOAL.</li><li>Use pull-ups.</li><li>Ignore pressure and move slow.</li></ol>',panic:'<h3>I Lost My Setup</h3><ol><li>Stop.</li><li>Set brakes.</li><li>Breathe.</li><li>GOAL.</li><li>Check both sides.</li><li>Pull up.</li><li>Reset and try again slowly.</li></ol>'}
-function showBacking(t){backingContent.innerHTML=backing[t]}
 function savePost(){const p=JSON.parse(localStorage.getItem('posts')||'[]');p.unshift({topic:postTopic.value,msg:postMessage.value,date:new Date().toLocaleString()});localStorage.setItem('posts',JSON.stringify(p));postTopic.value=postMessage.value='';renderPosts()}
 function renderPosts(){const p=JSON.parse(localStorage.getItem('posts')||'[]');postList.innerHTML=p.length?p.map(x=>`<div class="list-item"><strong>${esc(x.topic||'Note')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>`).join(''):'<p class="small">No device notes yet. Save a question or reminder to get started.</p>'}
 async function saveProgress() {
@@ -1462,6 +1467,7 @@ window.straightAnswer = function(choice) {
   }
 };
 </script>
+<script src="backing-guides.js"></script>
 </body>
 </html>
 
