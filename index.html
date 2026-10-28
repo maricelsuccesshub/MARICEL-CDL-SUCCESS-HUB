@@ -880,108 +880,77 @@ function loadSimulatorStyles() {
   document.head.appendChild(style);
 }
 
+let straightTest = 1;
+const straightMaxMoves = 10;
+function startStraightTest(test) {
+  straightTest = test === 2 ? 2 : 1;
+  simMove = 0;
+  trailerAngle = straightTest === 1 ? 12 : -12;
+  renderStraightSimulator();
+}
 window.showPracticeLesson = function(type) {
   const box = document.getElementById("practiceContent");
   if (!box) return;
-
   loadSimulatorStyles();
-
   if (type === "trailer") {
-    box.innerHTML = `
-      <h3>🧠 Understanding Trailer Movement</h3>
-      <p><strong>Rule:</strong> The trailer reacts opposite first, then follows the tractor.</p>
-      <p>Watch the trailer first. Then make one small correction.</p>
-    `;
-  }
-
-  if (type === "brain") {
-    box.innerHTML = `
-      <h3>🎮 Brain Mode</h3>
-      <p>The truck pauses. You decide what happens next.</p>
-      <button class="btn" onclick="showPracticeLesson('straight')">Start Straight Back Scenario</button>
-    `;
-  }
-
-  if (type === "straight") {
-    simMove = 1;
-    trailerAngle = 12;
-   trailerAngle = 12;
-renderStraightSimulator("Your trailer is drifting right. What should you do?");
+    box.innerHTML = '<h3>🧠 Understanding Trailer Movement</h3><p><strong>Rule:</strong> The trailer reacts opposite first, then follows the tractor.</p><p>Watch the trailer first. Then make one small correction.</p>';
+  } else if (type === "brain") {
+    box.innerHTML = '<h3>🎮 Brain Mode</h3><p>The truck pauses. You decide what happens next.</p><button class="btn" onclick="showPracticeLesson(\'straight\')">Start Straight Back Scenario</button>';
+  } else if (type === "straight") {
+    startStraightTest(1);
   }
 };
-
-function renderStraightSimulator(message) {
+function renderStraightSimulator() {
   const box = document.getElementById("practiceContent");
-  const angleText = trailerAngle < 0 ? Math.abs(trailerAngle) + "° Left" : trailerAngle + "° Right";
-  const angleClass = Math.abs(trailerAngle) <= 3 ? "angle-good" : "angle-bad";
-
+  if (!box) return;
+  const complete = Math.abs(trailerAngle) <= 3;
+  const outOfMoves = simMove >= straightMaxMoves && !complete;
+  const finished = complete || outOfMoves;
+  const side = trailerAngle < 0 ? "Left" : trailerAngle > 0 ? "Right" : "Straight";
+  const angleText = Math.abs(trailerAngle) + "° " + side;
+  const initialSide = straightTest === 1 ? "right" : "left";
+  const feedback = complete
+    ? "✅ Great work! You straightened the trailer. Return the wheel to center and check your alignment."
+    : outOfMoves
+      ? "You used all 10 moves. Reset and try again with small, deliberate corrections."
+      : "In a straight back, make a small correction toward the trailer's drift, then return the wheel toward center as the trailer straightens. This is a steering-response lesson, not a physics-accurate simulator.";
   box.innerHTML = `
     <h3>🚛 Straight Back Trainer</h3>
-    <p><strong>Scenario:</strong> ${message}</p>
-
+    <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+      <button class="btn ${straightTest === 1 ? '' : 'light'}" onclick="startStraightTest(1)" aria-pressed="${straightTest === 1}">Test 1 · Drifting Right</button>
+      <button class="btn ${straightTest === 2 ? '' : 'light'}" onclick="startStraightTest(2)" aria-pressed="${straightTest === 2}">Test 2 · Drifting Left</button>
+    </div>
+    <p><strong>Scenario:</strong> Test ${straightTest} — Your trailer is drifting ${initialSide}. What should you do?</p>
     <div class="sim-panel">
-      <div class="sim-stat">Move: ${simMove} / 10</div>
-      <div class="sim-stat">Trailer Angle: <span class="${angleClass}">${angleText}</span></div>
+      <div class="sim-stat">Move: ${simMove} / ${straightMaxMoves}</div>
+      <div class="sim-stat">Trailer Angle: <span class="${complete ? 'angle-good' : 'angle-bad'}">${angleText}</span></div>
       <div class="sim-stat">Goal: Straighten the trailer</div>
     </div>
-
-    <div class="sim-yard">
-      <div class="lane-line lane-left"></div>
-      <div class="lane-line lane-right"></div>
-
-      
-      <div class="truck-wrap">
-  
-
-<img
-  src="assets/trailer-53ft.png"
-  class="trailer-img"
-  alt="Trailer"
-  style="transform: rotate(${trailerAngle}deg);"
->
-
-
-</div>
+    <div class="sim-yard" style="position:relative;min-height:300px;background:#293e52;border:2px solid #b5c5d5;border-radius:12px;overflow:hidden">
+      <div style="position:absolute;left:28%;top:0;bottom:0;border-left:3px solid #d9e2ea"></div>
+      <div style="position:absolute;right:28%;top:0;bottom:0;border-right:3px solid #d9e2ea"></div>
+      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:95px;height:240px">
+        <img src="assets/trailer-53ft.png" alt="Overhead trailer illustration showing ${angleText} angle" style="position:absolute;width:70px;height:auto;left:12px;top:0;transform-origin:50% 90%;transform:rotate(${trailerAngle}deg);max-height:190px;object-fit:contain">
+      </div>
     </div>
-
-    <div class="coach-bubble">
-  👩‍🏫 Coach Maricel: Study the trailer. Choose your correction.
-</div>
-
-   <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
-<button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
-<button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
-`;
+    <div class="coach-bubble" role="status">👩‍🏫 Coach Maricel: ${feedback}</div>
+    ${finished ? '' : `
+      <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
+      <button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
+      <button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
+    `}
+    ${complete && straightTest === 1 ? '<button class="btn" onclick="startStraightTest(2)">Next Test → Trailer Drifting Left</button>' : ''}
+    ${complete && straightTest === 2 ? '<div class="success">🏆 Both directions practiced! Keep practicing with your instructor.</div><button class="btn" onclick="startStraightTest(1)">Practice Again — Test 1</button>' : ''}
+    <button class="btn light" onclick="startStraightTest(straightTest)">↻ Restart This Test</button>
+    <p class="small">Educational steering-response exercise only. Not a physics-accurate driving simulator. Always follow your instructor and use GOAL (Get Out And Look) in real backing situations.</p>
+  `;
 }
 window.straightAnswer = function(choice) {
+  if (simMove >= straightMaxMoves || Math.abs(trailerAngle) <= 3) return;
   simMove++;
-
-  if (choice === "left") {
-    trailerAngle -= 6;
-  }
-
-  if (choice === "right") {
-    trailerAngle += 6;
-  }
-
-  if (choice === "hold") {
-    trailerAngle = trailerAngle;
-  }
-
-  if (Math.abs(trailerAngle) <= 3) {
-    renderStraightSimulator("✅ Correct. The trailer is almost straight.");
-    return;
-  }
-
-  if (trailerAngle > 3) {
-    renderStraightSimulator("The trailer is still drifting right. What should you do?");
-    return;
-  }
-
-  if (trailerAngle < -3) {
-    renderStraightSimulator("The trailer is still drifting left. What should you do?");
-    return;
-  }
+  if (choice === "left") trailerAngle -= 6;
+  else if (choice === "right") trailerAngle += 6;
+  renderStraightSimulator();
 };
 </script>
 </body>
