@@ -100,6 +100,8 @@
     .support-hub{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:center;border-top:3px solid #c99834;margin-top:24px}.support-hub h3{font-size:22px;margin:0 0 12px}.support-hub p{margin:10px 0;max-width:72ch}.support-hub .eyebrow{display:block;color:#79550d;margin-bottom:8px}.support-hub-action{text-align:center}.support-hub-action .btn{display:block;text-decoration:none;background:#14263e;color:#fff;margin:0}.support-hub-action .small{font-size:13px}.support-external{font-size:14px}
     @media(max-width:700px){.support-hub{grid-template-columns:1fr;gap:10px}.support-hub-action{max-width:100%}.support-hub h3{font-size:20px}}
 .community-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.community-tabs button{padding:12px 15px;border:1px solid var(--border);border-radius:9px;background:var(--soft);color:var(--text);cursor:pointer;min-height:44px}.community-tabs .selected{background:var(--accent);color:white}.community-post,.community-message{border:1px solid var(--border);padding:20px;border-radius:12px;margin:16px 0;background:white;overflow-wrap:anywhere}.community-post h4{font-size:19px;margin:6px 0}.community-body{white-space:pre-wrap;overflow-wrap:anywhere}.community-actions{display:flex;flex-wrap:wrap;gap:8px}.community-actions .btn{width:auto;margin:4px 0;min-height:44px}.community-empty{background:var(--soft);padding:18px;border-radius:10px}.community-check{display:flex;align-items:flex-start;gap:12px;font-weight:400;margin:18px 0}.community-check input{width:20px;height:20px;flex:none;margin-top:3px}.community-message.own{background:#f0f6fc;border-left:4px solid #446b95}#communityStatus:empty{display:none}#communityStatus:not(:empty){padding:12px;border-left:4px solid #c99834;background:#fff8e8}#communityRoot .btn{max-width:100%}#communityRoot[aria-busy="true"]{opacity:.75;pointer-events:none}@media(max-width:700px){.community-post,.community-message{padding:16px}.community-actions .btn{flex:1}.community-tabs button{flex:1}}
+    .menu-current{display:none}
+    @media(max-width:700px){#nav .menu-toggle{gap:12px;min-height:64px;text-align:left;padding:12px 16px;border:1px solid #344b65;box-shadow:0 2px 4px #14263e14}.menu-toggle-symbol{font-size:26px;line-height:1;flex:none}.menu-toggle-copy{flex:1;display:block;min-width:0}.menu-toggle-title{display:block;font-size:17px;line-height:1.3;font-weight:750}.menu-toggle-hint{display:block;font-size:12px;line-height:1.4;font-weight:400;color:#e1e9f2;margin-top:3px}.menu-toggle-arrow{font-size:26px;line-height:1;flex:none}.menu-current{display:block;font-size:12px;color:var(--muted);margin:6px 4px 0}#nav.menu-open .menu-toggle{position:sticky;top:0;z-index:1}#nav .nav-links{padding-bottom:14px}}
 </style>
 </head>
 <body>
@@ -673,8 +675,15 @@ const secondaryNav={
 const screenGroups={drivercommunity:'connect',home:'home',practiceyard:'training',backing:'training',lesson:'training',resources:'training',planner:'trip',cameras:'trip',safehaven:'trip',facility:'trip',community:'notebook',progress:'account',profile:'account',about:'account'};
 const nav=document.getElementById('nav'),subnav=document.getElementById('subnav');
 const navBrand=document.createElement('div');navBrand.className='nav-brand';navBrand.innerHTML='<img src="assets/maricel-cdl-logo.png" alt="Maricel CDL Success Hub" width="2048" height="683">';nav.appendChild(navBrand);
-const menuToggle=document.createElement('button');menuToggle.type='button';menuToggle.className='menu-toggle';menuToggle.textContent='Menu · Home';menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-controls','memberNavLinks');
-menuToggle.onclick=()=>{const expanded=nav.classList.toggle('menu-open');menuToggle.setAttribute('aria-expanded',String(expanded))};nav.appendChild(menuToggle);
+const menuToggle=document.createElement('button');menuToggle.type='button';menuToggle.className='menu-toggle';menuToggle.innerHTML='<span class="menu-toggle-symbol" aria-hidden="true">☰</span><span class="menu-toggle-copy"><span class="menu-toggle-title">Explore the Hub</span><span class="menu-toggle-hint">Tap to open menu</span></span><span class="menu-toggle-arrow" aria-hidden="true">⌄</span>';menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-controls','memberNavLinks');
+function updateMobileMenu(expanded){
+ menuToggle.setAttribute('aria-expanded',String(expanded));menuToggle.setAttribute('aria-label',expanded?'Close main menu':'Open main menu: lessons, trip tools, community and account');
+ menuToggle.querySelector('.menu-toggle-title').textContent=expanded?'Close menu':'Explore the Hub';
+ menuToggle.querySelector('.menu-toggle-hint').textContent=expanded?'Choose a page below':'Tap to open menu';
+ menuToggle.querySelector('.menu-toggle-arrow').textContent=expanded?'⌃':'⌄';
+}
+menuToggle.onclick=()=>updateMobileMenu(nav.classList.toggle('menu-open'));nav.appendChild(menuToggle);updateMobileMenu(false);
+const mobileCurrent=document.createElement('p');mobileCurrent.className='menu-current';mobileCurrent.textContent='Viewing: Home';nav.appendChild(mobileCurrent);
 const navLinks=document.createElement('div');navLinks.id='memberNavLinks';navLinks.className='nav-links';nav.appendChild(navLinks);
 primaryNav.forEach(([group,text,target])=>{
   const items=secondaryNav[group];
@@ -684,7 +693,7 @@ primaryNav.forEach(([group,text,target])=>{
   navLinks.appendChild(container);
 });
 const navNote=document.createElement('p');navNote.className='nav-note';navNote.textContent='Learn. Practice. Build confidence.';navLinks.appendChild(navNote);
-nav.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('menu-open')){nav.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.focus()}});
+nav.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('menu-open')){nav.classList.remove('menu-open');updateMobileMenu(false);menuToggle.focus()}});
 function renderSubnav(){subnav.hidden=true}
 function showScreen(id){
   if(id==='drivercommunity')setTimeout(()=>window.openCommunity?.(),0);
@@ -694,7 +703,7 @@ function showScreen(id){
   document.querySelectorAll('#nav button[data-screen]').forEach(button=>{const selected=button.dataset.screen===id;button.classList.toggle('active',selected);if(selected)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')});
   const group=screenGroups[id],primary=primaryNav.find(item=>item[0]===group),item=secondaryNav[group]?.find(item=>item[0]===id);
   document.getElementById('pageContext').textContent=primary[1]+(item?' / '+item[1]:id==='home'?' / My dashboard':'');
-  nav.classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='Menu · '+(item?.[1]||primary[1]);renderSubnav();
+  nav.classList.remove('menu-open');updateMobileMenu(false);mobileCurrent.textContent='Viewing: '+(item?.[1]||primary[1]);renderSubnav();
   const heading=target.querySelector('h2');if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true})}scrollTo(0,0);
 }
 function openScreen(id){showScreen(id)}
