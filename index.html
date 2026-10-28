@@ -43,12 +43,15 @@
     footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
     nav{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;max-height:none;padding:10px 14px;scrollbar-width:thin;box-shadow:0 3px 12px rgba(0,0,0,.07)}
     nav button{flex:0 0 auto;width:auto;min-height:42px;padding:10px 15px;white-space:nowrap;font-size:13px}
+    .nav-group{display:flex;flex-direction:column;gap:4px;flex:0 0 auto;padding-right:10px;border-right:1px solid var(--border)}
+    .nav-group:last-child{border-right:0;padding-right:0}.nav-group-buttons{display:flex;gap:6px}.nav-group-label{padding-left:3px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .dashboard-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:16px}.dashboard-grid .card{margin-bottom:0}.dashboard-note-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.dashboard-note-grid>div{margin-top:0}
     #practiceyard .grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
     #practiceyard .grid .card{display:flex;flex-direction:column;gap:8px}
     #practiceyard .grid .card h3{margin:0}
     #practiceyard .grid .card p{flex:1;line-height:1.5;margin:4px 0}
     #practiceyard .grid .btn{margin-top:auto}
-    @media(max-width:700px){#practiceyard .grid{grid-template-columns:1fr}main{padding:12px}nav button{padding:9px 12px}}
+    @media(max-width:700px){#practiceyard .grid,.dashboard-grid,.dashboard-note-grid{grid-template-columns:1fr}main{padding:12px}nav button{padding:9px 12px}.nav-group-label{font-size:9px}}
     #memberGate{max-width:460px;margin:28px auto;padding:24px;border-radius:18px;background:white;border:1px solid #e5e7eb;box-shadow:0 8px 30px #11182712}
     #memberGate input{margin:6px 0 12px}#memberGate .btn{margin-top:8px}#memberGate .auth-tabs{display:flex;gap:8px}#memberGate .auth-tabs button{flex:1;padding:12px;border:1px solid #ddd;border-radius:10px;background:#f3f4f6;cursor:pointer}#memberGate .auth-tabs button.selected{background:#111827;color:white}#memberMessage{min-height:22px;margin-top:12px}#memberControls{display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;background:white}#memberControls button{padding:8px 12px;border-radius:8px;border:1px solid #ddd;background:#f3f4f6;cursor:pointer}
   </style>
@@ -71,81 +74,31 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 <main id="memberMain" hidden>
   
 <section id="home" class="active">
-
   <div class="card">
-    <h2>👋 Welcome, Driver!</h2>
+    <h2 id="dashboardWelcomeName">👋 Welcome, Driver!</h2>
     <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
-   
-    <p>Today we're going to build confidence—not just complete a lesson.</p>
-
-<p class="small">
-Every professional driver was once a beginner.
-</p>
+    <p>Use the organized menu above to open training, trip tools, community resources, or your account.</p>
+    <p class="small">Every professional driver was once a beginner.</p>
   </div>
 
-  <div class="card">
-    
-    <h3>🌟 Today's Mission</h3>
-
-<p><strong>Understand WHY the trailer follows the tractor.</strong></p>
-
-<p class="small">
-⏱ Estimated Time: 5 minutes<br>
-🎯 Today's Goal: Understand the trailer—not memorize the steering wheel.
-</p>
-    
- <button class="btn" onclick="showScreen('lesson', document.querySelectorAll('nav button')[10])">
-  Start Today's Lesson
-</button>
-    
-  </div>
-
-  <div class="grid">
+  <div class="dashboard-grid">
     <div class="card">
-      <h3>🚛 CDL Practice Yard</h3>
-      <p>Learn backing maneuvers step-by-step.</p>
-      <button class="btn light" onclick="showScreen('practiceyard', document.querySelectorAll('nav button')[1])">
-        Go to Practice Yard
-      </button>
+      <h3>🌟 Today's Mission</h3>
+      <p><strong>Understand WHY the trailer follows the tractor.</strong></p>
+      <p class="small">⏱ Estimated Time: 5 minutes<br>🎯 Today's Goal: Understand the trailer—not memorize the steering wheel.</p>
+      <button class="btn" onclick="openScreen('lesson')">Start Today's Lesson</button>
     </div>
 
     <div class="card">
-      <h3>🛣 Plan My Route</h3>
-      <p>Check route, sunset, weather, and safe parking deadline.</p>
-      <button class="btn light" onclick="showScreen('planner', document.querySelectorAll('nav button')[3])">
-        Plan Route
-      </button>
-    </div>
-
-    <div class="card">
-      <h3>🅿️ Safe Haven Finder</h3>
-      <p>Find truck stops, rest areas, diesel, parking, and CAT scales.</p>
-      <button class="btn light" onclick="showScreen('safehaven', document.querySelectorAll('nav button')[4])">
-        Find Safe Haven
-      </button>
-    </div>
-
-    <div class="card">
-      <h3>🏢 Facility Intelligence</h3>
-      <p>Save truck entrance GPS pins, guard shack notes, and approach tips.</p>
-      <button class="btn light" onclick="showScreen('facility', document.querySelectorAll('nav button')[5])">
-        View Facilities
-      </button>
+      <h3>📈 Latest Progress</h3>
+      <div id="dashboardProgressSummary"><p class="small">Your latest private practice entry will appear here.</p></div>
     </div>
   </div>
 
-  <div class="success">
-    <strong>💡 Instructor Tip:</strong><br>
-    Small steering corrections create the biggest improvements.
+  <div class="dashboard-note-grid">
+    <div class="success"><strong>💡 Coach's Focus</strong><br>Small steering corrections create the biggest improvements.</div>
+    <div class="warning"><strong>🔒 Privacy Rule</strong><br>Never enter load information, bills of lading, employee IDs, truck or trailer numbers, or company-sensitive information.</div>
   </div>
-
-  <div class="warning">
-    <strong>Privacy Rule:</strong>
-    Do not upload load information, bills of lading, dispatch screenshots,
-    trailer contents, customer documents, employee IDs, truck numbers,
-    trailer numbers, or company-sensitive information.
-  </div>
-
 </section>
 <section id="practiceyard">
 
@@ -529,7 +482,7 @@ function memberDisplay(session){
   memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){memberGeneration++; memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
+  if(previous!==memberUserId){memberGeneration++; memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
   if(signedIn&&previous!==memberUserId)setTimeout(()=>{renderProgress();loadMemberProfile();},0);
 }
@@ -571,6 +524,7 @@ async function loadMemberProfile(){
   const {data,error}=await memberClient.from('member_profiles').select('display_name').eq('user_id',id).maybeSingle();
   if(generation!==memberGeneration)return;
   memberEl('profileName').value=data?.display_name||'';
+  memberEl('dashboardWelcomeName').textContent='👋 Welcome, '+(data?.display_name||'Driver')+'!';
   const {data:auth}=await memberClient.auth.getUser();
   if(generation!==memberGeneration)return;
   memberEl('profileEmail').textContent=auth.user?.email||'';
@@ -578,27 +532,21 @@ async function loadMemberProfile(){
 }
 async function saveProfile(){
   const id=memberUserId,generation=memberGeneration;if(!id)return;
-  const {error}=await memberClient.from('member_profiles').upsert({user_id:id,display_name:memberEl('profileName').value.trim().slice(0,100),updated_at:new Date().toISOString()},{onConflict:'user_id'});
-  if(generation===memberGeneration)memberEl('profileSaved').textContent=error?'Could not save profile. Please retry.':'Your private profile was saved.';
+  const displayName=memberEl('profileName').value.trim().slice(0,100);
+  const {error}=await memberClient.from('member_profiles').upsert({user_id:id,display_name:displayName,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+  if(generation===memberGeneration){memberEl('profileSaved').textContent=error?'Could not save profile. Please retry.':'Your private profile was saved.';if(!error)memberEl('dashboardWelcomeName').textContent='👋 Welcome, '+(displayName||'Driver')+'!';}
 }
 
-const screens=[
-  ['home','🏠 Dashboard'],
-  ['practiceyard','🚛 CDL Practice Yard'],
-  ['profile','My Profile'],
-  ['planner','Plan Route'],
-  ['safehaven','Safe Haven'],
-  ['facility','Facilities'],
-  ['backing','Backing'],
-  ['community','Community'],
-  ['resources','Resources'],
-  ['progress','Progress'],
-  ['lesson','🧠 Lesson'],
-  ['about','ℹ️ About'],
-  ['admin','Admin']
+const navGroups=[
+  ['Training',[['home','🏠 Dashboard'],['practiceyard','🚛 Practice Yard'],['backing','Backing'],['lesson','🧠 Lesson'],['progress','Progress']]],
+  ['Trip Tools',[['planner','Plan Route'],['safehaven','Safe Haven'],['facility','Facilities']]],
+  ['Connect',[['community','Community'],['resources','Resources']]],
+  ['Account',[['profile','My Profile'],['about','ℹ️ About'],['admin','Admin']]]
 ];
-const nav=document.getElementById('nav');screens.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');nav.appendChild(b)});
+const screens=navGroups.flatMap(([,items])=>items),nav=document.getElementById('nav');
+navGroups.forEach(([groupName,items])=>{const group=document.createElement('div'),label=document.createElement('span'),buttons=document.createElement('div');group.className='nav-group';label.className='nav-group-label';label.textContent=groupName;buttons.className='nav-group-buttons';items.forEach(([id,text])=>{const b=document.createElement('button');b.type='button';b.dataset.screen=id;b.textContent=text;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');buttons.appendChild(b)});group.append(label,buttons);nav.appendChild(group)});
 function showScreen(id,btn){document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');scrollTo(0,0)}
+function openScreen(id){showScreen(id,nav.querySelector(`[data-screen="${id}"]`))}
 function esc(str) {
   return String(str || "")
     .replace(/&/g, "&amp;")
@@ -674,12 +622,13 @@ async function renderProgress(){
   const generation=memberGeneration;
   if(!memberClient)return;
   const {data:{user}}=await memberClient.auth.getUser();
-  if(!user?.email_confirmed_at){progressList.textContent='Sign in to see your progress.';return;}
+  if(!user?.email_confirmed_at){progressList.textContent='Sign in to see your progress.';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Sign in to see your latest progress.</p>';return;}
   if(generation!==memberGeneration)return;
   const {data,error}=await memberClient.from('member_progress').select('progress_date,backing_practice,went_well,needs_improvement,confidence').order('created_at',{ascending:false}).limit(30);
   if(generation!==memberGeneration)return;
-  if(error){progressList.textContent='Could not load progress: '+error.message;return;}
+  if(error){progressList.textContent='Could not load progress: '+error.message;memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your progress could not be loaded.</p>';return;}
   progressList.innerHTML=data.length?data.map(p=>'<div class="list-item"><strong>'+esc(p.progress_date||'Log')+'</strong><br><strong>Backing:</strong> '+esc(p.backing_practice||'')+'<br><strong>Win:</strong> '+esc(p.went_well||'')+'<br><strong>Improve:</strong> '+esc(p.needs_improvement||'')+'<br><strong>Confidence:</strong> '+esc(p.confidence||'')+'</div>').join(''):'<p class="small">No progress recorded yet.</p>';
+  memberEl('dashboardProgressSummary').innerHTML=data.length?'<p><strong>'+esc(data[0].progress_date||'Latest practice')+'</strong></p><p>'+esc(data[0].backing_practice||'Practice entry')+'</p><p class="small">Confidence: '+esc(data[0].confidence||'Not recorded')+' · Open the Progress tab for details.</p>':'<p class="small">No practice recorded yet. Your first private entry will appear here.</p>';
 }
 
 let lessonStep = 0;
@@ -753,7 +702,7 @@ function nextLessonStep() {
     lessonStep++;
     updateLessonStep();
   } else {
-    showScreen('practiceyard', document.querySelectorAll('nav button')[1]);
+    openScreen('practiceyard');
   }
 }
 function startLesson() {
