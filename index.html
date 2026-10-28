@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maricel CDL Success Hub</title>
+  <title>Maricel CDL Success Hub — Driver Testing</title>
+  <meta name="description" content="Test Maricel CDL Success Hub: lessons, guided backing practice, trip tools, and your private practice progress.">
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -77,12 +78,15 @@
     @media(min-width:1700px){#memberMain{margin-left:calc(244px + (100vw - 244px - 1220px)/2)}}
     @media(max-width:1050px){#nav{width:216px}#memberMain{width:calc(100% - 216px);margin-left:216px;padding:24px}body:has(#nav:not([hidden]))>header,body:has(#nav:not([hidden]))>#memberControls,body:has(#nav:not([hidden]))>footer{margin-left:216px}.page-columns{grid-template-columns:1fr}.dashboard-grid{grid-template-columns:1fr}#practiceyard .grid{grid-template-columns:1fr}}
     @media(max-width:700px){#nav{position:sticky;top:0;width:100%;padding:8px 12px;border:0;border-bottom:1px solid var(--border);max-height:78vh;box-shadow:0 2px 8px #14263e12}#nav .menu-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:44px;background:var(--accent);color:white;border:0;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer}.nav-brand{display:none}#nav:not(.menu-open) .nav-links{display:none}.nav-links{padding:6px 0 12px}.nav-note{display:none}#memberMain{width:100%;margin:0;padding:18px 14px}body:has(#nav:not([hidden]))>header,body:has(#nav:not([hidden]))>#memberControls,body:has(#nav:not([hidden]))>footer{margin-left:0}header{padding:20px 16px}header h1{font-size:22px}header p{font-size:14px}.card{padding:18px}.learning-path,.dashboard-note-grid{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}h2{font-size:23px}.page-context{margin-bottom:12px}#memberGate{margin:18px 12px}}
+    .directory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.directory-grid article{display:flex;flex-direction:column;min-width:0}.directory-grid article p{flex-grow:1}.directory-grid h4{font-size:18px;margin:0 0 10px}.directory-link{display:block;text-decoration:none;text-align:center;white-space:normal}.official-stops{margin-top:24px;scroll-margin-top:80px}.official-stops:focus{outline:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}#memberParkingSuggestions summary{cursor:pointer;min-height:40px}.directory-grid .list-item{margin:0}
+    @media(max-width:700px){.directory-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 <a class="skip-link" href="#memberMain">Skip to page content</a>
 <header>
 
+<p style="margin:0 0 12px;color:#fff;font-size:13px;font-weight:700">DRIVER TESTING PREVIEW</p>
 <h1>Maricel CDL Success Hub</h1>
 
 <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
@@ -93,7 +97,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
 </header>
 <div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
-<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your free account to access the training dashboard.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
+<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your own free test account to try the training dashboard. Your profile and practice progress are private to your account. Use a password you do not use elsewhere.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
 <nav id="nav" aria-label="Main navigation" hidden></nav>
 <div id="subnav" aria-label="Section navigation" hidden></div>
 <main id="memberMain" tabindex="-1" hidden>
@@ -227,34 +231,38 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
     <details class="advanced"><summary>Advanced: enter destination coordinates</summary><div class="two-col"><div><label for="manualLat">Latitude</label><input id="manualLat" inputmode="decimal" placeholder="34.0522"></div><div><label for="manualLon">Longitude</label><input id="manualLon" inputmode="decimal" placeholder="-118.2437"></div></div></details>
     <button class="btn" onclick="autoPlanDestination()">Auto Get Sunset, Timezone & Weather</button>
     <div id="autoPlanResult"></div>
-    <h3>Open your route</h3>
+    <h3>Open your route</h3><p class="small">Google Maps directions are not a truck-specific route clearance check.</p>
     <div class="action-grid">
       <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button>
     </div>
-    <details class="advanced"><summary>Find stops and services along your route</summary><div class="action-grid">
-      <button class="btn light" onclick="openRouteSearch('truck stops')">Truck Stops</button>
-      <button class="btn light" onclick="openRouteSearch('travel centers truck parking')">Travel Centers</button>
-      <button class="btn light" onclick="openRouteSearch('rest areas truck parking')">Rest Areas</button>
-      <button class="btn light" onclick="openRouteSearch('semi truck parking')">Truck Parking</button>
-      <button class="btn light" onclick="openRouteSearch('CAT scales truck stop')">CAT Scales</button>
+    <details class="advanced"><summary>Choose official parking &amp; service directories</summary><p class="small">Opens the official-source finder using your destination as a city reminder. This does not calculate stops along the route.</p><div class="action-grid">
+      <button class="btn light" onclick="openRouteSearch('truckstops')">Truck Stops</button>
+      <button class="btn light" onclick="openRouteSearch('truckstops')">Travel Centers</button>
+      <button class="btn light" onclick="openRouteSearch('rest')">Rest Areas</button>
+      <button class="btn light" onclick="openRouteSearch('parking')">Truck Parking</button>
+      <button class="btn light" onclick="openRouteSearch('scales')">CAT Scales</button>
     </div></details>
   </div>
 </section>
 
 <section id="safehaven">
-  <div class="card"><span class="badge">Shared member locations</span><h2>Find Safe Parking</h2>
-    <p class="small">Search for parking and essential services near a city or address.</p>
-    <label for="safeSearchLocation">Search Near City or Address</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA">
-    <div class="action-grid">
-      <button class="btn" onclick="mapSearch('truck stop')">Truck Stops</button>
-      <button class="btn" onclick="mapSearch('interstate rest area truck parking')">Rest Areas</button>
-      <button class="btn" onclick="mapSearch('truck parking 53 foot trailer')">Truck Parking</button>
-      <button class="btn" onclick="mapSearch('diesel truck fuel')">Diesel Fuel</button>
-      <button class="btn" onclick="mapSearch('CAT scale truck stop')">CAT Scale</button>
-      <button class="btn" onclick="mapSearch('travel center truck parking')">Travel Centers</button>
+  <div class="card"><span class="badge">Official public-access sources</span><h2>Truck Parking &amp; Rest Stops</h2>
+    <p>Use official truck-stop operators and state transportation agencies to find facilities open to traveling drivers. General warehouse and distribution-center search results are not used here.</p>
+    <p class="small">These are official directories, not a live list of available spaces. Check the selected location’s truck parking, opening status, fees, and overnight rules with its operator.</p>
+    <label for="safeSearchLocation">City or address to use in the official directory</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA" aria-describedby="parkingLocationHelp">
+    <p id="parkingLocationHelp" class="small">Your city is shown as a reminder below. Enter it in the operator’s locator after opening its website.</p>
+    <div class="action-grid" aria-label="Official stop categories">
+      <button class="btn" type="button" data-stop-category="parking" onclick="showOfficialStops('parking')">Truck Parking</button>
+      <button class="btn light" type="button" data-stop-category="truckstops" onclick="showOfficialStops('truckstops')">Truck Stops &amp; Travel Centers</button>
+      <button class="btn light" type="button" data-stop-category="rest" onclick="showOfficialStops(&quot;rest&quot;)">Public Rest Areas</button>
+      <button class="btn light" type="button" data-stop-category="fuel" onclick="showOfficialStops('fuel')">Diesel Fuel</button>
+      <button class="btn light" type="button" data-stop-category="scales" onclick="showOfficialStops('scales')">CAT Scales</button>
     </div>
-    <div class="warning"><strong>Semi Tractor-Trailer Check:</strong><ul><li>Confirm wide truck entrance.</li><li>Check satellite view.</li><li>Avoid tiny gas stations, low bridges, dead ends, and tight shopping centers.</li><li>Verify overnight parking rules.</li><li>Never risk unsafe shoulder parking.</li></ul></div>
+    <div id="officialStopResults" class="official-stops" tabindex="-1" aria-live="polite"></div>
+    <div class="warning"><strong>Before choosing an overnight stop:</strong><ul><li>Confirm wide truck entrance.</li><li>Check satellite view.</li><li>Avoid tiny gas stations, low bridges, dead ends, and tight shopping centers.</li><li>Confirm the location accepts your truck and permits your intended rest period.</li><li>A shipper, receiver, distribution center, fuel pump, or scale is not overnight parking unless the operator explicitly permits it.</li><li>Never risk unsafe shoulder parking.</li></ul></div>
   </div>
+  <details class="card" id="memberParkingSuggestions"><summary><strong>Member suggestions — unverified</strong></summary>
+  <p class="warning">Member reports are not checked by this hub. They are excluded from the official source list above. Do not assume public access or overnight permission from a member report.</p>
   <div class="card">
   <details class="advanced"><summary>Share a Safe Haven with Members</summary>
   <p class="small">Save only public location and amenity information. Do not include load, customer, truck, or employee details.</p>
@@ -303,7 +311,9 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   <p id="safeHavenSaved" role="status" aria-live="polite"></p>
   </details>
 </div>
-<div class="card"><h3>Member Safe Havens</h3><div id="safeHavenList"><p class="small">Shared locations will appear here.</p></div></div>
+<div class="card"><h3>Unverified Member Reports</h3><div id="safeHavenList"><p class="small">Shared locations will appear here.</p></div></div>
+
+  </details>
 </section>
 
 <section id="facility">
@@ -643,26 +653,68 @@ function esc(str) {
 async function autoPlanDestination(){const address=deliveryAddress.value.trim();const latM=parseFloat(manualLat.value);const lonM=parseFloat(manualLon.value);if(!address&&(isNaN(latM)||isNaN(lonM))){autoPlanResult.innerHTML='<div class="danger">Enter destination address or coordinates.</div>';return}autoPlanResult.innerHTML='<div class="warning">Looking up destination, timezone, sunset, and weather...</div>';try{let lat,lon,displayName;if(!isNaN(latM)&&!isNaN(lonM)){lat=latM;lon=lonM;displayName=address||'Manual coordinates'}else{const f=await geocodeAddress(address);lat=f.lat;lon=f.lon;displayName=f.displayName}const date=appointmentDate.value||new Date().toISOString().split('T')[0];const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=sunrise,sunset,weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto&start_date=${date}&end_date=${date}`;const w=await (await fetch(u)).json();if(!w.daily)throw new Error('No weather data.');const sunrise=w.daily.sunrise?.[0],sunset=w.daily.sunset?.[0];const maxC=w.daily.temperature_2m_max?.[0],minC=w.daily.temperature_2m_min?.[0];const maxF=maxC!==undefined?Math.round(maxC*9/5+32):'N/A',minF=minC!==undefined?Math.round(minC*9/5+32):'N/A';const windK=w.daily.wind_speed_10m_max?.[0],windM=windK!==undefined?Math.round(windK*.621371):'N/A';let deadline='N/A';if(sunset){deadline=new Date(new Date(sunset).getTime()-7200000).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}autoPlanResult.innerHTML=`<div class="success"><strong>Destination:</strong> ${esc(displayName)}<br><strong>Coordinates:</strong> ${lat.toFixed(5)}, ${lon.toFixed(5)}<br><strong>Timezone:</strong> ${esc(w.timezone||'N/A')}</div><div class="list-item"><h3>Sunset Safety Plan</h3><strong>Sunrise:</strong> ${sunrise?new Date(sunrise).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Sunset:</strong> ${sunset?new Date(sunset).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Safe Haven Deadline:</strong> ${deadline}<div class="warning">Be parked or securing safe parking by this time.</div></div><div class="list-item"><h3>Destination Weather</h3><strong>High / Low:</strong> ${maxF}°F / ${minF}°F<br><strong>Precipitation Chance:</strong> ${w.daily.precipitation_probability_max?.[0]??'N/A'}%<br><strong>Max Wind:</strong> ${windM} mph<br><div class="warning">Always verify wind, snow/ice, chain laws, road closures, and mountain grades with official sources.</div></div>`}catch(e){autoPlanResult.innerHTML=`<div class="danger"><strong>Auto lookup failed.</strong><br>Try City, State or paste Google Maps coordinates.<br>Error: ${esc(e.message)}</div>`}}
 async function geocodeAddress(a){const cleaned=a.replace(/#/g,' ').replace(/\s+/g,' ').trim();const qs=[cleaned,cleaned+', USA',extractCityState(cleaned)].filter(Boolean);for(const q of [...new Set(qs)]){try{let d=await (await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&q=${encodeURIComponent(q)}&limit=3`)).json();if(d?.length)return{lat:+d[0].lat,lon:+d[0].lon,displayName:d[0].display_name||q}}catch(e){}try{let d=await (await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`)).json();if(d.features?.length){let c=d.features[0].geometry.coordinates,p=d.features[0].properties||{};return{lat:+c[1],lon:+c[0],displayName:[p.name,p.city,p.state,p.country].filter(Boolean).join(', ')||q}}}catch(e){}}throw new Error('Address not found.')}
 function extractCityState(t){const p=t.split(',').map(x=>x.trim()).filter(Boolean);return p.length>=2?p.slice(-2).join(', '):''}
-function openMapRoute(){const f=encodeURIComponent(currentLocation.value||''),t=encodeURIComponent(deliveryAddress.value||'');if(!t){alert('Enter destination first.');return}open(f?`https://www.google.com/maps/dir/${f}/${t}`:`https://www.google.com/maps/search/${t}`,'_blank')}
-function openRouteSearch(term) {
-  const from = currentLocation.value.trim();
-  const to = deliveryAddress.value.trim();
-
-  if (!from || !to) {
-    alert("Enter current location and destination first.");
-    return;
+// Official stop directories: no keyword-based map discovery or private-facility results.
+const officialStopProviders=[
+  {id:'loves',name:"Love’s Travel Stops",url:'https://www.loves.com/en/services',categories:['parking','truckstops','fuel'],kind:'Official truck-stop operator',note:'Select Travel Stop rather than Country Store, RV Stop, or Speedco. Check truck-parking details and contact the selected stop about overnight permission.'},
+  {id:'pilot',name:'Pilot & Flying J',url:'https://locations.pilotflyingj.com/search',categories:['parking','truckstops','fuel'],kind:'Official truck-stop operator',note:'Use the Truck Parking Spaces filter. Check the individual location’s parking details, opening status, and any reservation requirements.'},
+  {id:'ta',name:'TA & Petro',url:'https://www.ta-petro.com/location/',categories:['parking','truckstops','fuel'],kind:'Official travel-center operator',note:'Choose a travel center with truck parking. Confirm parking details and any Reserve-It fees directly with the selected location.'},
+  {id:'cat',name:'CAT Scale Locator',url:'https://catscale.com/cat-scale-locator/',categories:['scales'],kind:'Official scale operator',note:'Find certified scales. A scale listing does not establish truck-parking access or overnight permission.'}
+];
+const officialRestSources=[
+  {name:'Arizona · ADOT',url:'https://azdot.gov/business/highway-maintenance/rest-areas/rest-area-locations'},
+  {name:'California · Caltrans',url:'https://dot.ca.gov/programs/design/lap-landscape-architecture-and-community-livability/lap-liv-h-safety-roadside-rest-areas'},
+  {name:'Florida · FDOT',url:'https://fdot.gov/maintenance/rest-area-app/restareainfo.shtm'},
+  {name:'Indiana · INDOT',url:'https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/'},
+  {name:'Nevada · State 511',url:'https://www.nvroads.com/list/restareas'},
+  {name:'Ohio · ODOT',url:'https://www.transportation.ohio.gov/travel/driving/rest-areas'},
+  {name:'Texas · TxDOT',url:'https://www.txdot.gov/discover/rest-areas-travel-information-centers/safety-rest-area-map.html'},
+  {name:'Utah · UDOT',url:'https://connect.udot.utah.gov/public/rest-areas/'},
+  {name:'Wyoming · WYDOT',url:'https://dot.state.wy.us/restareas'}
+];
+const stateTransportationSources=[{"code": "AL", "name": "Alabama", "url": "http://www.dot.state.al.us"}, {"code": "AK", "name": "Alaska", "url": "http://www.dot.state.ak.us"}, {"code": "AZ", "name": "Arizona", "url": "http://www.azdot.gov/"}, {"code": "AR", "name": "Arkansas", "url": "https://www.ardot.gov/"}, {"code": "CA", "name": "California", "url": "http://www.dot.ca.gov/"}, {"code": "CO", "name": "Colorado", "url": "https://www.fhwa.dot.gov/exit.cfm?link=http://www.coloradodot.info/"}, {"code": "CT", "name": "Connecticut", "url": "http://www.ct.gov/dot"}, {"code": "DE", "name": "Delaware", "url": "http://www.deldot.gov"}, {"code": "DC", "name": "District of Columbia", "url": "http://ddot.dc.gov/"}, {"code": "FL", "name": "Florida", "url": "http://www.fdot.gov/"}, {"code": "GA", "name": "Georgia", "url": "http://www.dot.ga.gov"}, {"code": "HI", "name": "Hawaii", "url": "http://hidot.hawaii.gov/"}, {"code": "ID", "name": "Idaho", "url": "http://itd.idaho.gov/"}, {"code": "IL", "name": "Illinois", "url": "https://idot.illinois.gov/"}, {"code": "IN", "name": "Indiana", "url": "http://www.in.gov/indot/"}, {"code": "IA", "name": "Iowa", "url": "http://www.iowadot.gov/"}, {"code": "KS", "name": "Kansas", "url": "http://www.ksdot.org"}, {"code": "KY", "name": "Kentucky", "url": "http://transportation.ky.gov/"}, {"code": "LA", "name": "Louisiana", "url": "http://wwwsp.dotd.la.gov/"}, {"code": "ME", "name": "Maine", "url": "http://www.maine.gov/mdot/"}, {"code": "MD", "name": "Maryland", "url": "http://www.mdot.maryland.gov/"}, {"code": "MA", "name": "Massachusetts", "url": "http://www.massdot.state.ma.us/"}, {"code": "MI", "name": "Michigan", "url": "http://www.michigan.gov/mdot/"}, {"code": "MN", "name": "Minnesota", "url": "http://www.dot.state.mn.us"}, {"code": "MS", "name": "Mississippi", "url": "http://mdot.ms.gov/"}, {"code": "MO", "name": "Missouri", "url": "http://www.modot.org"}, {"code": "MT", "name": "Montana", "url": "http://www.mdt.mt.gov/"}, {"code": "NE", "name": "Nebraska", "url": "https://dot.nebraska.gov/"}, {"code": "NV", "name": "Nevada", "url": "http://www.nevadadot.com/"}, {"code": "NH", "name": "New Hampshire", "url": "http://www.nh.gov/dot/"}, {"code": "NJ", "name": "New Jersey", "url": "http://www.state.nj.us/transportation/"}, {"code": "NM", "name": "New Mexico", "url": "http://dot.state.nm.us/"}, {"code": "NY", "name": "New York", "url": "https://www.ny.gov/"}, {"code": "NC", "name": "North Carolina", "url": "http://www.ncdot.gov/"}, {"code": "ND", "name": "North Dakota", "url": "http://www.dot.nd.gov"}, {"code": "OH", "name": "Ohio", "url": "http://www.dot.state.oh.us"}, {"code": "OK", "name": "Oklahoma", "url": "http://www.okladot.state.ok.us/"}, {"code": "OR", "name": "Oregon", "url": "http://www.oregon.gov/odot/"}, {"code": "PA", "name": "Pennsylvania", "url": "http://www.penndot.gov/"}, {"code": "RI", "name": "Rhode Island", "url": "http://www.dot.ri.gov"}, {"code": "SC", "name": "South Carolina", "url": "https://www.scdot.org/"}, {"code": "SD", "name": "South Dakota", "url": "http://www.sddot.com"}, {"code": "TN", "name": "Tennessee", "url": "http://www.tn.gov/tdot"}, {"code": "TX", "name": "Texas", "url": "https://www.fhwa.dot.gov/exit.cfm?link=http://www.utexas.edu/research/ctr/"}, {"code": "UT", "name": "Utah", "url": "http://www.udot.utah.gov/"}, {"code": "VT", "name": "Vermont", "url": "http://vtrans.vermont.gov/"}, {"code": "VA", "name": "Virginia", "url": "http://www.virginiadot.org"}, {"code": "WA", "name": "Washington", "url": "http://www.wsdot.wa.gov/"}, {"code": "WV", "name": "West Virginia", "url": "http://www.transportation.wv.gov"}, {"code": "WI", "name": "Wisconsin", "url": "http://wisconsindot.gov/"}, {"code": "WY", "name": "Wyoming", "url": "http://www.dot.state.wy.us"}];
+let selectedParkingState="";
+function officialSourceLink(source,label){return '<a class="btn light directory-link" data-official-source="true" href="'+source.url+'" target="_blank" rel="noopener noreferrer">'+esc(label||'Open official locator')+' <span aria-hidden="true">↗</span><span class="sr-only"> (opens a new tab)</span></a>'}
+function showOfficialStops(category,focus=true){
+  const titles={parking:'Truck parking at established travel stops',truckstops:'Truck stops & travel centers',rest:'Public rest-area directories',fuel:'Diesel at established travel stops',scales:'Certified truck scales'};
+  if(!Object.prototype.hasOwnProperty.call(titles,category))category='parking';
+  const place=document.getElementById('safeSearchLocation').value.trim();
+  const reminder=place?'<p><strong>City / address reminder:</strong> '+esc(place)+'. Enter this in the official locator you open.</p>':'<p>Enter your city in the locator you choose. No nearby locations have been searched yet.</p>';
+  const providers=officialStopProviders.filter(source=>source.categories.includes(category));
+  let content='<span class="badge">Official sources only</span><h3>'+titles[category]+'</h3>'+reminder;
+  if(category==='fuel'||category==='scales')content+='<p class="warning">Service only: fuel or scale access does not mean overnight parking is allowed.</p>';
+  content+='<div class="list-item"><label for="parkingState">State · all 50 states + Washington, D.C.</label><select id="parkingState" onchange="selectedParkingState=this.value;renderStateParkingSources()"><option value="">Choose a state</option>'+stateTransportationSources.map(state=>'<option value="'+state.code+'"'+(state.code===selectedParkingState?' selected':'')+'>'+esc(state.name)+'</option>').join('')+'</select><div id="stateParkingResource"></div></div>';
+  content+='<div class="directory-grid">'+providers.map(source=>'<article class="list-item"><p class="eyebrow">'+esc(source.kind)+'</p><h4>'+esc(source.name)+'</h4><p>'+esc(source.note)+'</p>'+officialSourceLink(source)+'</article>').join('')+'</div>';
+  if(category==='rest'||category==='parking'){
+    content+='<div class="list-item"><h4>Public rest areas · official state sources</h4><p>Check the state’s posted truck access, closures, and permitted length of stay. A public rest area is not automatically available for an overnight stay.</p>';
+    if(category==='parking')content+='<button class="btn light" type="button" onclick="showOfficialStops(&quot;rest&quot;)">Browse public rest-area directories</button>';
+    else content+='<p>Select a state above to open its official rest-area or transportation resources.</p>';
+    content+='</div>';
   }
-
-  const query = encodeURIComponent(
-    term + " along route from " + from + " to " + to
-  );
-
-  open(
-    "https://www.google.com/maps/search/" + query,
-    "_blank"
-  );
+  content+='<p class="small">Only operator and government directories are linked here. Individual stops, live vacancy, opening hours, and overnight permission are not verified by this app. Sources reviewed October 27, 2026.</p>';
+  const results=document.getElementById('officialStopResults');results.innerHTML=content;renderStateParkingSources();
+  document.querySelectorAll('[data-stop-category]').forEach(button=>{const selected=button.dataset.stopCategory===category;button.setAttribute('aria-pressed',String(selected));button.classList.toggle('light',!selected)});
+  if(focus){results.focus({preventScroll:true});results.scrollIntoView({block:'start'})}
 }
-function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
+function renderStateParkingSources(){
+  const destination=document.getElementById('stateParkingResource');
+  const state=stateTransportationSources.find(item=>item.code===selectedParkingState);
+  if(!state){destination.innerHTML='<p class="small">Nationwide coverage: select the state you will be traveling through. Operator directories below can be searched by city or state.</p>';return}
+  const rest=officialRestSources.find(item=>item.name.startsWith(state.name+' ·'));
+  destination.innerHTML='<h4>Official resources · '+esc(state.name)+'</h4><p>Use the agency’s rest-area, truck-parking, and traveler-information pages to check public access and closures. If the agency link has moved, use the federal state directory below.</p>'+(rest?officialSourceLink(rest,'Open '+state.name+' rest-area directory'):'')+officialSourceLink(state,'Open '+state.name+' transportation website')+officialSourceLink({url:'https://www.fhwa.dot.gov/about/webstate.cfm'},'Federal directory · all state agencies')+'<p class="small">This is an official resource link, not confirmation of a parking space, overnight permission, or truck-stop availability in this state.</p>';
+}
+function openMapRoute(){
+  const from=currentLocation.value.trim(),to=deliveryAddress.value.trim();
+  if(!to){alert('Enter destination first.');return}
+  const parameters=new URLSearchParams({api:'1',destination:to,travelmode:'driving'});if(from)parameters.set('origin',from);
+  open('https://www.google.com/maps/dir/?'+parameters.toString(),'_blank','noopener,noreferrer');
+}
+function openRouteSearch(category){
+  const destination=deliveryAddress.value.trim();
+  if(!destination){alert('Enter a destination city or address first.');return}
+  document.getElementById('safeSearchLocation').value=destination;const stateMatch=destination.toUpperCase().match(/(?:,|\s)([A-Z]{2})(?:\s+\d{5}(?:-\d{4})?)?$/);if(stateMatch&&stateTransportationSources.some(state=>state.code===stateMatch[1]))selectedParkingState=stateMatch[1];openScreen('safehaven');showOfficialStops(category);
+}
+function mapSearch(category){showOfficialStops(category)}
+showOfficialStops('parking',false);
 const optionalBoolean=value=>value===''?null:value==='true';
 async function verifiedMember(){if(!memberClient)return null;const {data:{user},error}=await memberClient.auth.getUser();return !error&&user?.email_confirmed_at?user:null}
 async function saveSafeHaven(){
@@ -1054,4 +1106,5 @@ window.straightAnswer = function(choice) {
 </script>
 </body>
 </html>
+
 
