@@ -1,33 +1,25 @@
-# Member development status
+# Development environment
 
-Only the development Git branch is changed. Production database and main are unchanged.
+The development branch uses the separate Free-plan Supabase project maricel-cdl-success-hub-dev (gndommbrsfvejocipukj). Production project and main are unchanged. member-config.js contains only its publishable key; no production fallback exists.
 
-## Preview
+## Completed
+- Created member_profiles and member_progress with owner-only RLS and minimal grants.
+- Ran database tests for owner read/write, cross-user read/update denial, forged owner insert rejection, and anonymous denial. Temporary fixtures were rolled back; both tables remain empty.
+- Supabase security advisor: no findings.
+- Seven simulated authentication tests pass: node --test tests/member-auth.test.cjs.
+- Browser preview renders the signed-out gate and signup controls.
+- Auth settings endpoint confirms email signup enabled and automatic email confirmation disabled.
 
-The development branch deliberately has empty credentials in member-config.js. There is no production fallback, including the Safe Haven endpoint. Configure ONLY a separate development Supabase project URL and publishable key. Never put a secret/service-role key here. Static training source is public; the UI gate does not make training assets confidential. Member data requires database RLS.
+## Preview and remaining setup
+The managed internal preview is http://terminal.local:4173/ while its preview process is running. It is a temporary development preview, not a hosted production deployment or a public link. For a Mac checkout, run python3 -m http.server 4173 --bind 127.0.0.1 and open http://localhost:4173/index.html.
 
-Run `python3 -m http.server 4173 --bind 127.0.0.1` from this directory, then open http://localhost:4173/index.html. This is a local preview, not public hosting. Do not change production GitHub Pages to serve development.
+The Supabase connector cannot update Auth URL configuration. The dashboard browser requires user sign-in. Configure the exact URL used for testing as Site URL and redirect allowlist entry in the DEVELOPMENT project only. Use http://terminal.local:4173/ for the current managed preview, or http://localhost:4173/index.html for a local checkout. Do not add broad wildcard redirects or change production settings.
 
-## Blocker
+An authorized inbox and successful email delivery are still needed to test signup, confirmation, login, password recovery, and login with the changed password end to end. Hosted default email delivery may require an authorized sender/inbox or custom SMTP. Never disable confirmation to bypass that test.
 
-The connected Supabase project has no branches. Branch creation returned: "Branching is supported only on the Pro plan or above". No plan changes or database writes were made. Provide a separate development project (a free project if account quota permits), or choose a paid branch after reviewing its cost. The connector currently provides no Auth configuration update operation; configure the development project's Auth settings in its dashboard.
+## Pending acceptance tests
+Register two test members using authorized inboxes. Confirm no access before verification. Follow confirmation email, sign in, save and reload profile and progress, and verify member B cannot see member A's entries through the actual Data API. Request recovery, follow email, change password, and test old/new credentials. Check expired links, resend, offline errors, mobile layout, and shared-device sign-out.
 
-## Development Auth configuration
+Only the member schema has been provisioned in the new database. Safe Haven's separate feature table is not yet provisioned here. No production data was copied. Practice Yard, Backing Trainer, Route Planner, and lesson code remain present; their authenticated browser smoke tests are pending. No Training Academy section exists under that name in the reviewed development branch.
 
-Enable email/password signup and Confirm email. Set Site URL to http://localhost:4173/index.html and add precisely that URL to the redirect allowlist. Leave production settings unchanged. Use default ConfirmationURL email links. Configure development email delivery with an authorized test inbox or SMTP sender; hosted default email restrictions may require SMTP. Keep password minimum at least 8 characters and enable available abuse protection.
-
-Reproduce the existing member_profiles and member_progress schema with RLS before connecting the preview. Owner SELECT and INSERT must compare auth.uid() to user_id; UPDATE needs both USING and WITH CHECK ownership clauses. Grant only required table/sequence privileges, with no anonymous member access. Review the actual policies after setup. Do not copy production user data.
-
-## Validation completed
-
-`node --test tests/member-auth.test.cjs`: seven isolated tests pass for verification gating, signup redirect, recovery mode and update, generic reset response, signout cleanup, owner profile payload, preserved training sections and JavaScript syntax. These use simulated Auth responses, not live email delivery or database RLS enforcement.
-
-Production read-only review: member_profiles and member_progress have RLS with owner policies; security advisor returned no findings. Legacy progress still allows public INSERT, and safe_havens allows anonymous SELECT/INSERT. These were not changed. Plan to close legacy anonymous progress writes before a later production release.
-
-## Required live acceptance tests (pending)
-
-Use two authorized development inboxes. Register A; verify no dashboard before email confirmation; follow the email and sign in. Save/reload profile and progress. Sign out and sign in as B; confirm A's data is absent. With B's token, attempt to read and update A's rows and insert a row owned by A; all must be denied or return no rows. Test signed-out member API requests too.
-
-Request recovery for A, follow its email, set a new password, verify old password fails and new password succeeds. Test expired links, resend, reload, offline errors, and signout/relogin on shared devices. Inspect desktop and mobile screens. Smoke-test CDL Practice Yard, Backing Trainer, Route Planner, and lessons. No Training Academy section exists under that name in the reviewed development tree; locate its source before claiming it was tested.
-
-Do not claim complete end-to-end testing until those steps pass. Do not merge or deploy to production without approval. No subscriptions are implemented.
+Static source/training assets are public; the interface gate is not content confidentiality. Private member data is enforced by database RLS. No production release or paid subscriptions are authorized.
