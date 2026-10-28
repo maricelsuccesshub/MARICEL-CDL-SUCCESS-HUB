@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maricel CDL Success Hub — Driver Testing</title>
-  <meta name="description" content="Test Maricel CDL Success Hub: lessons, guided backing practice, trip tools, and your private practice progress.">
+  <title>Maricel CDL Success Hub | Beta</title>
+  <meta name="description" content="Explore the public beta of Maricel CDL Success Hub: lessons, guided backing practice, trip tools, and your private practice progress.">
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -93,13 +93,17 @@
     .brand-lockup{display:block;background:#fff;border-radius:12px;padding:12px 18px;width:min(100%,460px);margin:0 auto} .brand-lockup img{display:block;width:100%;height:auto}
     .nav-brand{margin:0 0 20px;padding:0}.nav-brand img{display:block;width:100%;height:auto}
     @media(max-width:700px){.brand-lockup{max-width:360px;padding:10px 12px}}
+    .beta-notice{padding:20px 28px;background:#fff8e8;border-bottom:1px solid #ead9ad;text-align:center;color:#46381c}.beta-notice-inner{max-width:850px;margin:0 auto}.beta-label{display:inline-block;font-size:11px;letter-spacing:.1em;font-weight:800;color:#78520a}.beta-notice h2{font-size:20px;line-height:1.35;margin:8px 0}.beta-notice p{font-size:15px;line-height:1.6;margin:0 auto 8px}.beta-notice a{font-size:14px;color:#5c430f;text-underline-offset:3px}
+    body:has(#nav:not([hidden]))>.beta-notice{margin-left:244px}
+    @media(max-width:1050px){body:has(#nav:not([hidden]))>.beta-notice{margin-left:216px}}
+    @media(max-width:700px){body:has(#nav:not([hidden]))>.beta-notice{margin-left:0}.beta-notice{padding:18px 16px}.beta-notice h2{font-size:18px}}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#memberMain">Skip to page content</a>
 <header>
 
-<p style="margin:0 0 12px;color:#fff;font-size:13px;font-weight:700">DRIVER TESTING PREVIEW</p>
+<p style="margin:0 0 12px;color:#fff;font-size:13px;font-weight:700">PUBLIC BETA</p>
 <h1 class="brand-lockup"><img src="assets/maricel-cdl-logo.png" alt="Maricel CDL Success Hub" width="2048" height="683" fetchpriority="high"></h1>
 
 <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
@@ -109,8 +113,17 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 </p>
 
 </header>
+<aside class="beta-notice" aria-labelledby="betaNoticeTitle">
+  <div class="beta-notice-inner">
+    <span class="beta-label">PUBLIC BETA · HELP US IMPROVE</span>
+    <h2 id="betaNoticeTitle">You’re helping shape Maricel CDL Success Hub.</h2>
+    <p>Features are still being tested and may change. You may encounter errors or interruptions. Please share feedback and verify road, weather, and parking information with the original source.</p>
+    <p><strong>Your experience matters.</strong> Whether you’re a student, a new driver or an experienced driver, share your input with Coach Maricel: what helped, what felt confusing, any errors you noticed, and what you’d like added or improved. Your feedback will help shape the Hub for other drivers. Please leave out personal, customer, load and company-sensitive information.</p>
+    <a href="disclaimer.html">Read the disclaimer &amp; source credits</a>
+  </div>
+</aside>
 <div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
-<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your own free test account to try the training dashboard. Your profile and practice progress are private to your account. Use a password you do not use elsewhere.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Use with caution, at your own discretion and risk. This Hub supplements learning; it does not replace qualified training, inspections, official requirements or your judgment. Use only while safely parked. <a href="disclaimer.html">Read the full disclaimer</a>.</p></div>
+<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your own free beta account to explore the training dashboard. Your profile and practice progress are private to your account. Use a password you do not use elsewhere.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Use with caution, at your own discretion and risk. This Hub supplements learning; it does not replace qualified training, inspections, official requirements or your judgment. Use only while safely parked. <a href="disclaimer.html">Read the full disclaimer</a>.</p></div>
 <nav id="nav" aria-label="Main navigation" hidden></nav>
 <div id="subnav" aria-label="Section navigation" hidden></div>
 <main id="memberMain" tabindex="-1" hidden>
