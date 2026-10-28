@@ -9,3 +9,5 @@ Truck-stop operators: Love's Travel Stops, Pilot/Flying J, TA/Petro. Scales use 
 Member Safe Haven reports are preserved under a collapsed, unverified suggestions panel, separate from official sources. No database or auth changes were made.
 
 Validation: nine parking tests cover all 51 entries, state resources and fallback links, category separation, routing to the official finder, escaping, and removal of keyword searches. Existing authentication/training regression checks pass. Desktop route-to-parking and state selection, plus a 375px phone layout, were checked with synthetic local data; no fixtures are included in deployment.
+
+Colorado and Texas agency links use direct HTTPS CDOT/TxDOT addresses, bypassing FHWA exit redirects. Regression coverage rejects exit.cfm URLs in every state entry.
