@@ -90,6 +90,9 @@
 
     .camera-home{display:flex;align-items:center;gap:24px;justify-content:space-between;border-left:4px solid #287bb3;background:#f5faff}.camera-home h3{margin:0}.camera-home p{margin:8px 0 0;max-width:65ch}.camera-home .btn{width:auto;min-width:220px;flex-shrink:0;margin:0}.camera-result{margin-top:22px;border-top:1px solid var(--border);padding-top:22px}.camera-result h3{font-size:25px;margin:0}.camera-service{font-weight:700;color:var(--muted)}.camera-actions{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.camera-actions .btn{display:inline-block;text-align:center;text-decoration:none;width:auto;margin:0;min-height:48px}.camera-empty{background:var(--soft);padding:20px;border-radius:12px}.camera-empty p{margin-bottom:0}.camera-check-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.camera-check-grid .eyebrow{display:block;margin-bottom:8px}.camera-check-grid p{margin:0}.camera-references summary{font-weight:700;cursor:pointer}.camera-references{margin-top:20px}.camera-references a{color:#195b92;text-decoration:underline}#cameras select{min-height:50px}
     @media(max-width:850px){.camera-home{display:block}.camera-home .btn{width:100%;margin-top:16px}.camera-check-grid{grid-template-columns:1fr}.camera-actions{flex-direction:column}.camera-actions .btn{width:100%}}
+    .brand-lockup{display:block;background:#fff;border-radius:12px;padding:12px 18px;width:min(100%,460px);margin:0} .brand-lockup img{display:block;width:100%;height:auto}
+    .nav-brand{margin:0 0 20px;padding:0}.nav-brand img{display:block;width:100%;height:auto}
+    @media(max-width:700px){.brand-lockup{max-width:360px;padding:10px 12px}}
 </style>
 </head>
 <body>
@@ -97,7 +100,7 @@
 <header>
 
 <p style="margin:0 0 12px;color:#fff;font-size:13px;font-weight:700">DRIVER TESTING PREVIEW</p>
-<h1>Maricel CDL Success Hub</h1>
+<h1 class="brand-lockup"><img src="assets/maricel-cdl-logo.png" alt="Maricel CDL Success Hub" width="2048" height="683" fetchpriority="high"></h1>
 
 <p><strong>Turning confusion into confidence—one maneuver at a time.</strong></p>
 
@@ -638,7 +641,7 @@ const secondaryNav={
 };
 const screenGroups={home:'home',practiceyard:'training',backing:'training',lesson:'training',resources:'training',planner:'trip',cameras:'trip',safehaven:'trip',facility:'trip',community:'notebook',progress:'account',profile:'account',about:'account'};
 const nav=document.getElementById('nav'),subnav=document.getElementById('subnav');
-const navBrand=document.createElement('div');navBrand.className='nav-brand';navBrand.innerHTML='MARICEL<span>CDL Success Hub</span>';nav.appendChild(navBrand);
+const navBrand=document.createElement('div');navBrand.className='nav-brand';navBrand.innerHTML='<img src="assets/maricel-cdl-logo.png" alt="Maricel CDL Success Hub" width="2048" height="683">';nav.appendChild(navBrand);
 const menuToggle=document.createElement('button');menuToggle.type='button';menuToggle.className='menu-toggle';menuToggle.textContent='Menu · Home';menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-controls','memberNavLinks');
 menuToggle.onclick=()=>{const expanded=nav.classList.toggle('menu-open');menuToggle.setAttribute('aria-expanded',String(expanded))};nav.appendChild(menuToggle);
 const navLinks=document.createElement('div');navLinks.id='memberNavLinks';navLinks.className='nav-links';nav.appendChild(navLinks);
