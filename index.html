@@ -102,7 +102,7 @@
 .community-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.community-tabs button{padding:12px 15px;border:1px solid var(--border);border-radius:9px;background:var(--soft);color:var(--text);cursor:pointer;min-height:44px}.community-tabs .selected{background:var(--accent);color:white}.community-post,.community-message{border:1px solid var(--border);padding:20px;border-radius:12px;margin:16px 0;background:white;overflow-wrap:anywhere}.community-post h4{font-size:19px;margin:6px 0}.community-body{white-space:pre-wrap;overflow-wrap:anywhere}.community-actions{display:flex;flex-wrap:wrap;gap:8px}.community-actions .btn{width:auto;margin:4px 0;min-height:44px}.community-empty{background:var(--soft);padding:18px;border-radius:10px}.community-check{display:flex;align-items:flex-start;gap:12px;font-weight:400;margin:18px 0}.community-check input{width:20px;height:20px;flex:none;margin-top:3px}.community-message.own{background:#f0f6fc;border-left:4px solid #446b95}#communityStatus:empty{display:none}#communityStatus:not(:empty){padding:12px;border-left:4px solid #c99834;background:#fff8e8}#communityRoot .btn{max-width:100%}#communityRoot[aria-busy="true"]{opacity:.75;pointer-events:none}@media(max-width:700px){.community-post,.community-message{padding:16px}.community-actions .btn{flex:1}.community-tabs button{flex:1}}
     .menu-current{display:none}
     @media(max-width:700px){#nav .menu-toggle{gap:12px;min-height:64px;text-align:left;padding:12px 16px;border:1px solid #344b65;box-shadow:0 2px 4px #14263e14}.menu-toggle-symbol{font-size:26px;line-height:1;flex:none}.menu-toggle-copy{flex:1;display:block;min-width:0}.menu-toggle-title{display:block;font-size:17px;line-height:1.3;font-weight:750}.menu-toggle-hint{display:block;font-size:12px;line-height:1.4;font-weight:400;color:#e1e9f2;margin-top:3px}.menu-toggle-arrow{font-size:26px;line-height:1;flex:none}.menu-current{display:block;font-size:12px;color:var(--muted);margin:6px 4px 0}#nav.menu-open .menu-toggle{position:sticky;top:0;z-index:1}#nav .nav-links{padding-bottom:14px}}
-</style>
+.clearance-actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.clearance-actions .btn{display:inline-block;text-decoration:none;text-align:center;width:auto;margin:0;min-height:48px}#clearances select{min-height:50px}#clearanceResult h3{font-size:24px;margin:8px 0}@media(max-width:700px){.clearance-actions{flex-direction:column}.clearance-actions .btn{width:100%}}</style>
 </head>
 <body>
 <a class="skip-link" href="#memberMain">Skip to page content</a>
@@ -272,7 +272,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 <p class="small">Weather and sun times: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Address data: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors (ODbL)</a>, via Nominatim / Photon. Temperatures and wind are converted and rounded; the suggested parking deadline is calculated by this Hub. <a href="disclaimer.html">Disclaimer &amp; Source Credits</a>.</p>
     <h3>Open your route</h3><p class="small">Google Maps directions are not a truck-specific route clearance check.</p>
     <div class="action-grid">
-      <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button><button class="btn light" onclick="openRouteCameras()">Check traffic cameras by state</button>
+      <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button><button class="btn light" onclick="openRouteClearances()">Low bridges &amp; clearance checks</button><button class="btn light" onclick="openRouteCameras()">Check traffic cameras by state</button>
     </div>
     <details class="advanced"><summary>Choose official parking &amp; service directories</summary><p class="small">Opens the official-source finder using your destination as a city reminder. This does not calculate stops along the route.</p><div class="action-grid">
       <button class="btn light" onclick="openRouteSearch('truckstops')">Truck Stops</button>
@@ -284,6 +284,14 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   </div>
 </section>
 
+<section id="clearances">
+<div class="card"><span class="badge">Pre-trip planning reference</span><h2>Low Bridges &amp; Clearance Checks</h2><p class="lead">Find official low-bridge, vertical-clearance and truck-restriction resources before your trip.</p>
+<div class="warning"><strong>Verify during pre-trip—and along the route.</strong> Confirm the actual total height of your truck, trailer and load, including the highest equipment or accessory, using your company’s approved procedures and qualified help when needed. Do not assume every trailer is the same height. A completed pre-trip does not prove a bridge is safe to pass.</div>
+<label for="clearanceState">State you are traveling through</label><select id="clearanceState" onchange="renderClearances()"></select><div id="clearanceResult" class="camera-result" aria-live="polite"></div></div>
+<div class="card"><h3>Coach Maricel’s clearance check</h3><div class="camera-check-grid"><div><span class="eyebrow">1 · Know your actual height</span><p>Confirm the complete vehicle/load height during pre-trip and whenever equipment, load or operating configuration changes. Never climb onto a vehicle or load to measure without appropriate equipment and procedures.</p></div><div><span class="eyebrow">2 · Verify your full route</span><p>Check official clearance records and current restrictions for the correct road, direction and lane. Include ramps, detours, local streets and the final approach. Obtain required permits and carrier guidance.</p></div><div><span class="eyebrow">3 · Read the signs</span><p>Roadwork, resurfacing, snow and changing conditions can affect available space. Obey posted restrictions. If clearance is uncertain, stop safely before the obstruction and seek qualified assistance; do not attempt to squeeze through.</p></div></div>
+<p class="warning"><strong>Use with caution, at your own discretion and risk.</strong> This Hub is not a complete bridge inventory, truck GPS, route survey, clearance certification or substitute for pre-trip inspection, professional instruction, company procedures, posted signs or official requirements. No listing—or absence of a listing—guarantees safe passage. Pre-trip verification is necessary but does not replace checking each structure and current restrictions. The driver/operator must independently verify suitability.</p>
+<details class="camera-references"><summary>Sources, credits &amp; coverage</summary><p>Links lead to official state agency tools, maps, lists or advisories. Caltrans, TxDOT/TxDMV, WSDOT, INDOT, IDOT, ODOT, PennDOT, MassDOT and NYSDOT control their respective resources. The FHWA directory provides state permit-office contacts; it is not a clearance map. The selector includes all 50 states and DC, but dedicated clearance links are currently available for selected states only. Other selections explicitly require further clearance verification. The Hub does not copy a bridge database or independently measure clearances.</p><p>Original preparation wording for Maricel CDL Success Hub. See each agency’s notices and our <a href="disclaimer.html">full disclaimer &amp; source credits</a>.</p></details></div>
+</section>
 <section id="cameras">
   <div class="card"><span class="badge">Check before you go · official sources</span><h2>Live Traffic Cameras</h2><p class="lead">Pick a state. Open its camera list or map. Check the highway ahead while you are safely parked.</p>
   <label for="cameraState">State · all 50 states + Washington, D.C.</label><select id="cameraState" onchange="selectedTexasCamera='';renderTrafficCameras()" aria-describedby="cameraStateHelp"><option value="">Choose a state</option></select><p id="cameraStateHelp" class="small">Some services cover a region or selected highways. Camera availability is not guaranteed.</p><div id="cameraResult" class="camera-result"></div></div>
@@ -669,10 +677,10 @@ const primaryNav=[
 ];
 const secondaryNav={
   training:[['lesson','Lessons'],['practiceyard','Practice Yard'],['backing','Backing Guides'],['resources','Safety & Resources']],
-  trip:[['cameras','Live Traffic Cameras'],['planner','Plan My Route'],['safehaven','Find Safe Parking'],['facility','My Facility Notes']],
+  trip:[['cameras','Live Traffic Cameras'],['clearances','Low Bridges & Clearances'],['planner','Plan My Route'],['safehaven','Find Safe Parking'],['facility','My Facility Notes']],
   account:[['progress','My Progress'],['profile','My Profile'],['about','About the Hub']]
 };
-const screenGroups={drivercommunity:'connect',home:'home',practiceyard:'training',backing:'training',lesson:'training',resources:'training',planner:'trip',cameras:'trip',safehaven:'trip',facility:'trip',community:'notebook',progress:'account',profile:'account',about:'account'};
+const screenGroups={clearances:'trip',drivercommunity:'connect',home:'home',practiceyard:'training',backing:'training',lesson:'training',resources:'training',planner:'trip',cameras:'trip',safehaven:'trip',facility:'trip',community:'notebook',progress:'account',profile:'account',about:'account'};
 const nav=document.getElementById('nav'),subnav=document.getElementById('subnav');
 const navBrand=document.createElement('div');navBrand.className='nav-brand';navBrand.innerHTML='<img src="assets/maricel-cdl-logo.png" alt="Maricel CDL Success Hub" width="2048" height="683">';nav.appendChild(navBrand);
 const menuToggle=document.createElement('button');menuToggle.type='button';menuToggle.className='menu-toggle';menuToggle.innerHTML='<span class="menu-toggle-symbol" aria-hidden="true">☰</span><span class="menu-toggle-copy"><span class="menu-toggle-title">Explore the Hub</span><span class="menu-toggle-hint">Tap to open menu</span></span><span class="menu-toggle-arrow" aria-hidden="true">⌄</span>';menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-controls','memberNavLinks');
@@ -1528,6 +1536,7 @@ window.straightAnswer = function(choice) {
 </script>
 <script src="backing-guides.js"></script>
 <script src="traffic-cameras.js"></script>
+<script src="clearance-checks.js"></script>
 <script src="community.js"></script>
 </body>
 </html>
