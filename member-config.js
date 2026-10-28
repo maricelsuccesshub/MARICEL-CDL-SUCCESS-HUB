@@ -1,3 +1,2 @@
-// DEVELOPMENT ONLY. Configure a separate Supabase development project here.
-// Intentionally empty: this branch must never fall back to the live database.
-window.MEMBER_CONFIG = Object.freeze({url: '', publishableKey: ''});
+// DEVELOPMENT ONLY: separate free Supabase project. Never use production here.
+window.MEMBER_CONFIG = Object.freeze({url: 'https://gndommbrsfvejocipukj.supabase.co', publishableKey: 'sb_publishable_c6NiEZrGFmYwJYaIZ2TCYg_nUzFIdfr'});
