@@ -247,8 +247,8 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
 <section id="safehaven">
   <div class="card"><span class="badge">Official public-access sources</span><h2>Truck Parking &amp; Rest Stops</h2>
-    <p>Use official truck-stop operators and state transportation agencies to find facilities open to traveling drivers. General warehouse and distribution-center search results are not used here.</p>
-    <p class="small">These are official directories, not a live list of available spaces. Check the selected location’s truck parking, opening status, fees, and overnight rules with its operator.</p>
+    <p>Choose your state and open its travel map directly, or use an established truck-stop locator below.</p>
+    <p class="small">Check rest-area status on the map, then confirm truck access, fees and overnight rules for your stop. Available parking spaces are not guaranteed.</p>
     <label for="safeSearchLocation">City or address to use in the official directory</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA" aria-describedby="parkingLocationHelp">
     <p id="parkingLocationHelp" class="small">Your city is shown as a reminder below. Enter it in the operator’s locator after opening its website.</p>
     <div class="action-grid" aria-label="Official stop categories">
@@ -662,7 +662,7 @@ const officialStopProviders=[
 ];
 const officialRestSources=[
   {name:'Arizona · ADOT',url:'https://azdot.gov/business/highway-maintenance/rest-areas/rest-area-locations'},
-  {name:'California · Caltrans',url:'https://dot.ca.gov/programs/design/lap-landscape-architecture-and-community-livability/lap-liv-h-safety-roadside-rest-areas'},
+  {name:'California · Caltrans',url:'https://quickmap.dot.ca.gov/?layers=rest_areas%2Cfull_closures%2Clane_closures%2Cspeed'},
   {name:'Florida · FDOT',url:'https://fdot.gov/maintenance/rest-area-app/restareainfo.shtm'},
   {name:'Indiana · INDOT',url:'https://www.in.gov/indot/resources/maps/welcome-centers-and-rest-areas/'},
   {name:'Nevada · State 511',url:'https://www.nvroads.com/list/restareas'},
@@ -671,26 +671,384 @@ const officialRestSources=[
   {name:'Utah · UDOT',url:'https://connect.udot.utah.gov/public/rest-areas/'},
   {name:'Wyoming · WYDOT',url:'https://dot.state.wy.us/restareas'}
 ];
-const stateTransportationSources=[{"code": "AL", "name": "Alabama", "url": "http://www.dot.state.al.us"}, {"code": "AK", "name": "Alaska", "url": "http://www.dot.state.ak.us"}, {"code": "AZ", "name": "Arizona", "url": "http://www.azdot.gov/"}, {"code": "AR", "name": "Arkansas", "url": "https://www.ardot.gov/"}, {"code": "CA", "name": "California", "url": "http://www.dot.ca.gov/"}, {"code": "CO", "name": "Colorado", "url": "https://www.codot.gov/"}, {"code": "CT", "name": "Connecticut", "url": "http://www.ct.gov/dot"}, {"code": "DE", "name": "Delaware", "url": "http://www.deldot.gov"}, {"code": "DC", "name": "District of Columbia", "url": "http://ddot.dc.gov/"}, {"code": "FL", "name": "Florida", "url": "http://www.fdot.gov/"}, {"code": "GA", "name": "Georgia", "url": "http://www.dot.ga.gov"}, {"code": "HI", "name": "Hawaii", "url": "http://hidot.hawaii.gov/"}, {"code": "ID", "name": "Idaho", "url": "http://itd.idaho.gov/"}, {"code": "IL", "name": "Illinois", "url": "https://idot.illinois.gov/"}, {"code": "IN", "name": "Indiana", "url": "http://www.in.gov/indot/"}, {"code": "IA", "name": "Iowa", "url": "http://www.iowadot.gov/"}, {"code": "KS", "name": "Kansas", "url": "http://www.ksdot.org"}, {"code": "KY", "name": "Kentucky", "url": "http://transportation.ky.gov/"}, {"code": "LA", "name": "Louisiana", "url": "http://wwwsp.dotd.la.gov/"}, {"code": "ME", "name": "Maine", "url": "http://www.maine.gov/mdot/"}, {"code": "MD", "name": "Maryland", "url": "http://www.mdot.maryland.gov/"}, {"code": "MA", "name": "Massachusetts", "url": "http://www.massdot.state.ma.us/"}, {"code": "MI", "name": "Michigan", "url": "http://www.michigan.gov/mdot/"}, {"code": "MN", "name": "Minnesota", "url": "http://www.dot.state.mn.us"}, {"code": "MS", "name": "Mississippi", "url": "http://mdot.ms.gov/"}, {"code": "MO", "name": "Missouri", "url": "http://www.modot.org"}, {"code": "MT", "name": "Montana", "url": "http://www.mdt.mt.gov/"}, {"code": "NE", "name": "Nebraska", "url": "https://dot.nebraska.gov/"}, {"code": "NV", "name": "Nevada", "url": "http://www.nevadadot.com/"}, {"code": "NH", "name": "New Hampshire", "url": "http://www.nh.gov/dot/"}, {"code": "NJ", "name": "New Jersey", "url": "http://www.state.nj.us/transportation/"}, {"code": "NM", "name": "New Mexico", "url": "http://dot.state.nm.us/"}, {"code": "NY", "name": "New York", "url": "https://www.ny.gov/"}, {"code": "NC", "name": "North Carolina", "url": "http://www.ncdot.gov/"}, {"code": "ND", "name": "North Dakota", "url": "http://www.dot.nd.gov"}, {"code": "OH", "name": "Ohio", "url": "http://www.dot.state.oh.us"}, {"code": "OK", "name": "Oklahoma", "url": "http://www.okladot.state.ok.us/"}, {"code": "OR", "name": "Oregon", "url": "http://www.oregon.gov/odot/"}, {"code": "PA", "name": "Pennsylvania", "url": "http://www.penndot.gov/"}, {"code": "RI", "name": "Rhode Island", "url": "http://www.dot.ri.gov"}, {"code": "SC", "name": "South Carolina", "url": "https://www.scdot.org/"}, {"code": "SD", "name": "South Dakota", "url": "http://www.sddot.com"}, {"code": "TN", "name": "Tennessee", "url": "http://www.tn.gov/tdot"}, {"code": "TX", "name": "Texas", "url": "https://www.txdot.gov/"}, {"code": "UT", "name": "Utah", "url": "http://www.udot.utah.gov/"}, {"code": "VT", "name": "Vermont", "url": "http://vtrans.vermont.gov/"}, {"code": "VA", "name": "Virginia", "url": "http://www.virginiadot.org"}, {"code": "WA", "name": "Washington", "url": "http://www.wsdot.wa.gov/"}, {"code": "WV", "name": "West Virginia", "url": "http://www.transportation.wv.gov"}, {"code": "WI", "name": "Wisconsin", "url": "http://wisconsindot.gov/"}, {"code": "WY", "name": "Wyoming", "url": "http://www.dot.state.wy.us"}];
+const stateTransportationSources=[
+  {
+    "code": "AL",
+    "name": "Alabama",
+    "url": "https://algotraffic.com/",
+    "mapName": "ALGO Traffic",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "AK",
+    "name": "Alaska",
+    "url": "https://511.alaska.gov/",
+    "mapName": "Alaska 511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "AZ",
+    "name": "Arizona",
+    "url": "https://az511.gov/",
+    "mapName": "AZ 511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "AR",
+    "name": "Arkansas",
+    "url": "https://www.idrivearkansas.com/",
+    "mapName": "IDrive Arkansas",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "CA",
+    "name": "California",
+    "url": "https://quickmap.dot.ca.gov/?layers=rest_areas%2Cfull_closures%2Clane_closures%2Cspeed",
+    "mapName": "Caltrans QuickMap · Rest Areas on",
+    "hint": "Rest Areas, full closures, lane closures and traffic speed are switched on. Search your city on QuickMap and tap a rest-area marker for its open / closed status."
+  },
+  {
+    "code": "CO",
+    "name": "Colorado",
+    "url": "https://www.cotrip.org/",
+    "mapName": "COtrip",
+    "hint": "Opens COtrip directly. Use Trucker Mode for truck-related road information; check rest-area details before stopping."
+  },
+  {
+    "code": "CT",
+    "name": "Connecticut",
+    "url": "https://ctroads.org/",
+    "mapName": "CTroads",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "DE",
+    "name": "Delaware",
+    "url": "https://deldot.gov/map/",
+    "mapName": "DelDOT Live Map",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "DC",
+    "name": "District of Columbia",
+    "url": "https://www.chart.maryland.gov/InteractiveMap/GetInteractiveMap",
+    "mapName": "CHART · nearby Maryland / DC region",
+    "hint": "Regional road conditions from Maryland CHART, not a DC truck-parking finder. For overnight truck stops, check nearby Maryland or Virginia and confirm permission."
+  },
+  {
+    "code": "FL",
+    "name": "Florida",
+    "url": "https://fl511.com/",
+    "mapName": "FL511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "GA",
+    "name": "Georgia",
+    "url": "https://511ga.org/",
+    "mapName": "511GA",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "HI",
+    "name": "Hawaii",
+    "url": "https://www.goakamai.org/",
+    "mapName": "GoAkamai · Oʻahu",
+    "hint": "GoAkamai covers Oʻahu traffic. It is not a statewide overnight truck-parking finder; confirm parking with the property operator."
+  },
+  {
+    "code": "ID",
+    "name": "Idaho",
+    "url": "https://511.idaho.gov/",
+    "mapName": "Idaho 511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "IL",
+    "name": "Illinois",
+    "url": "https://www.gettingaroundillinois.com/MapViewer/?config=RWCconfig.json",
+    "mapName": "Illinois Rest Areas Map",
+    "hint": "Opens the Rest Areas map directly. Tap a rest-area symbol for facility details."
+  },
+  {
+    "code": "IN",
+    "name": "Indiana",
+    "url": "https://511in.org/",
+    "mapName": "INDOT Trafficwise",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "IA",
+    "name": "Iowa",
+    "url": "https://511ia.org/",
+    "mapName": "Iowa 511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "KS",
+    "name": "Kansas",
+    "url": "https://www.kandrive.gov/",
+    "mapName": "KanDrive",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "KY",
+    "name": "Kentucky",
+    "url": "https://goky.ky.gov/",
+    "mapName": "GoKY",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "LA",
+    "name": "Louisiana",
+    "url": "https://511la.org/",
+    "mapName": "511LA",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "ME",
+    "name": "Maine",
+    "url": "https://newengland511.org/",
+    "mapName": "New England 511 · Maine",
+    "hint": "Opens the shared Maine / New Hampshire / Vermont travel map. Search or zoom to Maine."
+  },
+  {
+    "code": "MD",
+    "name": "Maryland",
+    "url": "https://www.chart.maryland.gov/InteractiveMap/GetInteractiveMap",
+    "mapName": "Maryland CHART",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "MA",
+    "name": "Massachusetts",
+    "url": "https://mass511.com/",
+    "mapName": "Mass511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "MI",
+    "name": "Michigan",
+    "url": "https://mdotjboss.state.mi.us/MiDrive/map",
+    "mapName": "Mi Drive",
+    "hint": "Opens Mi Drive directly. Select Truck Parking in the map legend."
+  },
+  {
+    "code": "MN",
+    "name": "Minnesota",
+    "url": "https://511mn.org/",
+    "mapName": "Minnesota 511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "MS",
+    "name": "Mississippi",
+    "url": "https://www.mdottraffic.com/default.aspx?showMain=true",
+    "mapName": "MDOTtraffic",
+    "hint": "Opens the traffic map directly. Choose Rest Areas or Welcome Centers in Map Legend, then tap a location for details."
+  },
+  {
+    "code": "MO",
+    "name": "Missouri",
+    "url": "https://traveler.modot.org/map/",
+    "mapName": "MoDOT Traveler Map",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "MT",
+    "name": "Montana",
+    "url": "https://www.511mt.net/",
+    "mapName": "511MT",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "NE",
+    "name": "Nebraska",
+    "url": "https://511.nebraska.gov/",
+    "mapName": "Nebraska 511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "NV",
+    "name": "Nevada",
+    "url": "https://www.nvroads.com/",
+    "mapName": "Nevada 511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "NH",
+    "name": "New Hampshire",
+    "url": "https://newengland511.org/",
+    "mapName": "New England 511 · New Hampshire",
+    "hint": "Opens the shared Maine / New Hampshire / Vermont travel map. Search or zoom to New Hampshire."
+  },
+  {
+    "code": "NJ",
+    "name": "New Jersey",
+    "url": "https://511nj.org/",
+    "mapName": "511NJ",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "NM",
+    "name": "New Mexico",
+    "url": "https://nmroads.com/",
+    "mapName": "NMRoads",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "NY",
+    "name": "New York",
+    "url": "https://511ny.org/",
+    "mapName": "511NY",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "NC",
+    "name": "North Carolina",
+    "url": "https://drivenc.gov/",
+    "mapName": "DriveNC",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "ND",
+    "name": "North Dakota",
+    "url": "https://travel.dot.nd.gov/",
+    "mapName": "ND Roads",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "OH",
+    "name": "Ohio",
+    "url": "https://ohgo.com/",
+    "mapName": "OHGO",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "OK",
+    "name": "Oklahoma",
+    "url": "https://oktraffic.org/",
+    "mapName": "OK Traffic",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "OR",
+    "name": "Oregon",
+    "url": "https://www.tripcheck.com/",
+    "mapName": "TripCheck",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "PA",
+    "name": "Pennsylvania",
+    "url": "https://511pa.com/",
+    "mapName": "511PA",
+    "hint": "Opens 511PA directly. Turn on Public Truck Parking to see designated parking locations."
+  },
+  {
+    "code": "RI",
+    "name": "Rhode Island",
+    "url": "https://dot.ri.gov/travel/wazetravel.php",
+    "mapName": "RIDOT / Waze Traffic Map",
+    "hint": "Opens RIDOT’s embedded Waze traffic map. Traffic information only; it does not verify overnight truck parking."
+  },
+  {
+    "code": "SC",
+    "name": "South Carolina",
+    "url": "https://www.511sc.org/",
+    "mapName": "511SC",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "SD",
+    "name": "South Dakota",
+    "url": "https://sd511.org/",
+    "mapName": "SD511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "TN",
+    "name": "Tennessee",
+    "url": "https://smartway.tn.gov/traffic",
+    "mapName": "TDOT SmartWay",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "TX",
+    "name": "Texas",
+    "url": "https://drivetexas.org/",
+    "mapName": "DriveTexas",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "UT",
+    "name": "Utah",
+    "url": "https://udottraffic.utah.gov/",
+    "mapName": "UDOT Traffic",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "VT",
+    "name": "Vermont",
+    "url": "https://newengland511.org/",
+    "mapName": "New England 511 · Vermont",
+    "hint": "Opens the shared Maine / New Hampshire / Vermont travel map. Search or zoom to Vermont."
+  },
+  {
+    "code": "VA",
+    "name": "Virginia",
+    "url": "https://511.vdot.virginia.gov/",
+    "mapName": "Virginia 511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "WA",
+    "name": "Washington",
+    "url": "https://wsdot.com/Travel/Real-time/Map/",
+    "mapName": "WSDOT Travel Center Map",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "WV",
+    "name": "West Virginia",
+    "url": "https://wv511.org/",
+    "mapName": "WV511",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "WI",
+    "name": "Wisconsin",
+    "url": "https://511wi.gov/",
+    "mapName": "511WI",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  },
+  {
+    "code": "WY",
+    "name": "Wyoming",
+    "url": "https://map.wyoroad.info/511-map/",
+    "mapName": "WYDOT 511 Map",
+    "hint": "Opens the travel map directly. Search or zoom to your city. If offered, enable Rest Areas or Truck Parking in the map layers; road-condition markers alone are not parking locations."
+  }
+];
 let selectedParkingState="";
 function officialSourceLink(source,label){return '<a class="btn light directory-link" data-official-source="true" href="'+source.url+'" target="_blank" rel="noopener noreferrer">'+esc(label||'Open official locator')+' <span aria-hidden="true">↗</span><span class="sr-only"> (opens a new tab)</span></a>'}
 function showOfficialStops(category,focus=true){
-  const titles={parking:'Truck parking at established travel stops',truckstops:'Truck stops & travel centers',rest:'Public rest-area directories',fuel:'Diesel at established travel stops',scales:'Certified truck scales'};
+  const titles={parking:'Truck parking at established travel stops',truckstops:'Truck stops & travel centers',rest:'Rest areas & state quick maps',fuel:'Diesel at established travel stops',scales:'Certified truck scales'};
   if(!Object.prototype.hasOwnProperty.call(titles,category))category='parking';
   const place=document.getElementById('safeSearchLocation').value.trim();
   const reminder=place?'<p><strong>City / address reminder:</strong> '+esc(place)+'. Enter this in the official locator you open.</p>':'<p>Enter your city in the locator you choose. No nearby locations have been searched yet.</p>';
   const providers=officialStopProviders.filter(source=>source.categories.includes(category));
   let content='<span class="badge">Official sources only</span><h3>'+titles[category]+'</h3>'+reminder;
   if(category==='fuel'||category==='scales')content+='<p class="warning">Service only: fuel or scale access does not mean overnight parking is allowed.</p>';
-  content+='<div class="list-item"><label for="parkingState">State · all 50 states + Washington, D.C.</label><select id="parkingState" onchange="selectedParkingState=this.value;renderStateParkingSources()"><option value="">Choose a state</option>'+stateTransportationSources.map(state=>'<option value="'+state.code+'"'+(state.code===selectedParkingState?' selected':'')+'>'+esc(state.name)+'</option>').join('')+'</select><div id="stateParkingResource"></div></div>';
+  content+='<div class="list-item"><label for="parkingState">Choose your state · open a quick map</label><select id="parkingState" onchange="selectedParkingState=this.value;renderStateParkingSources()"><option value="">Choose a state</option>'+stateTransportationSources.map(state=>'<option value="'+state.code+'"'+(state.code===selectedParkingState?' selected':'')+'>'+esc(state.name)+'</option>').join('')+'</select><div id="stateParkingResource"></div></div>';
   content+='<div class="directory-grid">'+providers.map(source=>'<article class="list-item"><p class="eyebrow">'+esc(source.kind)+'</p><h4>'+esc(source.name)+'</h4><p>'+esc(source.note)+'</p>'+officialSourceLink(source)+'</article>').join('')+'</div>';
   if(category==='rest'||category==='parking'){
-    content+='<div class="list-item"><h4>Public rest areas · official state sources</h4><p>Check the state’s posted truck access, closures, and permitted length of stay. A public rest area is not automatically available for an overnight stay.</p>';
-    if(category==='parking')content+='<button class="btn light" type="button" onclick="showOfficialStops(&quot;rest&quot;)">Browse public rest-area directories</button>';
-    else content+='<p>Select a state above to open its official rest-area or transportation resources.</p>';
+    content+='<div class="list-item"><h4>Public rest areas · direct maps & locations</h4><p>Check the state’s posted truck access, closures, and permitted length of stay. A public rest area is not automatically available for an overnight stay.</p>';
+    if(category==='parking')content+='<button class="btn light" type="button" onclick="showOfficialStops(&quot;rest&quot;)">Browse state quick maps</button>';
+    else content+='<p>Select a state above to open its travel map directly.</p>';
     content+='</div>';
   }
-  content+='<p class="small">Only operator and government directories are linked here. Individual stops, live vacancy, opening hours, and overnight permission are not verified by this app. Sources reviewed October 27, 2026.</p>';
+  content+='<p class="small">Only official travel maps, rest-area resources and operator locators are linked here. Individual stops, live vacancy, opening hours, and overnight permission are not verified by this app. Sources reviewed October 27, 2026.</p>';
   const results=document.getElementById('officialStopResults');results.innerHTML=content;renderStateParkingSources();
   document.querySelectorAll('[data-stop-category]').forEach(button=>{const selected=button.dataset.stopCategory===category;button.setAttribute('aria-pressed',String(selected));button.classList.toggle('light',!selected)});
   if(focus){results.focus({preventScroll:true});results.scrollIntoView({block:'start'})}
@@ -698,9 +1056,9 @@ function showOfficialStops(category,focus=true){
 function renderStateParkingSources(){
   const destination=document.getElementById('stateParkingResource');
   const state=stateTransportationSources.find(item=>item.code===selectedParkingState);
-  if(!state){destination.innerHTML='<p class="small">Nationwide coverage: select the state you will be traveling through. Operator directories below can be searched by city or state.</p>';return}
+  if(!state){destination.innerHTML='<p class="small">Choose a state to open its travel map directly. No agency-homepage search needed.</p>';return}
   const rest=officialRestSources.find(item=>item.name.startsWith(state.name+' ·'));
-  destination.innerHTML='<h4>Official resources · '+esc(state.name)+'</h4><p>Use the agency’s rest-area, truck-parking, and traveler-information pages to check public access and closures. If the agency link has moved, use the federal state directory below.</p>'+(rest?officialSourceLink(rest,'Open '+state.name+' rest-area directory'):'')+officialSourceLink(state,'Open '+state.name+' transportation website')+officialSourceLink({url:'https://www.fhwa.dot.gov/about/webstate.cfm'},'Federal directory · all state agencies')+'<p class="small">This is an official resource link, not confirmation of a parking space, overnight permission, or truck-stop availability in this state.</p>';
+  destination.innerHTML='<h4>'+esc(state.name)+' · Quick map</h4>'+officialSourceLink(state,'Open '+state.mapName)+'<p>'+esc(state.hint)+'</p>'+(rest&&rest.url!==state.url?officialSourceLink(rest,'Rest-area locations · '+state.name):'')+'<p class="small">Map coverage and parking layers vary. Check the selected stop’s truck access, closure status and overnight rules. Open does not mean a truck space is available.</p>';
 }
 function openMapRoute(){
   const from=currentLocation.value.trim(),to=deliveryAddress.value.trim();
