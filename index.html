@@ -46,6 +46,8 @@
     #practiceyard .grid .card p{flex:1;line-height:1.5;margin:4px 0}
     #practiceyard .grid .btn{margin-top:auto}
     @media(max-width:700px){#practiceyard .grid{grid-template-columns:1fr}main{padding:12px}nav button{padding:9px 12px}}
+    #memberGate{max-width:460px;margin:28px auto;padding:24px;border-radius:18px;background:white;border:1px solid #e5e7eb;box-shadow:0 8px 30px #11182712}
+    #memberGate input{margin:6px 0 12px}#memberGate .btn{margin-top:8px}#memberGate .auth-tabs{display:flex;gap:8px}#memberGate .auth-tabs button{flex:1;padding:12px;border:1px solid #ddd;border-radius:10px;background:#f3f4f6;cursor:pointer}#memberGate .auth-tabs button.selected{background:#111827;color:white}#memberMessage{min-height:22px;margin-top:12px}#memberControls{display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;background:white}#memberControls button{padding:8px 12px;border-radius:8px;border:1px solid #ddd;background:#f3f4f6;cursor:pointer}
   </style>
 </head>
 <body>
@@ -60,8 +62,10 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 </p>
 
 </header>
-<nav id="nav"></nav>
-<main>
+<div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
+<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your free account to access the training dashboard.</p><div class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button class="btn light" type="button" onclick="memberResetPassword()">Forgot password?</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
+<nav id="nav" hidden></nav>
+<main id="memberMain" hidden>
   
 <section id="home" class="active">
 
@@ -503,6 +507,17 @@ Start Lesson 1 →
 <script>
  const SUPABASE_URL = "https://fmyaxdzonqrgsyzizixe.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sNkm8dvvUXXRocYNcQP_pw_eWmyBHCW"; 
+
+// Authentication controls access to the interface; static site source remains public.
+const memberClient=window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY);
+let memberAuthMode='signin';
+function memberMode(mode){memberAuthMode=mode;document.getElementById('memberTabSignIn').classList.toggle('selected',mode==='signin');document.getElementById('memberTabSignUp').classList.toggle('selected',mode==='signup');document.getElementById('memberSubmit').textContent=mode==='signup'?'Create free account':'Sign in';document.getElementById('memberPassword').autocomplete=mode==='signup'?'new-password':'current-password';document.getElementById('memberMessage').textContent='';}
+function memberDisplay(session){const signedIn=Boolean(session?.user);document.getElementById('memberGate').hidden=signedIn;document.getElementById('memberMain').hidden=!signedIn;document.getElementById('nav').hidden=!signedIn;document.getElementById('memberControls').style.display=signedIn?'flex':'none';document.getElementById('memberIdentity').textContent=signedIn?session.user.email||'Member':'';}
+async function memberSignOut(){if(!memberClient)return;const {error}=await memberClient.auth.signOut();if(error)document.getElementById('memberMessage').textContent=error.message;else memberDisplay(null);}
+async function memberResetPassword(){const email=document.getElementById('memberEmail').value.trim();if(!email){document.getElementById('memberMessage').textContent='Enter your email address first.';return;}const {error}=await memberClient.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});document.getElementById('memberMessage').textContent=error?error.message:'If an account exists, password reset instructions will be sent.';}
+document.getElementById('memberForm').addEventListener('submit',async event=>{event.preventDefault();if(!memberClient)return;const email=document.getElementById('memberEmail').value.trim(),password=document.getElementById('memberPassword').value;const submit=document.getElementById('memberSubmit');submit.disabled=true;document.getElementById('memberMessage').textContent='Please wait…';try{const result=memberAuthMode==='signup'?await memberClient.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname}}):await memberClient.auth.signInWithPassword({email,password});document.getElementById('memberMessage').textContent=result.error?result.error.message:result.data.session?'Signed in successfully.':'Check your email for a confirmation link.';}catch(e){document.getElementById('memberMessage').textContent='Unable to connect. Please try again.';}finally{submit.disabled=false;}});
+if(memberClient){memberClient.auth.onAuthStateChange((_event,session)=>memberDisplay(session));memberClient.auth.getSession().then(({data})=>memberDisplay(data.session)).catch(()=>memberDisplay(null));}else{document.getElementById('memberMessage').textContent='Sign-in service is unavailable. Please refresh the page.';}
+
 const screens=[
   ['home','🏠 Dashboard'],
   ['practiceyard','🚛 CDL Practice Yard'],
@@ -519,7 +534,7 @@ const screens=[
   ['admin','Admin']
 ];
 const nav=document.getElementById('nav');screens.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');nav.appendChild(b)});
-function showScreen(id,btn){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');scrollTo(0,0)}
+function showScreen(id,btn){document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');scrollTo(0,0)}
 function esc(str) {
   return String(str || "")
     .replace(/&/g, "&amp;")
