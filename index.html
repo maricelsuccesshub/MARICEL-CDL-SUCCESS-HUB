@@ -248,7 +248,11 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
     <h3>Coach Maricel</h3>
 
-    <div id="practiceContent">
+    <div class="grid" aria-label="Straight-back practice tests" style="margin-bottom:16px">
+      <button class="btn light" id="straightTest1" aria-pressed="false" aria-controls="practiceContent" onclick="showPracticeLesson('straight')">Test 1: Trailer Drifting Right</button>
+      <button class="btn light" id="straightTest2" aria-pressed="false" aria-controls="practiceContent" onclick="showPracticeLesson('straight-left')">Test 2: Trailer Drifting Left</button>
+    </div>
+    <div id="practiceContent" aria-live="polite">
 
       Select one lesson to begin.
 
@@ -1310,6 +1314,7 @@ function previousLessonStep() {
   }
 }
  let simMove = 1;
+let straightTest = "straight";
 let trailerAngle = 12;
 
 function loadSimulatorStyles() {
@@ -1456,11 +1461,16 @@ window.showPracticeLesson = function(type) {
     `;
   }
 
-  if (type === "straight") {
+  if (type === "straight" || type === "straight-left") {
+    straightTest = type;
     simMove = 1;
-    trailerAngle = 12;
-renderStraightSimulator("Your trailer is drifting right. What should you do?");
+    trailerAngle = type === "straight-left" ? -12 : 12;
+    renderStraightSimulator(type === "straight-left" ? "Your trailer is drifting left. What should you do?" : "Your trailer is drifting right. What should you do?");
   }
+  ["straightTest1", "straightTest2"].forEach((id,i)=>{
+    const button=document.getElementById(id);
+    if(button)button.setAttribute("aria-pressed",String(type === (i ? "straight-left" : "straight")));
+  });
   box.setAttribute("tabindex", "-1");
   box.focus({preventScroll:true});
   box.scrollIntoView({block:"start"});
@@ -1468,11 +1478,11 @@ renderStraightSimulator("Your trailer is drifting right. What should you do?");
 
 function renderStraightSimulator(message) {
   const box = document.getElementById("practiceContent");
-  const angleText = trailerAngle < 0 ? Math.abs(trailerAngle) + "° Left" : trailerAngle + "° Right";
+  const angleText = trailerAngle === 0 ? "0° — Aligned" : trailerAngle < 0 ? Math.abs(trailerAngle) + "° Left" : trailerAngle + "° Right";
   const angleClass = Math.abs(trailerAngle) <= 3 ? "angle-good" : "angle-bad";
 
   box.innerHTML = `
-    <h3>🚛 Straight Back Trainer</h3>
+    <h3>🚛 ${straightTest === "straight-left" ? "Test 2: Trailer Drifting Left" : "Test 1: Trailer Drifting Right"}</h3>
     <p><strong>Scenario:</strong> ${message}</p>
 
     <div class="sim-panel">
@@ -1502,7 +1512,8 @@ function renderStraightSimulator(message) {
    <button class="btn" onclick="straightAnswer('left')">⬅️ Turn Wheel Left</button>
 <button class="btn" onclick="straightAnswer('hold')">🛞 Hold Wheel Straight</button>
 <button class="btn" onclick="straightAnswer('right')">➡️ Turn Wheel Right</button>
-<button class="btn light" onclick="showPracticeLesson('straight')">↻ Restart practice</button>
+<button class="btn light" onclick="showPracticeLesson('${straightTest}')">↻ Restart this test</button>
+${straightTest === "straight" && Math.abs(trailerAngle) <= 3 ? `<button class="btn" onclick="showPracticeLesson('straight-left')">Continue to Test 2: Trailer Drifting Left →</button>` : ''}
 `;
 }
 window.straightAnswer = function(choice) {
