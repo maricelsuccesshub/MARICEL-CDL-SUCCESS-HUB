@@ -23,7 +23,7 @@
     nav{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px;background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5;max-height:44vh;overflow:auto}
     nav button{border:1px solid var(--border);background:var(--soft);padding:12px;border-radius:12px;font-weight:bold;cursor:pointer}
     nav button.active{background:var(--accent);color:white}
-    main{padding:16px;max-width:980px;margin:auto}
+    main{padding:16px;max-width:1120px;margin:auto}
     section{display:none}.active{display:block}
     .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
     h2{margin-top:0} label{display:block;font-weight:bold;margin-top:12px;margin-bottom:6px}
@@ -41,17 +41,21 @@
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--soft);margin:4px;font-size:14px}
     ol li, ul li{margin:8px 0}
     footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
-    nav{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;max-height:none;padding:10px 14px;scrollbar-width:thin;box-shadow:0 3px 12px rgba(0,0,0,.07)}
+    nav{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;overflow-x:auto;max-height:none;padding:10px 14px;scrollbar-width:thin;box-shadow:0 3px 12px rgba(0,0,0,.07)}
     nav button{flex:0 0 auto;width:auto;min-height:42px;padding:10px 15px;white-space:nowrap;font-size:13px}
-    .nav-group{display:flex;flex-direction:column;gap:4px;flex:0 0 auto;padding-right:10px;border-right:1px solid var(--border)}
-    .nav-group:last-child{border-right:0;padding-right:0}.nav-group-buttons{display:flex;gap:6px}.nav-group-label{padding-left:3px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    #subnav{display:flex;justify-content:center;gap:8px;overflow-x:auto;padding:8px 14px;background:#eef2f7;border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:4}
+    #subnav button{flex:0 0 auto;border:1px solid var(--border);background:white;color:var(--text);padding:9px 14px;border-radius:999px;font-weight:700;cursor:pointer;white-space:nowrap}
+    #subnav button.active{background:var(--accent);color:white}
+    details.advanced{margin-top:12px;border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:var(--soft)}
+    details.advanced summary{cursor:pointer;font-weight:700}
+    .action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}.action-grid .btn{margin-top:0}
     .dashboard-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:16px}.dashboard-grid .card{margin-bottom:0}.dashboard-note-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.dashboard-note-grid>div{margin-top:0}
     #practiceyard .grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
     #practiceyard .grid .card{display:flex;flex-direction:column;gap:8px}
     #practiceyard .grid .card h3{margin:0}
     #practiceyard .grid .card p{flex:1;line-height:1.5;margin:4px 0}
     #practiceyard .grid .btn{margin-top:auto}
-    @media(max-width:700px){#practiceyard .grid,.dashboard-grid,.dashboard-note-grid{grid-template-columns:1fr}main{padding:12px}nav button{padding:9px 12px}.nav-group-label{font-size:9px}}
+    @media(max-width:700px){#practiceyard .grid,.dashboard-grid,.dashboard-note-grid{grid-template-columns:1fr}main{padding:12px}nav{justify-content:flex-start}nav button{padding:9px 12px}#subnav{justify-content:flex-start;top:60px}}
     #memberGate{max-width:460px;margin:28px auto;padding:24px;border-radius:18px;background:white;border:1px solid #e5e7eb;box-shadow:0 8px 30px #11182712}
     #memberGate input{margin:6px 0 12px}#memberGate .btn{margin-top:8px}#memberGate .auth-tabs{display:flex;gap:8px}#memberGate .auth-tabs button{flex:1;padding:12px;border:1px solid #ddd;border-radius:10px;background:#f3f4f6;cursor:pointer}#memberGate .auth-tabs button.selected{background:#111827;color:white}#memberMessage{min-height:22px;margin-top:12px}#memberControls{display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;background:white}#memberControls button{padding:8px 12px;border-radius:8px;border:1px solid #ddd;background:#f3f4f6;cursor:pointer}
   </style>
@@ -70,7 +74,8 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 </header>
 <div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
 <div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your free account to access the training dashboard.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Training information is educational. Never use this app as your only source for commercial vehicle routing or safety decisions.</p></div>
-<nav id="nav" hidden></nav>
+<nav id="nav" aria-label="Main navigation" hidden></nav>
+<div id="subnav" aria-label="Section navigation" hidden></div>
 <main id="memberMain" hidden>
   
 <section id="home" class="active">
@@ -187,27 +192,32 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 <section id="profile"><div class="card"><h2>My private member profile</h2><label for="profileName">Display name</label><input id="profileName" maxlength="100" autocomplete="nickname"><p id="profileEmail" class="small"></p><button class="btn" onclick="saveProfile()">Save Profile</button><p id="profileSaved" role="status" aria-live="polite"></p><p class="small">Never enter CDL numbers, employee IDs, or load documents.</p></div></section>
 
 <section id="planner">
-  <div class="card"><h2>Plan My Route</h2>
+  <div class="card"><h2>Route Planner</h2>
+    <p class="small">Plan the trip first, then use Safe Haven Finder for nearby parking and Facility Notes for private arrival details.</p>
     <div class="warning"><strong>No classified information:</strong> Address/location only. No load, BOL, dispatch, trailer, or commodity details.</div>
     <label>Current City or Location</label><input id="currentLocation" placeholder="Example: Colton, CA">
     <label>Destination / Facility Address</label><input id="deliveryAddress" placeholder="Street address or City, State">
-    <div class="two-col"><div><label>Manual Latitude Optional</label><input id="manualLat" placeholder="34.0522"></div><div><label>Manual Longitude Optional</label><input id="manualLon" placeholder="-118.2437"></div></div>
     <div class="two-col"><div><label>Appointment Date</label><input id="appointmentDate" type="date"></div><div><label>Appointment Time</label><input id="appointmentTime" type="time"></div></div>
+    <details class="advanced"><summary>Advanced: enter destination coordinates</summary><div class="two-col"><div><label>Latitude</label><input id="manualLat" inputmode="decimal" placeholder="34.0522"></div><div><label>Longitude</label><input id="manualLon" inputmode="decimal" placeholder="-118.2437"></div></div></details>
     <button class="btn" onclick="autoPlanDestination()">Auto Get Sunset, Timezone & Weather</button>
     <div id="autoPlanResult"></div>
-    <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button>
-    <button class="btn light" onclick="openRouteSearch('truck stops')">Truck Stops Along Route</button>
-<button class="btn light" onclick="openRouteSearch('travel centers truck parking')">Travel Centers Along Route</button>
-<button class="btn light" onclick="openRouteSearch('rest areas truck parking')">Rest Areas Along Route</button>
-<button class="btn light" onclick="openRouteSearch('semi truck parking')">Semi Truck Parking Along Route</button>
-<button class="btn light" onclick="openRouteSearch('CAT scales truck stop')">CAT Scales Along Route</button>
+    <h3>Route actions</h3>
+    <div class="action-grid">
+      <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button>
+      <button class="btn light" onclick="openRouteSearch('truck stops')">Truck Stops</button>
+      <button class="btn light" onclick="openRouteSearch('travel centers truck parking')">Travel Centers</button>
+      <button class="btn light" onclick="openRouteSearch('rest areas truck parking')">Rest Areas</button>
+      <button class="btn light" onclick="openRouteSearch('semi truck parking')">Truck Parking</button>
+      <button class="btn light" onclick="openRouteSearch('CAT scales truck stop')">CAT Scales</button>
+    </div>
   </div>
 </section>
 
 <section id="safehaven">
   <div class="card"><h2>Safe Haven Finder</h2>
+    <p class="small">Search for parking and essential services near a city or address.</p>
     <label>Search Near City or Address</label><input id="safeSearchLocation" placeholder="Example: Barstow, CA">
-    <div class="grid">
+    <div class="action-grid">
       <button class="btn" onclick="mapSearch('truck stop')">Truck Stops</button>
       <button class="btn" onclick="mapSearch('interstate rest area truck parking')">Rest Areas</button>
       <button class="btn" onclick="mapSearch('truck parking 53 foot trailer')">Truck Parking</button>
@@ -218,7 +228,13 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
     <div class="warning"><strong>Semi Tractor-Trailer Check:</strong><ul><li>Confirm wide truck entrance.</li><li>Check satellite view.</li><li>Avoid tiny gas stations, low bridges, dead ends, and tight shopping centers.</li><li>Verify overnight parking rules.</li><li>Never risk unsafe shoulder parking.</li></ul></div>
   </div>
   <div class="card">
-  <h3>Save Safe Haven</h3>
+  <h3>Share a Safe Haven with Members</h3>
+  <p class="small">Save only public location and amenity information. Do not include load, customer, truck, or employee details.</p>
+
+  <label>Location Name</label>
+  <input id="safeHavenName" maxlength="150" placeholder="Example: Westside Travel Center">
+
+  <div class="two-col"><div><label>City</label><input id="safeHavenCity" maxlength="100" placeholder="Barstow"></div><div><label>State</label><input id="safeHavenState" maxlength="30" placeholder="CA"></div></div>
 
   <label>Overnight Parking</label>
   <select id="overnightParking">
@@ -238,31 +254,39 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
   <label>Restrooms</label>
   <select id="restrooms">
-    <option value="false">Unknown / No</option>
+    <option value="">Unknown</option>
     <option value="true">Yes</option>
+    <option value="false">No</option>
   </select>
 
   <label>Showers</label>
   <select id="showers">
-    <option value="false">Unknown / No</option>
+    <option value="">Unknown</option>
     <option value="true">Yes</option>
+    <option value="false">No</option>
   </select>
 
   <label>Diesel</label>
   <select id="diesel">
-    <option value="false">Unknown / No</option>
+    <option value="">Unknown</option>
     <option value="true">Yes</option>
+    <option value="false">No</option>
   </select>
 
   <label>Food Nearby</label>
   <input id="foodNearby" placeholder="Example: Subway, McDonald's">
 
-  <button class="btn" onclick="saveFacility()">Save Safe Haven</button>
+  <label>Public Notes</label>
+  <textarea id="safeHavenNotes" maxlength="1000" placeholder="Entrance, parking, or access notes that are safe to share"></textarea>
+
+  <button class="btn" onclick="saveSafeHaven()">Share Safe Haven</button>
+  <p id="safeHavenSaved" role="status" aria-live="polite"></p>
 </div>
+<div class="card"><h3>Member Safe Havens</h3><div id="safeHavenList"><p class="small">Shared locations will appear here.</p></div></div>
 </section>
 
 <section id="facility">
-  <div class="card"><h2>Facility Intelligence</h2><p class="small">Only save location/navigation info. No load/customer-sensitive data.</p>
+  <div class="card"><h2>My Private Facility Notes</h2><p class="small">These arrival notes are private to your signed-in account. Never save load, customer, employee, truck, or trailer information.</p>
     <label>Facility Name</label><input id="facilityName">
     <label>Facility Address</label><input id="facilityAddress">
     <div class="two-col"><div><label>Truck Entrance Latitude</label><input id="entranceLat"></div><div><label>Truck Entrance Longitude</label><input id="entranceLon"></div></div>
@@ -271,9 +295,10 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
     <label>Guard Shack / Check-In Notes</label><textarea id="guardNotes"></textarea>
     <label>Best Direction to Approach</label><textarea id="approachNotes"></textarea>
   
-    <button class="btn" onclick="saveFacility()">Save Facility</button>
+    <button class="btn" onclick="saveFacilityNote()">Save Private Note</button>
+    <p id="facilitySaved" role="status" aria-live="polite"></p>
   </div>
-  <div class="card"><h3>Saved Facilities</h3><div id="facilityList"></div></div>
+  <div class="card"><h3>My Saved Facility Notes</h3><div id="facilityList"><p class="small">Your private notes will appear here.</p></div></div>
 </section>
 
 <section id="backing">
@@ -293,12 +318,12 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 </section>
 
 <section id="community">
-  <div class="card"><h2>Community Hub</h2>
-    <span class="pill">General Help</span><span class="pill">Backing Help</span><span class="pill">Safe Parking</span><span class="pill">Facility Questions</span><span class="pill">Success Stories</span>
-    <div class="warning"><strong>Rule:</strong> Respect everyone. No shaming. Correct to build, not to break.</div>
+  <div class="card"><h2>Notes on This Device</h2>
+    <p>Keep personal reminders, questions for your instructor, and lessons you want to revisit.</p>
+    <div class="warning"><strong>Saved on this device only:</strong> These notes are not shared with other members and may not appear on a different phone or computer.</div>
   </div>
-  <div class="card"><h3>Post a Community Question</h3><label>Topic</label><input id="postTopic"><label>Message</label><textarea id="postMessage"></textarea><button class="btn" onclick="savePost()">Post</button></div>
-  <div class="card"><h3>Community Posts</h3><div id="postList"></div></div>
+  <div class="card"><h3>Add a Note</h3><label>Title</label><input id="postTopic" maxlength="120"><label>Note</label><textarea id="postMessage" maxlength="2000"></textarea><button class="btn" onclick="savePost()">Save Note</button></div>
+  <div class="card"><h3>Saved Notes</h3><div id="postList"></div></div>
 </section>
 
 <section id="resources">
@@ -479,12 +504,12 @@ function memberMode(mode){
 function memberDisplay(session){
   const signedIn=Boolean(session?.user?.email_confirmed_at)&&!memberRecovery;
   const previous=memberUserId;memberUserId=signedIn?session.user.id:null;
-  memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;
+  memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;if(!signedIn)memberEl('subnav').hidden=true;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){memberGeneration++; memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
+  if(previous!==memberUserId){memberGeneration++; memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
-  if(signedIn&&previous!==memberUserId)setTimeout(()=>{renderProgress();loadMemberProfile();},0);
+  if(signedIn&&previous!==memberUserId){if(typeof showScreen==='function')showScreen('home');setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0)}
 }
 async function memberSignOut(){
   try{const {error}=await memberClient.auth.signOut();if(error)throw error;memberRecovery=false;memberDisplay(null);memberMode('signin');memberEl('memberPassword').value='';}
@@ -537,16 +562,26 @@ async function saveProfile(){
   if(generation===memberGeneration){memberEl('profileSaved').textContent=error?'Could not save profile. Please retry.':'Your private profile was saved.';if(!error)memberEl('dashboardWelcomeName').textContent='👋 Welcome, '+(displayName||'Driver')+'!';}
 }
 
-const navGroups=[
-  ['Training',[['home','🏠 Dashboard'],['practiceyard','🚛 Practice Yard'],['backing','Backing'],['lesson','🧠 Lesson'],['progress','Progress']]],
-  ['Trip Tools',[['planner','Plan Route'],['safehaven','Safe Haven'],['facility','Facilities']]],
-  ['Connect',[['community','Community'],['resources','Resources']]],
-  ['Account',[['profile','My Profile'],['about','ℹ️ About'],['admin','Admin']]]
+const primaryNav=[
+  ['home','🏠 Dashboard','home'],
+  ['training','🚛 Training','practiceyard'],
+  ['trip','🗺️ Trip Tools','planner'],
+  ['progress','📈 Progress','progress'],
+  ['community','📝 Device Notes','community'],
+  ['resources','📚 Resources','resources'],
+  ['profile','👤 Profile','profile'],
+  ['about','ℹ️ About','about']
 ];
-const screens=navGroups.flatMap(([,items])=>items),nav=document.getElementById('nav');
-navGroups.forEach(([groupName,items])=>{const group=document.createElement('div'),label=document.createElement('span'),buttons=document.createElement('div');group.className='nav-group';label.className='nav-group-label';label.textContent=groupName;buttons.className='nav-group-buttons';items.forEach(([id,text])=>{const b=document.createElement('button');b.type='button';b.dataset.screen=id;b.textContent=text;b.onclick=()=>showScreen(id,b);if(id==='home')b.classList.add('active');buttons.appendChild(b)});group.append(label,buttons);nav.appendChild(group)});
-function showScreen(id,btn){document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');scrollTo(0,0)}
-function openScreen(id){showScreen(id,nav.querySelector(`[data-screen="${id}"]`))}
+const secondaryNav={
+  training:[['practiceyard','Practice Yard'],['backing','Backing Guides'],['lesson','Lessons']],
+  trip:[['planner','Route Planner'],['safehaven','Safe Haven Finder'],['facility','Facility Notes']]
+};
+const screenGroups={practiceyard:'training',backing:'training',lesson:'training',planner:'trip',safehaven:'trip',facility:'trip'};
+const nav=document.getElementById('nav'),subnav=document.getElementById('subnav');
+primaryNav.forEach(([group,text,target])=>{const b=document.createElement('button');b.type='button';b.dataset.group=group;b.textContent=text;b.onclick=()=>showScreen(target);if(group==='home')b.classList.add('active');nav.appendChild(b)});
+function renderSubnav(group,current){const items=secondaryNav[group];subnav.innerHTML='';subnav.hidden=!items;if(!items)return;items.forEach(([id,text])=>{const b=document.createElement('button');b.type='button';b.dataset.screen=id;b.textContent=text;b.onclick=()=>showScreen(id);if(id===current)b.classList.add('active');subnav.appendChild(b)})}
+function showScreen(id){const target=document.getElementById(id);if(!target)return;document.querySelectorAll('main > section').forEach(s=>s.classList.remove('active'));target.classList.add('active');const group=screenGroups[id]||id;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.group===group));renderSubnav(group,id);scrollTo(0,0)}
+function openScreen(id){showScreen(id)}
 function esc(str) {
   return String(str || "")
     .replace(/&/g, "&amp;")
@@ -578,32 +613,52 @@ function openRouteSearch(term) {
     "_blank"
   );
 }
-  function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
-async function saveFacility() {
-  if(!memberClient){alert("Member service is unavailable.");return;}
-  const {data:{user},error:authError}=await memberClient.auth.getUser();
-  if(authError||!user?.email_confirmed_at){alert("Please sign in with a verified account first.");return;}
-  const facility = {
-  location_name: facilityName.value || "Unnamed Facility",
-  city: facilityAddress.value || "Unknown",
-  state: "CA",
-  parking_spots: 1,
-  overnight_allowed: overnightParking.value === "Yes",
-    restrooms: restrooms.value === "true",
-showers: showers.value === "true",
-diesel: diesel.value === "true",
-food_nearby: foodNearby.value || "",
-  notes: entranceNotes.value + " | " + guardNotes.value + " | " + approachNotes.value
-};
-const {error}=await memberClient.from("safe_havens").insert(facility);
-if (error) {
-  alert("Could not save this Safe Haven. Please try again.");
-  return;
+function mapSearch(term){const loc=encodeURIComponent(safeSearchLocation.value||'near me');open(`https://www.google.com/maps/search/${encodeURIComponent(term)}+near+${loc}`,'_blank')}
+const optionalBoolean=value=>value===''?null:value==='true';
+async function verifiedMember(){if(!memberClient)return null;const {data:{user},error}=await memberClient.auth.getUser();return !error&&user?.email_confirmed_at?user:null}
+async function saveSafeHaven(){
+  const user=await verifiedMember();if(!user){memberEl('safeHavenSaved').textContent='Sign in with a verified account first.';return}
+  const name=memberEl('safeHavenName').value.trim(),city=memberEl('safeHavenCity').value.trim(),state=memberEl('safeHavenState').value.trim().toUpperCase();
+  if(!name||!city||!state){memberEl('safeHavenSaved').textContent='Add the location name, city, and state.';return}
+  const overnight=memberEl('overnightParking').value;
+  const noteParts=[`Parking difficulty: ${memberEl('difficulty').value}`,overnight==='Limited'?'Overnight parking: Limited':'',memberEl('safeHavenNotes').value.trim()].filter(Boolean);
+  const record={submitted_by:user.id,location_name:name.slice(0,150),city:city.slice(0,100),state:state.slice(0,30),overnight_allowed:overnight==='Yes'?true:overnight==='No'?false:null,restrooms:optionalBoolean(memberEl('restrooms').value),showers:optionalBoolean(memberEl('showers').value),diesel:optionalBoolean(memberEl('diesel').value),food_nearby:memberEl('foodNearby').value.trim().slice(0,300),notes:noteParts.join(' | ').slice(0,1000)};
+  const {error}=await memberClient.from('safe_havens').insert(record);
+  if(error){memberEl('safeHavenSaved').textContent='Could not share this Safe Haven. Please retry.';return}
+  memberEl('safeHavenSaved').textContent='Safe Haven shared with members.';
+  ['safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes'].forEach(id=>memberEl(id).value='');
+  await renderSafeHavens();
 }
-  alert("Safe Haven saved for members!");
-  
+const yesNoUnknown=value=>value===true?'Yes':value===false?'No':'Unknown';
+async function renderSafeHavens(){
+  if(!memberClient)return;const generation=memberGeneration;
+  const {data,error}=await memberClient.from('safe_havens').select('location_name,city,state,overnight_allowed,restrooms,showers,diesel,food_nearby,notes').order('created_at',{ascending:false}).limit(30);
+  if(generation!==memberGeneration)return;
+  const list=memberEl('safeHavenList');
+  if(error){list.innerHTML='<p class="small">Could not load shared Safe Havens.</p>';return}
+  list.innerHTML=data.length?data.map(x=>`<div class="list-item"><strong>${esc(x.location_name)}</strong><br>${esc(x.city)}, ${esc(x.state)}<br><span class="small">Overnight: ${yesNoUnknown(x.overnight_allowed)} · Restrooms: ${yesNoUnknown(x.restrooms)} · Showers: ${yesNoUnknown(x.showers)} · Diesel: ${yesNoUnknown(x.diesel)}</span>${x.food_nearby?`<br><strong>Food:</strong> ${esc(x.food_nearby)}`:''}${x.notes?`<br><strong>Notes:</strong> ${esc(x.notes)}`:''}</div>`).join(''):'<p class="small">No member Safe Havens have been shared yet.</p>';
 }
-function renderFacilities(){const items=JSON.parse(localStorage.getItem('facilities')||'[]');facilityList.innerHTML=items.length?items.map(x=>`<div class="list-item"><strong>${esc(x.name||'Unnamed')}</strong><br>${esc(x.address||'')}<br><strong>Truck Entrance GPS:</strong> ${esc(x.eLat||'')}, ${esc(x.eLon||'')} ${x.eLat&&x.eLon?`<br><button class="btn light" onclick="open('https://www.google.com/maps/search/${x.eLat},${x.eLon}','_blank')">Navigate to Truck Entrance</button>`:''}<br><strong>Entrance:</strong> ${esc(x.entrance||'No notes')}<br><strong>Guard:</strong> ${esc(x.guard||'No notes')}<br><strong>Approach:</strong> ${esc(x.approach||'No notes')}<br><strong>Parking:</strong> ${esc(x.parking)} | <strong>Difficulty:</strong> ${esc(x.difficulty)}</div>`).join(''):'<p class="small">No saved facilities yet.</p>'}
+async function saveFacilityNote(){
+  const user=await verifiedMember();if(!user){memberEl('facilitySaved').textContent='Sign in with a verified account first.';return}
+  const name=memberEl('facilityName').value.trim(),address=memberEl('facilityAddress').value.trim();
+  if(!name){memberEl('facilitySaved').textContent='Add a facility name.';return}
+  const numberOrNull=id=>{const value=memberEl(id).value.trim();return value===''?null:Number(value)};
+  const record={user_id:user.id,facility_name:name.slice(0,150),facility_address:address.slice(0,300),entrance_lat:numberOrNull('entranceLat'),entrance_lon:numberOrNull('entranceLon'),guard_lat:numberOrNull('guardLat'),guard_lon:numberOrNull('guardLon'),entrance_notes:memberEl('entranceNotes').value.trim().slice(0,1500),guard_notes:memberEl('guardNotes').value.trim().slice(0,1500),approach_notes:memberEl('approachNotes').value.trim().slice(0,1500)};
+  if([record.entrance_lat,record.entrance_lon,record.guard_lat,record.guard_lon].some(Number.isNaN)){memberEl('facilitySaved').textContent='Coordinates must be numbers or left blank.';return}
+  const {error}=await memberClient.from('facility_notes').insert(record);
+  if(error){memberEl('facilitySaved').textContent='Could not save this private note. Please retry.';return}
+  memberEl('facilitySaved').textContent='Private facility note saved.';
+  ['facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes'].forEach(id=>memberEl(id).value='');
+  await renderFacilityNotes();
+}
+async function renderFacilityNotes(){
+  if(!memberClient)return;const generation=memberGeneration;
+  const {data,error}=await memberClient.from('facility_notes').select('facility_name,facility_address,entrance_lat,entrance_lon,guard_lat,guard_lon,entrance_notes,guard_notes,approach_notes').order('created_at',{ascending:false}).limit(50);
+  if(generation!==memberGeneration)return;
+  const list=memberEl('facilityList');
+  if(error){list.innerHTML='<p class="small">Could not load your private facility notes.</p>';return}
+  list.innerHTML=data.length?data.map(x=>{const hasEntrance=x.entrance_lat!==null&&x.entrance_lon!==null;const mapUrl=hasEntrance?`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.entrance_lat+','+x.entrance_lon)}`:'';return `<div class="list-item"><strong>${esc(x.facility_name)}</strong>${x.facility_address?`<br>${esc(x.facility_address)}`:''}${hasEntrance?`<br><a class="btn light" style="display:inline-block;text-align:center" href="${mapUrl}" target="_blank" rel="noopener">Navigate to Truck Entrance</a>`:''}${x.entrance_notes?`<br><strong>Entrance:</strong> ${esc(x.entrance_notes)}`:''}${x.guard_notes?`<br><strong>Check-in:</strong> ${esc(x.guard_notes)}`:''}${x.approach_notes?`<br><strong>Approach:</strong> ${esc(x.approach_notes)}`:''}</div>`}).join(''):'<p class="small">No private facility notes saved yet.</p>';
+}
 const backing={straight:'<h3>Straight Backing</h3><ol><li>Line tractor and trailer straight.</li><li>Use both mirrors.</li><li>Back at idle speed.</li><li>Use small corrections only.</li><li>Pull up early if crooked.</li><li>GOAL before final feet.</li></ol><div class="warning">Common mistake: overcorrecting.</div>',offset:'<h3>Offset Backing</h3><ol><li>Start with clean setup.</li><li>Watch trailer tandems.</li><li>Create angle slowly.</li><li>Reduce angle as trailer enters lane.</li><li>Follow trailer with tractor.</li><li>Pull up before jackknife.</li></ol>',alley:'<h3>Alley Dock</h3><ol><li>Survey obstacles.</li><li>Set controlled angle.</li><li>Watch tandems pivot.</li><li>Control angle early.</li><li>Follow trailer.</li><li>GOAL often.</li><li>Pull up and straighten.</li></ol>',"45":'<h3>45° Backing</h3><ol><li>Drive past space.</li><li>Set trailer around 45°.</li><li>GOAL.</li><li>Back slowly.</li><li>Watch tandems.</li><li>Follow trailer.</li><li>Straighten and finish.</li></ol>',"90":'<h3>90° Backing</h3><ol><li>Use only when necessary.</li><li>GOAL first.</li><li>Watch pivot point.</li><li>Protect tail swing.</li><li>Pull up often.</li><li>Straighten before final back.</li></ol>',blind:'<h3>Blind Side</h3><ol><li>Avoid if safer setup exists.</li><li>GOAL before moving.</li><li>Use visible trained spotter if safe.</li><li>Stop if you lose sight.</li><li>Pull up and reposition.</li></ol><div class="danger">Never let pressure force unsafe blind-side backing.</div>',truckstop:'<h3>Truck Stop Parking</h3><ol><li>Pick easiest safe spot.</li><li>Avoid poorly parked trucks.</li><li>Watch tail swing and tractor nose.</li><li>GOAL.</li><li>Use pull-ups.</li><li>Ignore pressure and move slow.</li></ol>',panic:'<h3>I Lost My Setup</h3><ol><li>Stop.</li><li>Set brakes.</li><li>Breathe.</li><li>GOAL.</li><li>Check both sides.</li><li>Pull up.</li><li>Reset and try again slowly.</li></ol>'}
 function showBacking(t){backingContent.innerHTML=backing[t]}
 function savePost(){const p=JSON.parse(localStorage.getItem('posts')||'[]');p.unshift({topic:postTopic.value,msg:postMessage.value,date:new Date().toLocaleString()});localStorage.setItem('posts',JSON.stringify(p));postTopic.value=postMessage.value='';renderPosts()}
