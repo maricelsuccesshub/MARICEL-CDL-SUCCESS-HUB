@@ -242,6 +242,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
     <details class="advanced"><summary>Advanced: enter destination coordinates</summary><div class="two-col"><div><label for="manualLat">Latitude</label><input id="manualLat" inputmode="decimal" placeholder="34.0522"></div><div><label for="manualLon">Longitude</label><input id="manualLon" inputmode="decimal" placeholder="-118.2437"></div></div></details>
     <button class="btn" onclick="autoPlanDestination()">Auto Get Sunset, Timezone & Weather</button>
     <div id="autoPlanResult"></div>
+<p class="small">Weather and sun times: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Address data: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors (ODbL)</a>, via Nominatim / Photon. Temperatures and wind are converted and rounded; the suggested parking deadline is calculated by this Hub. <a href="disclaimer.html">Disclaimer &amp; Source Credits</a>.</p>
     <h3>Open your route</h3><p class="small">Google Maps directions are not a truck-specific route clearance check.</p>
     <div class="action-grid">
       <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button><button class="btn light" onclick="openRouteCameras()">Check traffic cameras by state</button>
@@ -433,6 +434,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
     </p>
 
+    <p><a href="disclaimer.html">Read our Disclaimer &amp; Source Credits</a></p>
     <h3>Educational Purpose</h3>
 
     <p>
@@ -529,7 +531,10 @@ Start Lesson 1 →
 </div>
 </section>
 </main>
-<footer>Maricel CDL Success Hub • Private Training Support Tool</footer>
+<footer>Maricel CDL Success Hub • Independent Educational Support Tool<br>
+  <a href="disclaimer.html">Disclaimer &amp; Source Credits</a>
+  <p>Educational information only. Verify current road restrictions and parking permission with the source. Use while safely parked.</p>
+</footer>
 <script>
  const SUPABASE_URL = window.MEMBER_CONFIG?.url || '';
 const SUPABASE_KEY = window.MEMBER_CONFIG?.publishableKey || '';
