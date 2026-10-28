@@ -36,3 +36,14 @@ Desktop uses a grouped sidebar and balanced content columns. Phones use an expan
 Validation: all 11 automated checks pass, including auth, sign-out cleanup, navigation grouping, trainer steering, asset availability, and separate Safe Haven/facility storage. Browser QA opened all 12 member pages on desktop and at a 375px content width without horizontal overflow; the phone menu closed after each selection, and both original truck assets loaded. Browser layout checks used an isolated local fixture with synthetic member data and no Supabase calls; real email delivery and database write flows were not repeated for this presentation change. Fixture files are not committed.
 
 Changes are saved only to development. Production, Supabase configuration and database records are unchanged. No deployment was performed.
+
+## Hosted driver testing preview
+
+- Public test-site URL: https://maricel-driver-test.cezle-photog-5587.chatgpt.site/
+- Sites project: appgprj_6ae16c72c8508191bf44f59e6b344eaf. It hosts the reorganized development app with a driver-testing banner and the separate development Supabase project. The main GitHub Pages site and production database are unchanged.
+- The development project's Site URL is the hosted origin above. Exact redirect allowlist entries include that origin, its /index.html path, and the existing http://localhost:4173/index.html Mac preview.
+- Brevo Free custom SMTP is configured in development Supabase, using smtp-relay.brevo.com:587 and the verified account sender. No SMTP secret is stored in application source or this guide.
+- Delivery check: a password-recovery email for the existing verified development member was sent through Supabase; Brevo logged Sent and Delivered on October 27, 2026. No password was changed. Full hosted new-driver signup and verification-link completion still need a tester to complete them with their own inbox.
+- The configured key was supplied through chat and should be replaced with a fresh key via direct secure entry, then revoked in Brevo. Never paste SMTP keys into chat, source control, or frontend configuration.
+- Visitors use their own test accounts. Profiles, progress, and facility notes remain owner-private under RLS; Safe Haven locations are shared with signed-in members. My Notebook remains browser-local.
+- Future development branch changes do not automatically update this hosted Sites snapshot. Publish the updated reviewed source to the existing Sites project when requested.
