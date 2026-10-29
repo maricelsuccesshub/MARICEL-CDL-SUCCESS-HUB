@@ -33,3 +33,5 @@ test('member navigation groups every member page without exposing admin',()=>{
 });
 test('Safe Haven and private facility notes use separate storage paths',()=>{assert.ok(html.includes('onclick="saveSafeHaven()"'));assert.ok(html.includes('onclick="saveFacilityNote()"'));assert.ok(html.includes("memberClient.from('facility_notes').insert"));assert.ok(!html.includes('onclick="saveFacility()"'));assert.ok(html.includes('Saved on this device only:'))});
 
+
+test('verified account changes and signout reset the in-memory lesson visit',async()=>{const h=harness();await Promise.resolve();h.run('window.lessonResetCalls=0;window.lessonsReset=()=>window.lessonResetCalls++');h.event('SIGNED_IN',verified);assert.equal(h.run('window.lessonResetCalls'),1);await h.run('memberSignOut()');assert.equal(h.run('window.lessonResetCalls'),2);});

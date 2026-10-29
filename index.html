@@ -103,6 +103,7 @@
     .menu-current{display:none}
     @media(max-width:700px){#nav .menu-toggle{gap:12px;min-height:64px;text-align:left;padding:12px 16px;border:1px solid #344b65;box-shadow:0 2px 4px #14263e14}.menu-toggle-symbol{font-size:26px;line-height:1;flex:none}.menu-toggle-copy{flex:1;display:block;min-width:0}.menu-toggle-title{display:block;font-size:17px;line-height:1.3;font-weight:750}.menu-toggle-hint{display:block;font-size:12px;line-height:1.4;font-weight:400;color:#e1e9f2;margin-top:3px}.menu-toggle-arrow{font-size:26px;line-height:1;flex:none}.menu-current{display:block;font-size:12px;color:var(--muted);margin:6px 4px 0}#nav.menu-open .menu-toggle{position:sticky;top:0;z-index:1}#nav .nav-links{padding-bottom:14px}}
 .clearance-actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.clearance-actions .btn{display:inline-block;text-decoration:none;text-align:center;width:auto;margin:0;min-height:48px}#clearances select{min-height:50px}#clearanceResult h3{font-size:24px;margin:8px 0}@media(max-width:700px){.clearance-actions{flex-direction:column}.clearance-actions .btn{width:100%}}.member-avatar{display:inline-flex;position:relative;vertical-align:middle;width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;background:#e2e8f0;color:#14263e;align-items:center;justify-content:center;font-size:15px;font-weight:bold;margin-right:8px}.member-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.avatar-settings{border:1px solid #dce4ee;border-radius:12px;padding:18px;margin:24px 0}.avatar-settings canvas{display:block;max-width:100%;width:256px;height:auto;border-radius:12px}.avatar-settings input[type=range]{min-height:40px}.avatar-settings .btn{margin-top:10px}</style>
+<link rel="stylesheet" href="lessons.css?v=28">
 </head>
 <body>
 <a class="skip-link" href="#memberMain">Skip to page content</a>
@@ -119,13 +120,13 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
 </header>
 <aside class="beta-notice" aria-labelledby="betaNoticeTitle">
-  <div class="beta-notice-inner">
+  <div class="beta-notice-inner"><details id="betaNoticeDetails" open><summary>About this beta &amp; learning limits</summary>
     <span class="beta-label">PUBLIC BETA · HELP US IMPROVE</span>
     <h2 id="betaNoticeTitle">You’re helping shape Maricel CDL Success Hub.</h2>
     <p>Features are still being tested and may change. You may encounter errors or interruptions. Please share feedback and verify road, weather, and parking information with the original source.</p>
     <p><strong>Your experience matters.</strong> Whether you’re a student, a new driver or an experienced driver, share your input with Coach Maricel: what helped, what felt confusing, any errors you noticed, and what you’d like added or improved. Your feedback will help shape the Hub for other drivers. Please leave out personal, customer, load and company-sensitive information.</p>
     <a href="disclaimer.html">Read the disclaimer &amp; source credits</a>
-  </div>
+  </details></div>
 </aside>
 <div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
 <div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your own free beta account to explore the training dashboard. Your profile and practice progress are private to your account. Use a password you do not use elsewhere.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Use with caution, at your own discretion and risk. This Hub supplements learning; it does not replace qualified training, inspections, official requirements or your judgment. Use only while safely parked. <a href="disclaimer.html">Read the full disclaimer</a>.</p></div>
@@ -541,50 +542,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   </div>
 </section>
 
-  <section id="lesson">
-
-<div class="card">
-
-<h2>🧠 Backing Fundamentals</h2>
-
-<div id="lessonProgressText" style="font-weight:700;margin:10px 0;color:#374151;">
-Welcome
-</div>
-
-<div style="background:#e5e7eb;border-radius:999px;height:14px;margin-bottom:18px;overflow:hidden;">
-    <div id="lessonProgressBar"
-         style="background:#111827;height:100%;width:0%;border-radius:999px;">
-    </div>
-</div>
-
-<h3>👋 Welcome to Coach Maricel's Backing System</h3>
-
-<p id="lessonText">
-Before we touch the steering wheel, we're going to understand how a trailer really moves.
-
-Most students struggle because they memorize steering instead of understanding the trailer.
-
-In this course, you'll learn to watch the trailer first, think first, then make one small correction.
-
-By the end of these lessons, backing will finally make sense.
-</p>
-
-<div id="lessonTip"
-     style="background:#f3f4f6;padding:14px;border-radius:12px;font-weight:600;margin-top:14px;">
-🎯 Coach Tip: Understanding beats memorization every time.
-</div>
-
-<div style="margin-top:20px">
-
-<button class="btn"
-        onclick="startLesson()">
-Start Lesson 1 →
-</button>
-
-</div>
-
-</div>
-</section>
+  <section id="lesson"><div id="lessonRoot"><div class="card"><h2>Backing Fundamentals</h2><p>Learn the truck parts, references and decisions with Coach Maricel. Use while parked and practice with qualified instruction.</p><noscript>Enable JavaScript to open the interactive lessons.</noscript></div></div></section>
 </main>
 <footer>Maricel CDL Success Hub • Independent Educational Support Tool<br>
   <a href="disclaimer.html">Disclaimer &amp; Source Credits</a> · <a href="https://buy.stripe.com/28EbJ187fcRteEY2On24000" target="_blank" rel="noopener noreferrer">Support the Hub 💛 ↗</a><p>Optional one-time tips help cover website costs. Payment is never required to use the free beta.</p>
@@ -624,7 +582,7 @@ function memberDisplay(session){
   memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;if(!signedIn)memberEl('subnav').hidden=true;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){memberGeneration++;window.communityReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
+  if(previous!==memberUserId){memberGeneration++;window.communityReset?.();window.lessonsReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
   if(signedIn&&previous!==memberUserId){if(typeof showScreen==='function')showScreen('home');setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0)}
 }
@@ -719,6 +677,7 @@ function showScreen(id){
   if(id==='drivercommunity')setTimeout(()=>window.openCommunity?.(),0);
   if(!Object.prototype.hasOwnProperty.call(screenGroups,id))return;
   const target=document.getElementById(id);if(!target)return;
+  document.body.classList.toggle('lessons-open',id==='lesson');if(id==='lesson'){const beta=document.getElementById('betaNoticeDetails');if(beta)beta.open=false;window.renderLessons?.();}
   document.querySelectorAll('main > section').forEach(screen=>screen.classList.remove('active'));target.classList.add('active');
   document.querySelectorAll('#nav button[data-screen]').forEach(button=>{const selected=button.dataset.screen===id;button.classList.toggle('active',selected);if(selected)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')});
   const group=screenGroups[id],primary=primaryNav.find(item=>item[0]===group),item=secondaryNav[group]?.find(item=>item[0]===id);
@@ -1230,95 +1189,6 @@ async function renderProgress(){
   memberEl('dashboardProgressSummary').innerHTML=data.length?'<p><strong>'+esc(data[0].progress_date||'Latest practice')+'</strong></p><p>'+esc(data[0].backing_practice||'Practice entry')+'</p><p class="small">Confidence: '+esc(data[0].confidence||'Not recorded')+' · Open My Account → My Progress for details.</p>':'<p class="small">No practice recorded yet. Your first private entry will appear here.</p>';
 }
 
-let lessonStep = 0;
-
-const lessonSteps = [
-  {
-  title: "🧠 Level 1 — Coach Maricel's Golden Rule",
-  text: "Do NOT watch the steering wheel. Watch the trailer. The steering wheel is only a tool. The trailer tells you exactly what correction to make.",
-  tip: "👀 Coach Tip: Your eyes teach your hands. Watch the trailer, not the steering wheel."
-},
-
-{
-  title: "🚛 Level 2 — The Tractor Is The Boss",
-  text: "The tractor always moves first. The trailer never decides where to go. Whatever the tractor does first, the trailer reacts to.",
-  tip: "💡 Coach Tip: The trailer never leads. It always follows."
-},
-
-{
-  title: "⏳ Level 3 — Wait For The Trailer",
-  text: "Turn the steering wheel ONE time. Then wait. Give the trailer time to react before making another correction.",
-  tip: "⏱️ Coach Tip: Patience creates control."
-},
-
-{
-  title: "🐢 Level 4 — Slow Wins",
-  text: "Backing slowly gives your brain time to understand what the trailer is doing. Slow is smooth. Smooth is accurate.",
-  tip: "🚶 Coach Tip: Never rush a backing maneuver."
-},
-
-{
-  title: "🤏 Level 5 — Small Corrections",
-  text: "Professional drivers make many tiny steering corrections instead of one large correction. Small movements create smooth trailer movement.",
-  tip: "👌 Coach Tip: Tiny steering = tiny trailer movement."
-},
-
-{
-  title: "👀 Level 6 — Eyes On The Trailer",
-  text: "Keep your eyes on the trailer. The trailer tells you exactly what correction to make. Your hands simply follow your eyes.",
-  tip: "🎯 Coach Tip: Don't chase the steering wheel. Follow the trailer."
-},
-
-{
-  title: "🏆 Level Complete!",
-  text: "Excellent! You now understand the most important concepts in backing. Next you'll enter the CDL Practice Yard where you'll practice these ideas.",
-  tip: "🚛 Coach Maricel says: Understanding comes before memorizing."
-}
-];
-
-function updateLessonStep() {
-  const total = lessonSteps.length;
-  const current = lessonStep + 1;
-  const percent = Math.round((current / total) * 100);
-
-  document.querySelector("#lesson h3").textContent =
-    lessonSteps[lessonStep].title;
-
-  document.getElementById("lessonText").textContent =
-    lessonSteps[lessonStep].text;
-
-  document.getElementById("lessonTip").textContent =
-    lessonSteps[lessonStep].tip;
-
-  document.getElementById("lessonProgressText").textContent =
-    "Level " + current + " of " + total;
-
-  document.getElementById("lessonProgressBar").style.width =
-    percent + "%";
-}
-function nextLessonStep() {
-  if (lessonStep < lessonSteps.length - 1) {
-    lessonStep++;
-    updateLessonStep();
-  } else {
-    openScreen('practiceyard');
-  }
-}
-function startLesson() {
-  lessonStep = 0;
-  updateLessonStep();
-
-  const lessonButton = document.querySelector("#lesson .btn");
-  lessonButton.textContent = "Next ➜";
-  lessonButton.onclick = nextLessonStep;
-}
-
-function previousLessonStep() {
-  if (lessonStep > 0) {
-    lessonStep--;
-    updateLessonStep();
-  }
-}
  let simMove = 1;
 let straightTest = "straight";
 let trailerAngle = 12;
@@ -1571,6 +1441,7 @@ window.straightAnswer = function(choice) {
 <script src="state-weather.js"></script>
 <script src="community-avatars.js"></script>
 <script src="community.js"></script>
+<script src="lessons.js?v=28"></script>
 </body>
 </html>
 
