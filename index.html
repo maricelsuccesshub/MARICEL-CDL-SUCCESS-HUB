@@ -1503,7 +1503,7 @@ function renderStraightSimulator(message) {
       <div class="sim-stat">Goal: Straighten the trailer</div>
     </div>
 
-    <div class="sim-yard">
+    <div class="sim-yard" role="img" aria-label="Maricel truck front faces down; trailer drift is labeled using the seated driver’s right and left">
       <div class="lane-line lane-left"></div>
       <div class="lane-line lane-right"></div>
 
@@ -1511,12 +1511,13 @@ function renderStraightSimulator(message) {
       <div class="truck-wrap">
   
 
-<img class="sim-trailer-img" src="assets/maricel-success-hub-trailer.png" alt="Maricel's CDL Success Hub training trailer" style="transform:rotate(${trailerAngle}deg)">
+<img class="sim-trailer-img" src="assets/maricel-success-hub-trailer.png" alt="Maricel's CDL Success Hub training trailer" style="transform:rotate(${-trailerAngle}deg)">
 <img class="sim-tractor-img" src="assets/maricel-tractor.png" alt="White tractor named Maricel">
 
 </div>
     </div>
 
+    <p class="small">Top view: truck front ↓. Driver’s right = screen left; driver’s left = screen right. Illustrated angle only; not a measured vehicle response.</p>
     <div class="coach-bubble">
   👩‍🏫 Coach Maricel: In a straight back, make a small correction toward the trailer's drift, then return the wheel toward center as the trailer straightens. This is a steering-response lesson, not a physics-accurate simulator.
 </div>
