@@ -12,7 +12,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />                            
   <script src="member-config.js"></script>
-  <script src="member-navigation.js?v=34"></script>
+  <script src="member-navigation.js?v=35"></script>
   <meta name="referrer" content="no-referrer" />
   <script src="vendor/supabase-2.105.0.js"></script>
   <style>
@@ -588,7 +588,7 @@ function memberDisplay(session){
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
   if(signedIn&&previous!==memberUserId){
     const id=memberUserId,generation=memberGeneration,revision=memberScreenChange;
-    const restorePage=()=>{if(id!==memberUserId||generation!==memberGeneration||revision!==memberScreenChange)return;if(typeof showScreen==='function')showScreen(window.hubNavigation?.restore(id,screenGroups)||'home');};
+    const restorePage=()=>{if(id!==memberUserId||generation!==memberGeneration||revision!==memberScreenChange)return;if(typeof showScreen==='function'){const page=window.hubNavigation?.restore(id,screenGroups)||'home';showScreen(page);window.hubRestoreView?.(page);}};
     // Wait for the page modules before restoring Lessons, Community or Security.
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restorePage,{once:true});else restorePage();
     setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0);
@@ -696,6 +696,9 @@ function showScreen(id){
   nav.classList.remove('menu-open');updateMobileMenu(false);mobileCurrent.textContent='Viewing: '+(item?.[1]||primary[1]);renderSubnav();
   const heading=target.querySelector('h2');if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true})}scrollTo(0,0);
 }
+window.hubRememberView=(page,value)=>window.hubNavigation?.rememberView(memberUserId,page,value);
+window.hubReadView=page=>window.hubNavigation?.view(memberUserId,page);
+window.hubRestoreView=page=>{if(page==='lesson')window.restoreLessonView?.();if(page==='backing')window.restoreBackingView?.();if(page==='practiceyard'){const v=window.hubReadView(page);if(v)window.showPracticeLesson?.(v.test);}};
 function openScreen(id){showScreen(id)}
 function openBackingPoster(){openScreen('resources');document.getElementById('backingStudyPoster').scrollIntoView({block:'start'});}
 function esc(str) {
@@ -1335,6 +1338,8 @@ window.showPracticeLesson = function(type) {
   const box = document.getElementById("practiceContent");
   if (!box) return;
 
+  if (!["trailer","straight","straight-left","center"].includes(type)) return;
+  window.hubRememberView?.("practiceyard",{test:type});
   loadSimulatorStyles();
   if (type === "center") {
     ["straightTest1", "straightTest2"].forEach(id=>document.getElementById(id)?.setAttribute("aria-pressed","false"));
@@ -1451,15 +1456,15 @@ window.straightAnswer = function(choice) {
 </script>
 <script src="yard-decisions.js"></script>
 <script src="remaining-backing.js?v=27"></script>
-<script src="backing-guides.js?v=27"></script>
+<script src="backing-guides.js?v=35"></script>
 <script src="traffic-cameras.js"></script>
 <script src="clearance-checks.js"></script>
 <script src="state-weather.js"></script>
 <script src="community-avatars.js"></script>
-<script src="community.js?v=33"></script>
+<script src="community.js?v=35"></script>
 <script src="trip-planner.js?v=29"></script>
 <script src="member-passkeys.js?v=30"></script>
-<script src="lessons.js?v=28"></script>
+<script src="lessons.js?v=35"></script>
 </body>
 </html>
 

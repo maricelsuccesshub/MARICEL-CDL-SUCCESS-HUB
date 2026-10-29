@@ -32,3 +32,28 @@ changed. The temporary browser fixture was excluded before packaging.
 
 Files: dist/member-navigation.js, dist/index.html,
 tests/member-navigation.test.cjs, tests/member-auth.test.cjs.
+
+## Nested page restoration — version 35
+
+Refresh also restores the selected lesson topic and Learn/Explore/Check tab,
+the selected backing guide with Quick/Teach mode, learning stage and side/drift
+example, the selected Practice Yard test (from its beginning), and the Community
+tab, category and discussion/conversation reference. Only allowlisted selectors
+and UUID references are stored in account-scoped sessionStorage; extra fields
+are discarded. No message text, names, answers, scores, reviewed marks, drafts,
+profile form values, route inputs or credentials are stored by navigation.
+Sign-out/account-change clears all nested route entries too.
+
+Community reload fetches state, inbox/discussion lists and content again through
+the existing authenticated RPC. Missing/unaccepted conversations return to the
+inbox, missing posts to the forum, and removed moderator access to the forum.
+A saved reference grants no access. Browser tests use synthetic accounts/data,
+not another member's inbox. Nested selection restoration does not preserve the
+page scroll offset. Lesson review marks and answers still reset as disclosed.
+
+113 tests pass, including nested state validation/content stripping, account
+isolation/clearing, all eight guides' mode/stage restoration with answers reset,
+lesson topic/tab restoration, Community conversation authorization reload and
+unavailable conversation/moderator fallback. Browser reload checks confirmed
+Alley Dock → Teach me → stage 4; Lessons → Correct, observe, ease → Explore;
+Practice Yard → Test 2; and Community → a synthetic conversation.
