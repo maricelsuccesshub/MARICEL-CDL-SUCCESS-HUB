@@ -38,22 +38,25 @@ return rows||'<li class="chat-start">No messages yet. Say hello when you are rea
 }
 function renderConversation(messages,view){
 const name=thread.other_name,rows=chatRows(messages);chatSnapshot=JSON.stringify(messages);seenMessages=new Set(messages.map(m=>m.id));updateFailures=0;
-root.innerHTML=`<div class="community-conversation"><div class="chat-header">${btn('Back to inbox','backInbox')}<h3>Conversation with ${e(name)}</h3><div class="chat-toolbar">${btn('Refresh','refresh')}${btn('Block member','block',thread.other_id)}</div></div><details class="chat-help"><summary>Privacy & conversation details</summary><p class="small">Only the two participants can read this conversation. Messages are not end-to-end encrypted. Reported messages are shared with moderators. Showing the latest 100 messages. This conversation checks for replies about every 3 seconds while open and visible. No email or push alerts are sent.</p></details><p id="communityChatConnection" class="chat-connection" role="status" aria-live="polite">Updates automatically while this conversation is open.</p><div id="communityChatLog" class="community-chat-log" data-thread="${e(threadId)}" role="region" aria-label="Conversation history" tabindex="0"><ol class="chat-message-list">${rows}</ol></div><button id="communityChatNew" class="btn light chat-new" type="button" data-community-action="latest" hidden>New messages · Jump to newest</button>${thread.blocked?note('This conversation is blocked. Existing history is retained; sending is disabled.'):state.profile.messages_enabled?`<form class="chat-composer" data-community-form="send"><div class="chat-compose-field"><label for="communityMessage">Message</label><textarea id="communityMessage" name="body" rows="2" maxlength="2000" placeholder="Write a message…" required></textarea></div><button class="btn">Send message</button></form>`:note('Messaging is off. Enable it in My Community Profile before sending.')}<p class="chat-safety small">Keep passwords, contact details, CDL numbers, exact live locations and load/customer information out of messages.</p></div>`;
+root.innerHTML=`<div class="community-conversation"><div class="chat-header">${btn('Back to inbox','backInbox')}<h3>Conversation with ${e(name)}</h3><div class="chat-toolbar">${btn('Refresh','refresh')}${btn('Block member','block',thread.other_id)}</div></div><details class="chat-help"><summary>Privacy & conversation details</summary><p class="small">Only the two participants can read this conversation. Messages are not end-to-end encrypted. Reported messages are shared with moderators. Showing the latest 100 messages. This conversation checks for replies about every 3 seconds while open and visible. No email or push alerts are sent.</p></details><p id="communityChatConnection" class="chat-connection" role="status" aria-live="off">Connecting · waiting for the first completed reply check…</p><div id="communityChatLog" class="community-chat-log" data-thread="${e(threadId)}" role="region" aria-label="Conversation history" tabindex="0"><ol class="chat-message-list">${rows}</ol></div><button id="communityChatNew" class="btn light chat-new" type="button" data-community-action="latest" hidden>New messages · Jump to newest</button>${thread.blocked?note('This conversation is blocked. Existing history is retained; sending is disabled.'):state.profile.messages_enabled?`<form class="chat-composer" data-community-form="send"><div class="chat-compose-field"><label for="communityMessage">Message</label><textarea id="communityMessage" name="body" rows="2" maxlength="2000" placeholder="Write a message…" required></textarea></div><button class="btn">Send message</button></form>`:note('Messaging is off. Enable it in My Community Profile before sending.')}<p class="chat-safety small">Keep passwords, contact details, CDL numbers, exact live locations and load/customer information out of messages.</p></div>`;
 const log=root.querySelector?.('#communityChatLog'),input=root.querySelector?.('#communityMessage');
 if(input&&view)input.value=view.draft;
 if(log)log.scrollTop=view&&!view.atEnd&&!scrollNewest?view.top:log.scrollHeight;
 scrollNewest=false;
 }
-function canUpdate(){return Boolean(memberUserId&&!busy&&tab==='messages'&&threadId&&root.querySelector?.('#communityChatLog')?.dataset.thread===threadId&&document.visibilityState!=='hidden'&&window.navigator?.onLine!==false&&document.getElementById('drivercommunity')?.classList?.contains('active'));}
+function conversationOpen(){return Boolean(memberUserId&&tab==='messages'&&threadId&&root.querySelector?.('#communityChatLog')?.dataset.thread===threadId&&document.getElementById('drivercommunity')?.classList?.contains('active'));}
+function canUpdate(){return conversationOpen()&&!busy&&document.visibilityState!=='hidden';}
 function connectionText(text){const node=root.querySelector?.('#communityChatConnection');if(node&&node.textContent!==text)node.textContent=text;}
 function stopUpdates(){if(updateTimer!==null)clearTimeout(updateTimer);updateTimer=null;updateToken++;updateController?.abort();updateController=null;}
-function startUpdates(delay=3000*Math.min(10,2**updateFailures)){if(!canUpdate()||updateTimer!==null||updateController)return;updateTimer=setTimeout(()=>{updateTimer=null;void checkConversation();},delay);}
+function startUpdates(delay=3000*Math.min(10,2**updateFailures)){if(!conversationOpen()||updateTimer!==null||updateController)return;updateTimer=setTimeout(()=>{updateTimer=null;void checkConversation();},delay);}
 async function checkConversation(){
-if(!canUpdate()||updateController)return;
+if(updateController)return;
+if(!canUpdate()){startUpdates();return;}
 const token=updateToken,id=threadId,stamp=epoch,generation=memberGeneration;
-const current=()=>token===updateToken&&stamp===epoch&&generation===memberGeneration&&id===threadId&&canUpdate();
-const controller=new AbortController();updateController=controller;const timeout=setTimeout(()=>controller.abort(),15000);
-try{
+let finished=false;const current=()=>!finished&&token===updateToken&&stamp===epoch&&generation===memberGeneration&&id===threadId&&conversationOpen()&&!busy;
+const controller=new AbortController();updateController=controller;let timeout;
+const deadline=new Promise((_,reject)=>{timeout=setTimeout(()=>{controller.abort();reject(Error('Reply check timed out.'));},15000);});
+try{await Promise.race([deadline,(async()=>{
  const nextState=await api('state',{},controller.signal);if(!current())return;
  const threads=await api('inbox',{},controller.signal);if(!current())return;
  const nextThread=threads.find(t=>t.id===id);
@@ -75,9 +78,10 @@ try{
   else{log.scrollTop=view.top;const retained=[...log.querySelectorAll('.chat-message')].find(row=>row.dataset.messageId===anchorId);if(retained)log.scrollTop+=retained.getBoundingClientRect().top-log.getBoundingClientRect().top-offset;}
   const button=root.querySelector('#communityChatNew');if(button){if(view.atEnd)button.hidden=true;else if(incoming)button.hidden=false;}
  }
- const unseen=root.querySelector('#communityChatNew');connectionText(unseen&&!unseen.hidden?'New messages below. Select Jump to newest when you are ready.':'Updates automatically · checks about every 3 seconds.');
+ const unseen=root.querySelector('#communityChatNew');connectionText(unseen&&!unseen.hidden?'New messages below. Select Jump to newest when you are ready.':'Last checked '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit',second:'2-digit'})+' · automatic checks on');
+})()]);
 }catch(error){if(current()){updateFailures=Math.min(updateFailures+1,4);connectionText('Connection interrupted. Your draft is kept. Retrying automatically; you can also use Refresh.');}}
-finally{clearTimeout(timeout);if(token===updateToken){updateController=null;startUpdates();}}
+finally{finished=true;clearTimeout(timeout);if(token===updateToken){updateController=null;startUpdates();}}
 }
 async function inbox(){const previousLog=root.querySelector?.('#communityChatLog');const previousInput=root.querySelector?.('#communityMessage');const view=previousLog?.dataset.thread===threadId?{top:previousLog.scrollTop,atEnd:previousLog.scrollHeight-previousLog.clientHeight-previousLog.scrollTop<48,draft:previousInput?.value||''}:null;if(!requireProfile()){tabs();await settings();return;}const threads=await api('inbox');thread=threads.find(t=>t.id===threadId)||null;const inboxHTML=`<h3>Messages</h3><p>Messaging is ${state.profile.messages_enabled?'enabled':'off'}. New conversations require a request and acceptance. Messages are private between participants, not end-to-end encrypted. If reported, that message is shared with moderators. Open a conversation for automatic reply checks. Use Refresh inbox for requests and other conversations. No email or push alerts are sent.</p>${btn('Messaging settings','settings')}${btn('Refresh inbox','refresh')}${threads.length?threads.map(t=>`<article class="community-post"><h4>${avatar(t.other_id,t.other_name)} ${e(t.other_name)}</h4><p>${e(t.status)}${t.blocked?' · blocked':''}</p><div class="community-actions">${t.status==='pending'&&t.recipient===memberUserId&&!t.blocked?btn('Accept request','accept',t.id)+btn('Decline request','decline',t.id):''}${t.status==='accepted'?btn('Open conversation','conversation',t.id):''}${btn('Block member','block',t.other_id)}${btn('Report profile','report',t.other_id,'data-kind="member"')}</div></article>`).join(''):note('Your inbox is empty. Find an opted-in member in Members to request a conversation.')}<p class="small">Showing up to 100 conversations. Declined requests cannot be sent again in this beta.</p>`;
 if(!thread)root.innerHTML=inboxHTML;
@@ -118,7 +122,9 @@ if(action==='send'){await api('send',{thread_id:threadId,body:values.body});if(f
 window.communityViewChanged=()=>{stopUpdates();startUpdates(0);};
 document.addEventListener?.('visibilitychange',()=>{stopUpdates();startUpdates(0);});
 window.addEventListener?.('online',()=>{stopUpdates();startUpdates(0);});
-window.addEventListener?.('offline',()=>{stopUpdates();connectionText('Offline. Your draft is kept; replies will update when the connection returns.');});
+window.addEventListener?.('focus',()=>{stopUpdates();startUpdates(0);});
+window.addEventListener?.('pageshow',()=>{stopUpdates();startUpdates(0);});
+window.addEventListener?.('offline',()=>{stopUpdates();connectionText('Offline. Your draft is kept; retrying when the connection returns.');startUpdates();});
 root.addEventListener('scroll',event=>{if(event.target.id!=='communityChatLog')return;const log=event.target;if(log.scrollHeight-log.clientHeight-log.scrollTop<48){const b=root.querySelector?.('#communityChatNew');if(b)b.hidden=true;}},true);
 
 })();

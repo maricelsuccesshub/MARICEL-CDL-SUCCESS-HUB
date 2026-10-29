@@ -85,3 +85,38 @@ unchanged; the history stayed at its newest message. Existing phone layout check
 from version 31 remain applicable; no layout structure was replaced. No real
 member messages were read or sent during QA. Physical two-device testing remains
 a member acceptance check. Temporary fixtures are excluded from publication.
+
+## Version 33 — recoverable update scheduling
+
+A member reported that version 32 still required refresh between independent
+clients. Server metadata showed successful RPC responses, but that alone did not
+prove a reliable continuing client loop. The exact device-specific cause has not
+been established from the user's browser.
+
+Reproduced failure conditions in the previous scheduler: if a visibility change
+was missed, a hidden-state check could end the loop without another timer; an
+inaccurate navigator.onLine=false could disable otherwise reachable requests.
+The revised scheduler keeps a lightweight heartbeat while a conversation exists,
+issues no checks while hidden/busy, and restarts on visibility, window focus,
+page-show and connection events. It no longer treats the browser's online flag as
+a reliable test of backend reachability. Leaving the conversation or sign-out
+still stops the loop. Normal background-tab timer throttling remains browser
+controlled; a foreground/focus event triggers an immediate catch-up check.
+
+A real 15-second Promise deadline now bounds a hung check even when a request
+cannot be aborted promptly. Timed-out work is marked finished and cannot apply
+late data; retry backoff remains 6/12/24/30 seconds. The initial label says
+Connecting until a complete authorized check succeeds. Only then does it show
+Last checked with local time including seconds. That timestamp makes stalled
+checks visible instead of relying on a static automatic-updates claim. The
+frequently changing health line has aria-live off to avoid repeated screen-reader
+announcements. No private message text or tokens are logged.
+
+100 tests pass. Three new regressions cover missed visibility events, inaccurate
+offline flags and a hung request's deadline/late-result rejection. A paired browser
+fixture used two independent instances of the actual pinned Supabase SDK with a
+shared synthetic service. A sent message appeared automatically in the other
+client while its draft remained intact; completed-check timestamps advanced.
+The fixture is synthetic and does not establish a real two-member production
+session or physical Safari behavior. No real accounts, inboxes or messages were
+accessed or changed. All temporary fixture files are excluded from deployment.
