@@ -12,6 +12,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />                            
   <script src="member-config.js"></script>
+  <script src="member-navigation.js?v=34"></script>
   <meta name="referrer" content="no-referrer" />
   <script src="vendor/supabase-2.105.0.js"></script>
   <style>
@@ -556,7 +557,7 @@ const SUPABASE_KEY = window.MEMBER_CONFIG?.publishableKey || '';
 // Static training assets are public. Supabase RLS protects member data.
 // Development must use a separate Supabase project; no fallback to production.
 const memberClient=SUPABASE_URL&&SUPABASE_KEY?window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{experimental:{passkey:true}}}):null;
-let memberAuthMode='signin', memberUserId=null, memberRecovery=false, memberGeneration=0;
+let memberAuthMode='signin', memberUserId=null, memberRecovery=false, memberGeneration=0, memberScreenChange=0;
 const memberEl=id=>document.getElementById(id);
 const memberMessage=text=>memberEl('memberMessage').textContent=text;
 const memberRedirect=()=>location.origin+location.pathname;
@@ -583,9 +584,15 @@ function memberDisplay(session){
   memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;if(!signedIn)memberEl('subnav').hidden=true;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){memberGeneration++;window.memberPasskeysReset?.();window.communityReset?.();window.lessonsReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['memberPassword','progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
+  if(previous!==memberUserId){if(previous)window.hubNavigation?.clear(previous);memberGeneration++;window.memberPasskeysReset?.();window.communityReset?.();window.lessonsReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['memberPassword','progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
-  if(signedIn&&previous!==memberUserId){if(typeof showScreen==='function')showScreen('home');setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0)}
+  if(signedIn&&previous!==memberUserId){
+    const id=memberUserId,generation=memberGeneration,revision=memberScreenChange;
+    const restorePage=()=>{if(id!==memberUserId||generation!==memberGeneration||revision!==memberScreenChange)return;if(typeof showScreen==='function')showScreen(window.hubNavigation?.restore(id,screenGroups)||'home');};
+    // Wait for the page modules before restoring Lessons, Community or Security.
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restorePage,{once:true});else restorePage();
+    setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0);
+  }
 }
 async function memberSignOut(){
   try{const {error}=await memberClient.auth.signOut();if(error)throw error;memberRecovery=false;memberDisplay(null);memberMode('signin');memberEl('memberPassword').value='';}
@@ -680,6 +687,7 @@ function showScreen(id){
   if(id==='drivercommunity')setTimeout(()=>window.openCommunity?.(),0);
   if(!Object.prototype.hasOwnProperty.call(screenGroups,id))return;
   const target=document.getElementById(id);if(!target)return;
+  memberScreenChange++;window.hubNavigation?.remember(memberUserId,id,screenGroups);
   document.body.classList.toggle('lessons-open',id==='lesson');if(id==='lesson'){const beta=document.getElementById('betaNoticeDetails');if(beta)beta.open=false;window.renderLessons?.();}
   document.querySelectorAll('main > section').forEach(screen=>screen.classList.remove('active'));target.classList.add('active');window.communityViewChanged?.();
   document.querySelectorAll('#nav button[data-screen]').forEach(button=>{const selected=button.dataset.screen===id;button.classList.toggle('active',selected);if(selected)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')});
