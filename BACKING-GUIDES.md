@@ -82,3 +82,9 @@ Every new illustration was checked for its stated viewpoint, separate tractor/tr
 58 automated checks pass, including all 37 new stages/questions, retries, invalid inputs, guide resets/isolation, default emergency checklist, branded accessible graphics, scoped angle/visibility/dock/parking content and preserved straight/offset behavior. Browser QA used temporary local fixtures with the production scripts/styles and no sign-in or Supabase calls: all six guide entries, staged navigation, wrong/correct feedback, 375px rendering, enlargement, crosswise and articulated poses, visibility example, and parked position were checked. Fixture files are removed before packaging. Tests verify software behavior and editorial contracts; they do not validate real vehicle clearances or driving readiness.
 
 No database, auth, moderation, member records or production Supabase project changes were made.
+
+## Consistent Maricel artwork — October 28, 2026
+
+Removed the obsolete rectangle-truck renderer entirely. All eight guide reminders now dispatch to the existing branded tractor/trailer illustrations; straight/offset reminder SVG titles/descriptions use separate IDs. Mirror reference cards also use the existing artwork, highlighting the correct trailer side for the seated driver with the tractor nose down. They explicitly identify themselves as top-view side references, not literal mirror images or predicted mirror optics. Lane boundaries and hazard markers remain schematic. The existing uploaded poster is preserved.
+
+The two backing-guide script URLs now carry a revision query so returning browsers request the updated bundle together. No caching service worker exists in this source; the service worker only installs/claims. Training content, member data and Supabase configuration are unchanged. Existing regression checks and local browser visual checks cover the update.
