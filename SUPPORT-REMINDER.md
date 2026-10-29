@@ -51,3 +51,14 @@ new QR references the same numeric Venmo account ID as version 37. Updated the
 visible handle, profile-name guidance, alt text, exact QR link and SVG barcode.
 The SVG uses a new cache query. Its payload decode roundtrip is byte-identical
 to the new supplied code. Stripe remains available. No payment was sent.
+
+## Support-page layout — version 39
+
+The opening message now spans the same full content width as the payment
+options instead of a character-based max-width. Payment cards align at the top
+and keep their natural height. The shared free-beta note sits below both cards
+at full width. Payment text, destinations, handle and QR payload are unchanged.
+
+Browser checks confirm message and payment-grid widths match (980px desktop,
+328px phone content), cards use natural heights, the shared note is outside
+the cards, and the phone layout has no horizontal overflow.
