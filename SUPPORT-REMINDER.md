@@ -62,3 +62,17 @@ at full width. Payment text, destinations, handle and QR payload are unchanged.
 Browser checks confirm message and payment-grid widths match (980px desktop,
 328px phone content), cards use natural heights, the shared note is outside
 the cards, and the phone layout has no horizontal overflow.
+
+## Shared reminder placement — version 40
+
+Moved the existing highlighted free-beta message into the right-hand payment
+column directly beneath the natural-height Stripe card. It remains a separate
+yellow panel. On phones the right column follows the Venmo card and keeps the
+Stripe/reminder sequence together. The full-width opening message is retained.
+
+The right column stretches to match Venmo’s outer height on desktop. Stripe
+keeps its natural height; the highlighted reminder fills the remaining area
+with vertically centered text. Phone rows use their natural content heights.
+
+Browser validation confirms equal column widths and matching desktop bottom
+edges, the reminder immediately after Stripe, and no phone horizontal overflow.
