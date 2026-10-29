@@ -1,6 +1,6 @@
 # Coach Maricel backing guides
 
-Eight original editorial guides and eight original SVG space diagrams were written for Maricel CDL Success Hub. The feature uses `backing-guides.js`; the existing interactive trainer and member-data paths are preserved.
+Eight original editorial guides serve Maricel CDL Success Hub. Expanded beginner lessons use the existing Maricel tractor/trailer artwork in original SVG reference illustrations. The feature uses `backing-guides.js` and `remaining-backing.js`; existing training and member-data paths are preserved.
 
 Each guide has a five-point Quick refresher and an expanded Teach me view: preparation, visual observations, a conceptual diagram, an explanation of the decision, an approach checklist, mistakes / alternatives, and a stop point. I Lost My Setup always opens in quick mode. Concepts are educational and equipment-dependent, not precise steering, distance, timing, testing or certification instructions. Drawings are original schematic space illustrations, not trajectory simulations or measured blind-zone / clearance calculations.
 
@@ -10,7 +10,7 @@ The review-note action prepares `Guide review: [topic]` in an empty progress top
 
 ## Original content and external references
 
-No manual paragraphs, diagrams, screenshots, videos, logos or branding were imported into this feature. Common safety principles were checked against primary resources; the wording, organization, coaching examples and diagrams are newly authored for the site. External sources are linked and clearly separate from the site's own explanations; no government endorsement, approved curriculum, accreditation or guaranteed outcome is claimed.
+No third-party manual paragraphs, diagrams, screenshots, videos or school materials were imported into these lessons. The existing Maricel artwork is reused. Common safety principles were checked against primary resources; the wording, organization, coaching examples and diagrams are newly authored for the site. External sources are linked and clearly separate from the site's own explanations; no government endorsement, approved curriculum, accreditation or guaranteed outcome is claimed.
 
 - Oregon DMV Commercial Driver Manual, section 2.2.4, basic backing safety: https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_2.aspx
 - California DMV Truck Drivers / commercial handbook resources, corroborating inspection, pull-ups and basic-control context: https://www.dmv.ca.gov/portal/driver-education-and-safety/special-interest-driver-guides/truck-drivers/
@@ -57,3 +57,28 @@ Seven original stages now cover inspection and stop planning, learning the strai
 Primary references reviewed October 28, 2026: Oregon sections 2, 6 and 12 linked above; California DMV https://www.dmv.ca.gov/portal/driver-education-and-safety/special-interest-driver-guides/truck-drivers/ ; OSHA https://www.osha.gov/preventing-backovers/solutions . This is an editorial/source cross-check, not official approval or an equipment-specific hands-on assessment.
 
 Validation: 55 automated checks pass, covering seven stages in both directions, retries/reset, invalid inputs, exercise shortcuts, preservation of offset, and matching Practice Yard illustration signs. Browser QA uses temporary local fixtures, including a 375px frame, without sign-in or database calls. Fixtures are removed before packaging. All database configuration and member records remain unchanged.
+
+## Remaining guides upgraded — October 28, 2026
+
+`remaining-backing.js` supplies six distinct, original beginner lessons (37 stages and questions), loaded before `backing-guides.js`. Every stage explains Look here, Notice this and Understand the next decision, with an accessible branded illustration, explanation and retry. References, terminology and generic mirror examples are included. Enlarged illustrations use an internal scroll area on phones. The immediate I Lost My Setup quick checklist still opens first; Teach me is optional. Existing private progress draft behavior remains unchanged.
+
+| Guide | Stages | Editorial and visual checks |
+| --- | --- | --- |
+| Alley Dock | 7 | Bay assignment/inspection, setup, trailer turn, following, two alignments, rear check and secured handoff; real dock versus marked test alley; doors/restraints follow actual site instructions; no dock contact shown. |
+| 45° Backing | 6 | Approximate approach angle is separate from steering and articulation; entry corners, rear wheels, tractor-front room, following and finish. |
+| 90° Backing | 6 | Crosswise approach starts with tractor/trailer aligned; it is not a 90° articulation instruction; checks equipment-to-equipment clearance and reset space. |
+| Blind Side | 6 | Visibility condition, driver-side alternatives, aid limitations, agreed signals and immediate lost-contact stop; one stationary example without a measured blind-zone wedge. |
+| Truck Stop Parking | 7 | Permission and exit planning, bay/aisle inspection, traffic and pedestrians, alignment, parked position and reinspection before departure; parked example fits the generic bay with tractor inside its entrance. |
+| I Lost My Setup | 5 | Stop/secure, inspect, check reset path, reconnect and remain stopped if unclear; all illustrations stationary, with possible-contact incident reminder. |
+
+### Source cross-check and limits
+
+Oregon CDL §2.2.4 and §6.1.7 and California DMV Truck Drivers corroborate preparation, both mirrors, slow backing, driver-side visibility, initial trailer turning/following, drift correction and inspected repositioning. OSHA Backing Safety Solutions corroborates helper positioning/communication and stopping immediately if visual contact is lost. OSHA §1910.26 documents dockboard/transport-vehicle movement precautions; the dock lesson refers to actual facility procedures without issuing a blanket legal requirement for one restraint or chock method. These primary sources support general principles; the staged teaching structure and drawings are original editorial material, not an agency-approved path or physical maneuver validation.
+
+Every new illustration was checked for its stated viewpoint, separate tractor/trailer headings, rear-corner/wheel markers, target entrance, and whether its meaning matches the text. Dock-end examples remain short of contact. No trajectory, universal articulation limit, blind-zone boundary, test dimensions or steering timing is derived from poses. 45°/90° descriptions are explicitly scoped to the illustrated approach convention, not a universal terminology claim. The linked Practice Yard trailer explanation now distinguishes initiating a trailer turn from correcting straight-back drift instead of stating an unqualified opposite-direction rule. No full maneuver simulator or new Practice Yard test is claimed.
+
+### Validation
+
+58 automated checks pass, including all 37 new stages/questions, retries, invalid inputs, guide resets/isolation, default emergency checklist, branded accessible graphics, scoped angle/visibility/dock/parking content and preserved straight/offset behavior. Browser QA used temporary local fixtures with the production scripts/styles and no sign-in or Supabase calls: all six guide entries, staged navigation, wrong/correct feedback, 375px rendering, enlargement, crosswise and articulated poses, visibility example, and parked position were checked. Fixture files are removed before packaging. Tests verify software behavior and editorial contracts; they do not validate real vehicle clearances or driving readiness.
+
+No database, auth, moderation, member records or production Supabase project changes were made.
