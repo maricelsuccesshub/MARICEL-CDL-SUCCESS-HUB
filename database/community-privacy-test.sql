@@ -1,3 +1,5 @@
+-- This legacy fixture assumes an otherwise empty Community. For the active beta,
+-- use site-audit-privacy-test.sql, which targets only its own synthetic IDs.
 -- Disposable synthetic members only. Every row and privilege change rolls back.
 begin;
 insert into auth.users(id,aud,role,email,email_confirmed_at) values
@@ -13,7 +15,7 @@ do $$begin
  begin perform public.community_api('moderation');raise exception 'FAIL nonmoderator allowed';exception when raise_exception then if SQLERRM like 'FAIL%' then raise;end if;end;
 end$$;
 select public.community_api('profile','{"display_name":"Synthetic A","listed":true,"messages_enabled":true,"rules_accepted":true}');
-select public.community_api('post','{"category":"Beta Feedback","title":"Synthetic privacy test","body":"Disposable test, rolled back."}');
+select set_config('test.post',(public.community_api('post','{"category":"Beta Feedback","title":"Synthetic privacy test","body":"Disposable test, rolled back."}')->>'id'),true);
 select set_config('request.jwt.claims','{"sub":"10000000-0000-4000-8000-000000000002","role":"authenticated"}',true);
 select public.community_api('profile','{"display_name":"Synthetic B","listed":true,"messages_enabled":false,"rules_accepted":true}');
 select set_config('request.jwt.claims','{"sub":"10000000-0000-4000-8000-000000000001","role":"authenticated"}',true);
@@ -44,7 +46,7 @@ do $$declare reports jsonb;begin
  begin perform public.community_api('messages',jsonb_build_object('thread_id',current_setting('test.thread')));raise exception 'FAIL moderator sees unshared inbox';exception when raise_exception then if SQLERRM like 'FAIL%' then raise;end if;end;
  reports:=public.community_api('moderation');
  if jsonb_array_length(reports)<>1 or reports->0->>'snapshot'<>'Private synthetic message' then raise exception 'FAIL report scope';end if;
- perform public.community_api('moderate',jsonb_build_object('kind','post','id',public.community_api('posts')->0->>'id','hidden',true));
+ perform public.community_api('moderate',jsonb_build_object('kind','post','id',current_setting('test.post'),'hidden',true));
  if jsonb_array_length(public.community_api('posts'))<>0 then raise exception 'FAIL hidden post visible';end if;
  perform public.community_api('moderate','{"kind":"member","id":"10000000-0000-4000-8000-000000000002","suspended":true}');
 end$$;

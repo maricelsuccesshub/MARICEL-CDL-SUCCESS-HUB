@@ -274,11 +274,11 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
     <div class="warning"><strong>No classified information:</strong> Address/location only. No load, BOL, dispatch, trailer, or commodity details.</div>
     <label for="currentLocation">Current City or Location</label><input id="currentLocation" placeholder="Example: Colton, CA">
     <label for="deliveryAddress">Destination / Facility Address</label><input id="deliveryAddress" placeholder="Street address or City, State">
-    <div class="two-col"><div><label for="appointmentDate">Appointment Date</label><input id="appointmentDate" type="date"></div><div><label for="appointmentTime">Appointment Time</label><input id="appointmentTime" type="time"></div></div>
+    <div class="two-col"><div><label for="appointmentDate">Appointment Date</label><input id="appointmentDate" type="date"></div><div><label for="appointmentTime">Appointment Time · your reference only</label><input id="appointmentTime" type="time"></div></div>
     <details class="advanced"><summary>Advanced: enter destination coordinates</summary><div class="two-col"><div><label for="manualLat">Latitude</label><input id="manualLat" inputmode="decimal" placeholder="34.0522"></div><div><label for="manualLon">Longitude</label><input id="manualLon" inputmode="decimal" placeholder="-118.2437"></div></div></details>
     <button class="btn" onclick="autoPlanDestination()">Auto Get Sunset, Timezone & Weather</button>
-    <div id="autoPlanResult"></div>
-<p class="small">Weather and sun times: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Address data: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors (ODbL)</a>, via Nominatim / Photon. Temperatures and wind are converted and rounded; the suggested parking deadline is calculated by this Hub. <a href="disclaimer.html">Disclaimer &amp; Source Credits</a>.</p>
+    <div id="autoPlanResult" role="status" aria-live="polite"></div>
+<p class="small">Weather and sun times: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Address data: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors (ODbL)</a>, via Nominatim / Photon. Temperatures and wind are converted and rounded; the suggested two-hour parking buffer is calculated by this Hub, not a legal limit or a guarantee of available parking. Destination coordinates are sent to Open-Meteo; entered addresses are sent to the geocoding services. Confirm the matched location before relying on the forecast. <a href="disclaimer.html">Disclaimer &amp; Source Credits</a>.</p>
     <h3>Open your route</h3><p class="small">Google Maps directions are not a truck-specific route clearance check.</p>
     <div class="action-grid">
       <button class="btn light" onclick="openMapRoute()">Open Route in Google Maps</button><button class="btn light" onclick="openRouteClearances()">Low bridges &amp; clearance checks</button><button class="btn light" onclick="openRouteCameras()">Check traffic cameras by state</button>
@@ -582,7 +582,7 @@ function memberDisplay(session){
   memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;if(!signedIn)memberEl('subnav').hidden=true;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){memberGeneration++;window.communityReset?.();window.lessonsReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove'].forEach(id=>memberEl(id).value='');}
+  if(previous!==memberUserId){memberGeneration++;window.communityReset?.();window.lessonsReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
   if(signedIn&&previous!==memberUserId){if(typeof showScreen==='function')showScreen('home');setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0)}
 }
@@ -674,6 +674,7 @@ const navNote=document.createElement('p');navNote.className='nav-note';navNote.t
 nav.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('menu-open')){nav.classList.remove('menu-open');updateMobileMenu(false);menuToggle.focus()}});
 function renderSubnav(){subnav.hidden=true}
 function showScreen(id){
+  if(id==='community')renderPosts();
   if(id==='drivercommunity')setTimeout(()=>window.openCommunity?.(),0);
   if(!Object.prototype.hasOwnProperty.call(screenGroups,id))return;
   const target=document.getElementById(id);if(!target)return;
@@ -696,7 +697,6 @@ function esc(str) {
     .replace(/'/g, "&#39;");
 }
 
-async function autoPlanDestination(){const address=deliveryAddress.value.trim();const latM=parseFloat(manualLat.value);const lonM=parseFloat(manualLon.value);if(!address&&(isNaN(latM)||isNaN(lonM))){autoPlanResult.innerHTML='<div class="danger">Enter destination address or coordinates.</div>';return}autoPlanResult.innerHTML='<div class="warning">Looking up destination, timezone, sunset, and weather...</div>';try{let lat,lon,displayName;if(!isNaN(latM)&&!isNaN(lonM)){lat=latM;lon=lonM;displayName=address||'Manual coordinates'}else{const f=await geocodeAddress(address);lat=f.lat;lon=f.lon;displayName=f.displayName}const date=appointmentDate.value||new Date().toISOString().split('T')[0];const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=sunrise,sunset,weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto&start_date=${date}&end_date=${date}`;const w=await (await fetch(u)).json();if(!w.daily)throw new Error('No weather data.');const sunrise=w.daily.sunrise?.[0],sunset=w.daily.sunset?.[0];const maxC=w.daily.temperature_2m_max?.[0],minC=w.daily.temperature_2m_min?.[0];const maxF=maxC!==undefined?Math.round(maxC*9/5+32):'N/A',minF=minC!==undefined?Math.round(minC*9/5+32):'N/A';const windK=w.daily.wind_speed_10m_max?.[0],windM=windK!==undefined?Math.round(windK*.621371):'N/A';let deadline='N/A';if(sunset){deadline=new Date(new Date(sunset).getTime()-7200000).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}autoPlanResult.innerHTML=`<div class="success"><strong>Destination:</strong> ${esc(displayName)}<br><strong>Coordinates:</strong> ${lat.toFixed(5)}, ${lon.toFixed(5)}<br><strong>Timezone:</strong> ${esc(w.timezone||'N/A')}</div><div class="list-item"><h3>Sunset Safety Plan</h3><strong>Sunrise:</strong> ${sunrise?new Date(sunrise).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Sunset:</strong> ${sunset?new Date(sunset).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):'N/A'}<br><strong>Safe Haven Deadline:</strong> ${deadline}<div class="warning">Be parked or securing safe parking by this time.</div></div><div class="list-item"><h3>Destination Weather</h3><strong>High / Low:</strong> ${maxF}°F / ${minF}°F<br><strong>Precipitation Chance:</strong> ${w.daily.precipitation_probability_max?.[0]??'N/A'}%<br><strong>Max Wind:</strong> ${windM} mph<br><div class="warning">Always verify wind, snow/ice, chain laws, road closures, and mountain grades with official sources.</div></div>`}catch(e){autoPlanResult.innerHTML=`<div class="danger"><strong>Auto lookup failed.</strong><br>Try City, State or paste Google Maps coordinates.<br>Error: ${esc(e.message)}</div>`}}
 async function geocodeAddress(a){const cleaned=a.replace(/#/g,' ').replace(/\s+/g,' ').trim();const qs=[cleaned,cleaned+', USA',extractCityState(cleaned)].filter(Boolean);for(const q of [...new Set(qs)]){try{let d=await (await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&countrycodes=us&q=${encodeURIComponent(q)}&limit=3`)).json();if(d?.length)return{lat:+d[0].lat,lon:+d[0].lon,displayName:d[0].display_name||q}}catch(e){}try{let d=await (await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=1`)).json();if(d.features?.length){let c=d.features[0].geometry.coordinates,p=d.features[0].properties||{};return{lat:+c[1],lon:+c[0],displayName:[p.name,p.city,p.state,p.country].filter(Boolean).join(', ')||q}}}catch(e){}}throw new Error('Address not found.')}
 function extractCityState(t){const p=t.split(',').map(x=>x.trim()).filter(Boolean);return p.length>=2?p.slice(-2).join(', '):''}
 // Official stop directories: no keyword-based map discovery or private-facility results.
@@ -1115,20 +1115,21 @@ function openMapRoute(){
 function openRouteSearch(category){
   const destination=deliveryAddress.value.trim();
   if(!destination){alert('Enter a destination city or address first.');return}
-  document.getElementById('safeSearchLocation').value=destination;const stateMatch=destination.toUpperCase().match(/(?:,|\s)([A-Z]{2})(?:\s+\d{5}(?:-\d{4})?)?$/);if(stateMatch&&stateTransportationSources.some(state=>state.code===stateMatch[1]))selectedParkingState=stateMatch[1];openScreen('safehaven');showOfficialStops(category);
+  document.getElementById('safeSearchLocation').value=destination;const stateMatch=destination.toUpperCase().match(/(?:,|\s)([A-Z]{2})(?:\s+\d{5}(?:-\d{4})?)?$/);selectedParkingState=stateMatch&&stateTransportationSources.some(state=>state.code===stateMatch[1])?stateMatch[1]:'';openScreen('safehaven');showOfficialStops(category);
 }
 function mapSearch(category){showOfficialStops(category)}
 showOfficialStops('parking',false);
 const optionalBoolean=value=>value===''?null:value==='true';
-async function verifiedMember(){if(!memberClient)return null;const {data:{user},error}=await memberClient.auth.getUser();return !error&&user?.email_confirmed_at?user:null}
+async function verifiedMember(){if(!memberClient)return null;const generation=memberGeneration;const {data:{user},error}=await memberClient.auth.getUser();return generation===memberGeneration&&!error&&user?.email_confirmed_at&&user.id===memberUserId?user:null}
 async function saveSafeHaven(){
-  const user=await verifiedMember();if(!user){memberEl('safeHavenSaved').textContent='Sign in with a verified account first.';return}
+  const generation=memberGeneration;const user=await verifiedMember();if(generation!==memberGeneration)return;if(!user){memberEl('safeHavenSaved').textContent='Sign in with a verified account first.';return}
   const name=memberEl('safeHavenName').value.trim(),city=memberEl('safeHavenCity').value.trim(),state=memberEl('safeHavenState').value.trim().toUpperCase();
   if(!name||!city||!state){memberEl('safeHavenSaved').textContent='Add the location name, city, and state.';return}
   const overnight=memberEl('overnightParking').value;
   const noteParts=[`Parking difficulty: ${memberEl('difficulty').value}`,overnight==='Limited'?'Overnight parking: Limited':'',memberEl('safeHavenNotes').value.trim()].filter(Boolean);
   const record={submitted_by:user.id,location_name:name.slice(0,150),city:city.slice(0,100),state:state.slice(0,30),overnight_allowed:overnight==='Yes'?true:overnight==='No'?false:null,restrooms:optionalBoolean(memberEl('restrooms').value),showers:optionalBoolean(memberEl('showers').value),diesel:optionalBoolean(memberEl('diesel').value),food_nearby:memberEl('foodNearby').value.trim().slice(0,300),notes:noteParts.join(' | ').slice(0,1000)};
   const {error}=await memberClient.from('safe_havens').insert(record);
+  if(generation!==memberGeneration)return;
   if(error){memberEl('safeHavenSaved').textContent='Could not share this Safe Haven. Please retry.';return}
   memberEl('safeHavenSaved').textContent='Safe Haven shared with members.';
   ['safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes'].forEach(id=>memberEl(id).value='');
@@ -1144,13 +1145,14 @@ async function renderSafeHavens(){
   list.innerHTML=data.length?data.map(x=>`<div class="list-item"><strong>${esc(x.location_name)}</strong><br>${esc(x.city)}, ${esc(x.state)}<br><span class="small">Overnight: ${yesNoUnknown(x.overnight_allowed)} · Restrooms: ${yesNoUnknown(x.restrooms)} · Showers: ${yesNoUnknown(x.showers)} · Diesel: ${yesNoUnknown(x.diesel)}</span>${x.food_nearby?`<br><strong>Food:</strong> ${esc(x.food_nearby)}`:''}${x.notes?`<br><strong>Notes:</strong> ${esc(x.notes)}`:''}</div>`).join(''):'<p class="small">No member Safe Havens have been shared yet.</p>';
 }
 async function saveFacilityNote(){
-  const user=await verifiedMember();if(!user){memberEl('facilitySaved').textContent='Sign in with a verified account first.';return}
+  const generation=memberGeneration;const user=await verifiedMember();if(generation!==memberGeneration)return;if(!user){memberEl('facilitySaved').textContent='Sign in with a verified account first.';return}
   const name=memberEl('facilityName').value.trim(),address=memberEl('facilityAddress').value.trim();
   if(!name){memberEl('facilitySaved').textContent='Add a facility name.';return}
   const numberOrNull=id=>{const value=memberEl(id).value.trim();return value===''?null:Number(value)};
   const record={user_id:user.id,facility_name:name.slice(0,150),facility_address:address.slice(0,300),entrance_lat:numberOrNull('entranceLat'),entrance_lon:numberOrNull('entranceLon'),guard_lat:numberOrNull('guardLat'),guard_lon:numberOrNull('guardLon'),entrance_notes:memberEl('entranceNotes').value.trim().slice(0,1500),guard_notes:memberEl('guardNotes').value.trim().slice(0,1500),approach_notes:memberEl('approachNotes').value.trim().slice(0,1500)};
-  if([record.entrance_lat,record.entrance_lon,record.guard_lat,record.guard_lon].some(Number.isNaN)){memberEl('facilitySaved').textContent='Coordinates must be numbers or left blank.';return}
+  if(!validCoordinatePair(record.entrance_lat,record.entrance_lon)||!validCoordinatePair(record.guard_lat,record.guard_lon)){memberEl('facilitySaved').textContent='Enter both coordinates in each pair, or leave both blank. Latitude must be −90 to 90 and longitude −180 to 180.';return}
   const {error}=await memberClient.from('facility_notes').insert(record);
+  if(generation!==memberGeneration)return;
   if(error){memberEl('facilitySaved').textContent='Could not save this private note. Please retry.';return}
   memberEl('facilitySaved').textContent='Private facility note saved.';
   ['facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes'].forEach(id=>memberEl(id).value='');
@@ -1164,22 +1166,26 @@ async function renderFacilityNotes(){
   if(error){list.innerHTML='<p class="small">Could not load your private facility notes.</p>';return}
   list.innerHTML=data.length?data.map(x=>{const hasEntrance=x.entrance_lat!==null&&x.entrance_lon!==null;const mapUrl=hasEntrance?`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.entrance_lat+','+x.entrance_lon)}`:'';return `<div class="list-item"><strong>${esc(x.facility_name)}</strong>${x.facility_address?`<br>${esc(x.facility_address)}`:''}${hasEntrance?`<br><a class="btn light" style="display:inline-block;text-align:center" href="${mapUrl}" target="_blank" rel="noopener">Navigate to Truck Entrance</a>`:''}${x.entrance_notes?`<br><strong>Entrance:</strong> ${esc(x.entrance_notes)}`:''}${x.guard_notes?`<br><strong>Check-in:</strong> ${esc(x.guard_notes)}`:''}${x.approach_notes?`<br><strong>Approach:</strong> ${esc(x.approach_notes)}`:''}</div>`}).join(''):'<p class="small">No private facility notes saved yet.</p>';
 }
-function savePost(){const p=JSON.parse(localStorage.getItem('posts')||'[]');p.unshift({topic:postTopic.value,msg:postMessage.value,date:new Date().toLocaleString()});localStorage.setItem('posts',JSON.stringify(p));postTopic.value=postMessage.value='';renderPosts()}
-function renderPosts(){const p=JSON.parse(localStorage.getItem('posts')||'[]');postList.innerHTML=p.length?p.map(x=>`<div class="list-item"><strong>${esc(x.topic||'Note')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>`).join(''):'<p class="small">No device notes yet. Save a question or reminder to get started.</p>'}
+function readDeviceNotes(){const notes=JSON.parse(localStorage.getItem('posts')||'[]');if(!Array.isArray(notes)||notes.some(x=>!x||typeof x!=='object'||Array.isArray(x)))throw Error('Invalid notes');return notes;}
+function savePost(){try{const p=readDeviceNotes();p.unshift({topic:memberEl('postTopic').value,msg:memberEl('postMessage').value,date:new Date().toLocaleString()});localStorage.setItem('posts',JSON.stringify(p));memberEl('postTopic').value=memberEl('postMessage').value='';renderPosts()}catch{memberEl('postList').textContent='Device notes could not be saved. Your draft is still here. Browser storage may be unavailable or contain unreadable notes.';}}
+function renderPosts(){try{const p=readDeviceNotes();memberEl('postList').innerHTML=p.length?p.map(x=>`<div class="list-item"><strong>${esc(x.topic||'Note')}</strong><br><span class="small">${esc(x.date)}</span><p>${esc(x.msg)}</p></div>`).join(''):'<p class="small">No device notes yet. Save a question or reminder to get started.</p>'}catch{memberEl('postList').textContent='Device notes could not be read. Browser storage may be unavailable or contain unreadable notes. Existing stored notes have not been changed.';}}
 async function saveProgress() {
-  if(!memberClient)return;
+  const generation=memberGeneration;if(!memberClient)return;
   const {data:{user},error:authError}=await memberClient.auth.getUser();
-  if(authError||!user?.email_confirmed_at){alert('Please sign in first.');return;}
+  if(generation!==memberGeneration)return;
+  if(authError||!user?.email_confirmed_at||user.id!==memberUserId){alert('Please sign in first.');return;}
   const record={user_id:user.id,progress_date:progressDate.value||new Date().toISOString().slice(0,10),backing_practice:progressBacking.value,went_well:progressWin.value,needs_improvement:progressImprove.value,confidence:confidence.value};
   const {error}=await memberClient.from('member_progress').insert(record);
+  if(generation!==memberGeneration)return;
   if(error){alert('Could not save progress: '+error.message);return;}
   await renderProgress();
-  alert('Your private progress was saved!');
+  if(generation===memberGeneration)alert('Your private progress was saved!');
 }
 async function renderProgress(){
   const generation=memberGeneration;
   if(!memberClient)return;
   const {data:{user}}=await memberClient.auth.getUser();
+  if(generation!==memberGeneration)return;
   if(!user?.email_confirmed_at){progressList.textContent='Sign in to see your progress.';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Sign in to see your latest progress.</p>';return;}
   if(generation!==memberGeneration)return;
   const {data,error}=await memberClient.from('member_progress').select('progress_date,backing_practice,went_well,needs_improvement,confidence').order('created_at',{ascending:false}).limit(30);
@@ -1441,6 +1447,7 @@ window.straightAnswer = function(choice) {
 <script src="state-weather.js"></script>
 <script src="community-avatars.js"></script>
 <script src="community.js"></script>
+<script src="trip-planner.js?v=29"></script>
 <script src="lessons.js?v=28"></script>
 </body>
 </html>
