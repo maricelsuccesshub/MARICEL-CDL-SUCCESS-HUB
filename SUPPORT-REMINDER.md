@@ -42,3 +42,12 @@ Validation: 113 existing tests pass. Barcode payload roundtrip passes. Desktop
 and phone layout checks cover QR loading, both provider links, no horizontal
 overflow and the persistent reminder. A real Venmo payment has not been tested
 by the agent.
+
+## Updated Venmo identity — version 38
+
+The owner renamed the existing Venmo account to @maricelcdlsuccesshub with
+display name Maricel CDL SuccessHub and supplied a new QR screenshot. The decoded
+new QR references the same numeric Venmo account ID as version 37. Updated the
+visible handle, profile-name guidance, alt text, exact QR link and SVG barcode.
+The SVG uses a new cache query. Its payload decode roundtrip is byte-identical
+to the new supplied code. Stripe remains available. No payment was sent.
