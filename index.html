@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="icon-192.png" />                            
   <script src="member-config.js"></script>
   <meta name="referrer" content="no-referrer" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
+  <script src="vendor/supabase-2.105.0.js"></script>
   <style>
     [hidden]{display:none!important}
     :root{--bg:#f5f7fb;--card:#fff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;--accent:#111827;--soft:#f3f4f6;--danger:#991b1b;--success:#166534}
@@ -129,7 +129,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   </details></div>
 </aside>
 <div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
-<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your own free beta account to explore the training dashboard. Your profile and practice progress are private to your account. Use a password you do not use elsewhere.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Use with caution, at your own discretion and risk. This Hub supplements learning; it does not replace qualified training, inspections, official requirements or your judgment. Use only while safely parked. <a href="disclaimer.html">Read the full disclaimer</a>.</p></div>
+<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your own free beta account to explore the training dashboard. Your profile and practice progress are private to your account. Use a password you do not use elsewhere.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><div id="passkeyLogin"><button id="passkeySignIn" class="btn light" type="button" disabled>Sign in with a passkey</button><p id="passkeyLoginHelp" class="small" role="status" aria-live="polite">Checking passkey availability…</p></div><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Use with caution, at your own discretion and risk. This Hub supplements learning; it does not replace qualified training, inspections, official requirements or your judgment. Use only while safely parked. <a href="disclaimer.html">Read the full disclaimer</a>.</p></div>
 <nav id="nav" aria-label="Main navigation" hidden></nav>
 <div id="subnav" aria-label="Section navigation" hidden></div>
 <main id="memberMain" tabindex="-1" hidden>
@@ -266,7 +266,7 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
   </div>
 
 </section>
-<section id="profile"><div class="card"><h2>My Profile</h2><p class="lead">Choose the name you want to see on your dashboard. Your profile is private to your account.</p><label for="profileName">Display name</label><input id="profileName" maxlength="100" autocomplete="nickname"><p id="profileEmail" class="small"></p><button class="btn" onclick="saveProfile()">Save Profile</button><p id="profileSaved" role="status" aria-live="polite"></p><p class="small">Never enter CDL numbers, employee IDs, or load documents.</p></div></section>
+<section id="profile"><div class="card"><h2>My Profile</h2><p class="lead">Choose the name you want to see on your dashboard. Your profile is private to your account.</p><label for="profileName">Display name</label><input id="profileName" maxlength="100" autocomplete="nickname"><p id="profileEmail" class="small"></p><button class="btn" onclick="saveProfile()">Save Profile</button><p id="profileSaved" role="status" aria-live="polite"></p><p class="small">Never enter CDL numbers, employee IDs, or load documents.</p></div><div class="card" id="passkeySecurity" aria-labelledby="passkeySecurityTitle"><h3 id="passkeySecurityTitle">Security · Passkeys</h3><p>Use a passkey for optional sign-in with your device’s fingerprint, face unlock, PIN or security key. First sign in to your existing verified account, then add a passkey on a device you trust.</p><p class="small">Your device or password manager handles the passkey. The Hub does not receive your fingerprint, face scan or device PIN. Keep access to your email and password for recovery. Supabase passkeys are currently experimental.</p><button class="btn" id="passkeyAdd" type="button" disabled>Add a passkey</button><button class="btn light" id="passkeyRefresh" type="button">Refresh my passkeys</button><p id="passkeyStatus" role="status" aria-live="polite"></p><div id="passkeyList"></div><p class="small">A passkey is another way to enter the same account. It does not change your profile, progress or Community permissions. Removing one here revokes Hub sign-in with that passkey; its saved entry may still appear in your password manager.</p></div></section>
 
 <section id="planner">
   <div class="card"><span class="badge">Trip planning</span><h2>Plan My Route</h2>
@@ -554,7 +554,7 @@ const SUPABASE_KEY = window.MEMBER_CONFIG?.publishableKey || '';
 
 // Static training assets are public. Supabase RLS protects member data.
 // Development must use a separate Supabase project; no fallback to production.
-const memberClient=SUPABASE_URL&&SUPABASE_KEY?window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+const memberClient=SUPABASE_URL&&SUPABASE_KEY?window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{experimental:{passkey:true}}}):null;
 let memberAuthMode='signin', memberUserId=null, memberRecovery=false, memberGeneration=0;
 const memberEl=id=>document.getElementById(id);
 const memberMessage=text=>memberEl('memberMessage').textContent=text;
@@ -574,7 +574,7 @@ function memberMode(mode){
   memberEl('memberResendButton').hidden=recover||reset;
   memberEl('memberPassword').autocomplete=mode==='signin'?'current-password':'new-password';
   memberEl('memberSubmit').textContent=({signin:'Sign in',signup:'Create free account',reset:'Send recovery email',recover:'Save new password'})[mode];
-  memberMessage(mode==='recover'?'Choose your new password.':'');
+  memberMessage(mode==='recover'?'Choose your new password.':'');window.memberPasskeyModeChanged?.();
 }
 function memberDisplay(session){
   const signedIn=Boolean(session?.user?.email_confirmed_at)&&!memberRecovery;
@@ -582,7 +582,7 @@ function memberDisplay(session){
   memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;if(!signedIn)memberEl('subnav').hidden=true;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){memberGeneration++;window.communityReset?.();window.lessonsReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
+  if(previous!==memberUserId){memberGeneration++;window.memberPasskeysReset?.();window.communityReset?.();window.lessonsReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['memberPassword','progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
   if(signedIn&&previous!==memberUserId){if(typeof showScreen==='function')showScreen('home');setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0)}
 }
@@ -595,7 +595,7 @@ async function memberResend(){
   try{const {error}=await memberClient.auth.resend({type:'signup',email:memberEl('memberEmail').value.trim(),options:{emailRedirectTo:memberRedirect()}});if(error)throw error;memberMessage('If verification is needed, check your email for a new link.');}catch(e){memberMessage('Unable to resend. Please wait before trying again.');}
 }
 document.getElementById('memberForm').addEventListener('submit',async event=>{
-  event.preventDefault();if(!memberClient)return;
+  event.preventDefault();if(!memberClient||window.memberPasskeysBusy?.())return;
   const email=memberEl('memberEmail').value.trim(),password=memberEl('memberPassword').value,mode=memberAuthMode;
   memberEl('memberSubmit').disabled=true;memberMessage('Please wait…');
   try{
@@ -675,6 +675,7 @@ nav.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.co
 function renderSubnav(){subnav.hidden=true}
 function showScreen(id){
   if(id==='community')renderPosts();
+  if(id==='profile')window.memberPasskeysOpen?.();
   if(id==='drivercommunity')setTimeout(()=>window.openCommunity?.(),0);
   if(!Object.prototype.hasOwnProperty.call(screenGroups,id))return;
   const target=document.getElementById(id);if(!target)return;
@@ -1448,6 +1449,7 @@ window.straightAnswer = function(choice) {
 <script src="community-avatars.js"></script>
 <script src="community.js"></script>
 <script src="trip-planner.js?v=29"></script>
+<script src="member-passkeys.js?v=30"></script>
 <script src="lessons.js?v=28"></script>
 </body>
 </html>
