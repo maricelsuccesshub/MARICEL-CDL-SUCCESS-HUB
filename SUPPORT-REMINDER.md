@@ -17,3 +17,28 @@ is fixed and visible during scrolling, desktop content starts beside the 244px
 sidebar, and a 375px phone frame has no horizontal overflow, a 44px link target,
 and a roughly 82px bar with 112px reserved page-bottom space. The existing Home
 card and payment link are preserved. No transaction was performed.
+
+## Stripe and Venmo choices — version 37
+
+The owner explicitly approved publishing the Venmo QR code and handle
+@CezlesPhotography on the Hub, replacing the unpublished Zelle option and
+keeping Stripe. All support entry points open support.html in a separate tab.
+The original Stripe payment link is preserved there beside Venmo.
+
+The Venmo QR was decoded from the owner-supplied IMG_0174.png screenshot,
+generated as a precise native SVG barcode without the surrounding phone screen
+or photo, and the payload verified byte-for-byte through a decode roundtrip.
+The original QR's exact Venmo URL is used for the Open Venmo link. No personal
+full-name or email label appears on the Hub. The visible owner label is Coach
+Maricel with the approved Venmo handle. Venmo may show the profile name and photo.
+
+The payment account type is not established by the screenshot. No business fee
+rate, fee-free collection or no-fee personal transfer workaround is promised.
+The page asks members to review the recipient, payment type and any fees inside
+Venmo. The Hub neither initiates a payment nor confirms receipt. No Zelle code,
+Zelle recipient link or original screenshot is included in this publication.
+
+Validation: 113 existing tests pass. Barcode payload roundtrip passes. Desktop
+and phone layout checks cover QR loading, both provider links, no horizontal
+overflow and the persistent reminder. A real Venmo payment has not been tested
+by the agent.
