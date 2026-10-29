@@ -52,3 +52,36 @@ were preserved. Temporary fixtures are removed before packaging.
 Files: dist/community.js, dist/community-chat.css, dist/index.html,
 tests/community-chat.test.cjs. The CSS is scoped to .community-conversation and
 does not restyle forum posts, directory entries or other pages.
+
+
+## Version 32 — automatic reply checks
+
+Open, visible conversations now check the existing participant-scoped RPCs about
+every 3 seconds after each completed check. This is short polling, not a WebSocket
+subscription or push delivery. No database/publication/RLS grants changed. Inbox
+requests and unopened conversations still use Refresh inbox.
+
+Automatic checks read state, inbox membership and messages through community_api.
+Only the message list changes when new content is returned; the composer DOM node,
+keyboard focus, caret and draft remain intact. Unchanged content is not redrawn.
+Readers at the bottom see the newest reply. Readers higher in history retain a
+visible-message anchor where it still exists within the latest-100 window, and
+get a Jump to newest button. A changed block/messaging-access state updates the
+controls; a conversation no longer available through the inbox stops checking.
+
+Manual actions cancel background requests. Checks pause on sign-out, account
+change, leaving the conversation/Community, hidden tabs and offline events. The
+visibility/online events resume checks. Requests have a 15-second abort deadline;
+failures preserve history/drafts, show connection feedback and retry with backoff
+up to 30 seconds. No delivery/read receipts, typing indicators or notifications
+were added. The server continues to authorize every read and send.
+
+97 automated tests pass. Added coverage verifies automatic arrival without
+replacing the composer, unchanged-message behavior, older reading position and
+jump action, visibility/navigation pause/resume, failure/backoff and stale responses
+after sign-out. Synthetic browser test: a queued incoming reply appeared without
+Refresh while the draft, focus on communityMessage and caret position 38 stayed
+unchanged; the history stayed at its newest message. Existing phone layout checks
+from version 31 remain applicable; no layout structure was replaced. No real
+member messages were read or sent during QA. Physical two-device testing remains
+a member acceptance check. Temporary fixtures are excluded from publication.
