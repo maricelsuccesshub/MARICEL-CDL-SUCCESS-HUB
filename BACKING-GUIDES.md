@@ -30,3 +30,13 @@ Teach me now opens an original five-stage offset walkthrough with driver-side/pa
 Steering phases are distinguished using Oregon CDL manual §6.1.7: https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_6.aspx . Safety references also include §2.2.4 and OSHA spotter guidance above, reviewed October 28, 2026. Equipment-specific references must be taught by the qualified instructor.
 
 Validation: 51 automated site checks passed, including both offset directions, five stages, retries, invalid inputs, question reset and isolation from other guides. Browser QA uses a temporary standalone local guide fixture with no authentication or database calls; fixture pages are removed before packaging.
+
+## Accuracy review and correction — October 28, 2026
+
+The initial five-stage offset was incomplete as a beginner maneuver explanation: it omitted an explicit diagonal approach and return trailer-turn phase, and the stationary graphics translated sideways at a fixed fore/aft coordinate with an unchanged tractor heading. The final illustration left the tractor outside the entrance. These illustrations were not a validated trajectory and automated UI checks did not establish maneuver correctness.
+
+Revised to seven learning phases: setup, initial trailer turn, follow into diagonal alignment, diagonal approach, return trailer turn, follow/align tractor, and straight-back finish. Tractor/trailer headings are separate, poses include rearward progress, the final whole vehicle lies within the generic lane, and opposite-side directions are explicitly mirrored. Each pose remains an independent, conceptual illustration; no physical path or clearance validation is claimed.
+
+Primary checks: Oregon CDL §6.1.7 and California DMV Truck Drivers agree on initial trailer-turn direction, following and drift correction. Oregon current §12 describes modernized reverse-offset parking and finish requirements: https://www.oregon.gov/odot/dmv/pages/online_cdl_manual_2/section_12.aspx . The app now distinguishes a generic adjacent-lane offset from a complete modernized/state test exercise and does not prescribe scoring limits, stop-box dimensions or equipment-specific triggers. Diagonal/return-turn teaching structure is an editorial explanation, not agency approval of these drawings or a hands-on instructor assessment.
+
+Validation: 52 automated checks cover interactions, both directional examples, seven-phase navigation and exercise-scope wording. Browser visual QA uses local fixtures without member data or Supabase calls. No database, auth, member profile or production-project changes.
