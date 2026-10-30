@@ -9,3 +9,16 @@ test('matching guide and Practice Yard actions are allowlisted and reset guide k
 test('reflection prepares an honest draft and preserves every existing field without saving',()=>{const h=harness();h.run('prepareHubLessonReflection()');assert.match(h.el('progressBacking').value,/Lesson review:/);assert.match(h.el('progressImprove').value,/Question for my instructor:/);assert.ok(h.el('guideProgressNotice').textContent.includes('not a completed driving exercise'));h.el('progressBacking').value='My topic';h.el('progressWin').value='My win';h.el('progressImprove').value='My improvement';h.run('selectHubLesson(4);prepareHubLessonReflection()');assert.equal(h.el('progressBacking').value,'My topic');assert.equal(h.el('progressWin').value,'My win');assert.equal(h.el('progressImprove').value,'My improvement');assert.ok(h.el('guideProgressNotice').textContent.includes('preserved'));assert.ok(h.calls.some(c=>c[0]==='screen'&&c[1]==='progress'));});
 test('old absolute claims are removed and the lesson has versioned assets and a compact-page hook',()=>{for(const claim of ['Turn the steering wheel ONE time. Then wait.','The trailer tells you exactly what correction to make.','backing will finally make sense.'])assert.ok(!html.includes(claim));assert.ok(html.includes('src="lessons.js?v=50"'));assert.ok(html.includes('href="lessons.css?v=62"'));assert.ok(html.includes("classList.toggle('lessons-open',id==='lesson'||id==='starter'||id==='cdlknowledge'||id==='pretrip'||id==='airbrakes'||id==='incab')"));assert.ok(html.includes('betaNoticeDetails'));});
 test('lesson topic and tab restore without carrying answers or reviewed marks',()=>{const h=harness();h.run("window.hubRememberView=(p,v)=>window.saved=JSON.parse(JSON.stringify(v));selectHubLesson(3);setHubLessonTab('check')");const value=h.run('JSON.stringify(window.saved)'),fresh=harness();fresh.run(`window.hubReadView=()=>(${value});window.restoreLessonView()`);assert.equal(fresh.run('lessonVisit.current'),3);assert.equal(fresh.run('lessonVisit.tab'),'check');assert.equal(fresh.run('Object.keys(lessonVisit.answers).length'),0);assert.equal(fresh.run('lessonVisit.reviewed.length'),0)});
+
+test('learning styles leave the shared site header layout to the common responsive styles',()=>{
+  // Learning pages all use lessons-open. Their modules must not turn the shared
+  // header into a row again when a wider introduction is added.
+  for(const name of ['lessons','road-readiness','pretrip','air-brakes','incab']){
+    const css=fs.readFileSync(new URL(`../${name}.css`,`file://${__filename}`),'utf8').replace(/\/\*[\s\S]*?\*\//g,'');
+    for(const rule of css.matchAll(/([^{}]+)\{[^{}]*\}/g)){
+      const targetsHeader=rule[1].split(/[\s>+~,]+/).some(token=>/^header(?:$|[.#:\[])/.test(token));
+      assert.equal(targetsHeader,false,`${name}.css must not override the shared site header: ${rule[1]}`);
+    }
+  }
+  assert.match(html,/header\{[^{}]*display:flex;flex-direction:column;align-items:center/);
+});
