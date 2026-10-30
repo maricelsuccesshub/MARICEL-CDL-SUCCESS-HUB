@@ -213,14 +213,10 @@ Created by Coach Maricel • Helping beginner drivers build confidence through u
 
       <h3>Think Before You Steer</h3>
 
-      <p>
-        The truck pauses...
-
-        You decide what happens next.
-      </p>
+      <p>A short scenario with choices, explanations and retries. Start with Test 3: Straighten and Hold.</p>
 
       <button class="btn"
-        onclick="showPracticeLesson('brain')">
+        aria-controls="practiceContent" onclick="showPracticeLesson('center')">
 
         Try a Decision Exercise
 
@@ -1336,6 +1332,8 @@ function loadSimulatorStyles() {
 }
 
 window.showPracticeLesson = function(type) {
+  // Keep older decision-card callers working after the exercise was renamed.
+  if (type === "brain") type = "center";
   const box = document.getElementById("practiceContent");
   if (!box) return;
 
