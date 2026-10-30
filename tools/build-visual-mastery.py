@@ -110,8 +110,8 @@ para(x+24,y+282,'After the trailer starts turning, change steering the other way
 para(x+24,y+389,'Example: rear RIGHT → initial LEFT → follow RIGHT. Not a timed steering recipe.',cw-48,20)
 x=xs[2];card(x,y,cw,435,'STOP — THEN REASSESS',RED)
 rect(x+24,y+87,110,74,'#fff0ee','#f4c5c6');text(x+79,y+135,'STOP',27,RED,'bold','middle')
-para(x+154,y+108,'Stop immediately if you lose sight of your spotter.',cw-180,23,'bold')
-para(x+24,y+207,'Also stop for a person in the movement area, uncertain clearance or an angle you do not understand.',cw-48,23)
+para(x+154,y+108,'Stop for people or uncertain clearance.',cw-180,23,'bold')
+para(x+24,y+207,'If you are using a spotter, agree on signals beforehand; stop immediately if visual contact is lost.',cw-48,23)
 para(x+24,y+318,'Secure before getting out to look. Inspect the forward path and plan before any pull-up. Never pull up automatically.',cw-48,23,'bold')
 # Row 4: progression and decision table.
 y=2090

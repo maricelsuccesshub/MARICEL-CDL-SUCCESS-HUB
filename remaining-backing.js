@@ -37,7 +37,7 @@ const remainingBackingGuides={
         "title": "Choose a setup with a view of the target",
         "look": "Identify a driver-side approach where feasible, both trailer corners, the tractor nose and a possible forward-reset area.",
         "notice": "The setup needs room for the combination to turn and then align. One memorized tractor-to-cone position does not fit every rig.",
-        "decision": "With your instructor, choose an equipment-specific setup. Agree on spotter signals if used; the spotter stays visible and outside movement areas and pinch points.",
+        "decision": "With your instructor, choose an equipment-specific setup and identify the trailer references, tractor-front space and planned stopping checks.",
         "question": "Should every driver use the same starting distance from the bay?",
         "options": [
           "No. Equipment and available space change the setup",
@@ -97,7 +97,7 @@ const remainingBackingGuides={
         "title": "Pause before the final approach",
         "look": "Confirm the rear stopping clearance, assigned bay status, door procedure and any facility signals.",
         "notice": "Being close to the dock does not establish a clear rear path or permission to continue.",
-        "decision": "Stop and secure before another outside check when needed. Continue the final positioning only when clearance and instructions are understood; stop for people, unclear signals or lost spotter contact.",
+        "decision": "Stop and secure before another outside check when needed. Continue the final positioning only when clearance and instructions are understood; stop for people, uncertain clearance or unclear instructions.",
         "question": "You cannot judge how much rear clearance remains. What should you do?",
         "options": [
           "Continue because the dock is nearby",
@@ -220,7 +220,7 @@ const remainingBackingGuides={
       },
       {
         "title": "Finish at the actual instructed point",
-        "look": "Monitor the complete rig and rear stopping clearance, including people and any spotter.",
+        "look": "Monitor the complete rig and rear stopping clearance, including people and changing obstacles.",
         "notice": "The drawn target has no test dimensions or prescribed finish.",
         "decision": "Stop and secure at the instructor’s or examiner’s required position. For a real dock or parking space, follow its procedures; do not assume the diagram authorizes contact with a dock.",
         "question": "Can the illustration supply your exact test stop point?",
@@ -332,10 +332,10 @@ const remainingBackingGuides={
         "title": "Confirm the finish and secure",
         "look": "Check the actual stopping point, whole-rig position and any dock or parking instructions.",
         "notice": "This diagram shows an aligned concept paused short of the target end, not a test pass position or dock-contact instruction.",
-        "decision": "Stop and secure as directed. If a person enters the area or spotter contact is lost, stop immediately regardless of progress.",
-        "question": "You are nearly finished but lose sight of the spotter. What should you do?",
+        "decision": "Stop and secure as directed. If a person enters the area or clearance becomes uncertain, stop immediately regardless of progress.",
+        "question": "You are nearly finished but cannot confirm rear clearance. What should you do?",
         "options": [
-          "Stop immediately and reconnect before movement",
+          "Stop and reassess before any further movement",
           "Finish because only a small distance remains"
         ],
         "answer": 0,
@@ -355,7 +355,7 @@ const remainingBackingGuides={
       ],
       [
         "Spotter contact",
-        "Agreed communication with a trained, visible helper outside the movement area and pinch points. Losing contact means stop."
+        "If a spotter is used, agree on signals with a trained helper who stays visible and outside movement areas and pinch points. Stop immediately on loss of visual contact. Follow site and training rules for assistance."
       ],
       [
         "Camera or mirror aid",
@@ -395,10 +395,10 @@ const remainingBackingGuides={
       },
       {
         "title": "Establish communication and stop signals",
-        "look": "Confirm the helper is trained, clearly visible and outside vehicle paths and pinch points. Identify how you will maintain contact.",
-        "notice": "A helper who is hidden or in a hazardous position cannot provide a dependable plan.",
-        "decision": "Agree on signals before moving. Stop for any unclear signal; do not move while trying to find the helper.",
-        "question": "The signal is unclear. What should you do?",
+        "look": "If using a spotter, confirm the helper is trained, visible and clear of vehicle paths and pinch points. Otherwise, identify how the full path will be inspected and confirmed; do not proceed with unresolved blind areas.",
+        "notice": "Assistance does not replace a known path, useful references and a clear stopping plan.",
+        "decision": "If using a spotter, agree on signals before moving. Stop for any unclear signal or loss of visual contact.",
+        "question": "If you are using a spotter and a signal is unclear, what should you do?",
         "options": [
           "Guess and continue slowly",
           "Stop and clarify the signal before moving"
@@ -409,19 +409,19 @@ const remainingBackingGuides={
         "label": "Signals"
       },
       {
-        "title": "Stop immediately when contact is lost",
-        "look": "Monitor the spotter’s visibility, people near the vehicle and the parts of the path that require confirmation.",
-        "notice": "Where someone stood earlier does not establish where they are now.",
-        "decision": "Stop immediately if you lose sight of the spotter. Re-establish communication with the vehicle stationary; secure before an outside inspection.",
-        "question": "Your spotter disappears from view. What is the correct response?",
+        "title": "Stop when the rear path becomes uncertain",
+        "look": "Monitor people, vehicle clearance and the parts of the rear path that require confirmation.",
+        "notice": "An earlier inspection does not establish that the path is still clear.",
+        "decision": "Stop if the rear path cannot be confirmed. Secure before an outside inspection and agree on a clear next move with your instructor.",
+        "question": "The rear path is no longer clear enough to judge. What is the correct response?",
         "options": [
           "Stop immediately",
-          "Keep reversing while searching in the mirrors"
+          "Keep reversing slowly and hope the hidden area is clear"
         ],
         "answer": 0,
-        "why": "Do not move while looking for a missing spotter.",
+        "why": "Do not continue into an area whose clearance you cannot confirm.",
         "visual": "visibility",
-        "label": "Lost contact"
+        "label": "Path uncertain"
       },
       {
         "title": "Reinspect and agree on a clear next move",
@@ -522,7 +522,7 @@ const remainingBackingGuides={
         "title": "Back slowly while the aisle keeps changing",
         "look": "Watch both trailer corners, rear wheels, neighboring vehicles, tractor nose and people approaching from either side.",
         "notice": "A previously clear aisle can become occupied during the movement.",
-        "decision": "Use the equipment-specific steering and controlled speed you were taught. Stop for a person entering the movement area, a moving conflict or lost spotter contact.",
+        "decision": "Use the equipment-specific steering and controlled speed you were taught. Stop for a person entering the movement area, a moving conflict or uncertain clearance.",
         "question": "Someone walks into the backing area. What should happen?",
         "options": [
           "Stop and wait until the movement area is confirmed clear",
@@ -645,13 +645,13 @@ const remainingBackingGuides={
       },
       {
         "title": "Re-establish the view and communication",
-        "look": "Check the target references and whether a spotter will remain visible outside the movement area and pinch points.",
+        "look": "Check the target references, both side clearances and the full intended path.",
         "notice": "The original uncertainty must be resolved before restarting. Conditions may also have changed.",
-        "decision": "Agree on the next small, understandable movement. Stop immediately if visual contact is lost or a signal is unclear.",
-        "question": "The setup changed but the spotter is still hidden. Can you restart?",
+        "decision": "Agree on the next small, understandable movement. Remain stopped if the path, clearance or instructions are unclear.",
+        "question": "The setup changed but the rear path is still hidden. Can you restart?",
         "options": [
-          "Yes. A new setup removes the need for contact",
-          "No. Re-establish the agreed view and communication"
+          "Yes. A new setup means the path must be clear",
+          "No. Resolve the hidden area and confirm the next move"
         ],
         "answer": 1,
         "why": "Repositioning does not eliminate a visibility or communication problem.",
@@ -711,7 +711,7 @@ function renderRemainingBackingGuide(key){
  const g=remainingBackingGuides[key],t=g.stages[remainingBackingStep],correct=remainingBackingAnswer===t.answer,answered=remainingBackingAnswer!==null;
  return `<div class="rg-guide"><style>
 .rg-guide{margin-top:28px;padding-top:24px;border-top:2px solid #dde4ed}.rg-guide h4{margin:12px 0 8px}.rg-note{background:#e8f3f1;border-left:4px solid #168276;padding:16px;border-radius:10px}.rg-terms{padding:16px;background:#f0f4f8;border-radius:12px}.rg-terms dt{font-weight:bold}.rg-terms dd{margin:0 0 12px}.rg-stages,.rg-controls{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.rg-stages .btn,.rg-controls .btn{flex:1;min-width:110px;width:auto;margin:0}.rg-stages [aria-current=step]{background:#14263e;color:white}.rg-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}.rg-grid>*{min-width:0}.rg-scene{margin:0}.rg-scene svg{width:100%;height:auto;display:block}.rg-canvas{max-width:100%;overflow:auto;border-radius:16px}.rg-scene.rg-enlarged svg{width:700px;max-width:none}.rg-scene .btn{width:auto;margin:10px 0 0}.rg-scene figcaption,.rg-mirrors figcaption{font-size:14px;color:#526278;margin-top:8px}.rg-mirrors{padding:16px;border:1px solid #dde4ed;border-radius:12px;margin:20px 0}.rg-mirrors summary{cursor:pointer;font-weight:bold;min-height:32px}.rg-mirror-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.rg-mirror-grid figure{margin:0}.rg-mirror-grid svg{width:100%;height:auto}.rg-question{padding:18px;border:1px solid #dde4ed;border-radius:12px;margin:20px 0}.rg-question .btn{text-align:left;white-space:normal}.rg-guide a{color:#195b92;text-decoration:underline}@media(max-width:850px){.rg-grid{grid-template-columns:1fr}.rg-mirror-grid{grid-template-columns:1fr}.rg-stages .btn{flex:1 1 42%}}
-</style><p class="eyebrow">Start here · Beginner ${key==='panic'?'reset lesson':'walkthrough'}</p><h4>${backingEscape(g.title)}: learn the references and decisions</h4><p class="rg-note">${backingEscape(g.intro)}</p><p class="small">For instructor-supervised learning with a left-hand-drive tractor and one semitrailer. Use this page while parked. Concepts and illustrations are not a complete state test procedure or an equipment-specific steering recipe.</p><dl class="rg-terms">${g.terms.map(([term,definition])=>`<dt>${backingEscape(term)}</dt><dd>${backingEscape(definition)}</dd>`).join('')}</dl><nav class="rg-stages" aria-label="${backingEscape(g.title)} learning stages">${g.stages.map((stage,i)=>`<button class="btn light" ${i===remainingBackingStep?'aria-current="step"':''} onclick="setRemainingBackingStep(${i})">${i+1}. ${backingEscape(stage.label)}</button>`).join('')}</nav><h4 id="remainingBackingTitle" tabindex="-1">${remainingBackingStep+1}. ${backingEscape(t.title)}</h4><div class="rg-grid">${remainingBackingScene(key,remainingBackingStep)}<div><h4>Look here</h4><p>${backingEscape(t.look)}</p><h4>Notice this</h4><p>${backingEscape(t.notice)}</p><h4>Understand the next decision</h4><p>${backingEscape(t.decision)}</p></div></div>${key!=='panic'?offsetMirrors().replaceAll('offset-','rg-'):''}<div class="rg-question"><h4>What would you notice or do?</h4><p>${backingEscape(t.question)}</p>${t.options.map((option,i)=>`<button class="btn light" aria-pressed="${remainingBackingAnswer===i}" onclick="answerRemainingBacking(${i})">${backingEscape(option)}</button>`).join('')}<div id="remainingBackingFeedback" role="status" aria-live="polite">${answered?`<div class="${correct?'success':'warning'}"><strong>${correct?'Good observation.':'Pause and reconsider.'}</strong> ${backingEscape(t.why)}${correct?'':' You can try again.'}</div>`:''}</div><p class="small">Untimed learning questions. Answers are not saved and do not assess actual driving skill.</p></div><div class="rg-controls"><button class="btn light" onclick="setRemainingBackingStep(${remainingBackingStep-1})" ${remainingBackingStep===0?'disabled':''}>Previous stage</button><button class="btn" onclick="setRemainingBackingStep(${remainingBackingStep===g.stages.length-1?0:remainingBackingStep+1})">${remainingBackingStep===g.stages.length-1?'Review from the beginning':'Next stage'}</button></div><p class="backing-stop"><strong>Stop and reassess:</strong> Stop if a person enters the movement area, a clearance or signal is uncertain, or you lose sight of your spotter. Secure before getting out to look. Inspect any proposed forward-reset path before moving. If contact may have occurred, secure and follow incident procedures. If the plan remains unclear, remain stopped and ask for help.</p><details class="backing-sources"><summary>Learning references &amp; limits</summary><p>Original Hub wording and existing Maricel truck illustrations. No school footage or school materials are used. The drawings do not calculate turning radii, articulation limits, blind zones or clearances. They do not supply wheel-turn counts, timing or cone-to-mirror triggers. Mirror illustrations are generic examples, not the view predicted by a stage.</p><ul><li><a href="https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_2.aspx" target="_blank" rel="noopener noreferrer">Oregon CDL manual §2.2.4 · inspection, mirrors, slow backing and driver-side approaches</a></li><li><a href="https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_6.aspx" target="_blank" rel="noopener noreferrer">Oregon CDL manual §6.1.7 · trailer-turn, following and drift principles</a></li><li><a href="https://www.dmv.ca.gov/portal/driver-education-and-safety/special-interest-driver-guides/truck-drivers/" target="_blank" rel="noopener noreferrer">California DMV · commercial backing guidance and exercise instructions</a></li><li><a href="https://www.osha.gov/preventing-backovers/solutions" target="_blank" rel="noopener noreferrer">OSHA · spotter communication and lost-contact stop</a></li>${key==='alley'?'<li><a href="https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.26" target="_blank" rel="noopener noreferrer">OSHA · dockboard and transport-vehicle movement precautions; follow applicable site procedures</a></li>':''}</ul><p class="small">References reviewed October 30, 2026. They support general safety principles, not official approval of these illustrations. Follow qualified instruction, equipment guidance, current state exercise instructions and site procedures. No certification, guaranteed outcome or complete behind-the-wheel curriculum is implied.</p></details></div>`;
+</style><p class="eyebrow">Start here · Beginner ${key==='panic'?'reset lesson':'walkthrough'}</p><h4>${backingEscape(g.title)}: learn the references and decisions</h4><p class="rg-note">${backingEscape(g.intro)}</p><p class="small">For instructor-supervised learning with a left-hand-drive tractor and one semitrailer. Use this page while parked. Concepts and illustrations are not a complete state test procedure or an equipment-specific steering recipe.</p><dl class="rg-terms">${g.terms.map(([term,definition])=>`<dt>${backingEscape(term)}</dt><dd>${backingEscape(definition)}</dd>`).join('')}</dl><nav class="rg-stages" aria-label="${backingEscape(g.title)} learning stages">${g.stages.map((stage,i)=>`<button class="btn light" ${i===remainingBackingStep?'aria-current="step"':''} onclick="setRemainingBackingStep(${i})">${i+1}. ${backingEscape(stage.label)}</button>`).join('')}</nav><h4 id="remainingBackingTitle" tabindex="-1">${remainingBackingStep+1}. ${backingEscape(t.title)}</h4><div class="rg-grid">${remainingBackingScene(key,remainingBackingStep)}<div><h4>Look here</h4><p>${backingEscape(t.look)}</p><h4>Notice this</h4><p>${backingEscape(t.notice)}</p><h4>Understand the next decision</h4><p>${backingEscape(t.decision)}</p></div></div>${key!=='panic'?offsetMirrors().replaceAll('offset-','rg-'):''}<div class="rg-question"><h4>What would you notice or do?</h4><p>${backingEscape(t.question)}</p>${t.options.map((option,i)=>`<button class="btn light" aria-pressed="${remainingBackingAnswer===i}" onclick="answerRemainingBacking(${i})">${backingEscape(option)}</button>`).join('')}<div id="remainingBackingFeedback" role="status" aria-live="polite">${answered?`<div class="${correct?'success':'warning'}"><strong>${correct?'Good observation.':'Pause and reconsider.'}</strong> ${backingEscape(t.why)}${correct?'':' You can try again.'}</div>`:''}</div><p class="small">Untimed learning questions. Answers are not saved and do not assess actual driving skill.</p></div><div class="rg-controls"><button class="btn light" onclick="setRemainingBackingStep(${remainingBackingStep-1})" ${remainingBackingStep===0?'disabled':''}>Previous stage</button><button class="btn" onclick="setRemainingBackingStep(${remainingBackingStep===g.stages.length-1?0:remainingBackingStep+1})">${remainingBackingStep===g.stages.length-1?'Review from the beginning':'Next stage'}</button></div><p class="backing-stop"><strong>Stop and reassess:</strong> Stop if a person enters the movement area, a clearance or instruction is uncertain. Secure before getting out to look. Inspect any proposed forward-reset path before moving. If contact may have occurred, secure and follow incident procedures. If the plan remains unclear, remain stopped and ask for help.</p><details class="backing-sources"><summary>Learning references &amp; limits</summary><p>Original Hub wording and existing Maricel truck illustrations. No school footage or school materials are used. The drawings do not calculate turning radii, articulation limits, blind zones or clearances. They do not supply wheel-turn counts, timing or cone-to-mirror triggers. Mirror illustrations are generic examples, not the view predicted by a stage.</p><ul><li><a href="https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_2.aspx" target="_blank" rel="noopener noreferrer">Oregon CDL manual §2.2.4 · inspection, mirrors, slow backing and driver-side approaches</a></li><li><a href="https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_6.aspx" target="_blank" rel="noopener noreferrer">Oregon CDL manual §6.1.7 · trailer-turn, following and drift principles</a></li><li><a href="https://www.dmv.ca.gov/portal/driver-education-and-safety/special-interest-driver-guides/truck-drivers/" target="_blank" rel="noopener noreferrer">California DMV · commercial backing guidance and exercise instructions</a></li><li><a href="https://www.osha.gov/preventing-backovers/solutions" target="_blank" rel="noopener noreferrer">OSHA · spotter communication and lost-contact stop</a></li>${key==='alley'?'<li><a href="https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.26" target="_blank" rel="noopener noreferrer">OSHA · dockboard and transport-vehicle movement precautions; follow applicable site procedures</a></li>':''}</ul><p class="small">References reviewed October 30, 2026. They support general safety principles, not official approval of these illustrations. Follow qualified instruction, equipment guidance, current state exercise instructions and site procedures. No certification, guaranteed outcome or complete behind-the-wheel curriculum is implied.</p></details></div>`;
 }
 function setRemainingBackingStep(step){if(backingGuideMode!=='learn'||!hasRemainingBacking(selectedBackingGuide)||!Number.isInteger(step)||step<0||step>=remainingBackingGuides[selectedBackingGuide].stages.length)return;remainingBackingStep=step;remainingBackingAnswer=null;renderBackingGuide();const h=document.getElementById('remainingBackingTitle');h.focus({preventScroll:true});h.scrollIntoView({block:'start'});}
 function answerRemainingBacking(choice){if(backingGuideMode!=='learn'||!hasRemainingBacking(selectedBackingGuide)||!Number.isInteger(choice)||choice<0||choice>1)return;remainingBackingAnswer=choice;renderBackingGuide();const f=document.getElementById('remainingBackingFeedback');f.setAttribute('tabindex','-1');f.focus({preventScroll:true});f.scrollIntoView({block:'nearest'});}

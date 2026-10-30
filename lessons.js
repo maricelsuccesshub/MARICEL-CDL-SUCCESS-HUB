@@ -89,7 +89,7 @@ const hubLessons=[
       ],
       [
         "Use more than the target view",
-        "Check both mirrors, tractor-front space, people and any spotter. The trailer is important, but staring only at it misses other hazards. Equal-looking mirror gaps do not prove alignment."
+        "Check both mirrors, tractor-front space and people in the movement area. The trailer is important, but staring only at it misses other hazards. Equal-looking mirror gaps do not prove alignment."
       ],
       [
         "A hidden area is still unknown",
@@ -296,8 +296,8 @@ const hubLessons=[
         "Stop for a person entering the movement area, uncertain clearance, an unclear signal or a vehicle angle you do not understand. Near completion is not an exception."
       ],
       [
-        "Know what a spotter does",
-        "A spotter is a trained helper who uses agreed signals, stays visible and remains outside the vehicle’s path and pinch points. Agree on a stop signal before movement. Stop immediately if you lose sight of the spotter."
+        "If you are using a spotter",
+        "A spotter is a trained outside helper, not automatically any instructor observing you. If you are using one, agree on signals, keep the helper visible and clear of the movement area, and stop immediately if visual contact is lost. Follow any site or training rules for assistance. You still check the path and clearances."
       ],
       [
         "Get out and look with the vehicle secured",
@@ -315,8 +315,8 @@ const hubLessons=[
         "Rear path uncertain"
       ],
       [
-        "spotter",
-        "Spotter disappears"
+        "unclear",
+        "Next move unclear"
       ],
       [
         "person",
@@ -330,13 +330,13 @@ const hubLessons=[
     "coach": "You can stop. A reset is a decision, not a failure.",
     "questions": [
       {
-        "prompt": "You lose sight of the spotter while backing. What should you do?",
+        "prompt": "You cannot confirm the rear path while backing. What should you do?",
         "options": [
-          "Continue slowly while looking for them",
-          "Stop immediately and reconnect before movement"
+          "Continue slowly and assume the hidden area is clear",
+          "Stop; secure before getting out to inspect"
         ],
         "answer": 1,
-        "why": "Stop immediately on loss of visual contact. Do not move while trying to find the spotter."
+        "why": "An uncertain rear path is a reason to stop. Secure before leaving the cab and inspect before planning another movement."
       },
       {
         "prompt": "What must happen before a forward pull-up?",
@@ -439,7 +439,7 @@ function currentHubLesson(){return hubLessons[lessonVisit.current];}
 function lessonExample(){const l=currentHubLesson();return lessonVisit.examples[l.id]||l.controls[0][0];}
 function lessonExampleInfo(){
  const l=currentHubLesson(),v=lessonExample();
- const info={tractor:['The tractor is the powered front unit with the driver’s cab. Notice its front corners as well as the trailer.','tractor'],trailer:['The trailer is the separate unit behind the tractor. Its rear corners and rear wheels are different references.','trailer'],rear:['These are the two back corners of the trailer. Locate the actual visible corner or side with your instructor.','rear'],wheels:['This is the trailer rear wheel group. It sits forward of the rear corners; both need clearance.','wheels'],coupling:['The coupling joins the units. On this combination, the tractor’s fifth-wheel coupling secures the kingpin under the trailer front. This picture is not a coupling-inspection procedure.','coupling'],driver:['The seated driver’s left is screen right here. Use the actual driver-side mirror to locate visible trailer references and compare them with the boundary.','driver'],passenger:['The seated driver’s right is screen left here. Check the actual passenger-side view as well; it may show different references.','passenger'],front:['The tractor nose and front corners also need room as headings change. The rear target view alone does not confirm that space.','tractor'],unseen:['Stop if you cannot confirm the rear path. Secure before getting out to inspect. This callout is not a map of the real blind area.','unseen'],turn:['Intentional right trailer turn, starting aligned: the initial top-of-wheel input is LEFT. The drawing shows a developing relationship, not wheel rotation or a fixed amount.','turn'],drift:['Unwanted right drift during a straight back: the initial small top-of-wheel correction is RIGHT. Observe and ease as alignment returns.','drift'],follow:['After starting the right trailer turn, steering changes the other way to follow it. Your instructor must teach the timing and amount on this truck.','follow'],notice:['The rear is angled toward the seated driver’s right: screen left in this top view. Confirm a changing gap and alignment before diagnosing drift.','notice'],correct:['A small initial right steering correction addresses this confirmed right drift. Check both sides and the tractor front while watching the response.','correct'],ease:['As alignment returns, ease the correction and verify both alignments. A centered wheel alone does not prove the rig is straight.','ease'],spotter:['STOP immediately when the spotter disappears from view. Re-establish communication with the vehicle stationary.','stop'],person:['STOP when a person enters the movement area. Do not rely on them to notice the truck or move clear.','stop'],reset:['A forward pull-up needs an inspected path and a clear plan. If either is uncertain, remain stopped and ask your instructor.','stop'],ready:['Choose one learning focus and ask your instructor to demonstrate the references, response and stop plan on your actual equipment.','ready']};
+ const info={tractor:['The tractor is the powered front unit with the driver’s cab. Notice its front corners as well as the trailer.','tractor'],trailer:['The trailer is the separate unit behind the tractor. Its rear corners and rear wheels are different references.','trailer'],rear:['These are the two back corners of the trailer. Locate the actual visible corner or side with your instructor.','rear'],wheels:['This is the trailer rear wheel group. It sits forward of the rear corners; both need clearance.','wheels'],coupling:['The coupling joins the units. On this combination, the tractor’s fifth-wheel coupling secures the kingpin under the trailer front. This picture is not a coupling-inspection procedure.','coupling'],driver:['The seated driver’s left is screen right here. Use the actual driver-side mirror to locate visible trailer references and compare them with the boundary.','driver'],passenger:['The seated driver’s right is screen left here. Check the actual passenger-side view as well; it may show different references.','passenger'],front:['The tractor nose and front corners also need room as headings change. The rear target view alone does not confirm that space.','tractor'],unseen:['Stop if you cannot confirm the rear path. Secure before getting out to inspect. This callout is not a map of the real blind area.','unseen'],turn:['Intentional right trailer turn, starting aligned: the initial top-of-wheel input is LEFT. The drawing shows a developing relationship, not wheel rotation or a fixed amount.','turn'],drift:['Unwanted right drift during a straight back: the initial small top-of-wheel correction is RIGHT. Observe and ease as alignment returns.','drift'],follow:['After starting the right trailer turn, steering changes the other way to follow it. Your instructor must teach the timing and amount on this truck.','follow'],notice:['The rear is angled toward the seated driver’s right: screen left in this top view. Confirm a changing gap and alignment before diagnosing drift.','notice'],correct:['A small initial right steering correction addresses this confirmed right drift. Check both sides and the tractor front while watching the response.','correct'],ease:['As alignment returns, ease the correction and verify both alignments. A centered wheel alone does not prove the rig is straight.','ease'],unclear:['STOP when the next move is unclear. Check alignment, clearance and the full path; secure before getting out to look. Ask your instructor to help plan the next move.','stop'],person:['STOP when a person enters the movement area. Do not rely on them to notice the truck or move clear.','stop'],reset:['A forward pull-up needs an inspected path and a clear plan. If either is uncertain, remain stopped and ask your instructor.','stop'],ready:['Choose one learning focus and ask your instructor to demonstrate the references, response and stop plan on your actual equipment.','ready']};
  return {text:info[v][0],focus:info[v][1]};
 }
 function lessonRigFigure(){

@@ -26,13 +26,14 @@ test('Visual Mastery has four driver-view direction examples and carries its con
  for(const [scenario,label] of [['turn-left','Starting aligned: desired rear left, initial top-of-wheel input right'],['turn-right','Starting aligned: desired rear right, initial top-of-wheel input left'],['drift-left','Unwanted straight-back left drift: initial small top-of-wheel correction left'],['drift-right','Unwanted straight-back right drift: initial small top-of-wheel correction right']])assert.ok(svg.includes(`id="${scenario}" aria-label="${label}"`));
  for(const phrase of ['Driver RIGHT = screen LEFT','Driver LEFT = screen RIGHT','initial LEFT → follow RIGHT','STOP &amp; SECURE','before any pull-up','Oregon CDL Manual','OSHA spotter guidance','not to scale'])assert.ok(svg.includes(phrase),phrase);
  assert.doesNotMatch(svg,/Mentorship|corrected|IN ANY SITUATION|YOU WILL MASTER|Trailer stays straight/);
+ const printedText=svg.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');assert.match(printedText,/If you are using a spotter, agree on signals beforehand; stop immediately if visual contact is lost/);
  for(const file of ['maricel-tractor.png','maricel-success-hub-trailer.png'])assert.ok(svg.includes(fs.readFileSync(root+'assets/'+file).toString('base64')));
  const png=fs.readFileSync(root+'assets/maricel-visual-mastery.png');assert.equal(png.readUInt32BE(16),1800);assert.equal(png.readUInt32BE(20),2700);
 });
 test('poster page offers actual full-size visual, downloads, print, accessible notes and claim-specific official sources',()=>{
  const page=fs.readFileSync(root+'backing-poster.html','utf8'),home=fs.readFileSync(root+'index.html','utf8'),credits=fs.readFileSync(root+'disclaimer.html','utf8');
- for(const content of [page,home])assert.ok(content.includes('src="assets/maricel-visual-mastery.png"'));
- for(const file of ['png','svg'])assert.match(page,new RegExp(`href="assets/maricel-visual-mastery\\.${file}" download=`));
+ for(const content of [page,home])assert.ok(content.includes('src="assets/maricel-visual-mastery.png?v=48"'));
+ for(const file of ['png','svg'])assert.match(page,new RegExp(`href="assets/maricel-visual-mastery\\.${file}\\?v=48" download=`));
  assert.match(page,/id="study-notes"/);assert.match(page,/id="sources"/);assert.match(page,/window.print\(\)/);
  for(const url of ['https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_6.aspx','https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_2.aspx','https://www.oregon.gov/odot/dmv/pages/online_cdl_manual_2/section_12.aspx','https://www.osha.gov/preventing-backovers/solutions'])assert.ok(page.includes(url));
  for(const content of [page,home,credits])assert.doesNotMatch(content,/corrected|Mentorship|earlier supplied poster/);
