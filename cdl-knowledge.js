@@ -22,7 +22,7 @@ let cdlKnowledgeVisit=newCdlKnowledgeVisit();
 function cdlEscape(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function currentCdlTopic(){return cdlKnowledgeTopics[cdlKnowledgeVisit.current];}
 function rememberCdlKnowledgeView(){window.hubRememberView?.('cdlknowledge',{current:cdlKnowledgeVisit.current,tab:cdlKnowledgeVisit.tab});}
-function cdlFocus(id){const el=document.getElementById(id);if(el){el.focus({preventScroll:true});el.scrollIntoView({block:'start'});}}
+function cdlFocus(id){const el=document.getElementById(id);if(el){el.setAttribute('tabindex','-1');el.focus({preventScroll:true});el.scrollIntoView({block:'start'});}}
 function cdlWrap(s,max=20){const lines=[];let line='';for(const word of s.split(' ')){if(line&&line.length+word.length+1>max){lines.push(line);line=word;}else line+=(line?' ':'')+word;}if(line)lines.push(line);return lines;}
 function cdlKnowledgeBoard(t){
  const boxes=t.board.map(([heading,body],i)=>{const x=i%2?397:18,y=i<2?70:230;return `<g><rect x="${x}" y="${y}" width="185" height="120" rx="12" fill="${i<2?'#fff7e6':'#eef6f5'}" stroke="#cad7e2"/><text x="${x+12}" y="${y+27}" fill="#14263e" font-size="17" font-weight="bold">${cdlEscape(heading)}</text>${cdlWrap(body).map((line,j)=>`<text x="${x+12}" y="${y+58+j*24}" fill="#42556b" font-size="16">${cdlEscape(line)}</text>`).join('')}</g>`;}).join('');

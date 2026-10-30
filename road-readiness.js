@@ -18,7 +18,7 @@ let roadReadinessVisit=newRoadReadinessVisit();
 function roadEscape(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function currentRoadTopic(){return roadReadinessTopics[roadReadinessVisit.current];}
 function rememberRoadReadinessView(){window.hubRememberView?.('starter',{current:roadReadinessVisit.current,tab:roadReadinessVisit.tab});}
-function roadFocus(id){const el=document.getElementById(id);if(el){el.focus({preventScroll:true});el.scrollIntoView({block:'start'});}}
+function roadFocus(id){const el=document.getElementById(id);if(el){el.setAttribute('tabindex','-1');el.focus({preventScroll:true});el.scrollIntoView({block:'start'});}}
 function roadWrap(s,max=20){const lines=[];let line='';for(const word of s.split(' ')){if(line&&line.length+word.length+1>max){lines.push(line);line=word;}else line+=(line?' ':'')+word;}if(line)lines.push(line);return lines;}
 function roadReadinessBoard(t){
  const boxes=t.board.map(([heading,body],i)=>{const x=i%2?397:18,y=i<2?70:230;return `<g><rect x="${x}" y="${y}" width="185" height="120" rx="12" fill="${i<2?'#fff7e6':'#eef6f5'}" stroke="#cad7e2"/><text x="${x+12}" y="${y+27}" fill="#14263e" font-size="17" font-weight="bold">${roadEscape(heading)}</text>${roadWrap(body).map((line,j)=>`<text x="${x+12}" y="${y+58+j*24}" fill="#42556b" font-size="16">${roadEscape(line)}</text>`).join('')}</g>`;}).join('');

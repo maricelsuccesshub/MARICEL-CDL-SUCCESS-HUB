@@ -3,3 +3,5 @@
 @media print{.starter-hero,.starter-step-grid,.road-topic .lesson-tabs,.road-topic .lesson-next-actions{display:none}}
 
 #cdlKnowledgeRoot :focus-visible,#cdlknowledge :focus-visible{outline:3px solid #187bcd;outline-offset:3px}#cdlTopicTitle{scroll-margin-top:125px}
+
+.road-topic [role="status"]{scroll-margin-top:135px}
