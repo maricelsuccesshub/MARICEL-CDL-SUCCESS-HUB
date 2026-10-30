@@ -1,10 +1,10 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const root=fs.existsSync('dist/index.html')?'dist/':'';
-test('teaching and download surfaces use the corrected sheet with its own directional context and limits',()=>{
+test('teaching and download surfaces use the Maricel visual resource with directional context and limits',()=>{
  const sheet=fs.readFileSync(root+'assets/maricel-backing-study-sheet.svg','utf8');
  for(const phrase of ['Start an intentional turn','ALIGNED tractor and','OPPOSITE','Correct straight-back drift','TOWARD','does not','Stop and SECURE','before any','pull-up','Oregon CDL Manual','Reviewed October 30, 2026'])assert.ok(sheet.includes(phrase),phrase);
  assert.doesNotMatch(sheet,/YOU WILL MASTER|IN ANY SITUATION|Trailer stays straight/);
- for(const name of ['index.html','backing-poster.html','disclaimer.html']){const content=fs.readFileSync(root+name,'utf8');assert.doesNotMatch(content,/assets\/maricel-backing-visual-system\.jpeg/);assert.match(content,/Backing Visual Study Sheet/);}
+ for(const name of ['index.html','backing-poster.html','disclaimer.html']){const content=fs.readFileSync(root+name,'utf8');assert.doesNotMatch(content,/assets\/maricel-backing-visual-system\.jpeg/);assert.match(content,/Maricel CDL Success Hub Visual Mastery/);}
  const page=fs.readFileSync(root+'backing-poster.html','utf8');assert.match(page,/href="assets\/maricel-backing-study-sheet.svg" download=/);assert.match(page,/Text study notes/);assert.match(page,/window.print\(\)/);
  assert.ok(fs.existsSync('source-materials/original-backing-visual-system.jpeg'));
  assert.ok(!fs.existsSync(root+'assets/maricel-backing-visual-system.jpeg'));
@@ -20,4 +20,20 @@ test('all teaching questions have valid answers and explanations; example contro
  for(const guide of Object.values(inventory.remaining))for(const q of guide.stages)check(q);
  for(const q of Object.values(inventory.yard))check(q);
  assert.equal(n,64);
+});
+test('Visual Mastery has four driver-view direction examples and carries its context in the download',()=>{
+ const svg=fs.readFileSync(root+'assets/maricel-visual-mastery.svg','utf8');
+ for(const [scenario,label] of [['turn-left','Starting aligned: desired rear left, initial top-of-wheel input right'],['turn-right','Starting aligned: desired rear right, initial top-of-wheel input left'],['drift-left','Unwanted straight-back left drift: initial small top-of-wheel correction left'],['drift-right','Unwanted straight-back right drift: initial small top-of-wheel correction right']])assert.ok(svg.includes(`id="${scenario}" aria-label="${label}"`));
+ for(const phrase of ['Driver RIGHT = screen LEFT','Driver LEFT = screen RIGHT','initial LEFT → follow RIGHT','STOP &amp; SECURE','before any pull-up','Oregon CDL Manual','OSHA spotter guidance','not to scale'])assert.ok(svg.includes(phrase),phrase);
+ assert.doesNotMatch(svg,/Mentorship|corrected|IN ANY SITUATION|YOU WILL MASTER|Trailer stays straight/);
+ for(const file of ['maricel-tractor.png','maricel-success-hub-trailer.png'])assert.ok(svg.includes(fs.readFileSync(root+'assets/'+file).toString('base64')));
+ const png=fs.readFileSync(root+'assets/maricel-visual-mastery.png');assert.equal(png.readUInt32BE(16),1800);assert.equal(png.readUInt32BE(20),2700);
+});
+test('poster page offers actual full-size visual, downloads, print, accessible notes and claim-specific official sources',()=>{
+ const page=fs.readFileSync(root+'backing-poster.html','utf8'),home=fs.readFileSync(root+'index.html','utf8'),credits=fs.readFileSync(root+'disclaimer.html','utf8');
+ for(const content of [page,home])assert.ok(content.includes('src="assets/maricel-visual-mastery.png"'));
+ for(const file of ['png','svg'])assert.match(page,new RegExp(`href="assets/maricel-visual-mastery\\.${file}" download=`));
+ assert.match(page,/id="study-notes"/);assert.match(page,/id="sources"/);assert.match(page,/window.print\(\)/);
+ for(const url of ['https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_6.aspx','https://www.oregon.gov/odot/DMV/Pages/Online_CDL_Manual_2/Section_2.aspx','https://www.oregon.gov/odot/dmv/pages/online_cdl_manual_2/section_12.aspx','https://www.osha.gov/preventing-backovers/solutions'])assert.ok(page.includes(url));
+ for(const content of [page,home,credits])assert.doesNotMatch(content,/corrected|Mentorship|earlier supplied poster/);
 });
