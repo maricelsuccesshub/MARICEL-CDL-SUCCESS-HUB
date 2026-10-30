@@ -25,6 +25,7 @@ do $$begin
 end$$;
 select set_config('request.jwt.claims','{"sub":"29000000-0000-4000-8000-000000000002","role":"authenticated"}',true);
 do $$begin perform public.community_api('profile','{"display_name":"Audit B","listed":true,"messages_enabled":true,"rules_accepted":true}');end$$;
+select public.community_api('post','{"category":"Beta Feedback","title":"Synthetic request visibility","body":"Rollback-only public contribution."}');
 select set_config('request.jwt.claims','{"sub":"29000000-0000-4000-8000-000000000001","role":"authenticated"}',true);
 select set_config('test.thread',(public.community_api('request','{"user_id":"29000000-0000-4000-8000-000000000002"}')->>'id'),true);
 do $$begin

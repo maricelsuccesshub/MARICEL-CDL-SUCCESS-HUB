@@ -5,6 +5,7 @@ insert into auth.users(id,aud,role,email,email_confirmed_at) values
 ('21000000-0000-4000-8000-000000000002','authenticated','authenticated','photo-b@example.invalid',now()),
 ('21000000-0000-4000-8000-000000000003','authenticated','authenticated','photo-m@example.invalid',now());
 insert into hub_private.members(user_id,display_name) values('21000000-0000-4000-8000-000000000001','Photo A'),('21000000-0000-4000-8000-000000000002','Photo B');
+insert into hub_private.posts(author_id,category,title,body) values('21000000-0000-4000-8000-000000000001','Beta Feedback','Photo visibility fixture','Synthetic public contribution, rolled back.');
 insert into hub_private.moderators(user_id) values('21000000-0000-4000-8000-000000000003');
 insert into storage.objects(bucket_id,name,metadata) values('community-avatars','21000000-0000-4000-8000-000000000001/21000000-0000-4000-8000-000000000011.jpg','{"mimetype":"image/jpeg","size":1024}');
 set local role authenticated;

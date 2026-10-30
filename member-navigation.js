@@ -10,7 +10,7 @@ function clean(page,v){
  if(page==='lesson'&&Number.isInteger(v.current)&&v.current>=0&&v.current<6&&['learn','try','check'].includes(v.tab))return {current:v.current,tab:v.tab};
  if(page==='backing'&&['straight','offset','alley','45','90','blind','truckstop','panic'].includes(v.key)&&['quick','learn'].includes(v.mode)&&Number.isInteger(v.step)&&v.step>=0&&v.step<10)return {key:v.key,mode:v.mode,step:v.step,side:v.side==='passenger'?'passenger':'driver',drift:v.drift==='left'?'left':'right'};
  if(page==='practiceyard'&&['trailer','straight','straight-left','center'].includes(v.test))return {test:v.test};
- if(page==='drivercommunity'&&['forum','members','messages','feedback','settings','moderation'].includes(v.tab))return {tab:v.tab,category:['General Help','Backing Help','Trip Preparation','Success Stories','Beta Feedback'].includes(v.category)?v.category:'',postId:uuid(v.postId)?v.postId:null,threadId:uuid(v.threadId)?v.threadId:null};
+ if(page==='drivercommunity'&&['forum','messages','feedback','settings','moderation'].includes(v.tab))return {tab:v.tab,category:['General Help','Backing Help','Trip Preparation','Success Stories','Beta Feedback'].includes(v.category)?v.category:'',postId:uuid(v.postId)?v.postId:null,threadId:uuid(v.threadId)?v.threadId:null};
  return null;
 }
 const valid=(page,allowed)=>typeof page==='string'&&Object.prototype.hasOwnProperty.call(allowed,page);
