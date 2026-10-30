@@ -117,7 +117,7 @@ const pretripZones=[
         "id": "cab-8",
         "name": "Gauges and warning indicators",
         "purpose": "Report conditions such as oil pressure, temperature, charging and air pressure.",
-        "look": "Know expected readings and warning/self-check behavior; investigate abnormal indications.",
+        "look": "Identify reservoir/supply readings separately from an application-pressure gauge if fitted. Know normal readings and required lamp-on/lamp-off self-check behavior; investigate abnormal indications, including a required lamp that never illuminates.",
         "why": "A lit lamp or normal-looking gauge must be interpreted for that vehicle."
       },
       {
@@ -352,7 +352,7 @@ const pretripZones=[
         "id": "wheels-3",
         "name": "Inflation and valve stems",
         "purpose": "Maintain the tire’s operating air pressure.",
-        "look": "Use an appropriate pressure-check method; observe stem damage and missing/damaged caps where applicable.",
+        "look": "Measure inflation by the approved method against the recommended cold pressure for the actual tire/load and vehicle requirements; observe stem damage and missing/damaged caps where applicable. Do not bleed air from a hot tire to match a cold-pressure target.",
         "why": "A kick or thump does not establish the correct inflation pressure."
       },
       {
@@ -403,7 +403,8 @@ const pretripZones=[
     "sources": [
       "ny",
       "wa",
-      "equipment"
+      "equipment",
+      "ca"
     ]
   },
   {

@@ -7,7 +7,7 @@ const incabUnits=[
       {
         "name": "Safe entry and exit",
         "where": "Steps, grab handles, doorway and ground beside the cab.",
-        "check": "Check for slippery or damaged steps, insecure handles and traffic or obstacles around the door. Face the cab and use three points of contact when climbing. Keep your hands available; do not jump down. Secure the vehicle before leaving the seat.",
+        "check": "Check for slippery or damaged steps, insecure handles and traffic or obstacles around the door. Face the cab and use three points of contact when climbing: two hands and one foot, or two feet and one hand. Keep your hands available; do not jump down. Set the parking brakes and the required secured transmission position before leaving the seat; holding the foot brake alone is not parking.",
         "why": "A fall or unplanned vehicle movement can happen before the inspection begins.",
         "say": "I identify the handholds, steps and clear ground, and enter or exit using three points of contact.",
         "visual": [
@@ -99,7 +99,7 @@ const incabUnits=[
       {
         "name": "Air pressure: primary and secondary systems",
         "where": "Both air-system readings on separate gauges, a dual needle gauge or electronic display.",
-        "check": "Identify each reading and monitor air build-up and governor operation under the proper procedure. Do not treat one normal reading as proof both systems work. Use the Air Brake Check Guide for the separately explained leakage, warning, automatic-response and holding/stopping checks.",
+        "check": "Identify each reservoir/supply reading (not an optional application-pressure reading) and monitor air build-up and governor operation under the proper procedure. Do not treat one normal reading as proof both systems work. Use the Air Brake Check Guide for the separately explained leakage, warning, automatic-response and holding/stopping checks.",
         "why": "Stored air and functioning controls are essential; normal gauge readings alone do not verify every wheel brake.",
         "say": "I identify both system readings and use the correct pressure/time criteria for this vehicle and test.",
         "visual": [
@@ -217,7 +217,7 @@ const incabUnits=[
       {
         "name": "ABS, engine and emissions indicators",
         "where": "ABS lamp(s), engine warning/stop lamps, and DEF/DPF indications where fitted.",
-        "check": "Identify each symbol and its specified startup/self-check behavior. Some systems clear certain ABS indications only under specified conditions; learn those conditions without driving merely to dismiss an unexplained warning. A persistent or abnormal indication needs the required evaluation. Identify low air separately from ABS. Do not assume every warning should disappear immediately, and do not start a regeneration procedure from this study card.",
+        "check": "Identify each symbol and its specified startup/self-check behavior. Verify that required lamps illuminate during their prescribed check, then clear when required; a lamp that never illuminates does not prove the system has no fault. A turn arrow, high-beam indication or parking-brake status can be normal when that function is active. Some systems clear certain ABS indications only under specified conditions; learn those conditions without driving merely to dismiss an unexplained warning. A persistent or abnormal indication needs the required evaluation. Identify low air separately from ABS. Do not assume every warning should disappear immediately, and do not start a regeneration procedure from this study card.",
         "why": "Different warnings have different meanings and responses. ABS and low-air warnings do not indicate the same condition.",
         "say": "I identify the warning, know its expected behavior and follow the correct response if the indication is abnormal.",
         "visual": [
