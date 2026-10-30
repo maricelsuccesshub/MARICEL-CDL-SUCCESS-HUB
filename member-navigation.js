@@ -1,10 +1,11 @@
 /* Remember an allowlisted page per signed-in member and browser tab. No private content. */
 (()=>{'use strict';
 const prefix='maricel-hub:page:', viewPrefix='maricel-hub:view:';
-const pages=['lesson','backing','practiceyard','drivercommunity'];
+const pages=['starter','lesson','backing','practiceyard','drivercommunity'];
 const uuid=v=>typeof v==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v);
 function clean(page,v){
  if(!v||typeof v!=='object')return null;
+ if(page==='starter'&&Number.isInteger(v.current)&&v.current>=0&&v.current<6&&['learn','scenario','check'].includes(v.tab))return {current:v.current,tab:v.tab};
  if(page==='lesson'&&Number.isInteger(v.current)&&v.current>=0&&v.current<6&&['learn','try','check'].includes(v.tab))return {current:v.current,tab:v.tab};
  if(page==='backing'&&['straight','offset','alley','45','90','blind','truckstop','panic'].includes(v.key)&&['quick','learn'].includes(v.mode)&&Number.isInteger(v.step)&&v.step>=0&&v.step<10)return {key:v.key,mode:v.mode,step:v.step,side:v.side==='passenger'?'passenger':'driver',drift:v.drift==='left'?'left':'right'};
  if(page==='practiceyard'&&['trailer','straight','straight-left','center'].includes(v.test))return {test:v.test};

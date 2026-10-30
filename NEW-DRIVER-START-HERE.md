@@ -1,0 +1,13 @@
+# New Driver Start Here
+
+Coach Maricel's original beginner/refresher entry point connects existing truck and backing lessons with six Road Readiness topics: preparation, grades, weather/traction, space/attention, fatigue, and reassessment. Existing learning and member data remain intact.
+
+Each road topic has plain-language definitions, four explanations, an original planning board using the existing Maricel truck artwork, an instructor question, one scenario and two understanding checks. All 18 decisions provide explanations and retries. A topic can be marked reviewed only after its scenario and both checks are correct. Review marks describe study activity, not readiness, certification or ELDT completion.
+
+Answers and review marks are visit-only. Account/tab-scoped navigation stores only a validated topic index and tab. Sign-out/account change clears this module. My Progress reflections fill empty draft fields only and never automatically save. No database schema, auth settings, stored member records or photo assets were changed.
+
+Source review: October 29, 2026, Pacific. Topic references are in road-readiness.js and disclaimer.html#road-source-credits. General principles were checked against FMCSA driver tips, curriculum summary, following-space and fatigue guidance, Safety Planner hazardous-condition/illness guidance, NWS wind/winter preparation, and California/Washington commercial-driver grade guidance. The current California PDF and Washington text were reviewed through indexed official content; direct PDF extraction/HTTP access had environment limits. State requirements and equipment procedures remain separately verified. Original scenarios are not official examination questions.
+
+Boundaries: no universal downhill speed, gear, RPM or timed braking recipe; retarder use depends on equipment/traction limits; emergency escape ramps are not ordinary parking; no universal truck wind threshold; camera images do not override restrictions; legal remaining hours do not establish fitness; no medication changes or hours-of-service calculation; no abrupt traffic-lane stop to consult this Hub. This is not complete emergency-response, inspection or practical driving instruction.
+
+Validation: all 130 automated tests passed, including all six scenario/review paths, input guards, metadata restoration/account separation, reset and draft preservation. Actual modules were checked in a temporary unauthenticated local browser fixture: grade scenario wrong/retry/correct, both checks and guarded review, desktop layout and a 390px iframe viewport. This does not claim a real signed-in member test, physical iPhone test, actual vehicle test or formal curriculum accreditation. Temporary fixtures were removed before packaging.
