@@ -55,3 +55,6 @@ New Driver Start Here connects existing foundations to six planning/judgment top
 
 ## Independent CDL general knowledge
 CDL Knowledge & Test Preparation uses original Hub wording, scenarios and existing artwork with traceable public sources. Do not ingest, reproduce or imitate employer/school scripts, private curricula, internal assessments, footage or proprietary diagrams. Do not imply employer affiliation or official exam status. Explain shared principles separately from state scoring and equipment-specific operating sequences. No employment-contract clearance or passing guarantee is established by source attribution. See CDL-KNOWLEDGE-SOURCE-REVIEW.md.
+
+## Pre-Trip component study
+Use original labeled representative SVG sketches and plain-language purposes/check considerations. Never portray a generic sketch as a photo, exact lock position, wear gauge or complete inspection/repair procedure. State test scripts, equipment-specific methods, numeric limits and special vehicle systems require their own current qualified sources. Study marks are not an actual inspection. See PRETRIP-STUDY-LIBRARY.md.
