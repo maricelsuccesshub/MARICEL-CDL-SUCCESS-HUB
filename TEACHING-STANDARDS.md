@@ -58,3 +58,7 @@ CDL Knowledge & Test Preparation uses original Hub wording, scenarios and existi
 
 ## Pre-Trip component study
 Use original labeled representative SVG sketches and plain-language purposes/check considerations. Never portray a generic sketch as a photo, exact lock position, wear gauge or complete inspection/repair procedure. State test scripts, equipment-specific methods, numeric limits and special vehicle systems require their own current qualified sources. Study marks are not an actual inspection. See PRETRIP-STUDY-LIBRARY.md.
+
+## Air-brake guide
+
+Keep applied/static tests separate and always identify configuration, engine/control state, stabilization and timing. Preserve state-format warning distinctions (modernized CA/WA example55 vs NY general60), actual manufacturer criteria and roll-prevention/recharge prerequisites. Do not turn study answers into actual inspection completion, defect clearance or practical certification. No pressure-depletion exercise while driving, equipment bypass or DIY brake repairs.

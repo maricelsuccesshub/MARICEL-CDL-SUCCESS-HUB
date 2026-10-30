@@ -1,10 +1,11 @@
 /* Remember an allowlisted page per signed-in member and browser tab. No private content. */
 (()=>{'use strict';
 const prefix='maricel-hub:page:', viewPrefix='maricel-hub:view:';
-const pages=['pretrip','cdlknowledge','starter','lesson','backing','practiceyard','drivercommunity'];
+const pages=['airbrakes','pretrip','cdlknowledge','starter','lesson','backing','practiceyard','drivercommunity'];
 const uuid=v=>typeof v==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v);
 function clean(page,v){
  if(!v||typeof v!=='object')return null;
+ if(page==='airbrakes'&&Number.isInteger(v.step)&&v.step>=0&&v.step<4&&['prepare','walkthrough','more','practice'].includes(v.tab))return {step:v.step,tab:v.tab};
  if(page==='pretrip'&&Number.isInteger(v.current)&&v.current>=0&&v.current<10&&['parts','decision','review'].includes(v.tab))return {current:v.current,tab:v.tab};
  if(page==='cdlknowledge'&&Number.isInteger(v.current)&&v.current>=0&&v.current<7&&['learn','scenario','check'].includes(v.tab))return {current:v.current,tab:v.tab};
  if(page==='starter'&&Number.isInteger(v.current)&&v.current>=0&&v.current<6&&['learn','scenario','check'].includes(v.tab))return {current:v.current,tab:v.tab};
