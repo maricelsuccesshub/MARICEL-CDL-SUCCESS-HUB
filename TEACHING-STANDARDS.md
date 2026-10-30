@@ -62,3 +62,7 @@ Use original labeled representative SVG sketches and plain-language purposes/che
 ## Air-brake guide
 
 Keep applied/static tests separate and always identify configuration, engine/control state, stabilization and timing. Preserve state-format warning distinctions (modernized CA/WA example55 vs NY general60), actual manufacturer criteria and roll-prevention/recharge prerequisites. Do not turn study answers into actual inspection completion, defect clearance or practical certification. No pressure-depletion exercise while driving, equipment bypass or DIY brake repairs.
+
+## In-cab study
+
+Keep actual gauges/warnings/starting positions equipment-specific; distinguish startup self-checks from persistent defects, oil pressure from oil level and temperature warm-up, and dash lamp indications from verified exterior function. Preserve secure-vehicle and qualified-practice prerequisites. Keep current emergency-equipment rules distinct from older state-manual wording and electrical fuses distinct from roadside fusees. Link to the Air Brake guide rather than creating a conflicting pressure-test script.
