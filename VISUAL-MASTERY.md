@@ -6,15 +6,15 @@ Original Coach Maricel Hub explanations, custom code-native diagrams, and unchan
 
 ## Teaching decisions and evidence
 
-- Two intentional-turn panels begin from aligned tractor/trailer poses. Desired trailer-rear LEFT uses initial top-of-wheel RIGHT; desired rear RIGHT uses initial LEFT. Green arrows show intended rear directions, not computed paths. Oregon CDL Manual §6.1.7 supports initiation and changing steering to follow.
-- Two distinct straight-back drift panels show confirmed unwanted LEFT/RIGHT drift. Initial SMALL top-of-wheel input is toward that drift. Both examples explicitly require observing and easing as alignment returns; they are not fixed steering movements or time steps. Oregon §6.1.7 supports this distinction.
+- Two intentional-turn panels begin from aligned tractor/trailer poses. Desired trailer-rear LEFT uses initial top-of-wheel RIGHT; desired rear RIGHT uses initial LEFT. Green arrows show intended rear directions, not computed paths. California DMV and Washington DOL general backing guidance support initiation and changing steering to follow.
+- Two distinct straight-back drift panels show confirmed unwanted LEFT/RIGHT drift. Initial SMALL top-of-wheel input is toward that drift. Both examples explicitly require observing and easing as alignment returns; they are not fixed steering movements or time steps. California DMV and Washington DOL backing guidance support this distinction.
 - Every diagram uses the same top view, tractor front down, with driver-right on screen-left and driver-left on screen-right. Rear-corner dots and a separate rear-wheel outline identify different references. Numerical angles, clearance promises, engineered trajectories and universal fixed wheel-turn counts are absent.
 - Wheel center is distinguished from tractor/trailer alignment and trailer/lane alignment. Side-by-side independent poses do not imply measured physical response.
-- GOAL starts with stop/secure, not an automatic forward move. Path, sides, overhead, people, ground and stopping area are included. Oregon §2.2.4 supports preparation and observation. Vehicle-facing exit and three points of contact are sourced separately to Oregon §12; local test layouts and scoring are not treated as nationwide rules.
+- GOAL starts with stop/secure, not an automatic forward move. Path, sides, overhead, people, ground and stopping area are included. California DMV and Washington DOL support preparation and observation. California DMV outside-observation guidance also addresses securing and vehicle-facing exit with three points of contact; local test layouts and scoring remain state-specific.
 - A single conditional poster note explains that, if a spotter is used, signals must be agreed and lost visual contact means immediate stopping. OSHA Preventing Backovers spotter guidance supports that reminder and agreed signals; the resource does not label this informational guidance a universal statutory requirement.
 - A pull-up requires checking the forward path and planning. A fixed number of repetitions is not proof of readiness. The resource is educational support for supervised, equipment-specific learning and is not agency-endorsed or a guarantee of performance.
 
-Official sources are linked by teaching point beneath the poster. The PNG and self-contained SVG carry source names and the companion page URL. Source-check date is October 29, 2026, Pacific time.
+National training context (FMCSA), general operational cross-checks (California DMV and Washington DOL), conditional OSHA assistance guidance and local test requirements are separately identified beneath the poster. The PNG and self-contained SVG carry source names and the companion page URL. Source-check date is October 29, 2026, Pacific time.
 
 ## Files / reproduction
 
@@ -26,4 +26,4 @@ Official sources are linked by teaching point beneath the poster. The PNG and se
 
 ## Validation
 
-121 automated tests passed, including all prior checks and visual-resource checks for the four direction scenarios, consistent original truck assets, self-contained SVG context, PNG dimensions, source links and member-facing wording. SVG XML and local asset links were validated. The rendered PNG was inspected for layout and arrow directions; browser QA confirmed the resource page, accessible notes, download links, full-size image load and 1800 × 2700 dimensions. Print layout is provided; no physical paper print was tested. No member data, authentication or database configuration changed.
+122 automated tests passed, including all prior checks and visual-resource checks for the four direction scenarios, consistent original truck assets, self-contained SVG context, PNG dimensions, source links and member-facing wording. SVG XML and local asset links were validated. The rendered PNG was inspected for layout and arrow directions; browser QA confirmed the resource page, accessible notes, download links, full-size image load and 1800 × 2700 dimensions. Print layout is provided; no physical paper print was tested. No member data, authentication or database configuration changed.
