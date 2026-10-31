@@ -108,7 +108,7 @@
 .member-name-dialog{width:min(440px,calc(100% - 32px));max-height:calc(100dvh - 40px);overflow:auto;border:1px solid #d6dfeb;border-top:4px solid #c79632;border-radius:18px;padding:26px;color:#1e293b;background:#fff;box-sizing:border-box}.member-name-dialog::backdrop{background:rgba(10,27,45,.6)}.member-name-dialog h2{margin:0 0 12px;font-size:26px}.member-name-dialog p{line-height:1.6}.member-name-dialog input{box-sizing:border-box;width:100%}.member-name-dialog .name-actions{display:flex;flex-direction:column;gap:10px;margin-top:18px}.member-name-dialog .name-actions .btn{margin:0;flex:1;width:auto;min-height:48px}.member-name-dialog :focus-visible{outline:3px solid #187bcd;outline-offset:3px}#dashboardWelcomeName{overflow-wrap:anywhere}#dashboardWelcomeName:focus{outline:none}
 #hubIntroduction{width:100%;max-width:960px}#hubIntroduction>summary{display:none;cursor:pointer;min-height:44px;font-weight:700;padding:10px}body.hub-member #hubIntroduction>summary{display:list-item;color:#fff}body.hub-member>header{padding:12px 16px}body.hub-member>header>.brand-lockup{max-width:220px;padding:6px 10px}body.hub-member>header>p:first-child{display:none}body.hub-member #hubIntroduction>p{max-width:780px}
 </style>
-<link rel="stylesheet" href="learning-paths.css?v=64"><link rel="stylesheet" href="lessons.css?v=62"><link rel="stylesheet" href="road-readiness.css?v=53"><link rel="stylesheet" href="pretrip.css?v=55"><link rel="stylesheet" href="air-brakes.css?v=56"><link rel="stylesheet" href="incab.css?v=57">
+<link rel="stylesheet" href="learning-paths.css?v=64"><link rel="stylesheet" href="learning-progress.css?v=65"><link rel="stylesheet" href="lessons.css?v=62"><link rel="stylesheet" href="road-readiness.css?v=53"><link rel="stylesheet" href="pretrip.css?v=55"><link rel="stylesheet" href="air-brakes.css?v=56"><link rel="stylesheet" href="incab.css?v=57">
 <link rel="stylesheet" href="community-chat.css?v=33">
 <link rel="stylesheet" href="community-lists.css?v=43">
 <link rel="stylesheet" href="support-bar.css?v=36"></head>
@@ -454,7 +454,7 @@ Created by Coach Maricel • Supporting aspiring CDL drivers and experienced tru
 <div class="card" id="backingStudyPoster"><span class="badge">Coach Maricel’s study material</span><h3>Maricel CDL Success Hub Visual Mastery</h3><p>A beginner backing poster using Maricel truck artwork: see the difference between starting a trailer turn and correcting straight-back drift, then learn what to watch, how to check alignment and when to stop.</p><div class="warning"><strong>Read this with your instructor.</strong> Wheel directions use the seated driver’s viewpoint. Starting an intentional turn from alignment and correcting unwanted straight-back drift are different situations. These drawings are learning references, not a simulated vehicle path or a fixed steering recipe.</div><a href="backing-poster.html" aria-label="Open Maricel CDL Success Hub Visual Mastery full size"><img src="assets/maricel-visual-mastery.png?v=49" alt="Maricel CDL Success Hub Visual Mastery: paired left and right intentional-turn and drift examples, GOAL, alignment, rear-corner and wheel references, following and stop decisions." loading="lazy" width="1800" height="2700" style="display:block;width:100%;max-width:600px;height:auto;margin:20px auto;border-radius:10px"></a><div class="camera-actions"><a class="btn" href="backing-poster.html" target="_blank" rel="noopener noreferrer">View poster, print &amp; references ↗</a><a class="btn light" href="assets/maricel-visual-mastery.png?v=49" download="Maricel-CDL-Success-Hub-Visual-Mastery.png">Download poster</a></div><p class="small">Original Coach Maricel explanations and existing Maricel truck artwork. Learning references: FMCSA training context, California DMV and Washington DOL general backing guidance, and OSHA spotter guidance. Open the poster page for source links and accessible text notes.</p></div>
 </section>
 
-<section id="progress">
+<section id="progress"><div id="privateLearningProgress"></div>
   <div class="page-columns">
   <div class="card"><span class="badge">Private to your account</span><h2>My Practice Progress</h2><p class="form-intro">After practice, record one win and one thing to work on next. Your entries follow your signed-in account.</p>
     <p id="guideProgressNotice" class="success" role="status" hidden></p><label for="progressDate">Date</label><input type="date" id="progressDate">
@@ -589,13 +589,14 @@ function memberMode(mode){
   memberEl('memberSubmit').textContent=({signin:'Sign in',signup:'Create free account',reset:'Send recovery email',recover:'Save new password'})[mode];
   memberMessage(mode==='recover'?'Choose your new password.':'');window.memberPasskeyModeChanged?.();
 }
+window.hubLearningContext=()=>({client:memberClient,userId:memberUserId,generation:memberGeneration});
 function memberDisplay(session){
   const signedIn=Boolean(session?.user?.email_confirmed_at)&&!memberRecovery;
   const previous=memberUserId;memberUserId=signedIn?session.user.id:null;
   memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;if(!signedIn)memberEl('subnav').hidden=true;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){document.body?.classList?.toggle?.('hub-member',!!memberUserId);window.journeyReset?.();resetMemberNamePrompt();if(previous)window.hubNavigation?.clear(previous);memberGeneration++;window.memberPasskeysReset?.();window.communityReset?.();window.lessonsReset?.();window.roadReadinessReset?.();window.cdlKnowledgeReset?.();window.pretripReset?.();window.airBrakesReset?.();window.incabReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['memberPassword','progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
+  if(previous!==memberUserId){window.hubLearning?.reset();document.body?.classList?.toggle?.('hub-member',!!memberUserId);window.journeyReset?.();resetMemberNamePrompt();if(previous)window.hubNavigation?.clear(previous);memberGeneration++;window.memberPasskeysReset?.();window.communityReset?.();window.lessonsReset?.();window.roadReadinessReset?.();window.cdlKnowledgeReset?.();window.pretripReset?.();window.airBrakesReset?.();window.incabReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['memberPassword','progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
   if(previous!==memberUserId){const intro=memberEl('hubIntroduction'),notice=memberEl('betaNoticeDetails');if(intro)intro.open=!memberUserId;if(notice)notice.open=!signedIn;}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
   if(signedIn&&previous!==memberUserId){
@@ -603,7 +604,7 @@ function memberDisplay(session){
     const restorePage=()=>{if(id!==memberUserId||generation!==memberGeneration||revision!==memberScreenChange)return;if(typeof showScreen==='function'){const page=window.hubNavigation?.restore(id,screenGroups)||'home';showScreen(page);window.hubRestoreView?.(page);}};
     // Wait for the page modules before restoring Lessons, Community or Security.
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restorePage,{once:true});else restorePage();
-    setTimeout(()=>{renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0);
+    setTimeout(()=>{window.hubLearning?.connect(window.hubLearningContext());renderProgress();loadMemberProfile();renderSafeHavens();renderFacilityNotes();},0);
   }
 }
 async function memberSignOut(){
@@ -1504,9 +1505,9 @@ window.straightAnswer = function(choice) {
   renderStraightSimulator("Good initial decision: a small top-of-wheel input toward the " + drift + " drift. The next preset picture shows alignment as a learning example, not the result of one real steering input. Observe actual response, ease as alignment returns, and stop if uncertain.");
 };
 </script>
-<script src="yard-decisions.js?v=49"></script>
-<script src="remaining-backing.js?v=49"></script>
-<script src="backing-guides.js?v=50"></script>
+<script src="yard-decisions.js?v=65"></script>
+<script src="remaining-backing.js?v=65"></script>
+<script src="backing-guides.js?v=65"></script>
 <script src="traffic-cameras.js"></script>
 <script src="clearance-checks.js?v=63"></script>
 <script src="state-weather.js"></script>
@@ -1514,8 +1515,8 @@ window.straightAnswer = function(choice) {
 <script src="community.js?v=63"></script>
 <script src="trip-planner.js?v=29"></script>
 <script src="member-passkeys.js?v=30"></script>
-<script src="lessons.js?v=50"></script><script src="road-readiness-data.js?v=64"></script><script src="road-readiness.js?v=53"></script><script src="cdl-knowledge-data.js?v=52"></script><script src="cdl-knowledge.js?v=53"></script><script src="pretrip-data.js?v=58"></script><script src="pretrip-visuals.js?v=55"></script><script src="pretrip.js?v=55"></script><script src="air-brakes-data.js?v=58"></script><script src="air-brakes.js?v=58"></script><script src="incab-data.js?v=58"></script><script src="incab.js?v=57"></script>
-<aside class="hub-support-bar" aria-label="Optional support for Maricel CDL Success Hub"><div class="hub-support-copy"><strong>Optional support</strong><span>One-time tips help with costs. The Hub stays free.</span></div><a href="support.html" target="_blank" rel="noopener noreferrer" aria-label="Support the Hub — optional Stripe or Venmo support, opens a new tab">Support the Hub 💛 ↗</a></aside><script src="learning-paths.js?v=64"></script></body>
+<script src="lessons.js?v=65"></script><script src="road-readiness-data.js?v=64"></script><script src="road-readiness.js?v=65"></script><script src="cdl-knowledge-data.js?v=52"></script><script src="cdl-knowledge.js?v=65"></script><script src="pretrip-data.js?v=58"></script><script src="pretrip-visuals.js?v=55"></script><script src="pretrip.js?v=65"></script><script src="air-brakes-data.js?v=58"></script><script src="air-brakes.js?v=65"></script><script src="incab-data.js?v=58"></script><script src="incab.js?v=65"></script>
+<aside class="hub-support-bar" aria-label="Optional support for Maricel CDL Success Hub"><div class="hub-support-copy"><strong>Optional support</strong><span>One-time tips help with costs. The Hub stays free.</span></div><a href="support.html" target="_blank" rel="noopener noreferrer" aria-label="Support the Hub — optional Stripe or Venmo support, opens a new tab">Support the Hub 💛 ↗</a></aside><script src="learning-paths.js?v=65"></script><script src="learning-catalog.js?v=65"></script><script src="learning-progress-core.js?v=65"></script><script src="learning-progress.js?v=65"></script></body>
 </html>
 
 
