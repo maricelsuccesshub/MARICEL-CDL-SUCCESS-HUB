@@ -32,3 +32,26 @@ test('conversation requests attach only to consenting contribution authors and p
 test('profile settings explain no roster and retain separate opt-in controls',async()=>{const h=harness();await h.run('window.openCommunity()');await h.click('settings');const html=h.el('communityRoot').innerHTML;assert.match(html,/no member directory or member name search/);assert.match(html,/display name instead of your legal name/);assert.match(html,/name="listed"/);assert.match(html,/name="messages_enabled"/);assert.doesNotMatch(html,/communityBio|Show my name and introduction/);});
 
 test('welcome shortcut selects Community settings without creating a profile or enabling messaging',async()=>{const h=harness();h.run('openScreen=screen=>{window.openedScreen=screen};window.openCommunityProfile()');assert.equal(h.run('window.openedScreen'),'drivercommunity');assert.equal(h.calls.length,0);await h.run('window.openCommunity()');assert.match(h.el('communityRoot').innerHTML,/My Community Profile/);assert.ok(!h.calls.some(x=>x.action==='profile'));});
+
+test('Feedback displays a clean label while existing feedback posts keep their database category',async()=>{
+ const h=harness({posts:[{id:'feedback-fixture',category:'Beta Feedback',title:'A suggestion',display_name:'Study member',author_id:'b',body:'Keep this original feedback.',created_at:'2026-10-29T04:00:00Z',own:false}]});
+ await h.run('window.openCommunity()');
+ let html=h.el('communityRoot').innerHTML;
+ assert.match(html,/<option value="Beta Feedback"[^>]*>Feedback<\/option>/);
+ assert.match(html,/<span class="badge">Feedback<\/span>/);
+ assert.match(html,/Keep this original feedback\./);
+ assert.doesNotMatch(html.replace(/<[^>]*>/g,''),/\bbeta\b/i);
+ h.el('communityTabs').listeners.click({target:{closest:()=>({dataset:{communityTab:'feedback'}})}});await flush();
+ assert.match(h.el('communityRoot').innerHTML,/<h3>Feedback<\/h3>/);
+ assert.ok(h.calls.some(x=>x.action==='posts'&&x.payload.category==='Beta Feedback'));
+ assert.ok(!h.calls.some(x=>['post','withdraw','profile','send'].includes(x.action)));
+});
+
+test('new Feedback submissions retain the original API payload and category value',async()=>{
+ const h=harness();await h.run('window.openCommunity()');
+ h.run('FormData=class {constructor(form){this.form=form}*[Symbol.iterator](){yield* Object.entries(this.form.values)}}');
+ const form={dataset:{communityForm:'post'},values:{category:'Beta Feedback',title:'A suggestion',body:'Preserve this feedback payload.'},reportValidity:()=>true};
+ h.el('communityRoot').listeners.submit({preventDefault(){},target:{closest:()=>form}});await flush();
+ const sent=h.calls.find(x=>x.action==='post');assert.ok(sent);assert.equal(sent.name,'community_api');assert.equal(JSON.stringify(sent.payload),JSON.stringify(form.values));
+ assert.match(h.el('communityStatus').textContent,/Discussion posted/);
+});
