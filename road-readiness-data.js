@@ -58,7 +58,7 @@ const roadReadinessTopics=[
         "While parked, verify the complete truck route and resolve the crossing before committing"
       ],
       "answer": 1,
-      "why": "A route line is not a clearance check. Confirm the actual equipment/load limits and the relevant road restrictions; do not assume another vehicle’s successful trip proves this combination fits."
+      "why": "A route line is not a clearance check. Do not enter the uncertain crossing. While parked in a suitable location, confirm the actual equipment/load limits and authoritative route restrictions or arrange an appropriate alternate with qualified help. Another vehicle’s passage does not prove this combination fits."
     },
     "questions": [
       {
@@ -251,7 +251,7 @@ const roadReadinessTopics=[
         "Honor the restriction, verify current official information and revise the plan"
       ],
       "answer": 1,
-      "why": "A photograph does not override an official restriction or establish traction for your truck. Check authoritative updates while parked; the Hub does not clear the route for travel."
+      "why": "A photograph does not override an official restriction or establish traction for your truck. Reassess the route, conditions and suitable stopping options before committing to the restricted area. Check authoritative updates while safely parked and obtain qualified guidance if uncertain; the Hub does not clear the route for travel."
     },
     "questions": [
       {
