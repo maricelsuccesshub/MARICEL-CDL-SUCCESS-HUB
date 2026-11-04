@@ -23,3 +23,12 @@ Record redacted settings evidence and approved synthetic mailbox identifiers pri
 Only then enable a separately reviewed development test configuration and run one synthetic flow at a time: signup, link destination, verification, resend/cooldown/server throttling, email correction, expired/used links, login/logout and access denial. Observe captured messages and approved mailbox delivery; do not claim Spam placement or inbox deliverability from mock behavior. Disable connected testing again after review. No bulk signups, invites or real-member testing.
 
 References: [Supabase SMTP](https://supabase.com/docs/guides/auth/auth-smtp), [redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls). Default SMTP restrictions are not proof of a complete sandbox. Custom SMTP does not by itself contain recipients. Site URL fallback and template links must both be checked.
+
+## Safest read-only dashboard procedure
+
+1. Open the existing Supabase dashboard and select only **maricel-cdl-success-hub-dev**. Verify its project reference against development config before opening settings. If identity differs, stop.
+2. Review Auth → URL Configuration, email templates, email/SMTP settings and rate-limit metadata. Do not open Users, table rows, logs containing recipients, SQL queries, password reveal controls, or send/test-email buttons. Do not save settings. UI names may vary.
+3. Record only pass/fail/unknown, non-secret redirect origins and whether separate SMTP scope and backend recipient controls are confirmed. Do not copy SMTP passwords, API keys, connection strings, template tokens, message contents or recipient lists into reports/screenshots.
+4. Ask the existing mail-provider account owner to inspect recipient containment and credential scope read-only. If evidence requires sending a message or changing a rule, leave UNKNOWN and propose the exact change separately. Do not perform a trial send.
+5. Review development-only outbound configuration/hook code without invoking it. If access to required read-only settings is unavailable, mark the gate UNKNOWN rather than requesting member data or inferring isolation from project names.
+6. Keep connectedTestingApproved false. A completed settings review does not itself authorize a connected test or configuration change.
