@@ -12,7 +12,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "AK",
@@ -25,7 +47,29 @@ const data=[
     "carry": "Not established by this source review.",
     "season": "Condition/order-based signing; seasonal carry rules are not established here.",
     "configuration": "This signing source does not establish a complete commercial axle-placement rule.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": "https://dot.alaska.gov/stwddes/dcstraffic/assets/pdf/atm/current/2026_atm.pdf"
+      },
+      "season": {
+        "status": "unresolved",
+        "source": "https://dot.alaska.gov/stwddes/dcstraffic/assets/pdf/atm/current/2026_atm.pdf"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://dot.alaska.gov/stwddes/dcstraffic/assets/pdf/atm/current/2026_atm.pdf"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://dot.alaska.gov/stwddes/dcstraffic/assets/pdf/atm/current/2026_atm.pdf"
+      }
+    }
   },
   {
     "code": "AZ",
@@ -38,7 +82,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "AR",
@@ -51,7 +117,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "Official 2023 compilation reproduces §27-37-401 permission. Confirm current operative text and any later amendments before promoting it to a current verified rule.",
+    "researchLeads": [
+      {
+        "url": "https://media.ark.org/ardot/AR-Motor-Vehicle-2023-PDF.pdf",
+        "checkedOn": "2026-11-04",
+        "finding": "Official 2023 compilation reproduces §27-37-401 permission. Confirm current operative text and any later amendments before promoting it to a current verified rule."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Official 2023 compilation reproduces §27-37-401 permission. Confirm current operative text and any later amendments before promoting it to a current verified rule.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "CA",
@@ -64,7 +159,29 @@ const data=[
     "carry": "Required chains must be available for screening and chain-control entry.",
     "season": "Caltrans describes no fixed statewide chain-carry dates; weather controls can occur outside winter.",
     "configuration": "Exact axle and tire placement depends on the official truck chart and current control; alternative devices may be restricted locally.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "limited",
+        "source": "https://dot.ca.gov/travel/winter-driving-tips/chain-requirements"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://dot.ca.gov/travel/winter-driving-tips/chain-requirements"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://dot.ca.gov/travel/winter-driving-tips/chain-requirements"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://dot.ca.gov/travel/winter-driving-tips/chain-requirements"
+      }
+    }
   },
   {
     "code": "CO",
@@ -77,7 +194,29 @@ const data=[
     "carry": "Carry chains for qualifying commercial vehicles on the designated corridors.",
     "season": "September 1–May 31 on designated corridors.",
     "configuration": "The 2025 signage guide lists qualifying heavy vehicles and designated routes: I-70 west of MP259 to Utah; CO9 MP63–97; US40 west of MP256; US50 west of MP225; US160 west of MP304; US285 south/west of MP250; all US550.",
-    "note": "Source discrepancy: an older CDOT overview still lists only I-70 Morrison–Dotsero. Do not use that shorter route description. Confirm borderline weight classifications with CSP; this overview is not a complete installation rule."
+    "note": "Source discrepancy: an older CDOT overview still lists only I-70 Morrison–Dotsero. Do not use that shorter route description. Confirm borderline weight classifications with CSP; this overview is not a complete installation rule.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Source discrepancy: an older CDOT overview still lists only I-70 Morrison–Dotsero. Do not use that shorter route description. Confirm borderline weight classifications with CSP; this overview is not a complete installation rule.",
+    "fieldReview": {
+      "carry": {
+        "status": "limited",
+        "source": "https://www.codot.gov/safety/traffic-safety/assets/documents/must-carry-chains-signage-guidelines_20251029.pdf"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://www.codot.gov/safety/traffic-safety/assets/documents/must-carry-chains-signage-guidelines_20251029.pdf"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://www.codot.gov/safety/traffic-safety/assets/documents/must-carry-chains-signage-guidelines_20251029.pdf"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://www.codot.gov/safety/traffic-safety/assets/documents/must-carry-chains-signage-guidelines_20251029.pdf"
+      }
+    }
   },
   {
     "code": "CT",
@@ -90,7 +229,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "Current official chapter is indexed but repeated text retrieval returned 502. Need the operative §14-98 and related regulations; do not substitute school-bus rules for truck rules.",
+    "researchLeads": [
+      {
+        "url": "https://cga.ct.gov/current/PUB/chap_246.htm",
+        "checkedOn": "2026-11-04",
+        "finding": "Current official chapter is indexed but repeated text retrieval returned 502. Need the operative §14-98 and related regulations; do not substitute school-bus rules for truck rules."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Current official chapter is indexed but repeated text retrieval returned 502. Need the operative §14-98 and related regulations; do not substitute school-bus rules for truck rules.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "DE",
@@ -103,7 +271,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "FL",
@@ -116,7 +306,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "§316.299 addresses road-damaging wheel surfaces without an explicit commercial snow-chain determination in the reviewed text. Need authoritative interpretation or a chain-specific provision.",
+    "researchLeads": [
+      {
+        "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0300-0399/0316/Sections/0316.299.html",
+        "checkedOn": "2026-11-04",
+        "finding": "§316.299 addresses road-damaging wheel surfaces without an explicit commercial snow-chain determination in the reviewed text. Need authoritative interpretation or a chain-specific provision."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "§316.299 addresses road-damaging wheel surfaces without an explicit commercial snow-chain determination in the reviewed text. Need authoritative interpretation or a chain-specific provision.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "GA",
@@ -129,33 +348,106 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "An older DPS handout describes four drive-tire chains, while newer statutory reproductions use outermost-drive-tire wording. Current authoritative wording and applicability need reconciliation before a placement rule is shown."
+    "note": "Older DPS handout says at least four drive tires; newer reproduced statute wording refers to outermost drive tires. Resolve current official §32-6-5 and exceptions before showing a placement rule.",
+    "researchLeads": [
+      {
+        "url": "https://dps.georgia.gov/document/publication/tire-chain-requirements-georgia-0/download",
+        "checkedOn": "2026-11-04",
+        "finding": "Older DPS handout says at least four drive tires; newer reproduced statute wording refers to outermost drive tires. Resolve current official §32-6-5 and exceptions before showing a placement rule."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Older DPS handout says at least four drive tires; newer reproduced statute wording refers to outermost drive tires. Resolve current official §32-6-5 and exceptions before showing a placement rule.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "HI",
     "name": "Hawaii",
     "roadUrl": "https://www.goakamai.org/",
-    "source": null,
-    "summary": "Commercial chain requirements have not been verified for this state. Consult the official transportation/enforcement agency before travel.",
-    "scope": "unverified",
-    "verifiedOn": null,
+    "source": "https://hilo.hawaii.edu/maunakea/stewardship/admin-rules",
+    "summary": "HAR 20-26-28 requires compliance with posted equipment conditions on UH-managed Maunakea lands, including carry/use chains when posted. It also restricts two-wheel-drive access north of Halepohaku. This is a local land-management rule, not a statewide truck route authorization.",
+    "scope": "limited statutory excerpt",
+    "verifiedOn": "2026-11-04",
     "carry": null,
     "season": null,
-    "configuration": null,
-    "note": ""
+    "configuration": "Applies to UH management areas. Do not infer that a commercial tractor-trailer is permitted on the summit road.",
+    "note": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://hilo.hawaii.edu/maunakea/stewardship/admin-rules"
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "ID",
     "name": "Idaho",
     "roadUrl": "https://511.idaho.gov/",
-    "source": null,
-    "summary": "Commercial chain requirements have not been verified for this state. Consult the official transportation/enforcement agency before travel.",
-    "scope": "unverified",
-    "verifiedOn": null,
+    "source": "https://adminrules.idaho.gov/rules/current/39/390341.pdf",
+    "summary": "Current IDAPA 39.03.41 §004, 2B.69a (PDF pages 9–10) describes chain-required signs and non-exempt commercial vehicles over 26,000 lb, with enumerated exemptions. This source does not supply every tire-placement or carry requirement.",
+    "scope": "limited statutory excerpt",
+    "verifiedOn": "2026-11-04",
     "carry": null,
     "season": null,
-    "configuration": null,
-    "note": ""
+    "configuration": "The rule lists commercial weight thresholds and exemptions. A sign rule is not an axle-placement diagram.",
+    "note": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://adminrules.idaho.gov/rules/current/39/390341.pdf"
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "IL",
@@ -168,20 +460,64 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "IN",
     "name": "Indiana",
     "roadUrl": "https://511in.org/",
-    "source": null,
-    "summary": "Commercial chain requirements have not been verified for this state. Consult the official transportation/enforcement agency before travel.",
-    "scope": "unverified",
-    "verifiedOn": null,
+    "source": "https://faqs.in.gov/hc/en-us/articles/115005063487-Are-tire-chains-and-studs-legal-in-Indiana",
+    "summary": "Indiana’s official FAQ permits tire chains when needed for safety. Its October–May dates concern studs; those dates are not presented here as chain dates. The FAQ does not establish a full commercial installation rule.",
+    "scope": "limited statutory excerpt",
+    "verifiedOn": "2026-11-04",
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "IA",
@@ -194,7 +530,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency."
+    "note": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "KS",
@@ -207,7 +565,29 @@ const data=[
     "carry": "The reviewed commercial FAQ does not impose a general carry duty.",
     "season": "No chain season is specified in the reviewed FAQ.",
     "configuration": "The FAQ is not a vehicle-specific installation diagram.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "limited",
+        "source": "https://kansashighwaypatrol.gov/find-a-troop/troop-location-map/technical-operations-bureau/troop-i/commercial-vehicle-faqs/"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://kansashighwaypatrol.gov/find-a-troop/troop-location-map/technical-operations-bureau/troop-i/commercial-vehicle-faqs/"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://kansashighwaypatrol.gov/find-a-troop/troop-location-map/technical-operations-bureau/troop-i/commercial-vehicle-faqs/"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://kansashighwaypatrol.gov/find-a-troop/troop-location-map/technical-operations-bureau/troop-i/commercial-vehicle-faqs/"
+      }
+    }
   },
   {
     "code": "KY",
@@ -220,7 +600,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency."
+    "note": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "LA",
@@ -233,7 +635,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "ME",
@@ -246,7 +670,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "MD",
@@ -259,20 +705,64 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "MA",
     "name": "Massachusetts",
     "roadUrl": "https://mass511.com/",
-    "source": null,
-    "summary": "Commercial chain requirements have not been verified for this state. Consult the official transportation/enforcement agency before travel.",
-    "scope": "unverified",
-    "verifiedOn": null,
-    "carry": null,
-    "season": null,
-    "configuration": null,
-    "note": ""
+    "source": "https://www.mass.gov/doc/700-cmr-7-use-of-the-massachusetts-turnpike-and-the-metropolitan-highway-system/download",
+    "summary": "700 CMR 7.08(11)(c) describes seasonal chain equipment for tractors in large tandem units on the specified system. This narrow provision must not be generalized to every Massachusetts truck.",
+    "scope": "limited statutory excerpt",
+    "verifiedOn": "2026-11-04",
+    "carry": "For the covered large-tandem operation, one set for at least one driving wheel on each side.",
+    "season": "Covered large-tandem equipment provision: October 15–May 1; not a general statewide chain season.",
+    "configuration": "Only the defined large tandem units and highway system covered by 700 CMR 7.08. Search excerpt retrieved; direct PDF access returned 403, so full context remains unresolved.",
+    "note": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Narrow large-tandem provision verified from an official search excerpt; full PDF context and general-truck duties remain unresolved.",
+    "fieldReview": {
+      "carry": {
+        "status": "limited",
+        "source": "https://www.mass.gov/doc/700-cmr-7-use-of-the-massachusetts-turnpike-and-the-metropolitan-highway-system/download"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://www.mass.gov/doc/700-cmr-7-use-of-the-massachusetts-turnpike-and-the-metropolitan-highway-system/download"
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": "https://www.mass.gov/doc/700-cmr-7-use-of-the-massachusetts-turnpike-and-the-metropolitan-highway-system/download"
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "MI",
@@ -285,7 +775,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "The patrol FAQ permits chains for safety but also says chains must not contact the road surface. Obtain clarification before presenting a practical truck-use rule."
+    "note": "Official §257.710 includes chain permission, but the patrol FAQ says chains must not contact the road. Agency clarification is required before giving a practical truck-use conclusion.",
+    "researchLeads": [
+      {
+        "url": "https://zeus-milenia.legislature.mi.gov/documents/mcl/pdf/MCL-257-710.pdf",
+        "checkedOn": "2026-11-04",
+        "finding": "Official §257.710 includes chain permission, but the patrol FAQ says chains must not contact the road. Agency clarification is required before giving a practical truck-use conclusion."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Official §257.710 includes chain permission, but the patrol FAQ says chains must not contact the road. Agency clarification is required before giving a practical truck-use conclusion.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "MN",
@@ -298,7 +817,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "MS",
@@ -311,7 +852,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "SOS identifies the official code publisher. The §63-7-67 text found in secondary sources was not promoted; need the current official provision and related orders.",
+    "researchLeads": [
+      {
+        "url": "https://sos.ms.gov/publications-external-affairs/mississippi-law",
+        "checkedOn": "2026-11-04",
+        "finding": "SOS identifies the official code publisher. The §63-7-67 text found in secondary sources was not promoted; need the current official provision and related orders."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "SOS identifies the official code publisher. The §63-7-67 text found in secondary sources was not promoted; need the current official provision and related orders.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "MO",
@@ -324,7 +894,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "The official provision found concerns studded tires only. It does not verify truck-chain permissions, carry duties or placement.",
+    "researchLeads": [
+      {
+        "url": "https://revisor.mo.gov/main/OneSection.aspx?section=307.171",
+        "checkedOn": "2026-11-04",
+        "finding": "The official provision found concerns studded tires only. It does not verify truck-chain permissions, carry duties or placement."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "The official provision found concerns studded tires only. It does not verify truck-chain permissions, carry duties or placement.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "MT",
@@ -337,7 +936,29 @@ const data=[
     "carry": "Towing units ≥26,001 GVW must carry chains/approved devices in areas where chains may be required, subject to the listed four-wheel-drive exception.",
     "season": "Carry: October 1–April 30 in designated areas. Chain-use orders can occur year-round.",
     "configuration": "Towing units; do not apply this summary’s exception to an ordinary highway tractor without verifying applicability.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "limited",
+        "source": "https://mdt.mt.gov/travinfo/chains.aspx"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://mdt.mt.gov/travinfo/chains.aspx"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://mdt.mt.gov/travinfo/chains.aspx"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://mdt.mt.gov/travinfo/chains.aspx"
+      }
+    }
   },
   {
     "code": "NE",
@@ -350,7 +971,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "NV",
@@ -363,7 +1006,29 @@ const data=[
     "carry": "Seasonal/configuration-specific carry provisions require additional review; do not assume none.",
     "season": "Posted icy/snowy-road controls apply; fixed carry dates are not established here.",
     "configuration": "Use NDOT’s current vehicle-specific placement guidance, including trailer braking-wheel requirements; this statute excerpt does not specify every tire position.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": "https://www.leg.state.nv.us/Division/Legal/LawLibrary/NRS/NRS-484D.html"
+      },
+      "season": {
+        "status": "unresolved",
+        "source": "https://www.leg.state.nv.us/Division/Legal/LawLibrary/NRS/NRS-484D.html"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://www.leg.state.nv.us/Division/Legal/LawLibrary/NRS/NRS-484D.html"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://www.leg.state.nv.us/Division/Legal/LawLibrary/NRS/NRS-484D.html"
+      }
+    }
   },
   {
     "code": "NH",
@@ -376,7 +1041,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "Saf-C 1313.21 permits chains for school buses. That is not sufficient evidence for general commercial tractor-trailer rules.",
+    "researchLeads": [
+      {
+        "url": "https://gc.nh.gov/rules/state_agencies/saf-c1300.html",
+        "checkedOn": "2026-11-04",
+        "finding": "Saf-C 1313.21 permits chains for school buses. That is not sufficient evidence for general commercial tractor-trailer rules."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Saf-C 1313.21 permits chains for school buses. That is not sufficient evidence for general commercial tractor-trailer rules.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "NJ",
@@ -389,7 +1083,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "Official statute-search results were found for tire equipment, but the operative chain-specific §39:3-73 text was not retrieved. Need the current official provision and emergency-route rules.",
+    "researchLeads": [
+      {
+        "url": "https://www.njleg.state.nj.us/",
+        "checkedOn": "2026-11-04",
+        "finding": "Official statute-search results were found for tire equipment, but the operative chain-specific §39:3-73 text was not retrieved. Need the current official provision and emergency-route rules."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Official statute-search results were found for tire equipment, but the operative chain-specific §39:3-73 text was not retrieved. Need the current official provision and emergency-route rules.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "NM",
@@ -402,7 +1125,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "Secondary §66-3-847 text was located, but no usable operative official text was retrieved. Need official current text and any posted commercial restrictions.",
+    "researchLeads": [
+      {
+        "url": "https://nmonesource.com/",
+        "checkedOn": "2026-11-04",
+        "finding": "Secondary §66-3-847 text was located, but no usable operative official text was retrieved. Need official current text and any posted commercial restrictions."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Secondary §66-3-847 text was located, but no usable operative official text was retrieved. Need official current text and any posted commercial restrictions.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "NY",
@@ -415,7 +1167,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency."
+    "note": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "NC",
@@ -428,7 +1202,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "ND",
@@ -441,7 +1237,29 @@ const data=[
     "carry": "No mandatory chain law identified in the reviewed patrol FAQ.",
     "season": "Studded-tire dates are a different topic; do not use them as chain-use dates.",
     "configuration": "No commercial chain placement pattern established by this FAQ.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "limited",
+        "source": "https://www.statepatrol.nd.gov/NDHPFAQ"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://www.statepatrol.nd.gov/NDHPFAQ"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://www.statepatrol.nd.gov/NDHPFAQ"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://www.statepatrol.nd.gov/NDHPFAQ"
+      }
+    }
   },
   {
     "code": "OH",
@@ -454,7 +1272,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "OK",
@@ -467,7 +1307,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "The official statute text includes vehicle-capacity and seasonal qualifications whose scope needs review. No general truck permission is asserted."
+    "note": "Official §47-12-405 includes two-ton and November–April qualifications. Do not assert unrestricted heavy-truck permission without resolving their applicability.",
+    "researchLeads": [
+      {
+        "url": "https://govt.westlaw.com/okjc/Document/ND74D6D70EE6711EBAEBABD965111B44B?viewType=FullText",
+        "checkedOn": "2026-11-04",
+        "finding": "Official §47-12-405 includes two-ton and November–April qualifications. Do not assert unrestricted heavy-truck permission without resolving their applicability."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Official §47-12-405 includes two-ton and November–April qualifications. Do not assert unrestricted heavy-truck permission without resolving their applicability.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "OR",
@@ -480,7 +1349,29 @@ const data=[
     "carry": "Carry the correct type, size and number where signed.",
     "season": "Weather/sign-based requirements; this summary does not establish a fixed statewide carry season.",
     "configuration": "Example only: a ≥26,001 lb tandem-drive tractor/semitrailer uses four drive-tire chains under the allowed drive-axle patterns, plus two on one semitrailer axle, one each side. Other combinations differ.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "limited",
+        "source": "https://www.oregon.gov/odot/mct/pages/chains-and-traction-tires.aspx"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://www.oregon.gov/odot/mct/pages/chains-and-traction-tires.aspx"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://www.oregon.gov/odot/mct/pages/chains-and-traction-tires.aspx"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://www.oregon.gov/odot/mct/pages/chains-and-traction-tires.aspx"
+      }
+    }
   },
   {
     "code": "PA",
@@ -493,7 +1384,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "RI",
@@ -506,20 +1419,64 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "SC",
     "name": "South Carolina",
     "roadUrl": "https://www.511sc.org/",
-    "source": null,
-    "summary": "Commercial chain requirements have not been verified for this state. Consult the official transportation/enforcement agency before travel.",
-    "scope": "unverified",
-    "verifiedOn": null,
+    "source": "https://www.scstatehouse.gov/code/t56c005.php",
+    "summary": "Current §56-5-5040 permits appropriately proportioned chains for snow, ice or skid-producing conditions. This permission does not establish the absence of carry, placement or emergency rules.",
+    "scope": "limited statutory excerpt",
+    "verifiedOn": "2026-11-04",
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "This is a limited source review, not a complete commercial chain-law determination. Other vehicle, route and emergency rules may apply.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "SD",
@@ -532,7 +1489,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "TN",
@@ -545,7 +1524,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "Secondary §55-9-106(c) permission was located, but no operative primary text was retrieved. Need official current provision or agency confirmation.",
+    "researchLeads": [
+      {
+        "url": "https://www.tn.gov/safety.html",
+        "checkedOn": "2026-11-04",
+        "finding": "Secondary §55-9-106(c) permission was located, but no operative primary text was retrieved. Need official current provision or agency confirmation."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Secondary §55-9-106(c) permission was located, but no operative primary text was retrieved. Need official current provision or agency confirmation.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "TX",
@@ -558,7 +1566,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency."
+    "note": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "This excerpt does not establish every commercial carry, placement or emergency restriction. Verify the remaining fields with the responsible agency.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "UT",
@@ -571,7 +1601,29 @@ const data=[
     "carry": "Not established by this source review.",
     "season": "Weather and designated-segment controls; check the current R920-6 class and order.",
     "configuration": "For heavy-vehicle dual mountings, UDOT explains one tire per dual pair. Confirm the segment class, vehicle weight and applicable exceptions.",
-    "note": "UDOT business and public summaries use slightly different weight/class wording; use the current rule/order for borderline cases."
+    "note": "UDOT business and public summaries use slightly different weight/class wording; use the current rule/order for borderline cases.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "UDOT business and public summaries use slightly different weight/class wording; use the current rule/order for borderline cases.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": "https://connect.udot.utah.gov/public/snow-tire-and-chain-up-requirements/"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://connect.udot.utah.gov/public/snow-tire-and-chain-up-requirements/"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://connect.udot.utah.gov/public/snow-tire-and-chain-up-requirements/"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://connect.udot.utah.gov/public/snow-tire-and-chain-up-requirements/"
+      }
+    }
   },
   {
     "code": "VT",
@@ -584,7 +1636,29 @@ const data=[
     "carry": "Not established as a separate seasonal carry duty by this section.",
     "season": "Posted winter-weather controls.",
     "configuration": "The law lists distinct solo, trailer and semitrailer patterns. Tandem-drive/semitrailer example: four drive chains under permitted patterns plus two on one semitrailer axle, one each side.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": "https://legislature.vermont.gov/statutes/section/23/013/01006c"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://legislature.vermont.gov/statutes/section/23/013/01006c"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://legislature.vermont.gov/statutes/section/23/013/01006c"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://legislature.vermont.gov/statutes/section/23/013/01006c"
+      }
+    }
   },
   {
     "code": "VA",
@@ -597,7 +1671,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "WA",
@@ -610,7 +1706,29 @@ const data=[
     "carry": "Vehicles/combinations over 10,000 lb GVWR on listed routes must carry sufficient chains, including required spare chains under the rule.",
     "season": "November 1–April 1 on the routes listed in the rule, and other times when required.",
     "configuration": "The rule provides separate solo, trailer and tandem-drive patterns; do not infer placement from axle count alone.",
-    "note": "Other WSDOT summary pages use differing season wording. This entry uses the regulation; check its current route list and exceptions."
+    "note": "Other WSDOT summary pages use differing season wording. This entry uses the regulation; check its current route list and exceptions.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Other WSDOT summary pages use differing season wording. This entry uses the regulation; check its current route list and exceptions.",
+    "fieldReview": {
+      "carry": {
+        "status": "limited",
+        "source": "https://apps.leg.wa.gov/wac/default.aspx?cite=204-24-050"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://apps.leg.wa.gov/wac/default.aspx?cite=204-24-050"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://apps.leg.wa.gov/wac/default.aspx?cite=204-24-050"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://apps.leg.wa.gov/wac/default.aspx?cite=204-24-050"
+      }
+    }
   },
   {
     "code": "WV",
@@ -623,7 +1741,29 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified."
+    "note": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Permission to use chains is not proof that no carry, installation or emergency restriction applies. Full commercial requirements remain unverified.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "WI",
@@ -636,7 +1776,36 @@ const data=[
     "carry": null,
     "season": null,
     "configuration": null,
-    "note": ""
+    "note": "Official §347.45 page was inaccessible to the research tool. Secondary text was not promoted; obtain a readable current official copy.",
+    "researchLeads": [
+      {
+        "url": "https://docs.legis.wisconsin.gov/statutes/statutes/347/iii/45",
+        "checkedOn": "2026-11-04",
+        "finding": "Official §347.45 page was inaccessible to the research tool. Secondary text was not promoted; obtain a readable current official copy."
+      }
+    ],
+    "reviewStatus": "unresolved",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Official §347.45 page was inaccessible to the research tool. Secondary text was not promoted; obtain a readable current official copy.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": null
+      },
+      "season": {
+        "status": "unresolved",
+        "source": null
+      },
+      "configuration": {
+        "status": "unresolved",
+        "source": null
+      },
+      "installation": {
+        "status": "unresolved",
+        "source": null
+      }
+    }
   },
   {
     "code": "WY",
@@ -649,7 +1818,29 @@ const data=[
     "carry": "Not established by this source review.",
     "season": "Restrictions activated on specific highway sections when conditions warrant.",
     "configuration": "Commercial-vehicle Level 2 example only; closures and instructions may further restrict travel.",
-    "note": ""
+    "note": "",
+    "reviewStatus": "limited",
+    "reviewAttemptOn": "2026-11-04",
+    "fullyReviewed": false,
+    "reviewBlocker": "Carry, installation, season, configuration, exemptions and active orders have not all been reconciled against operative primary sources.",
+    "fieldReview": {
+      "carry": {
+        "status": "unresolved",
+        "source": "https://www.dot.state.wy.us/home/travel/winter/chain_law.html"
+      },
+      "season": {
+        "status": "limited",
+        "source": "https://www.dot.state.wy.us/home/travel/winter/chain_law.html"
+      },
+      "configuration": {
+        "status": "limited",
+        "source": "https://www.dot.state.wy.us/home/travel/winter/chain_law.html"
+      },
+      "installation": {
+        "status": "limited",
+        "source": "https://www.dot.state.wy.us/home/travel/winter/chain_law.html"
+      }
+    }
   }
 ];
 root.HubChainRegulations=data;if(typeof module!=="undefined")module.exports=data;

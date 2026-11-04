@@ -108,3 +108,15 @@ No production release is ready or authorized. Before requesting the two separate
 6. If an approved release fails, restore the recorded last known-good website version and separately restore any specifically approved configuration changes. Since no database migration is proposed, no database rollback is currently anticipated.
 
 Neither successful local tests nor this checkpoint grants staging acceptance or production approval.
+
+## Follow-up review — November 4
+
+Starting checkpoint: 0cf2c6073ee5f4e2339e68f01636ea9880c0ca68. Follow-up supersedes the earlier counts in this document: **211 automated tests passed, zero failures**. Coverage adds per-model orientation, two seven-hook cable tensioners, bare-wheel preparation, side-drape semantics, complete 50-state review dispositions, prevention of false full-review promotion, worksheet structure, stable axle-button focus and stable curve live-region updates.
+
+Manufacturer corrections and exact source crosswalk: CHAIN-MANUAL-REVIEW.md. The five decisions are explicitly grouped learning topics, not the manufacturers' numbered procedure. Curve live text now changes only when its content changes; axle selection retains its button node and keyboard focus.
+
+Instructor guide: instructor-review.html, linked within existing Driver Safety content. It contains six independent banking expectations, model illustrations, source links, inspection prompts and 12 labelled review decisions with notes. No network, Auth or persisted member data. Browser visual check: worksheet readable, no desktop horizontal overflow, no duplicate IDs, 12 selects and notes labelled, four named diagram images. This is a basic accessibility check, not WCAG certification or screen-reader validation. Actual device/Safari, physical chain fit and instructor acceptance remain outstanding.
+
+Regulatory status is now **0 fully reviewed, 37 limited, 13 unresolved**. The directory exposes field-level limitations, specific holds and non-authoritative research leads. CHAIN-SOURCE-REVIEW.md lists every state's remaining work. Complete 50-state regulatory verification is still a blocking requirement.
+
+Connected email tests were not run. AUTH-SMTP-ISOLATION-CHECKLIST.md records code evidence versus unknown backend settings and recipient containment. DEVELOPMENT-DIVERGENCE.md records the 85-ahead/2-behind starting snapshot and selective future release proposal. No merge, deployment, production approval request or production/member access occurred.
