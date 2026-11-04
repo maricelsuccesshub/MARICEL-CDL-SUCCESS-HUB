@@ -12,6 +12,8 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />                            
   <script src="member-config.js"></script>
+  <script src="member-confirmation.js"></script>
+  <link rel="stylesheet" href="safety-trainers.css">
   <script src="member-navigation.js?v=57"></script>
   <meta name="referrer" content="no-referrer" />
   <script src="vendor/supabase-2.105.0.js"></script>
@@ -136,7 +138,18 @@ Created by Coach Maricel • Supporting aspiring CDL drivers and experienced tru
   </details></div>
 </aside>
 <div id="memberControls"><span id="memberIdentity"></span><button type="button" onclick="memberSignOut()">Sign out</button></div>
-<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your own free account to explore the study dashboard. Your profile and practice progress are private to your account. Use a password you do not use elsewhere.</p><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><div id="passkeyLogin"><button id="passkeySignIn" class="btn light" type="button" disabled>Sign in with a passkey</button><p id="passkeyLoginHelp" class="small" role="status" aria-live="polite">Checking passkey availability…</p></div><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Use with caution, at your own discretion and risk. This Hub supplements learning; it does not replace qualified training, inspections, official requirements or your judgment. Use only while safely parked. <a href="disclaimer.html">Read the full disclaimer</a>.</p></div>
+<div id="memberGate"><h2>🚛 Welcome to CDL Success Hub</h2><p>Create your own free account to explore the study dashboard. Your profile and practice progress are private to your account. Use a password you do not use elsewhere.</p><div id="memberConfirmation" class="card" hidden aria-labelledby="memberConfirmationTitle">
+<h3 id="memberConfirmationTitle" tabindex="-1">Check your email to finish signing up</h3>
+<p id="memberConfirmationAddress"></p><p><strong>Check Spam, Junk and Promotions as well as your Inbox.</strong> Delivery can take a few minutes. Search for CDL Success Hub or the signup confirmation, then open the newest link you requested.</p>
+<ol><li>Confirm that you entered the correct email address.</li><li>Open the confirmation link in your email.</li><li>Return here and sign in if this browser has not signed you in.</li></ol>
+<p class="small">A request being accepted does not prove that an email was delivered. If the address already belongs to an account, sign in or use password recovery.</p>
+<button id="memberPendingResend" class="btn" type="button" onclick="memberResend()">Resend confirmation email</button>
+<p id="memberResendWait" class="small"></p>
+<button id="memberCheckVerification" class="btn light" type="button" onclick="memberCheckVerification()">I opened the link — check this browser</button>
+<button id="memberCorrectEmail" class="btn light" type="button" onclick="memberCorrectEmail()">Correct my email address</button>
+<p class="small">Correcting an unverified email starts signup again at the new address. It does not rename or delete the original account.</p>
+<button class="btn light" type="button" onclick="memberMode('signin')">Back to sign in</button>
+</div><div id="memberTabs" class="auth-tabs"><button id="memberTabSignIn" class="selected" type="button" onclick="memberMode('signin')">Sign in</button><button id="memberTabSignUp" type="button" onclick="memberMode('signup')">Create account</button></div><form id="memberForm"><label id="memberEmailLabel" for="memberEmail">Email</label><input id="memberEmail" type="email" autocomplete="email" required><label id="memberPasswordLabel" for="memberPassword">Password</label><input id="memberPassword" type="password" minlength="8" autocomplete="current-password" required><button id="memberSubmit" class="btn" type="submit">Sign in</button></form><div id="passkeyLogin"><button id="passkeySignIn" class="btn light" type="button" disabled>Sign in with a passkey</button><p id="passkeyLoginHelp" class="small" role="status" aria-live="polite">Checking passkey availability…</p></div><button id="memberForgotButton" class="btn light" type="button" onclick="memberMode('reset')">Forgot password?</button><button id="memberResendButton" class="btn light" type="button" onclick="memberResend()">Resend verification email</button><p id="memberMessage" role="status" aria-live="polite"></p><p class="small">Use with caution, at your own discretion and risk. This Hub supplements learning; it does not replace qualified training, inspections, official requirements or your judgment. Use only while safely parked. <a href="disclaimer.html">Read the full disclaimer</a>.</p></div>
 <dialog id="memberNameDialog" class="member-name-dialog" aria-labelledby="memberNameTitle" aria-describedby="memberNameHelp"><h2 id="memberNameTitle">What should we call you? 💛</h2><p id="memberNameHelp">Choose a first name or nickname for your welcome message. This stays in your private profile; it does not change your Community name or make you publicly listed.</p><form id="memberNameForm"><label for="memberNameInput">Your preferred name</label><input id="memberNameInput" name="preferredName" maxlength="100" autocomplete="nickname" enterkeyhint="done"><p class="small">No legal name required. You can change this anytime in My Profile.</p><p class="small">Want to post, comment or leave feedback? You can set up an optional Community profile next. You choose its display name; photos and messaging remain optional. There is no member directory.</p><p id="memberNameStatus" role="status" aria-live="polite"></p><div class="name-actions"><button id="memberNameSave" class="btn" type="submit">Save my name</button><button id="memberNameCommunity" class="btn light" type="button" onclick="saveMemberName(event,true)">Save &amp; set up Community</button><button id="memberNameLater" class="btn light" type="button" onclick="dismissMemberName()">Not now</button></div></form></dialog>
 <nav id="nav" aria-label="Main navigation" hidden></nav>
 <div id="subnav" aria-label="Section navigation" hidden></div>
@@ -442,6 +455,10 @@ Created by Coach Maricel • Supporting aspiring CDL drivers and experienced tru
 </section>
 
 <section id="resources">
+<div class="card"><h2>Driver Safety Practice</h2><p>Parked, interactive study for curves and winter preparation. Open one topic at a time.</p>
+<details class="safety-module" id="curveTrainer"><summary>Curve Awareness — high side, low side &amp; offtracking</summary><div id="curveRoot"></div></details>
+<details class="safety-module" id="winterAcademy"><summary>Winter Driving Academy — snow chain installation simulator</summary><div id="chainRoot"></div></details>
+<details class="safety-module" id="stateRegulations"><summary>State Regulations — chain requirements &amp; official sources</summary><div id="chainRegulationsRoot"></div></details></div>
   <div class="card"><h2>Safety &amp; Resources</h2><p class="lead">Quick reminders to review before practice or a trip. Follow your instructor and official guidance.</p>
     <div class="list-item"><strong>Pre-Trip Reminder</strong><br>Review tires, lights, brakes, leaks, coupling, mirrors, fluids, paperwork and safety equipment. This is a reminder only, not a complete inspection or brake-test procedure. Follow your instructor, equipment guidance and current inspection checklist.</div>
     <div class="list-item"><strong>GOAL Rule</strong><br>When unsure, stop and secure the vehicle before getting out to look. Inspect the full intended path, including the sides and overhead space.</div>
@@ -564,15 +581,59 @@ const SUPABASE_KEY = window.MEMBER_CONFIG?.publishableKey || '';
 
 // Static training assets are public. Supabase RLS protects member data.
 // Development must use a separate Supabase project; no fallback to production.
-const memberClient=SUPABASE_URL&&SUPABASE_KEY?window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{experimental:{passkey:true}}}):null;
+const memberClient=SUPABASE_URL==='https://gndommbrsfvejocipukj.supabase.co'&&SUPABASE_KEY&&(window.HUB_LOCAL_MOCK===true||window.MEMBER_CONFIG?.connectedTestingApproved===true)?window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{experimental:{passkey:true}}}):null;
 let memberProfileRevision=0,memberProfileSaving=false,memberNamePromptDismissed=false;
 let memberAuthMode='signin', memberUserId=null, memberRecovery=false, memberGeneration=0, memberScreenChange=0;
 const memberEl=id=>document.getElementById(id);
 const memberMessage=text=>memberEl('memberMessage').textContent=text;
-const memberRedirect=()=>location.origin+location.pathname;
+let memberConfirmationStorage;try{memberConfirmationStorage=window.sessionStorage;}catch{}
+const memberConfirmation=window.createConfirmationController({storage:memberConfirmationStorage});
+let memberPendingEmail='',memberRequestBusy=false,memberStatusBusy=false;
+const memberRedirect=()=>{
+  const allowed=window.MEMBER_CONFIG?.redirectUrls||[];
+  const target=location.origin+location.pathname;
+  if(!allowed.includes(target))throw Error('This testing address is not approved for email redirects.');
+  return target;
+};
+function memberConfirmationSync(){
+ const wait=memberConfirmation.remaining(),busy=memberRequestBusy||memberConfirmation.busy();
+ ['memberPendingResend','memberResendButton'].forEach(id=>{memberEl(id).disabled=busy||wait>0;});
+ memberEl('memberResendWait').textContent=wait?'You can request another email in '+wait+' seconds.':'';
+ memberEl('memberCorrectEmail').disabled=memberRequestBusy;
+}
+function memberShowConfirmation(email){
+ memberPendingEmail=email;memberEl('memberConfirmationAddress').textContent='Email entered: '+email;
+ memberEl('memberConfirmation').hidden=false;memberEl('memberForm').hidden=true;
+ memberEl('memberTabs').hidden=true;memberEl('memberForgotButton').hidden=true;memberEl('memberResendButton').hidden=true;
+ window.memberPasskeyModeChanged?.();memberEl('passkeyLogin').hidden=true;
+ memberConfirmationSync();memberEl('memberConfirmationTitle').focus?.();
+}
+function memberCorrectEmail(){
+ if(memberRequestBusy)return;
+ const email=memberPendingEmail;memberMode('signup');memberEl('memberEmail').value=email;
+ memberEl('memberPassword').value='';memberEl('memberEmail').focus?.();
+ memberMessage('Enter the new email and a password, then create your account again. The original account is unchanged.');
+}
+async function memberCheckVerification(){
+ if(!memberClient||memberStatusBusy)return;memberStatusBusy=true;memberEl('memberCheckVerification').disabled=true;
+ try{
+  const {data,error}=await memberClient.auth.getUser();if(error){
+   if(error.name==='AuthSessionMissingError'||error.code==='session_not_found'){
+    memberMessage('No signed-in session in this browser. If you verified in another browser or device, return to sign in here.');return;
+   }throw error;
+  }
+  if(data?.user?.email_confirmed_at){
+   const {data:current,error:sessionError}=await memberClient.auth.getSession();if(sessionError)throw sessionError;
+   if(current?.session?.user?.id===data.user.id&&current.session.user.email_confirmed_at){memberDisplay(current.session);memberMessage('Email verified. You are signed in.');}
+   else memberMessage('Your email is verified. Return to sign in to continue.');
+  }else memberMessage('Verification is not confirmed in this browser. Open the newest email link, then sign in. Verification in another browser does not sign you in here.');
+ }catch{memberMessage('Unable to check verification. Check your connection, then try again or return to sign in.');}
+ finally{memberStatusBusy=false;memberEl('memberCheckVerification').disabled=false;}
+}
+if(typeof setInterval==='function')setInterval(memberConfirmationSync,1000);
 function memberMode(mode){
-  if(memberRecovery && mode!=='recover')return;
-  memberAuthMode=mode;
+  if(memberRequestBusy||memberRecovery && mode!=='recover')return;
+  memberAuthMode=mode;memberPendingEmail='';memberEl('memberConfirmation').hidden=true;memberEl('memberForm').hidden=false;memberEl('memberPassword').value='';
   const recover=mode==='recover',reset=mode==='reset';
   memberEl('memberTabSignIn').classList.toggle('selected',mode==='signin');
   memberEl('memberTabSignUp').classList.toggle('selected',mode==='signup');
@@ -589,11 +650,12 @@ function memberMode(mode){
 }
 function memberDisplay(session){
   const signedIn=Boolean(session?.user?.email_confirmed_at)&&!memberRecovery;
+  if(signedIn){memberPendingEmail='';memberEl('memberConfirmation').hidden=true;}
   const previous=memberUserId;memberUserId=signedIn?session.user.id:null;
   memberEl('memberGate').hidden=signedIn;memberEl('memberMain').hidden=!signedIn;memberEl('nav').hidden=!signedIn;if(!signedIn)memberEl('subnav').hidden=true;
   memberEl('memberControls').style.display=signedIn?'flex':'none';
   memberEl('memberIdentity').textContent=signedIn?session.user.email:'';
-  if(previous!==memberUserId){resetMemberNamePrompt();if(previous)window.hubNavigation?.clear(previous);memberGeneration++;window.memberPasskeysReset?.();window.communityReset?.();window.lessonsReset?.();window.roadReadinessReset?.();window.cdlKnowledgeReset?.();window.pretripReset?.();window.airBrakesReset?.();window.incabReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['memberPassword','progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
+  if(previous!==memberUserId){resetMemberNamePrompt();if(previous)window.hubNavigation?.clear(previous);memberGeneration++;window.memberPasskeysReset?.();window.communityReset?.();window.lessonsReset?.();window.roadReadinessReset?.();window.cdlKnowledgeReset?.();window.pretripReset?.();window.airBrakesReset?.();window.incabReset?.();window.safetyTrainersReset?.(); memberEl('profileName').value='';memberEl('profileEmail').textContent='';memberEl('profileSaved').textContent='';memberEl('progressList').textContent='';memberEl('facilityList').innerHTML='<p class="small">Your private notes will appear here.</p>';memberEl('facilitySaved').textContent='';memberEl('safeHavenSaved').textContent='';memberEl('dashboardWelcomeName').textContent='👋 Welcome, Driver!';memberEl('dashboardProgressSummary').innerHTML='<p class="small">Your latest private practice entry will appear here.</p>';['memberPassword','progressBacking','progressWin','progressImprove','progressDate','facilityName','facilityAddress','entranceLat','entranceLon','guardLat','guardLon','entranceNotes','guardNotes','approachNotes','currentLocation','deliveryAddress','appointmentDate','appointmentTime','manualLat','manualLon','safeSearchLocation','safeHavenName','safeHavenCity','safeHavenState','foodNearby','safeHavenNotes','postTopic','postMessage'].forEach(id=>memberEl(id).value='');memberEl('confidence').value='1 - Very Nervous';memberEl('autoPlanResult').textContent='';window.cancelTripLookup?.();}
   // Defer Supabase queries outside the auth callback to avoid auth lock deadlocks.
   if(signedIn&&previous!==memberUserId){
     const id=memberUserId,generation=memberGeneration,revision=memberScreenChange;
@@ -608,13 +670,22 @@ async function memberSignOut(){
   catch(e){alert('Could not sign out. Check your connection and retry.');}
 }
 async function memberResend(){
-  if(!memberClient||!memberEl('memberEmail').reportValidity())return;
-  try{const {error}=await memberClient.auth.resend({type:'signup',email:memberEl('memberEmail').value.trim(),options:{emailRedirectTo:memberRedirect()}});if(error)throw error;memberMessage('If verification is needed, check your email for a new link.');}catch(e){memberMessage('Unable to resend. Please wait before trying again.');}
+  if(!memberClient||memberRequestBusy)return;
+  const email=memberPendingEmail||memberEl('memberEmail').value.trim();
+  if(!memberPendingEmail&&!memberEl('memberEmail').reportValidity())return;
+  if(!memberConfirmation.start()){memberMessage('Please wait before requesting another email.');return;}
+  memberConfirmationSync();
+  try{const {error}=await memberClient.auth.resend({type:'signup',email,options:{emailRedirectTo:memberRedirect()}});if(error)throw error;
+   memberConfirmation.hold();memberShowConfirmation(email);memberMessage('If verification is needed, a new email has been requested. Check Spam, Junk and Promotions. Use the newest link.');
+  }catch(e){memberConfirmation.hold();memberMessage(memberConfirmation.error(e));}
+  finally{memberConfirmation.finish();memberConfirmationSync();}
 }
 document.getElementById('memberForm').addEventListener('submit',async event=>{
-  event.preventDefault();if(!memberClient||window.memberPasskeysBusy?.())return;
+  event.preventDefault();if(!memberClient||memberRequestBusy||memberConfirmation.busy()||window.memberPasskeysBusy?.())return;
   const email=memberEl('memberEmail').value.trim(),password=memberEl('memberPassword').value,mode=memberAuthMode;
-  memberEl('memberSubmit').disabled=true;memberMessage('Please wait…');
+  const sendsEmail=mode==='signup'||mode==='reset';
+  if(sendsEmail&&!memberConfirmation.start()){memberMessage('Please wait '+memberConfirmation.remaining()+' seconds before requesting another email.');return;}
+  memberRequestBusy=true;memberEl('memberSubmit').disabled=true;memberConfirmationSync();memberMessage('Please wait…');
   try{
     let result;
     if(mode==='reset')result=await memberClient.auth.resetPasswordForEmail(email,{redirectTo:memberRedirect()});
@@ -622,11 +693,14 @@ document.getElementById('memberForm').addEventListener('submit',async event=>{
     else if(mode==='signup')result=await memberClient.auth.signUp({email,password,options:{emailRedirectTo:memberRedirect()}});
     else result=await memberClient.auth.signInWithPassword({email,password});
     if(result.error)throw result.error;
-    memberEl('memberPassword').value='';
-    if(mode==='recover'){memberRecovery=false;await memberClient.auth.signOut();memberDisplay(null);memberMode('signin');memberMessage('Password updated. Sign in with your new password.');}
-    else memberMessage(mode==='reset'?'If an account exists, recovery instructions will be sent.':mode==='signup'?'Check your email to verify your account, then sign in.':'Signed in successfully.');
-  }catch(e){memberMessage(mode==='signin'?'Unable to sign in. Check your credentials and verify your email.':mode==='recover'?'Could not update password. Request a fresh recovery link and try again.':'Unable to complete the request. Please check your connection and try again later.');}
-  finally{memberEl('memberSubmit').disabled=false;}
+    memberEl('memberPassword').value='';if(sendsEmail)memberConfirmation.hold();
+    if(mode==='recover'){memberRecovery=false;const signedOut=await memberClient.auth.signOut();if(signedOut.error)throw signedOut.error;memberDisplay(null);memberRequestBusy=false;memberMode('signin');memberMessage('Password updated. Sign in with your new password.');}
+    else if(mode==='signup'&&!result.data?.session){memberShowConfirmation(email);memberMessage('Check your email to verify your account. Check Spam, Junk and Promotions too.');}
+    else if(mode==='reset')memberMessage('If an account exists, recovery instructions will be sent. Check Inbox, Spam, Junk and Promotions.');
+    else memberMessage('Signed in successfully.');
+  }catch(e){if(sendsEmail)memberConfirmation.hold();
+    memberMessage(e?.code==='email_not_confirmed'?memberConfirmation.error(e):mode==='signin'?'Unable to sign in. Check your credentials and verify your email. Use Resend verification email if needed.':mode==='recover'?'Could not update password. Request a fresh recovery link and try again.':memberConfirmation.error(e));
+  }finally{memberRequestBusy=false;memberConfirmation.finish();memberEl('memberSubmit').disabled=false;memberConfirmationSync();}
 });
 if(memberClient){
   memberClient.auth.onAuthStateChange((event,session)=>{
@@ -634,8 +708,8 @@ if(memberClient){
     memberDisplay(session);
   });
   memberClient.auth.getSession().then(({data,error})=>{if(error)throw error;memberDisplay(data.session);}).catch(()=>{memberDisplay(null);memberMessage('Session could not be restored. Please sign in again.');});
-  if(new URLSearchParams(location.hash.slice(1)).has('error')){memberMessage('This email link is invalid or expired. Request a new link.');history.replaceState(null,'',location.pathname);}
-}else memberMessage('Sign-in service is unavailable. Please refresh the page.');
+  if(new URLSearchParams(location.hash.slice(1)).has('error')||new URLSearchParams(location.search||'').has('error')){memberMode('signin');memberMessage('This email link is invalid, expired or already used. Enter your email and choose Resend verification email. For a password-reset link, choose Forgot password instead.');history.replaceState(null,'',location.pathname);}
+}else memberMessage('Development preview: connected sign-in is disabled until isolation checks pass. Use the local mock preview for testing.');
 function setMemberProfileBusy(value){
   memberProfileSaving=value;
   ['profileSaveButton','memberNameSave','memberNameCommunity','memberNameLater'].forEach(id=>{const el=memberEl(id);if(el)el.disabled=value;});
@@ -744,7 +818,7 @@ function showScreen(id){
   const target=document.getElementById(id);if(!target)return;
   memberScreenChange++;window.hubNavigation?.remember(memberUserId,id,screenGroups);
   document.body.classList.toggle('lessons-open',id==='lesson'||id==='starter'||id==='cdlknowledge'||id==='pretrip'||id==='airbrakes'||id==='incab');if(id==='incab'){window.renderIncab?.();const beta=document.getElementById('betaNoticeDetails');if(beta)beta.open=false;}if(id==='airbrakes'){window.renderAirBrakes?.();const beta=document.getElementById('betaNoticeDetails');if(beta)beta.open=false;}if(id==='pretrip'){window.renderPretrip?.();const beta=document.getElementById('betaNoticeDetails');if(beta)beta.open=false;}if(id==='cdlknowledge'){window.renderCdlKnowledge?.();const beta=document.getElementById('betaNoticeDetails');if(beta)beta.open=false;}if(id==='starter'){window.renderRoadReadiness?.();const beta=document.getElementById('betaNoticeDetails');if(beta)beta.open=false;}if(id==='lesson'){const beta=document.getElementById('betaNoticeDetails');if(beta)beta.open=false;window.renderLessons?.();}
-  document.querySelectorAll('main > section').forEach(screen=>screen.classList.remove('active'));target.classList.add('active');window.communityViewChanged?.();
+  document.querySelectorAll('main > section').forEach(screen=>screen.classList.remove('active'));target.classList.add('active');window.communityViewChanged?.();window.safetyViewChanged?.(id);
   document.querySelectorAll('#nav button[data-screen]').forEach(button=>{const selected=button.dataset.screen===id;button.classList.toggle('active',selected);if(selected)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')});
   const group=screenGroups[id],primary=primaryNav.find(item=>item[0]===group),item=secondaryNav[group]?.find(item=>item[0]===id);
   document.getElementById('pageContext').textContent=primary[1]+(item?' / '+item[1]:id==='home'?' / My dashboard':'');
@@ -1511,7 +1585,10 @@ window.straightAnswer = function(choice) {
 <script src="trip-planner.js?v=29"></script>
 <script src="member-passkeys.js?v=30"></script>
 <script src="lessons.js?v=50"></script><script src="road-readiness-data.js?v=51"></script><script src="road-readiness.js?v=53"></script><script src="cdl-knowledge-data.js?v=52"></script><script src="cdl-knowledge.js?v=53"></script><script src="pretrip-data.js?v=58"></script><script src="pretrip-visuals.js?v=55"></script><script src="pretrip.js?v=55"></script><script src="air-brakes-data.js?v=58"></script><script src="air-brakes.js?v=58"></script><script src="incab-data.js?v=58"></script><script src="incab.js?v=57"></script>
-<aside class="hub-support-bar" aria-label="Optional support for Maricel CDL Success Hub"><div class="hub-support-copy"><strong>Optional support</strong><span>One-time tips help with costs. The Hub stays free.</span></div><a href="support.html" target="_blank" rel="noopener noreferrer" aria-label="Support the Hub — optional Stripe or Venmo support, opens a new tab">Support the Hub 💛 ↗</a></aside></body>
+<aside class="hub-support-bar" aria-label="Optional support for Maricel CDL Success Hub"><div class="hub-support-copy"><strong>Optional support</strong><span>One-time tips help with costs. The Hub stays free.</span></div><a href="support.html" target="_blank" rel="noopener noreferrer" aria-label="Support the Hub — optional Stripe or Venmo support, opens a new tab">Support the Hub 💛 ↗</a></aside><script src="safety-trainers.js"></script>
+<script src="chain-regulations-data.js"></script>
+<script src="chain-regulations.js"></script>
+</body>
 </html>
 
 

@@ -1,3 +1,5 @@
+> **Current checkpoint — November 4, 2026:** See [DEVELOPMENT-REVIEW.md](DEVELOPMENT-REVIEW.md). Connected authentication is disabled by default in this development build. Use the local synthetic preview. Earlier hosted-preview and SMTP descriptions below are historical and are not evidence of current isolation or testing. No production release is authorized.
+
 # Development environment
 
 The development branch uses the separate Free-plan Supabase project maricel-cdl-success-hub-dev (gndommbrsfvejocipukj). Production project and main are unchanged. member-config.js contains only its publishable key; no production fallback exists.

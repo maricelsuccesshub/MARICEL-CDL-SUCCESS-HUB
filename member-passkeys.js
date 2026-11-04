@@ -10,7 +10,7 @@ function sync(){
   el('passkeySignIn').disabled=busy||!enabled||!supported();
   el('passkeyAdd').disabled=busy||!enabled||!supported()||!memberUserId||memberRecovery;
   el('passkeyRefresh').disabled=busy||!memberUserId||memberRecovery;
-  const reason=location.hostname!==domain?'For passkeys, open https://maricelcdlsuccesshub.com. Password sign-in still works here.':!supported()?'Passkeys are unavailable in this browser. Use your email and password.':!checked?'Checking passkey availability…':!enabled?'Passkeys are not activated yet. Use your email and password for now.':'Already added a passkey? Use it here. Otherwise sign in with your password, then open My Profile → Security.';
+  const reason=location.hostname!==domain?'Passkeys are unavailable at this address. Use email and password.':!supported()?'Passkeys are unavailable in this browser. Use your email and password.':!checked?'Checking passkey availability…':!enabled?'Passkeys are not activated yet. Use your email and password for now.':'Already added a passkey? Use it here. Otherwise sign in with your password, then open My Profile → Security.';
   el('passkeyLoginHelp').textContent=reason;
 }
 function message(error){
@@ -24,6 +24,7 @@ function message(error){
 }
 async function availability(){
  checked=false;sync();
+ if(!memberClient){checked=true;enabled=false;sync();return;}
  try{const r=await fetch(SUPABASE_URL+'/auth/v1/settings',{headers:{apikey:SUPABASE_KEY},signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Settings unavailable');const d=await r.json();enabled=d.passkeys_enabled===true;}catch{enabled=false;}
  checked=true;sync();
 }
