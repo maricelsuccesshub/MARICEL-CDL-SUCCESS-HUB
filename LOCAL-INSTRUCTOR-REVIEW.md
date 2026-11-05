@@ -21,3 +21,9 @@ The server shares the generated preview folder with devices on that network, so 
 ## Device review checklist
 
 Mac Safari/Chrome and iPhone Safari: open both chain comparisons, read all labels at portrait width and enlarged text, use both model selectors, try wrong answers, test retry/reset, curve left/right/banking, pause/motion, registration guidance and state warnings. On Mac, use Tab/Shift-Tab/Enter/Space and VoiceOver; on iPhone use VoiceOver and pinch zoom. Record device, browser/version, viewport, result and issue. These manual checks remain pending until actually performed.
+
+## Updated visual exercise walkthrough
+
+In Safety & Resources, open Winter Driving Academy. Choose each supported product. In the new equipment panel: inspect correct/incorrect contact cutaways and hardware recognition drawings, enlarge if needed, try Check before placing, place over tread, check inside/outside connections, then choose that model's tensioning controls. Missing inside connection or cable tensioners must prevent completion. Explore twist, loose end and interference; clearing the teaching highlight does not repair actual equipment. Change models and verify the practice resets. Complete the existing gated decisions beneath the new panel.
+
+In Curve Awareness, compare both directions and each slope, then broad/tight curve examples, loaded/empty descriptions and 1×/2× relative speed. Compare forward, cross-section and overhead views. Tightening the curve only changes an illustrative offtracking example; it does not compute an actual swept path, radius, safe speed or load response. Use the updated worksheet for 15 review items. This is instructional review, not staging acceptance.

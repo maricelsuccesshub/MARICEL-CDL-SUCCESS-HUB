@@ -33,8 +33,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "AK",
@@ -68,8 +79,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://dot.alaska.gov/stwddes/dcstraffic/assets/pdf/atm/current/2026_atm.pdf"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "AZ",
@@ -103,8 +125,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "AR",
@@ -145,8 +178,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "CA",
@@ -180,8 +224,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://dot.ca.gov/travel/winter-driving-tips/chain-requirements"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "CO",
@@ -215,8 +270,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://www.codot.gov/safety/traffic-safety/assets/documents/must-carry-chains-signage-guidelines_20251029.pdf"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "CT",
@@ -257,7 +323,22 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false,
+    "researchFollowup": {
+      "attemptedOn": "2026-11-04",
+      "finding": "Current official chapter retrieval returned 502; no new operative rule verified."
     }
   },
   {
@@ -292,8 +373,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "FL",
@@ -334,7 +426,22 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false,
+    "researchFollowup": {
+      "attemptedOn": "2026-11-04",
+      "finding": "2026 rough-wheel statute retrieved; it does not establish chain-specific commercial placement or use conditions."
     }
   },
   {
@@ -354,6 +461,11 @@ const data=[
         "url": "https://dps.georgia.gov/document/publication/tire-chain-requirements-georgia-0/download",
         "checkedOn": "2026-11-04",
         "finding": "Older DPS handout says at least four drive tires; newer reproduced statute wording refers to outermost drive tires. Resolve current official §32-6-5 and exceptions before showing a placement rule."
+      },
+      {
+        "url": "https://rules.sos.ga.gov/gac/570-37",
+        "checkedOn": "2026-11-04",
+        "finding": "Official device definitions and standards reviewed. Operative statutory placement and agency leaflet reconciliation still needed; state remains unresolved."
       }
     ],
     "reviewStatus": "unresolved",
@@ -376,8 +488,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "limited",
+        "source": "https://rules.sos.ga.gov/gac/570-37"
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": "Limited device definition only: Georgia rule 570-37 defines metal chain construction and qualifying alternative traction devices. This does not resolve the commercial placement conflict or establish permission under a current order.",
+    "operationallyApproved": false
   },
   {
     "code": "HI",
@@ -411,8 +534,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "ID",
@@ -446,8 +580,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "IL",
@@ -481,8 +626,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "IN",
@@ -516,8 +672,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "IA",
@@ -551,8 +718,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "KS",
@@ -586,8 +764,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://kansashighwaypatrol.gov/find-a-troop/troop-location-map/technical-operations-bureau/troop-i/commercial-vehicle-faqs/"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "KY",
@@ -621,8 +810,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "LA",
@@ -656,8 +856,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "ME",
@@ -691,8 +902,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "MD",
@@ -726,8 +948,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "MA",
@@ -761,8 +994,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "MI",
@@ -803,7 +1047,22 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false,
+    "researchFollowup": {
+      "attemptedOn": "2026-11-04",
+      "finding": "Official statute permission and agency FAQ road-contact wording still conflict; clarification required."
     }
   },
   {
@@ -838,8 +1097,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "MS",
@@ -880,8 +1150,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "MO",
@@ -922,8 +1203,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "MT",
@@ -957,8 +1249,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://mdt.mt.gov/travinfo/chains.aspx"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "NE",
@@ -992,8 +1295,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "NV",
@@ -1027,8 +1341,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://www.leg.state.nv.us/Division/Legal/LawLibrary/NRS/NRS-484D.html"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "NH",
@@ -1069,8 +1394,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "NJ",
@@ -1111,7 +1447,22 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false,
+    "researchFollowup": {
+      "attemptedOn": "2026-11-04",
+      "finding": "Current official legislature portal available, operative 39:3-73 not retrieved; secondary sources not promoted."
     }
   },
   {
@@ -1153,7 +1504,22 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false,
+    "researchFollowup": {
+      "attemptedOn": "2026-11-04",
+      "finding": "Official 2003 enactment found, but current consolidated provision and later amendments remain unverified."
     }
   },
   {
@@ -1188,8 +1554,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "NC",
@@ -1223,8 +1600,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "ND",
@@ -1258,8 +1646,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://www.statepatrol.nd.gov/NDHPFAQ"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "OH",
@@ -1293,8 +1692,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "OK",
@@ -1335,7 +1745,22 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false,
+    "researchFollowup": {
+      "attemptedOn": "2026-11-04",
+      "finding": "Official current text retains two-ton capacity restriction language across exceptions; do not infer unrestricted heavy-truck permission."
     }
   },
   {
@@ -1370,8 +1795,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://www.oregon.gov/odot/mct/pages/chains-and-traction-tires.aspx"
+      },
+      "controlLevels": {
+        "status": "limited",
+        "source": "https://www.oregon.gov/odot/mct/pages/chains-and-traction-tires.aspx"
+      },
+      "devices": {
+        "status": "limited",
+        "source": "https://www.oregon.gov/odot/mct/pages/chains-and-traction-tires.aspx"
       }
-    }
+    },
+    "controlLevels": "Posted signs distinguish carry, required-use categories and conditional closures. Read the actual order: a conditional closure may apply more broadly than ordinary exemptions.",
+    "devices": "ODOT defines chains to include link/cable and traction devices; its ordinary traction-tire substitution applies to qualifying ≤10,000 lb vehicles not towing, not this heavy combination exercise. Device/vehicle suitability and actual controls remain separate.",
+    "operationallyApproved": false
   },
   {
     "code": "PA",
@@ -1405,8 +1841,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "RI",
@@ -1440,8 +1887,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "SC",
@@ -1475,8 +1933,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "SD",
@@ -1510,8 +1979,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "TN",
@@ -1552,7 +2032,22 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false,
+    "researchFollowup": {
+      "attemptedOn": "2026-11-04",
+      "finding": "Only secondary consolidated chain permission retrieved; current authoritative text needed."
     }
   },
   {
@@ -1587,8 +2082,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "UT",
@@ -1622,8 +2128,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://connect.udot.utah.gov/public/snow-tire-and-chain-up-requirements/"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "VT",
@@ -1657,8 +2174,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://legislature.vermont.gov/statutes/section/23/013/01006c"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "VA",
@@ -1692,8 +2220,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "WA",
@@ -1727,8 +2266,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://apps.leg.wa.gov/wac/default.aspx?cite=204-24-050"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "WV",
@@ -1762,8 +2312,19 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   },
   {
     "code": "WI",
@@ -1804,7 +2365,22 @@ const data=[
       "installation": {
         "status": "unresolved",
         "source": null
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false,
+    "researchFollowup": {
+      "attemptedOn": "2026-11-04",
+      "finding": "Current legislative endpoint remains inaccessible; official DOT-hosted compilation found is historical and cannot establish current requirements."
     }
   },
   {
@@ -1839,8 +2415,19 @@ const data=[
       "installation": {
         "status": "limited",
         "source": "https://www.dot.state.wy.us/home/travel/winter/chain_law.html"
+      },
+      "controlLevels": {
+        "status": "unresolved",
+        "source": null
+      },
+      "devices": {
+        "status": "unresolved",
+        "source": null
       }
-    }
+    },
+    "controlLevels": null,
+    "devices": null,
+    "operationallyApproved": false
   }
 ];
 root.HubChainRegulations=data;if(typeof module!=="undefined")module.exports=data;

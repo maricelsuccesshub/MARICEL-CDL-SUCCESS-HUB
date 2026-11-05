@@ -20,3 +20,11 @@ The simulator's five decisions group learning topics; they are not a replacement
 Legacy braking language in the manuals is not reproduced. Follow the current vehicle's braking/ABS instructions. Never infer installation permission, tire size compatibility or chain-control compliance from this simulation.
 
 Instructor review: use instructor-review.html to compare correct/incorrect orientation, connectors, each gated decision, clearance warnings and both distinct tensioning/recheck methods against the PDFs. No physical chain installation was performed. Instructor acceptance remains outstanding.
+
+## Instructor-findings follow-up
+
+Both exact manufacturer PDFs were opened and visually inspected again in Chrome, pages 1 and 2, after the research downloader returned 403. This successful browser inspection supersedes that retrieval limitation for these pages. No manual was copied into the repository. The technical index still lists both links: https://peerlesschain.com/support/technical-info.
+
+Correction: the CAM manual step 5 specifies short movement and initial fastener retightening BEFORE step 6 clockwise CAM closure. Earlier grouped topics could imply the reverse; model text, decision 3, final inspection and instructor worksheet now state the order explicitly. The exercise buttons group parked learning checks and are not the manual's literal sequence.
+
+New teaching drawings show tire/rim/tread, links/cable, an example CAM/tool slot, connector recognition, contact cutaways and two tensioner loops. Each is explicitly non-dimensional and not exact manufacturer geometry. Recognition panels must not be used to infer latch engagement, allowable clearance, tension force or number of actual CAM adjusters. Actual manufacturer photos remain in the linked originals, not generated replicas. Instructor visual acceptance and physical fit remain outstanding.
